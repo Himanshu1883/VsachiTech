@@ -12,27 +12,33 @@ const TeamSection = () => {
     { 
       name: "Shubh Sharma", 
       role: "Chief Executive Officer", 
-      img: "people/p6.jpeg",
+      img: "people/shubhsir.jpeg",
       bio: "Visionary leader driving innovation",
     },
-    // { 
-    //   name: "Himanshu Dubey", 
-    //   role: "Full-Stack Engineer", 
-    //   img: "people/p3.jpeg",
-    //   bio: "Architecting scalable solutions",
-    // },
+    { 
+      name: "Himanshu Dubey", 
+      role: "Python Fullstack Engineer", 
+      img: "people/himanshu.png",
+      bio: "Architecting scalable solutions",
+    },
     // { 
     //   name: "Nikhil Sain", 
     //   role: "Business Development", 
     //   img: "people/p2.jpeg",
     //   bio: "Building strategic partnerships",
     // },
-    // { 
-    //   name: "Priya Singh", 
-    //   role: "Frontend Engineer", 
-    //   img: "people/p4.jpeg",
-    //   bio: "Crafting pixel-perfect experiences",
-    // },
+        { 
+      name: "Prateek shah", 
+      role: "Digital Marketing", 
+      img: "people/prateek.png",
+      bio: "Building strategic partnerships",
+    },
+    { 
+      name: "Abhishek shah", 
+      role: "Digital Marketing", 
+      img: "people/abhishek.png",
+      bio: "Building strategic partnerships",
+    },
     { 
       name: "Ritika Malhotra", 
       role: "Project Manager", 

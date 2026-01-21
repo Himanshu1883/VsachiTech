@@ -83,7 +83,7 @@ export default function LaravelDevelopers() {
                     {/* Right Image */}
                     <div className="relative">
                         <img
-                            src="/laravel.webp"
+                            src="/laravel.png"
                             alt="Laravel Developers Team"
                             className="rounded-2xl shadow-2xl"
                         />
