@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+/* Smooth image transitions */
+.service-image-enter {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.service-image-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.service-image-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.service-image-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 400ms, transform 400ms;
+}
+
+/* Custom cursor glow effect */
+.cursor-glow {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.5), transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+}
+
+
+@layer base {
+  h1, h2, h3 {
+    @apply font-extrabold tracking-[-0.03em];
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 5rem;
+  font-size: 120px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: #d1d5db;
+}
+
+.marquee-content.alt {
+  color: black;
+}
+
+.marquee-left {
+  animation: marquee-left 12s linear infinite;
+}
+
+.marquee-right {
+  animation: marquee-right 12s linear infinite;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.marquee-track {
+  will-change: transform;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
