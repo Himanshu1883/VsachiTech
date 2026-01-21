@@ -21,7 +21,7 @@ import {
 } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
-
+import seohero from "../../assets/seo-hero.mp4"
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -166,7 +166,7 @@ export default function SeoServices() {
   <div className="absolute inset-0">
     <video
       className="w-full h-full object-cover"
-      src="/seo-hero.mp4"
+      src={seohero}
       autoPlay
       loop
       muted

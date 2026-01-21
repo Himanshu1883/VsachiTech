@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { 
-  FaPython, 
-  FaReact, 
-  FaLaravel, 
+import {
+  FaPython,
+  FaReact,
+  FaLaravel,
   FaPalette,
   FaCode,
   FaClock,
@@ -25,151 +25,158 @@ export default function HireTalents() {
   ];
 
   const talents = [
-    { 
-      icon: FaReact, 
-      title: "Frontend Developers", 
+    {
+      icon: FaReact,
+      title: "Frontend Developers",
       desc: "Expert React, Next.js, and Tailwind engineers building responsive, performant interfaces",
-      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      link: "/hiretalents/react-developers"
     },
-    { 
-      icon: FaPython, 
-      title: "Backend Developers", 
+    {
+      icon: FaPython,
+      title: "Backend Developers",
       desc: "Python specialists crafting scalable APIs, automation systems, and AI-ready architectures",
-      skills: ["Python", "FastAPI", "Django", "PostgreSQL"]
+      skills: ["Python", "FastAPI", "Django", "PostgreSQL"],
+      link: "/hiretalents/python-developers"
     },
-    { 
-      icon: FaLaravel, 
-      title: "Laravel Developers", 
+    {
+      icon: FaLaravel,
+      title: "Laravel Developers",
       desc: "PHP experts building robust enterprise backends and modern SaaS applications",
-      skills: ["Laravel", "PHP", "MySQL", "Redis"]
+      skills: ["Laravel", "PHP", "MySQL", "Redis"],
+      link: "/hiretalents/laravel-developers"
     },
-    { 
-      icon: FaMobileAlt, 
-      title: "Mobile Developers", 
+    {
+      icon: FaMobileAlt,
+      title: "Mobile Developers",
       desc: "Cross-platform specialists delivering native experiences for iOS and Android",
-      skills: ["Flutter", "React Native", "iOS", "Android"]
+      skills: ["Flutter", "React Native", "iOS", "Android"],
+      link: "/hiretalents"
     },
-    { 
-      icon: FaCloud, 
-      title: "Cloud Engineers", 
+    {
+      icon: FaCloud,
+      title: "Cloud Engineers",
       desc: "DevOps professionals architecting scalable infrastructure and CI/CD pipelines",
-      skills: ["AWS", "Docker", "Kubernetes", "Terraform"]
+      skills: ["AWS", "Docker", "Kubernetes", "Terraform"],
+      link: "/hiretalents"
     },
-    { 
-      icon: FaPalette, 
-      title: "UI/UX Designers", 
+    {
+      icon: FaPalette,
+      title: "UI/UX Designers",
       desc: "Design system architects creating beautiful, intuitive user experiences",
-      skills: ["Figma", "Design Systems", "UX Research", "Prototyping"]
+      skills: ["Figma", "Design Systems", "UX Research", "Prototyping"],
+      link: "/hiretalents/uiux-designers"
     }
   ];
 
+
   const steps = [
-    { 
-      step: "01", 
-      title: "Discovery Call", 
+    {
+      step: "01",
+      title: "Discovery Call",
       desc: "Share your vision, tech stack, and timeline with our team",
       duration: "30 mins"
     },
-    { 
-      step: "02", 
-      title: "Talent Matching", 
+    {
+      step: "02",
+      title: "Talent Matching",
       desc: "Receive curated profiles of pre-vetted professionals within 48 hours",
       duration: "2 days"
     },
-    { 
-      step: "03", 
-      title: "Technical Interview", 
+    {
+      step: "03",
+      title: "Technical Interview",
       desc: "Conduct interviews and assess technical fit with your team",
       duration: "1 week"
     },
-    { 
-      step: "04", 
-      title: "Seamless Onboarding", 
+    {
+      step: "04",
+      title: "Seamless Onboarding",
       desc: "Start collaboration with integrated tools and workflows",
       duration: "1-3 days"
     }
   ];
 
   const reasons = [
-    { 
-      title: "Pre-vetted Excellence", 
+    {
+      title: "Pre-vetted Excellence",
       desc: "Every professional passes rigorous technical assessments and background checks"
     },
-    { 
-      title: "Rapid Deployment", 
+    {
+      title: "Rapid Deployment",
       desc: "Start working with your new team member within days, not months"
     },
-    { 
-      title: "Flexible Scaling", 
+    {
+      title: "Flexible Scaling",
       desc: "Scale your team up or down seamlessly based on project demands"
     },
-    { 
-      title: "Global Time Zones", 
+    {
+      title: "Global Time Zones",
       desc: "Find talent that aligns perfectly with your working hours"
     },
-    { 
-      title: "Enterprise Security", 
+    {
+      title: "Enterprise Security",
       desc: "Comprehensive NDAs, IP protection, and data security protocols"
     },
-    { 
-      title: "Cost Efficiency", 
+    {
+      title: "Cost Efficiency",
       desc: "Access world-class talent at competitive rates without compromise"
     }
   ];
 
   return (
     <>
-{/* Hero Section */}
-<section className="relative pt-16 pb-20 overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white">
-  
-  {/* Background Glow */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.15),transparent_60%)]"></div>
+      {/* Hero Section */}
+      <section className="relative pt-16 pb-20 overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white">
 
-  {/* Floating Tech Icons */}
-  <div className="absolute inset-0 pointer-events-none">
-    <FaPython className="absolute top-24 left-[8%] text-7xl text-blue-500 opacity-30 animate-float glow-blue" />
-    <FaReact className="absolute top-40 right-[12%] text-6xl text-cyan-400 opacity-30 animate-float-delayed glow-cyan" />
-    <FaLaravel className="absolute bottom-40 left-[18%] text-6xl text-red-500 opacity-30 animate-float glow-red" />
-    <FaPalette className="absolute bottom-24 right-[22%] text-7xl text-purple-500 opacity-30 animate-float-delayed glow-purple" />
-  </div>
+        {/* Background Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.15),transparent_60%)]"></div>
 
-  {/* Content */}
-  <div className="relative container mx-auto px-6 text-center z-10">
-    <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-gray-900 tracking-tight">
-      Hire Talents
-    </h1>
+        {/* Floating Tech Icons */}
+        <div className="absolute inset-0 pointer-events-none">
+          <FaPython className="absolute top-24 left-[8%] text-7xl text-blue-500 opacity-30 animate-float glow-blue" />
+          <FaReact className="absolute top-40 right-[12%] text-6xl text-cyan-400 opacity-30 animate-float-delayed glow-cyan" />
+          <FaLaravel className="absolute bottom-40 left-[18%] text-6xl text-red-500 opacity-30 animate-float glow-red" />
+          <FaPalette className="absolute bottom-24 right-[22%] text-7xl text-purple-500 opacity-30 animate-float-delayed glow-purple" />
+        </div>
 
-    <p className="mt-3 text-gray-600 text-sm md:text-base">
-      (
-      <Link to="/" className="hover:text-red-500 transition-colors">
-        HOME
-      </Link>{" "}
-      - <span className="font-semibold">HIRE TALENTS</span>)
-    </p>
-  </div>
+        {/* Content */}
+        <div className="relative container mx-auto px-6 text-center z-10">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-gray-900 tracking-tight">
+            Hire Talents
+          </h1>
 
-  {/* Image */}
-  <div className="relative mt-14 z-10 mb-16">
-    <img
-      src="hiretalents.jpg"
-      alt="Hire Talents"
-      className="w-full h-64 md:h-96 object-cover rounded-t-3xl shadow-xl"
-    />
+          <p className="mt-3 text-gray-600 text-sm md:text-base">
+            (
+            <Link to="/" className="hover:text-red-500 transition-colors">
+              HOME
+            </Link>{" "}
+            - <span className="font-semibold">HIRE TALENTS</span>)
+          </p>
+        </div>
 
-    {/* Gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-t-3xl"></div>
-  </div>
-  <Scroll/>
+        {/* Image */}
+        <div className="relative mt-14 z-10 mb-16">
+          <img
+            src="hiretalents.jpg"
+            alt="Hire Talents"
+            className="w-full h-64 md:h-96 object-cover rounded-t-3xl shadow-xl"
+          />
 
- 
-</section>
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-t-3xl"></div>
+        </div>
+        <Scroll />
 
-{/* Divider */}
-<section className="py-10">
-  <div className="mx-auto w-[90%] h-px bg-black/80"></div>
-</section>
 
- 
+      </section>
+
+      {/* Divider */}
+      <section className="py-10">
+        <div className="mx-auto w-[90%] h-px bg-black/80"></div>
+      </section>
+
+
 
 
       {/* Specialized Talent Section */}
@@ -185,42 +192,62 @@ export default function HireTalents() {
             </p>
           </div>
 
-          {/* Talent Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {talents.map((item, i) => (
-              <div
+              <Link
                 key={i}
-                className="group relative bg-white border border-gray-200 rounded-2xl p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                to={item.link}
+                className="group block focus:outline-none"
               >
-                {/* Icon */}
-                <div className="mb-6 inline-flex p-4 bg-red-50 rounded-xl group-hover:bg-red-500 transition-colors duration-300">
-                  <item.icon className="text-4xl text-red-500 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+                <div
+                  className="
+          relative bg-white border border-gray-200 rounded-2xl p-8
+          hover:border-red-500 hover:shadow-2xl
+          transition-all duration-500 hover:-translate-y-2
+          h-full
+        "
+                >
+                  {/* Icon */}
+                  <div className="mb-6 inline-flex p-4 bg-red-50 rounded-xl group-hover:bg-red-500 transition-colors duration-300">
+                    <item.icon className="text-4xl text-red-500 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {item.desc}
+                  </p>
+
+                  {/* Skills */}
+                  <div className="flex flex-wrap gap-2">
+                    {item.skills.map((skill, idx) => (
+                      <span
+                        key={idx}
+                        className="
+                text-xs font-medium px-3 py-1 rounded-full
+                bg-gray-100 text-gray-700
+                group-hover:bg-red-50 group-hover:text-red-600
+                transition-colors
+              "
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Hover Line */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl" />
                 </div>
-
-                {/* Content */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{item.desc}</p>
-
-                {/* Skills Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {item.skills.map((skill, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xs font-medium px-3 py-1 bg-gray-100 text-gray-700 rounded-full group-hover:bg-red-50 group-hover:text-red-600 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Hover Effect Line */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl"></div>
-              </div>
+              </Link>
             ))}
           </div>
+
         </div>
       </section>
-
+      <HiringProcessSection />
       {/* Hiring Process Section */}
       <section className="py-28 bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="max-w-7xl mx-auto px-6">
@@ -362,7 +389,7 @@ export default function HireTalents() {
           </div>
         </div>
       </section>
-      <HiringProcessSection/>
+
 
       {/* Final CTA Section */}
       <section className="py-28 bg-gradient-to-br from-red-500 to-red-600 text-white text-center relative overflow-hidden">

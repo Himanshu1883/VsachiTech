@@ -105,6 +105,7 @@ function About() {
                 </div>
                 <Scroll />
             </section>
+             <TeamSection/>
 
 
             {/* Content Section */}
@@ -458,7 +459,7 @@ function About() {
                 </div>
             </section>
 
- <TeamSection/>
+
 
 
         </div>

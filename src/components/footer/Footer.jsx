@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaPhone } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Logo from '../ui/logo';
 
 export default function Footer() {
   const [cursor, setCursor] = useState({
@@ -62,7 +63,7 @@ export default function Footer() {
               className="font-bold tracking-tighter mx-12 leading-none
               text-[10rem] sm:text-[14rem] md:text-[18rem] lg:text-[22rem] xl:text-[24rem]"
             >
-              VSachi Tech
+              Vsachi Tech
             </span>
           ))}
         </motion.div>
@@ -77,7 +78,7 @@ export default function Footer() {
     {/* Logo + Description */}
     <div className="max-w-3xl space-y-6">
       <div className="flex items-center gap-4">
-        <img src="/Logo.png" alt="Logo" className="w-10 h-10 sm:w-12 sm:h-12" />
+        <Logo className="w-10 h-10"/>
         <h3 className="text-2xl sm:text-3xl font-bold">VSachi Tech</h3>
       </div>
 
@@ -166,7 +167,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between gap-3
           px-6 sm:px-10 md:px-16 lg:px-24 py-4 text-xs sm:text-sm">
           <p className="text-gray-500">
-            © 2026 VSachi Tech. All rights reserved.
+            © 2026 Vsachi Tech. All rights reserved.
           </p>
 
           <div className="flex flex-wrap gap-2 text-[#e44f39]">

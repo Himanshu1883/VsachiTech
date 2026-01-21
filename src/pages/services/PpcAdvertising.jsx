@@ -26,7 +26,7 @@ import {
 import { SiGoogleads } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
-
+import ppchero from "../../assets/ppchero.mp4"
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -170,7 +170,7 @@ export default function PPCAdvertising() {
         <div className="absolute inset-0">
           <video
             className="w-full h-full object-cover"
-            src="/ppchero.mp4"
+            src={ppchero}
             autoPlay
             loop
             muted

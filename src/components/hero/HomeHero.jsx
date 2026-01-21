@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Button from '../ui/Button';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import heroVideo from "../../assets/herovideo.mp4"
 export default function HomeHero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
@@ -27,7 +27,7 @@ export default function HomeHero() {
       <div className="absolute inset-0 z-0">
         <video
           className="w-full h-full object-cover"
-          src="herovideo.mp4"
+          src={heroVideo}
           autoPlay
           loop
           muted

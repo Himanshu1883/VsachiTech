@@ -2,6 +2,7 @@ import { FiGrid, FiMenu, FiX } from 'react-icons/fi';
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import WhatWeDoMegaMenu from '../ui/WhatWeDoMegaMenu';
+import Logo from '../ui/logo';
 
 export default function Navbar() {
   const location = useLocation();
@@ -124,9 +125,9 @@ export default function Navbar() {
         <div className="container mx-auto px-6 py-5 flex items-center justify-between">
 
           {/* LOGO */}
-          <Link to="/" className="flex items-center gap-2 text-white font-bold text-xl">
-            <img src="/Logo.png" width={36} height={36} alt="Logo" />
-            VSachi Tech
+          <Link to="/" className="flex items-center text-white font-bold text-xl">
+            <Logo className="w-10 h-10"/>
+            Vsachi Tech
           </Link>
 
           {/* DESKTOP NAV */}

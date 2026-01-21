@@ -21,7 +21,7 @@ import {
 import { SiTensorflow, SiPytorch, SiDocker } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
-
+import automation from "../../assets/automation.mp4"
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -165,7 +165,7 @@ export default function Automation() {
         <div className="absolute inset-0">
           <video
             className="w-full h-full object-cover"
-            src="/automation.mp4"
+            src={automation}
             autoPlay
             loop
             muted

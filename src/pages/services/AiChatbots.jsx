@@ -26,7 +26,7 @@ import {
 import { SiDialogflow } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
-
+import aichatbot from "../../assets/aichatbot.mp4"
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -170,7 +170,7 @@ export default function AiChatbots() {
   <div className="absolute inset-0">
     <video
       className="w-full h-full object-cover"
-      src="/aichatbot.mp4"
+      src={aichatbot}
       autoPlay
       loop
       muted

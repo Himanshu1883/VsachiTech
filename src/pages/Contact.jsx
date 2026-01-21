@@ -106,12 +106,12 @@ function Contact() {
                 <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
                   Contact
                 </p>
-                <a
-                  href="mailto:himanshudubey1884@gmail.com"
-                  className="text-xl font-semibold text-gray-900 hover:text-red-500 transition-colors"
+                <span
+                  
+                  className="text-xl font-semibold text-gray-900 "
                 >
-                  himanshudubey1884@gmail.com
-                </a>
+                  info@vsachitech.com
+                </span>
               </div>
 
               {/* CTA */}

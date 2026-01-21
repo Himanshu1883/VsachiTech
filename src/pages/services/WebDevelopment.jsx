@@ -44,7 +44,7 @@ import {
 } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
-
+import webhero from "../../assets/webhero.mp4"
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -199,7 +199,7 @@ export default function WebDevelopment() {
         <div className="absolute inset-0">
           <video
             className="w-full h-full object-cover"
-            src="/webhero.mp4"
+            src={webhero}
             autoPlay
             loop
             muted
