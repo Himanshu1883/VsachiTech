@@ -421,26 +421,23 @@ function About() {
                             {item.title}
                         </h2>
 
-                        {/* Description */}
-                        <p
+                        {/* Description - Only show when active */}
+                        <div
                             className={`
-                                text-sm sm:text-base font-medium leading-relaxed
-                                transition-all duration-500 ease-out
-                                ${isActive
-                                    ? "opacity-100 translate-y-0 text-black"
-                                    : "opacity-70 translate-y-2 text-white"}
+                                overflow-hidden transition-all duration-500 ease-out
+                                ${isActive ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}
                             `}
                         >
-                            {item.desc}
-                        </p>
+                            <p className="text-sm sm:text-base font-medium leading-relaxed text-black">
+                                {item.desc}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         );
     })}
 </section>
-
-
 
             {/* SERVICES GRID */}
             <section className="bg-[#eaeaea] py-24">

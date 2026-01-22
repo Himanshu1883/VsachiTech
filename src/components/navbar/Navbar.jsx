@@ -110,11 +110,14 @@ export default function Navbar() {
     setShowWhatWeDo(false);
     setMobileWhatWeDoOpen(false);
   };
+const toggleMobileWhatWeDo = (e) => {
+  e.stopPropagation();
+  setMobileWhatWeDoOpen(prev => !prev);
+};
 
-  const toggleMobileWhatWeDo = (e) => {
-    e.stopPropagation();
-    setMobileWhatWeDoOpen(!mobileWhatWeDoOpen);
-  };
+useEffect(() => {
+  if (!mobileOpen) setMobileWhatWeDoOpen(false);
+}, [mobileOpen]);
 
   return (
     <>
@@ -214,18 +217,20 @@ export default function Navbar() {
                 <div key={item.label}>
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => !isWhatWeDo && handleNavigate(item.to)}
-                      className={`
-                        flex-1 text-left px-5 py-3.5 uppercase text-sm font-semibold rounded-full
-                        transition-all duration-200
-                        ${isActive 
-                          ? 'bg-white text-black' 
-                          : 'text-white/90 hover:bg-white/10 border border-white/20'
-                        }
-                      `}
-                    >
-                      {item.label}
-                    </button>
+  onClick={() => handleNavigate(item.to)}
+  className={`
+    flex-1 text-left px-5 py-3.5 uppercase text-sm font-semibold rounded-full
+    transition-all duration-200
+    ${isActive 
+      ? 'bg-white text-black' 
+      : 'text-white/90 hover:bg-white/10 border border-white/20'
+    }
+  `}
+>
+  {item.label}
+</button>
+
+
                     
                     {isWhatWeDo && (
                       <button

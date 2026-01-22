@@ -71,12 +71,12 @@ export default function LaravelDevelopers() {
                         </p>
 
                         <div className="flex gap-4">
+                            <Link to={"/contact#project-form"}>
                             <button className="px-8 py-4 bg-black text-white rounded-lg hover:bg-[#e44f39] transition">
                                 Hire Laravel Developers
                             </button>
-                            <button className="px-8 py-4 border border-black rounded-lg hover:bg-black hover:text-white transition">
-                                Talk to an Expert
-                            </button>
+                            </Link>
+                             
                         </div>
                     </div>
 
@@ -536,7 +536,7 @@ export default function LaravelDevelopers() {
                                         </div>
                                     ))}
                                 </div>
-
+                                    <Link to={"/contact#project-form"}> 
                                 <button className={`w-full py-3 rounded-lg font-semibold transition-all ${
                                     engagement.popular 
                                         ? 'bg-[#e44f39] text-white hover:bg-[#d43d2a]' 
@@ -544,6 +544,7 @@ export default function LaravelDevelopers() {
                                 }`}>
                                     Choose This Model
                                 </button>
+                                 </Link>
                             </div>
                         ))}
                     </div>
@@ -656,9 +657,7 @@ export default function LaravelDevelopers() {
                                 Hire Laravel Developers Now
                             </button>
                         </Link>
-                        <button className="px-10 py-4 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-[#e44f39] transition-all duration-300">
-                            Schedule a Call
-                        </button>
+ 
                     </div>
                 </div>
             </section>
