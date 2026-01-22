@@ -1,8 +1,10 @@
-import { FiGrid, FiMenu, FiX } from 'react-icons/fi';
+import { FiGrid, FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import WhatWeDoMegaMenu from '../ui/WhatWeDoMegaMenu';
+
 import Logo from '../ui/logo';
+import WhatWeDoMobileMegaMenu from '../ui/Whatwedomobilemegamenu';
 
 export default function Navbar() {
   const location = useLocation();
@@ -14,18 +16,19 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isHeroActive, setIsHeroActive] = useState(true);
   const [showWhatWeDo, setShowWhatWeDo] = useState(false);
+  const [mobileWhatWeDoOpen, setMobileWhatWeDoOpen] = useState(false);
 
   const navRef = useRef(null);
   const itemRefs = useRef([]);
+  
   const closeMenu = () => {
-  setTimeout(() => setShowWhatWeDo(false), 80);
-    };
-
+    setTimeout(() => setShowWhatWeDo(false), 80);
+  };
 
   const navItems = [
     { label: "Who we are", to: "/who-we-are" },
-    { label: "What we do", to: "/what-we-do" },
-    { label: "Dev Room", to: "/hiretalents" },/*Resource Pool ,Workforce,Brains for Hire,Code Crew,Expert Stack,Skill Vault  */
+    { label: "What we do", to: "/what-we-do", hasMegaMenu: true },
+    { label: "Dev Room", to: "/hiretalents" },
     { label: "Contact us", to: "/contact" }
   ];
 
@@ -91,6 +94,7 @@ export default function Navbar() {
     // Always close mega menu on navigation
     setShowWhatWeDo(false);
     setMobileOpen(false);
+    setMobileWhatWeDoOpen(false);
 
     // Instantly fix navbar background on route change
     if (location.pathname !== "/") {
@@ -104,6 +108,12 @@ export default function Navbar() {
     navigate(to);
     setMobileOpen(false);
     setShowWhatWeDo(false);
+    setMobileWhatWeDoOpen(false);
+  };
+
+  const toggleMobileWhatWeDo = (e) => {
+    e.stopPropagation();
+    setMobileWhatWeDoOpen(!mobileWhatWeDoOpen);
   };
 
   return (
@@ -125,7 +135,7 @@ export default function Navbar() {
         <div className="container mx-auto px-6 py-5 flex items-center justify-between">
 
           {/* LOGO */}
-          <Link to="/" className="flex items-center text-white font-bold text-xl">
+          <Link to="/" className="flex items-center text-white font-bold text-xl z-50">
             <Logo className="w-10 h-10"/>
             Vsachi Tech
           </Link>
@@ -155,8 +165,7 @@ export default function Navbar() {
                     } else {
                         closeMenu();
                     }
-                    }}
-
+                  }}
                   className={`relative z-10 px-6 py-2 uppercase text-sm font-semibold rounded-full transition-colors
                     ${
                       location.pathname !== "/" &&
@@ -180,15 +189,93 @@ export default function Navbar() {
 
           {/* MOBILE TOGGLE */}
           <button
-            className="lg:hidden text-white text-2xl"
+            className="lg:hidden text-white text-2xl z-50"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
+
+        {/* MOBILE MENU */}
+        <div
+          className={`
+            lg:hidden fixed top-[80px] left-0 w-full h-[calc(50vh)]
+            bg-gray-800 backdrop-blur-xl border-t border-white/10
+            transition-all duration-300 overflow-y-auto
+            ${mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}
+          `}
+        >
+          <div className="container mx-auto px-6 py-6 space-y-2">
+            {navItems.map((item) => {
+              const isWhatWeDo = item.hasMegaMenu;
+              const isActive = location.pathname === item.to;
+
+              return (
+                <div key={item.label}>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => !isWhatWeDo && handleNavigate(item.to)}
+                      className={`
+                        flex-1 text-left px-5 py-3.5 uppercase text-sm font-semibold rounded-full
+                        transition-all duration-200
+                        ${isActive 
+                          ? 'bg-white text-black' 
+                          : 'text-white/90 hover:bg-white/10 border border-white/20'
+                        }
+                      `}
+                    >
+                      {item.label}
+                    </button>
+                    
+                    {isWhatWeDo && (
+                      <button
+                        onClick={toggleMobileWhatWeDo}
+                        className={`
+                          px-4 py-3.5 rounded-full transition-all duration-200
+                          ${mobileWhatWeDoOpen 
+                            ? 'bg-[#e44f39] text-white' 
+                            : 'bg-white/10 text-white border border-white/20 hover:bg-white/20'
+                          }
+                        `}
+                      >
+                        <FiChevronDown 
+                          className={`text-lg transition-transform duration-300 ${
+                            mobileWhatWeDoOpen ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Mobile Mega Menu */}
+                  {isWhatWeDo && (
+                    <div
+                      className={`
+                        overflow-hidden transition-all duration-300
+                        ${mobileWhatWeDoOpen ? 'max-h-[2000px] opacity-100 mt-3' : 'max-h-0 opacity-0'}
+                      `}
+                    >
+                      <WhatWeDoMobileMegaMenu
+                        onNavigate={handleNavigate}
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* Mobile CTA */}
+            <div className="pt-4">
+              <div className="bg-[#e44f39] p-4 rounded-full cursor-pointer flex items-center justify-center gap-3 hover:bg-[#ff6b55] transition-colors">
+                <FiGrid className="text-white text-xl" />
+                <span className="text-white font-semibold">Get Started</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </nav>
 
-      {/* MEGA MENU */}
+      {/* DESKTOP MEGA MENU */}
       <WhatWeDoMegaMenu
         open={showWhatWeDo}
         onEnter={() => setShowWhatWeDo(true)}

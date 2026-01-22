@@ -52,7 +52,7 @@ function About() {
         const totalFrames = duration / frameRate;
 
         const targets = {
-            projects: 470,
+            projects: 50,
             awards: 16,
             clients: 87,
             conversions: 370
@@ -82,29 +82,82 @@ function About() {
     return (
         <div className="bg-white">
             {/* Hero Section */}
-            <section className="relative bg-white py-20">
-                <div className="container mx-auto px-6 text-center">
-                    <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-4">
-                        BUILDING SCALABLE SOFTWARE SOLUTIONS
-                    </h1>
-                    <p className="text-gray-600 text-sm md:text-base">
-                        (<Link to="/" className="hover:text-red-500 transition-colors">HOME</Link> - <span className="font-semibold">WHO WE ARE</span>)
-                    </p>
-                </div>
+<section
+  className="relative bg-black 
+             py-24 sm:py-32 md:py-40 lg:py-48"
+  style={{
+    backgroundImage: "url('/vsachibg.jpeg')",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  }}
+>
+  {/* Black Tint */}
+  <div className="absolute inset-0 bg-black/70"></div>
 
-                {/* Team Image with Gradient Effect */}
-                <div className="mt-12 mb-10">
-                    <img
-                        src="aboutus.jpg"
-                        alt="Team collaboration"
-                        className="w-full h-64 md:h-96 object-cover"
-                    />
-                </div>
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
+  {/* Hero Content */}
+  <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center">
+    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl 
+                   font-bold text-white mb-4 leading-tight">
+      BUILDING SCALABLE SOFTWARE SOLUTIONS
+    </h1>
 
-                </div>
-                <Scroll />
-            </section>
+    <p className="text-gray-300 text-xs sm:text-sm md:text-base">
+      (
+      <Link to="/" className="hover:text-red-500 transition-colors">
+        HOME
+      </Link>{" "}
+      - <span className="font-semibold">WHO WE ARE</span>)
+    </p>
+  </div>
+
+  {/* Stats Glass Card */}
+  <div className="relative z-10 mt-10 sm:mt-12 mb-8 px-4">
+    <div
+      className="max-w-4xl mx-auto 
+                 rounded-2xl
+                 bg-white/10 backdrop-blur-xl
+                 border border-white/20
+                 shadow-2xl
+                 py-8 sm:py-10 md:py-12"
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 text-center">
+        
+        <div>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1">
+            30+
+          </h3>
+          <p className="text-gray-300 uppercase tracking-wider text-xs sm:text-sm">
+            Projects Delivered
+          </p>
+        </div>
+
+        <div className="sm:border-x border-white/20 px-4">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-500 mb-1">
+            10x
+          </h3>
+          <p className="text-gray-300 uppercase tracking-wider text-xs sm:text-sm">
+            Business Growth
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1">
+            24/7
+          </h3>
+          <p className="text-gray-300 uppercase tracking-wider text-xs sm:text-sm">
+            Tech Support
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <Scroll />
+</section>
+
+
              <TeamSection/>
 
 
@@ -240,105 +293,152 @@ function About() {
                     </div>
                 </div>
             </section>
-            {/* OUR STRENGTH SECTION */}
-            <section className="bg-[#1c1c1c] text-white pb-20 pt-5 px-5">
-                <div className="py-16 text-center text-sm tracking-widest">
-                    (OUR STRENGTH)
+           {/* OUR STRENGTH SECTION */}
+<section className="bg-[#1c1c1c] text-white pb-12 sm:pb-20 pt-5 px-4 sm:px-5">
+    <div className="py-12 sm:py-16 text-center text-xs sm:text-sm tracking-widest">
+        (OUR STRENGTH)
+    </div>
+
+    {[
+        {
+            id: "001",
+            title: "STRATEGY",
+            desc: "We design systems with a clear technical roadmap, focusing on scalability, performance, and business goals.",
+        },
+        {
+            id: "002",
+            title: "WEB DEVELOP",
+            desc: "We build modern, high-performance websites and applications using clean, maintainable code",
+        },
+        {
+            id: "003",
+            title: "UX DESIGN",
+            desc: "Every interface is crafted for clarity, usability, and intuitive user experience across all devices",
+        },
+        {
+            id: "004",
+            title: "ECOMMERCE",
+            desc: "Robust, secure e-commerce systems designed to scale and handle real-world traffic and transactions.",
+        },
+        {
+            id: "005",
+            title: "DEVELOPMENT",
+            desc: "End-to-end development covering frontend, backend, APIs, integrations, and automation workflows.",
+        },
+    ].map((item, index) => {
+        const isActive = activeStrengthIndex === index;
+
+        return (
+            <div
+                key={index}
+                onMouseEnter={() => setActiveStrengthIndex(index)}
+                onClick={() => setActiveStrengthIndex(index)}
+                className="relative border-t border-white/20 overflow-hidden cursor-pointer"
+            >
+                {/* Background */}
+                <div
+                    className={`
+                        absolute inset-0 bg-[#e44f39]
+                        transition-transform duration-500 ease-out
+                        ${isActive ? "translate-y-0" : "translate-y-full"}
+                    `}
+                />
+
+                {/* DESKTOP LAYOUT (lg and above) */}
+                <div className="relative z-10 px-6 sm:px-10 py-5 hidden lg:block">
+                    <div className="relative flex items-center">
+                        {/* ID (LEFT FIXED) */}
+                        <span
+                            className={`absolute left-10 border rounded-full px-4 py-1 text-sm transition-colors duration-300
+                                ${isActive ? "border-black text-black" : "border-white text-white"}`}
+                        >
+                            {item.id}
+                        </span>
+
+                        {/* TITLE – DEAD CENTER */}
+                        <h2
+                            className={`
+                                mx-auto text-[6vw] tracking-tighter font-bold uppercase leading-none
+                                transition-all duration-500 ease-out
+                                ${isActive ? "text-black translate-x-[-15vw]" : "text-white"}
+                            `}
+                        >
+                            {item.title}
+                        </h2>
+
+                        {/* RIGHT CONTENT */}
+                        <div className="absolute right-10 flex items-center gap-10">
+                            <p
+                                className={`
+                                    max-w-md text-lg font-bold
+                                    transition-all duration-500 ease-out
+                                    ${isActive
+                                        ? "opacity-100 translate-x-0 text-black"
+                                        : "opacity-0 translate-x-20 text-black"}
+                                `}
+                            >
+                                {item.desc}
+                            </p>
+
+                            <span
+                                className={`text-3xl rotate-45 transition-colors duration-300
+                                    ${isActive ? "text-black" : "text-white"}`}
+                            >
+                                ↗
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
-                {[
-                    {
-                        id: "001",
-                        title: "STRATEGY",
-                        desc: "We design systems with a clear technical roadmap, focusing on scalability, performance, and business goals.",
-                    },
-                    {
-                        id: "002",
-                        title: "WEB DEVELOP",
-                        desc: "We build modern, high-performance websites and applications using clean, maintainable code",
-                    },
-                    {
-                        id: "003",
-                        title: "UX DESIGN",
-                        desc: "Every interface is crafted for clarity, usability, and intuitive user experience across all devices",
-                    },
-                    {
-                        id: "004",
-                        title: "ECOMMERCE",
-                        desc: "Robust, secure e-commerce systems designed to scale and handle real-world traffic and transactions.",
-                    },
-                    {
-                        id: "005",
-                        title: "DEVELOPMENT",
-                        desc: "End-to-end development covering frontend, backend, APIs, integrations, and automation workflows.",
-                    },
-                ].map((item, index) => {
-                    const isActive = activeStrengthIndex === index;
+                {/* MOBILE LAYOUT (below lg) */}
+                <div className="relative z-10 px-4 sm:px-6 py-6 lg:hidden">
+                    <div className="space-y-4">
+                        {/* Top Row - ID and Arrow */}
+                        <div className="flex items-center justify-between">
+                            <span
+                                className={`border rounded-full px-3 py-1 text-xs sm:text-sm transition-colors duration-300
+                                    ${isActive ? "border-black text-black" : "border-white text-white"}`}
+                            >
+                                {item.id}
+                            </span>
 
-                    return (
-                        <div
-                            key={index}
-                            onMouseEnter={() => setActiveStrengthIndex(index)}
-                            className="relative border-t border-white/20 overflow-hidden cursor-pointer"
-                        >
-                            {/* Background */}
-                            <div
-                                className={`
-            absolute inset-0 bg-[#e44f39]
-            transition-transform duration-500 ease-out
-            ${isActive ? "translate-y-0" : "translate-y-full"}
-          `}
-                            />
-
-                            <div className="relative z-10 px-10 py-5">
-                                {/* FULL WIDTH ROW */}
-                                <div className="relative flex items-center">
-                                    {/* ID (LEFT FIXED) */}
-                                    <span
-                                        className={`absolute left-10 border rounded-full px-4 py-1 text-sm transition-colors duration-300
-              ${isActive ? "border-black text-black" : "border-white text-white"}`}
-                                    >
-                                        {item.id}
-                                    </span>
-
-                                    {/* TITLE – DEAD CENTER */}
-                                    <h2
-                                        className={`
-                mx-auto text-[6vw] tracking-tighter font-bold uppercase leading-none
-                transition-all duration-500 ease-out
-                ${isActive ? "text-black translate-x-[-15vw]" : "text-white"}
-              `}
-                                    >
-                                        {item.title}
-                                    </h2>
-
-                                    {/* RIGHT CONTENT */}
-                                    <div className="absolute right-10 flex items-center gap-10">
-                                        <p
-                                            className={`
-                  max-w-md text-lg font-bold
-                  transition-all duration-500 ease-out
-                  ${isActive
-                                                    ? "opacity-100 translate-x-0 text-black"
-                                                    : "opacity-0 translate-x-20 text-black"}
-                `}
-                                        >
-                                            {item.desc}
-                                        </p>
-
-                                        <span
-                                            className={`text-3xl rotate-45 transition-colors duration-300
-                ${isActive ? "text-black" : "text-white"}`}
-                                        >
-                                            ↗
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <span
+                                className={`text-2xl sm:text-3xl rotate-45 transition-colors duration-300
+                                    ${isActive ? "text-black" : "text-white"}`}
+                            >
+                                ↗
+                            </span>
                         </div>
-                    );
-                })}
-            </section>
+
+                        {/* Title */}
+                        <h2
+                            className={`
+                                text-[12vw] sm:text-[10vw] tracking-tighter font-bold uppercase leading-none
+                                transition-colors duration-500 ease-out
+                                ${isActive ? "text-black" : "text-white"}
+                            `}
+                        >
+                            {item.title}
+                        </h2>
+
+                        {/* Description */}
+                        <p
+                            className={`
+                                text-sm sm:text-base font-medium leading-relaxed
+                                transition-all duration-500 ease-out
+                                ${isActive
+                                    ? "opacity-100 translate-y-0 text-black"
+                                    : "opacity-70 translate-y-2 text-white"}
+                            `}
+                        >
+                            {item.desc}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+    })}
+</section>
 
 
 
