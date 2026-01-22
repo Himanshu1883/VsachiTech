@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import usePageTitle from '../components/hooks/usePageTitle';
 import {
     FiLayers,
     FiTriangle,
@@ -11,6 +12,9 @@ import { Link } from 'react-router-dom';
 import Scroll from '../components/ui/Scroll';
 import TeamSection from '../components/ui/TeamSection ';
 function About() {
+     usePageTitle(
+   "Who We Are"
+  );
     const [counters, setCounters] = useState({
         projects: 0,
         awards: 0,

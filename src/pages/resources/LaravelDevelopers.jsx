@@ -22,8 +22,11 @@ import {
     SiSocketdotio,
     SiPostman
 } from "react-icons/si";
-
+import usePageTitle from "../../components/hooks/usePageTitle";
 export default function LaravelDevelopers() {
+usePageTitle("Hire Laravel Developers");
+
+
     return (
         <section className="bg-white text-black overflow-hidden">
 

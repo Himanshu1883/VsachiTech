@@ -9,10 +9,12 @@ import TechnologyStackSection from '../components/ui/TechnologyStackSection';
 import TwoWingsSection from '../components/ui/TwoWingsSection';
 import WhyChooseUs from '../components/ui/WhyChooseUs';
 import WhyUsSection from '../components/ui/WhyUsSection';
-
-
+import usePageTitle from '../components/hooks/usePageTitle';
 
 export default function Home() {
+      usePageTitle(
+    "Smart Digital Solutions for Modern Businesses In Delhi"
+  );
     return (
         <div className='bg-white'>
             <HomeHero />

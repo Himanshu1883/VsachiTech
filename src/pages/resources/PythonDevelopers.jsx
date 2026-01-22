@@ -22,8 +22,10 @@ import {
     SiElasticsearch,
     SiRabbitmq
 } from "react-icons/si";
-
+import usePageTitle from "../../components/hooks/usePageTitle";
 export default function PythonDevelopers() {
+    usePageTitle("Hire Python Developers");
+
     return (
         <section className="bg-white text-black overflow-hidden">
 

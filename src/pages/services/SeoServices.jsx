@@ -22,6 +22,8 @@ import {
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
 import seohero from "../../assets/seo-hero.mp4"
+import usePageTitle from "../../components/hooks/usePageTitle";
+
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -147,6 +149,8 @@ const WaveDivider = ({ flip }) => (
 /* ---------------------------------- */
 
 export default function SeoServices() {
+  usePageTitle("SEO Services In Delhi");
+
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {

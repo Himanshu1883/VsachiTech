@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import usePageTitle from '../components/hooks/usePageTitle';
 
 export default function Policies() {
+usePageTitle("Privacy Policy & Terms");
+
+
   return (
     <section className="bg-white text-black min-h-screen">
         <section className="relative bg-white py-20">

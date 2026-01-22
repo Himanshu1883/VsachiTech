@@ -27,6 +27,7 @@ import { SiDialogflow } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
 import aichatbot from "../../assets/aichatbot.mp4"
+import usePageTitle from "../../components/hooks/usePageTitle";
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -152,6 +153,8 @@ const WaveDivider = ({ flip }) => (
 /* ---------------------------------- */
 
 export default function AiChatbots() {
+  usePageTitle("AI Chatbot Development Services");
+
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {

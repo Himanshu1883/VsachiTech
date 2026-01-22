@@ -27,6 +27,8 @@ import { SiGoogleads } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
 import ppchero from "../../assets/ppchero.mp4"
+import usePageTitle from "../../components/hooks/usePageTitle";
+
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -152,6 +154,8 @@ const WaveDivider = ({ flip }) => (
 /* ---------------------------------- */
 
 export default function PPCAdvertising() {
+  usePageTitle("PPC Advertising Services");
+
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {

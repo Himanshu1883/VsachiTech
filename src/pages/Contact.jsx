@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Scroll from '../components/ui/Scroll';
-
+import usePageTitle from '../components/hooks/usePageTitle';
 function Contact() {
+    usePageTitle(
+    "Contact Us"
+  );
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resultMessage, setResultMessage] = useState("");

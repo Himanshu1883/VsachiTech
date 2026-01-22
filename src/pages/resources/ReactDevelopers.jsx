@@ -24,8 +24,10 @@ import {
     SiEslint,
     SiPrettier
 } from "react-icons/si";
-
+import usePageTitle from "../../components/hooks/usePageTitle";
 export default function ReactDevelopers() {
+    usePageTitle("Hire React Developers");
+
     return (
         <section className="bg-white text-black overflow-hidden">
 

@@ -45,6 +45,9 @@ import {
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
 import webhero from "../../assets/webhero.mp4"
+
+import usePageTitle from "../../components/hooks/usePageTitle";
+
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -181,6 +184,8 @@ const WaveDivider = ({ flip }) => (
 /* ---------------------------------- */
 
 export default function WebDevelopment() {
+  usePageTitle("Web Development Services In Delhi");
+
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {

@@ -15,8 +15,11 @@ import {
 } from 'react-icons/fa';
 import Scroll from '../components/ui/Scroll';
 import HiringProcessSection from '../components/ui/HiringProcessSection ';
-
+import usePageTitle from '../components/hooks/usePageTitle';
 export default function HireTalents() {
+usePageTitle("Hire Dedicated Developers");
+
+
   const engagementModels = [
     { icon: FaClock, label: 'Hourly', desc: 'Flexible billing for short-term needs' },
     { icon: FaCode, label: 'Part-time', desc: 'Dedicated hours per week' },

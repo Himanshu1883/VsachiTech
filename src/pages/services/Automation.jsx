@@ -22,6 +22,8 @@ import { SiTensorflow, SiPytorch, SiDocker } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Scroll from "../../components/ui/Scroll";
 import automation from "../../assets/automation.mp4"
+import usePageTitle from "../../components/hooks/usePageTitle";
+
 /* ---------------------------------- */
 /* DATA */
 /* ---------------------------------- */
@@ -147,6 +149,8 @@ const WaveDivider = ({ flip }) => (
 /* ---------------------------------- */
 
 export default function Automation() {
+  usePageTitle("Business Automation Solutions");
+
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {

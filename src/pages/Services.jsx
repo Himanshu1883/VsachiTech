@@ -11,9 +11,11 @@ import StickyPortfolioSection from '../components/ui/StickyPortfolioSection';
 import ImageText from '../components/ui/ImageText';
 import ServiceSection from '../components/ui/ServiceSection';
 import Scroll from '../components/ui/Scroll';
-
+import usePageTitle from '../components/hooks/usePageTitle';
 
 function Services() {
+  usePageTitle("What We Do");
+
   const [cursor, setCursor] = useState({
     show: false,
     x: 0,

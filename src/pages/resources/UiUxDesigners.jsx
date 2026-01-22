@@ -22,8 +22,10 @@ import {
     SiTrello,
     SiJira
 } from "react-icons/si";
-
+import usePageTitle from "../../components/hooks/usePageTitle";
 export default function UiUxDesigners() {
+    usePageTitle("Hire UI/UX Designers");
+
     return (
         <section className="bg-white text-black overflow-hidden">
 
