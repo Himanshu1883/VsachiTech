@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function TwoWingsSection() {
   return (
     <section className="relative bg-gradient-to-br from-gray-50 via-white to-gray-100 py-24 overflow-hidden">
@@ -63,9 +65,11 @@ export default function TwoWingsSection() {
                   <span>AI Chatbots (Website, WhatsApp, CRM)</span>
                 </li>
               </ul>
+              <Link to={"/what-we-do"}>
               <button className="w-full px-6 py-3 mt-16 pt- border border-red-500 text-red-500 rounded-full font-medium hover:bg-red-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:scale-105">
                 Explore Services
               </button>
+              </Link>
             </div>
           </div>
 
@@ -114,9 +118,11 @@ export default function TwoWingsSection() {
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full hover:bg-red-50 hover:text-red-600 transition-colors cursor-default">White-label</span>
                 </div>
               </div>
+              <Link to={"/hiretalents"}>
               <button className="w-full px-6 py-3 border border-red-500 text-red-500 rounded-full font-medium hover:bg-red-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:scale-105">
                 Hire Talent
               </button>
+              </Link>
             </div>
           </div>
         </div>

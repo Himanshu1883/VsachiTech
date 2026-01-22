@@ -10,7 +10,7 @@ const TeamSection = () => {
 
   const teamMembers = [
     { 
-      name: "Shubh Sharma", 
+      name: "Shub Sharma", 
       role: "Chief Executive Officer", 
       img: "people/shubhsir.jpeg",
       bio: "Visionary leader driving innovation",
@@ -28,13 +28,13 @@ const TeamSection = () => {
     //   bio: "Building strategic partnerships",
     // },
         { 
-      name: "Prateek shah", 
+      name: "Prateek sah", 
       role: "Digital Marketing", 
       img: "people/prateek.png",
       bio: "Building strategic partnerships",
     },
     { 
-      name: "Abhishek shah", 
+      name: "Abhishek sah", 
       role: "Digital Marketing", 
       img: "people/abhishek.png",
       bio: "Building strategic partnerships",
