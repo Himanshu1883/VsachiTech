@@ -21,6 +21,12 @@ const TeamSection = () => {
       img: "people/himanshu.png",
       bio: "Architecting scalable solutions",
     },
+    { 
+      name: "Rajiv Bhatia", 
+      role: "VP of Strategic Partnerships", 
+      img: "people/p7.jpeg",
+      bio: "Strategic Alliance Builder",
+    },
     // { 
     //   name: "Nikhil Sain", 
     //   role: "Business Development", 
@@ -35,7 +41,7 @@ const TeamSection = () => {
     },
     { 
       name: "Abhishek sah", 
-      role: "Digital Marketing", 
+      role: "Junior Python Developer", 
       img: "people/abhishek.png",
       bio: "Building strategic partnerships",
     },
