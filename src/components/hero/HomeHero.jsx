@@ -84,7 +84,7 @@ export default function HomeHero() {
             (INNOVATION • TECHNOLOGY • TRANSFORMATION)
           </p>
 
-          <h1 className="font-bold text-white leading-[1.05]
+          <h2 className="font-bold text-white leading-[1.05]
             text-[2.4rem]
             sm:text-[3rem]
             md:text-[3.8rem]
@@ -93,7 +93,7 @@ export default function HomeHero() {
           >
             CODE THAT <br />
             <span className="text-[#e44f39]">CONQUERS</span>
-          </h1>
+          </h2>
 
           <p className="mt-4 sm:mt-6 text-sm sm:text-base text-gray-300 max-w-md mx-auto lg:mx-0">
             Transforming ideas into powerful digital solutions that drive growth and innovation for forward thinking businesses.

@@ -10,7 +10,7 @@ const TeamSection = () => {
 
   const teamMembers = [
     { 
-      name: "Shub Sharma", 
+      name: "Shub Kumar", 
       role: "Chief Executive Officer", 
       img: "people/shubhsir.jpeg",
       bio: "Visionary leader driving innovation",
@@ -20,6 +20,12 @@ const TeamSection = () => {
       role: "Python Fullstack Engineer", 
       img: "people/himanshu.png",
       bio: "Architecting scalable solutions",
+    },
+    { 
+      name: "Nikhil Sain", 
+      role: "Business Development Head", 
+      img: "people/nikhil.png",
+      bio: "Visionary leader driving innovation",
     },
     { 
       name: "Rajiv Bhatia", 

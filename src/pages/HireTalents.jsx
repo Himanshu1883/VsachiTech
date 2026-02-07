@@ -16,8 +16,16 @@ import {
 import Scroll from '../components/ui/Scroll';
 import HiringProcessSection from '../components/ui/HiringProcessSection ';
 import usePageTitle from '../components/hooks/usePageTitle';
+import useSEO from '../components/hooks/useSEO';
 export default function HireTalents() {
-usePageTitle("Hire Dedicated Developers");
+  usePageTitle("Hire Dedicated Developers");
+useSEO({
+  title: 'Hire Dedicated Developers in India | Vsachi Tech',
+  description:
+    'Hire dedicated React, Python, Laravel, and UI/UX developers from Vsachi Tech. Flexible engagement models. Start in 48 hours.',
+  canonical: 'https://vsachitech.com/hiretalents'
+})
+
 
 
   const engagementModels = [
@@ -146,7 +154,7 @@ usePageTitle("Hire Dedicated Developers");
         {/* Content */}
         <div className="relative container mx-auto px-6 text-center z-10">
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-gray-900 tracking-tight">
-            Hire Talents
+            Hire Dedicated Developers in India
           </h1>
 
           <p className="mt-3 text-gray-600 text-sm md:text-base">

@@ -12,10 +12,15 @@ import ImageText from '../components/ui/ImageText';
 import ServiceSection from '../components/ui/ServiceSection';
 import Scroll from '../components/ui/Scroll';
 import usePageTitle from '../components/hooks/usePageTitle';
-
+import useSEO from '../components/hooks/useSEO';
 function Services() {
   usePageTitle("What We Do");
-
+  useSEO({
+    title: 'Software, AI & Automation Services | Vsachi Tech',
+    description:
+      'We build scalable software, AI automation, and digital solutions for modern businesses.',
+    canonical: 'https://vsachitech.com/what-we-do'
+  })
   const [cursor, setCursor] = useState({
     show: false,
     x: 0,
@@ -68,14 +73,14 @@ function Services() {
             className="w-full h-64 md:h-96 object-cover"
           />
         </div>
-        <Scroll/>
+        <Scroll />
       </section>
-      
+
       <section className="py-10">
         <div className="mx-auto w-[90%] h-px bg-black/80"></div>
       </section>
-      
-      <ServiceSection/>
+
+      <ServiceSection />
 
       <section className="pb-40 pt-20 ">
         <div className="container mx-auto px-6">
@@ -204,8 +209,8 @@ function Services() {
             </Link>
           </div>
         </div>
-      </section>  
-      
+      </section>
+
       {/* MORE THAN JUST WEB DEVELOPMENT SECTION */}
       <section className="relative text-white pb-12 sm:pb-20 pt-5 px-4 sm:px-5 overflow-hidden">
         {/* Background Image */}
@@ -336,7 +341,7 @@ function Services() {
                         {item.id}
                       </span>
 
-                      <Link 
+                      <Link
                         to="/contact"
                         onClick={(e) => e.stopPropagation()}
                         className={`text-2xl sm:text-3xl rotate-45 transition-colors duration-300 inline-block
@@ -375,7 +380,7 @@ function Services() {
           })}
         </div>
       </section>
- 
+
       {/* WHY VSACHI TECH SECTION */}
       <section className="relative bg-[#f4f3f1] text-[#1c1c1c] px-8 py-24 overflow-hidden">
         {/* CUSTOM CURSOR - Desktop only */}
@@ -409,11 +414,11 @@ function Services() {
               (WHY VSACHI TECH)
             </p>
 
-            <h1 className="text-[64px] leading-[1.05] font-bold mb-16">
+            <h2 className="text-[64px] leading-[1.05] font-bold mb-16">
               Software Solutions <br />
               Built for Real <br />
               Business Impact
-            </h1>
+            </h2>
 
             <Link to={"/contact"}>
               <button className="flex items-center gap-4 border border-black rounded-full px-8 py-4 text-sm tracking-wider hover:bg-black hover:text-white transition group">
