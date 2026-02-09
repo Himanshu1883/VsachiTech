@@ -28,6 +28,7 @@ export default function Navbar() {
   const navItems = [
     { label: "Who we are", to: "/who-we-are" },
     { label: "What we do", to: "/what-we-do", hasMegaMenu: true },
+    { label: "UAE vision", to: "/uaeservices" }, 
     { label: "Dev Room", to: "/hiretalents" },
     { label: "Contact us", to: "/contact" }
   ];
@@ -110,14 +111,15 @@ export default function Navbar() {
     setShowWhatWeDo(false);
     setMobileWhatWeDoOpen(false);
   };
-const toggleMobileWhatWeDo = (e) => {
-  e.stopPropagation();
-  setMobileWhatWeDoOpen(prev => !prev);
-};
 
-useEffect(() => {
-  if (!mobileOpen) setMobileWhatWeDoOpen(false);
-}, [mobileOpen]);
+  const toggleMobileWhatWeDo = (e) => {
+    e.stopPropagation();
+    setMobileWhatWeDoOpen(prev => !prev);
+  };
+
+  useEffect(() => {
+    if (!mobileOpen) setMobileWhatWeDoOpen(false);
+  }, [mobileOpen]);
 
   return (
     <>
@@ -178,6 +180,7 @@ useEffect(() => {
                     }`}
                 >
                   {item.label}
+                  {/* Removed the pulse animation */}
                 </button>
               );
             })}
@@ -217,21 +220,21 @@ useEffect(() => {
                 <div key={item.label}>
                   <div className="flex items-center gap-2">
                     <button
-  onClick={() => handleNavigate(item.to)}
-  className={`
-    flex-1 text-left px-5 py-3.5 uppercase text-sm font-semibold rounded-full
-    transition-all duration-200
-    ${isActive 
-      ? 'bg-white text-black' 
-      : 'text-white/90 hover:bg-white/10 border border-white/20'
-    }
-  `}
->
-  {item.label}
-</button>
+                      onClick={() => handleNavigate(item.to)}
+                      className={`
+                        flex-1 text-left px-5 py-3.5 uppercase text-sm font-semibold rounded-full
+                        transition-all duration-200 flex items-center justify-between
+                        ${isActive 
+                          ? 'bg-white text-black' 
+                          : 'text-white/90 hover:bg-white/10 border border-white/20'
+                        }
+                      `}
+                    >
+                      <span className="flex items-center gap-2">
+                        {item.label}
+                      </span>
+                    </button>
 
-
-                    
                     {isWhatWeDo && (
                       <button
                         onClick={toggleMobileWhatWeDo}
