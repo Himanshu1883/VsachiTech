@@ -440,52 +440,78 @@ const PythonDev = () => {
       </section>
 
       <WaveDivider flip={true} />
-
-         {/* Hiring Process */}
+      {/* Hiring Process */}
       <section className="py-20 relative overflow-hidden bg-black">
-        {/* Background */}
-            <div
-                className="absolute inset-0 bg-[url('/skill-bg.webp')] bg-cover bg-center opacity-70"
-                aria-hidden
+        {/* Optimized Background */}
+        <div className="absolute inset-0">
+          {/* High-Quality Background with Multiple Resolutions */}
+          <picture>
+            {/* For high-resolution displays */}
+            <source 
+              srcSet="/skill-bg.webp 1x, /skill-bg@2x.webp 2x" 
+              type="image/webp"
             />
+            {/* Fallback for browsers that don't support webp */}
+            <source 
+              srcSet="/skill-bg.jpg 1x, /skill-bg@2x.jpg 2x" 
+              type="image/jpeg"
+            />
+            {/* Main image element */}
+            <img
+              src="/skill-bg.webp"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover object-center brightness-125 contrast-125"
+              loading="lazy"
+            />
+          </picture>
+          
+          {/* Bright Overlay for Enhanced Visibility */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/30 mix-blend-overlay" />
+          
+          {/* Warm Tint Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-transparent to-red-400/10 mix-blend-soft-light" />
+          
+          {/* Subtle Dark Overlay for Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/40 to-black/50" />
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Streamlined <span className="text-red-400">Hiring Process</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow-lg">
+              Streamlined <span className="text-red-300">Hiring Process</span>
             </h2>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+            <p className="text-xl text-white/95 max-w-3xl mx-auto drop-shadow-md">
               Our proven 4-step process to connect you with the perfect Python talent in UAE
             </p>
           </div>
 
           <div className="relative">
             {/* Enhanced Timeline Line with Glow Effect */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-500 via-red-400 to-red-300 shadow-lg shadow-red-500/30">
-              <div className="absolute inset-0 bg-gradient-to-b from-red-500 to-red-300 animate-pulse"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-red-400 via-red-300 to-red-200 shadow-lg shadow-red-400/50">
+              <div className="absolute inset-0 bg-gradient-to-b from-red-400 to-red-300 animate-pulse"></div>
             </div>
 
             <div className="space-y-12">
               {hiringProcess.map((step, index) => (
                 <div
                   key={index}
-                  className={`relative flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center`}
+                  className={`relative flex flex-col lg:flex-row ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
                 >
                   {/* Enhanced Timeline Dot with Glow */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-white border-4 border-red-500 rounded-full flex items-center justify-center z-10 shadow-2xl shadow-red-500/40">
+                  <div className="absolute left-1/2 lg:left-1/2 transform -translate-x-1/2 w-14 h-14 bg-white border-4 border-red-400 rounded-full flex items-center justify-center z-10 shadow-2xl shadow-red-400/50 mb-8 lg:mb-0">
                     <div className="text-sm font-bold text-gray-900">{step.step}</div>
                     {/* Glow Effect */}
-                    <div className="absolute -inset-1 bg-red-500 rounded-full blur opacity-30 animate-ping"></div>
+                    <div className="absolute -inset-1 bg-red-400 rounded-full blur opacity-40 animate-ping"></div>
                   </div>
 
                   {/* Enhanced Step Card with Glass Effect */}
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
-                    <div className="bg-white/95 backdrop-blur-sm border border-white/30 rounded-2xl p-8 hover:border-red-400 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 hover:scale-105 shadow-xl">
-                      <div className="mb-4 inline-flex p-3 bg-gradient-to-br from-red-100 to-red-200 rounded-xl shadow-md">
+                  <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12 lg:text-left'} mt-16 lg:mt-0`}>
+                    <div className="bg-white/95 backdrop-blur-sm border border-white/40 rounded-2xl p-6 sm:p-8 hover:border-red-400 hover:shadow-2xl hover:shadow-red-400/30 transition-all duration-500 hover:scale-105 shadow-xl">
+                      <div className="mb-4 inline-flex p-3 bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow-md">
                         <step.icon className="w-6 h-6 text-red-600" />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                      <p className="text-gray-700 mb-4">{step.desc}</p>
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                      <p className="text-gray-700 mb-4 text-sm sm:text-base">{step.desc}</p>
                       <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-50 to-red-100 text-red-700 text-sm font-semibold rounded-full border border-red-200">
                         <FaClock className="w-3 h-3" />
                         {step.duration}
@@ -497,12 +523,55 @@ const PythonDev = () => {
             </div>
           </div>
 
-          {/* Decorative Elements */}
+          {/* Modern Info Card */}
           <div className="mt-20 flex justify-center">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-full blur-xl"></div>
-              <div className="relative bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-full font-semibold shadow-2xl shadow-red-500/30">
-                4 Simple Steps • Fast Results • UAE Focused
+            <div className="relative group w-full max-w-4xl">
+              {/* Floating Elements */}
+              <div className="absolute -top-2 -left-2 w-4 h-4 bg-red-400 rounded-full animate-ping opacity-75 hidden sm:block"></div>
+              <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-red-400 rounded-full animate-ping opacity-75 delay-500 hidden sm:block"></div>
+              
+              {/* Main Card */}
+              <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-2xl shadow-red-400/30 border border-white/40 hover:shadow-red-400/50 transition-shadow duration-300">
+                {/* Header */}
+                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-pulse"></div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 text-center">Why Choose Our Process</h3>
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-pulse delay-300"></div>
+                </div>
+                
+                {/* Features Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <MdSpeed className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">4 Steps</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Streamlined Process</div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <FaClock className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">2-3 Weeks</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Fast Results</div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <MdLocationOn className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">UAE Focused</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Local Expertise</div>
+                  </div>
+                </div>
+                
+                {/* Bottom Text */}
+                <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+                  <span className="text-gray-800 font-bold text-sm sm:text-base">
+                    Simple • Efficient • Tailored for UAE Market
+                  </span>
+                </div>
               </div>
             </div>
           </div>
