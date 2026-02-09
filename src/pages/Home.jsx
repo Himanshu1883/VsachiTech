@@ -10,6 +10,7 @@ import WhyChooseUs from '../components/ui/WhyChooseUs';
 import WhyUsSection from '../components/ui/WhyUsSection';
 import useSEO from '../components/hooks/useSEO';
 import FAQ from '../components/ui/FAQ';
+import UAEMarket from '../components/ui/UAEmarket';
 export default function Home() {
   useSEO({
     title: "Software Development Company in India | Vsachi Tech",
@@ -24,6 +25,7 @@ export default function Home() {
       </h1>
       <HomeHero />
       <TwoWingsSection />
+      <UAEMarket/>
       <AiServicesSection />
       <MovingTextSection />
       <WhyChooseUs />

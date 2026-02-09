@@ -17,10 +17,12 @@ import PythonDevelopers from './pages/resources/PythonDevelopers';
 import LaravelDevelopers from './pages/resources/LaravelDevelopers';
 import ReactDevelopers from './pages/resources/ReactDevelopers';
 import UiUxDesigners from './pages/resources/UiUxDesigners';
+import UAEServices from './pages/services/UAEServices';
 export default function AppRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/uaeservices" element={<UAEServices />} />
             <Route path="/who-we-are" element={<About />} />
             <Route path="/what-we-do" element={<Services />} />
             <Route path="/what-we-do/web-development" element={<WebDevelopment />} />

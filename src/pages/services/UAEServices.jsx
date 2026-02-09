@@ -1,0 +1,670 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { 
+  FaPython, FaReact, FaLaravel, FaPalette, FaMobileAlt, FaCloud,
+  FaGlobe, FaShoppingCart, FaSearch, FaShieldAlt, FaUsers,
+  FaCheckCircle, FaChartBar, FaHeadset, FaHandshake, FaCode,
+  FaClock, FaArrowRight
+} from 'react-icons/fa';
+import { MdLocationOn, MdSpeed, MdSecurity } from 'react-icons/md';
+
+// Import video files from assets
+import uaeVideo from '../../assets/uae.mp4';
+import uaeTechVideo from '../../assets/uaetech.mp4';
+
+// Divider Component
+const WaveDivider = ({ flip }) => (
+  <div className={`overflow-hidden ${flip ? "rotate-180" : ""}`}>
+    <svg viewBox="0 0 1440 80" className="w-full">
+      <path
+        fill="#f3f4f6"
+        d="M0,40 C160,80 360,0 560,20 760,40 960,80 1200,60 1320,50 1440,40 1440,40 L1440,0 L0,0 Z"
+      />
+    </svg>
+  </div>
+);
+
+const UAEServices = () => {
+  const [currentVideo, setCurrentVideo] = useState('uae');
+  const video1Ref = useRef(null);
+  const video2Ref = useRef(null);
+
+  useEffect(() => {
+    const switchVideos = () => {
+      setCurrentVideo(prev => prev === 'uae' ? 'uaetech' : 'uae');
+    };
+
+    // Set timeout to switch videos
+    const timer = setTimeout(switchVideos, currentVideo === 'uae' ? 3000 : 5000);
+
+    return () => clearTimeout(timer);
+  }, [currentVideo]);
+
+  // UAE-Focused Services
+  const services = [
+    {
+      icon: <FaGlobe className="w-8 h-8" />,
+      title: "UAE Web Development",
+      description: "Custom websites built for UAE market compliance and user preferences",
+      features: ["Arabic/English Bilingual", "UAE Hosting Solutions", "Local Payment Integration"]
+    },
+    {
+      icon: <FaMobileAlt className="w-8 h-8" />,
+      title: "Mobile App Development",
+      description: "Native & cross-platform apps optimized for UAE smartphone users",
+      features: ["iOS & Android", "Arabic UI/UX", "Local App Store Optimization"]
+    },
+    {
+      icon: <FaShoppingCart className="w-8 h-8" />,
+      title: "E-Commerce Solutions",
+      description: "Complete online stores for UAE retail market",
+      features: ["Moyasar/Tap Payment", "Arabic Catalog", "UAE Logistics Integration"]
+    },
+    {
+      icon: <FaSearch className="w-8 h-8" />,
+      title: "UAE Local SEO",
+      description: "Dominate local search results in Dubai, Abu Dhabi, and across UAE",
+      features: ["Google My Business UAE", "Arabic Keyword Research", "Local Directory Listing"]
+    },
+    {
+      icon: <FaShieldAlt className="w-8 h-8" />,
+      title: "UAE Compliance & Security",
+      description: "Ensure your digital presence meets UAE regulations",
+      features: ["TDRA Compliance", "Data Localization", "UAE Cyber Security Standards"]
+    },
+    {
+      icon: <FaUsers className="w-8 h-8" />,
+      title: "UAE Tech Talent",
+      description: "Access to specialized developers for your UAE projects",
+      features: ["Python/Rust Experts", "React Specialists", "Laravel Professionals"]
+    }
+  ];
+
+  // UAE Tech Talent (from Hire Talents)
+  const uaeTalents = [
+    {
+      icon: FaReact,
+      title: "React Developers",
+      desc: "Expert React developers building responsive, UAE-optimized interfaces",
+      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      link: "/hiretalents/react-developers"
+    },
+    {
+      icon: FaPython,
+      title: "Python Developers",
+      desc: "Python specialists for scalable backends and AI solutions in UAE",
+      skills: ["Python", "FastAPI", "Django", "PostgreSQL"],
+      link: "/hiretalents/python-developers"
+    },
+    {
+      icon: FaLaravel,
+      title: "Laravel Developers",
+      desc: "PHP/Laravel experts for robust UAE enterprise applications",
+      skills: ["Laravel", "PHP", "MySQL", "Redis"],
+      link: "/hiretalents/laravel-developers"
+    },
+    {
+      icon: FaMobileAlt,
+      title: "Mobile Developers",
+      desc: "Cross-platform specialists for UAE mobile market",
+      skills: ["Flutter", "React Native", "iOS", "Android"],
+      link: "/hiretalents"
+    },
+    {
+      icon: FaCloud,
+      title: "Cloud Engineers",
+      desc: "DevOps professionals for UAE-based infrastructure",
+      skills: ["AWS", "Docker", "Kubernetes", "Terraform"],
+      link: "/hiretalents"
+    },
+    {
+      icon: FaPalette,
+      title: "UI/UX Designers",
+      desc: "Design experts creating UAE-cultured user experiences",
+      skills: ["Figma", "Arabic UI Design", "UX Research", "Prototyping"],
+      link: "/hiretalents/uiux-designers"
+    }
+  ];
+
+  const industries = [
+    {
+      name: "Real Estate",
+      projects: 24,
+      description: "Property portals & virtual tours for Dubai market"
+    },
+    {
+      name: "Healthcare",
+      projects: 18,
+      description: "Medical platforms with Arabic patient interfaces"
+    },
+    {
+      name: "Retail & E-commerce",
+      projects: 42,
+      description: "Online stores with UAE payment gateways"
+    },
+    {
+      name: "Hospitality",
+      projects: 16,
+      description: "Booking systems for hotels & tourism"
+    },
+    {
+      name: "Government",
+      projects: 8,
+      description: "Digital transformation for public services"
+    },
+    {
+      name: "Education",
+      projects: 12,
+      description: "E-learning platforms with Arabic content"
+    }
+  ];
+
+  const uaeStats = [
+    { value: "200+", label: "UAE Projects Delivered" },
+    { value: "98%", label: "Client Satisfaction Rate" },
+    { value: "40+", label: "UAE Team Specialists" },
+    { value: "8+", label: "Years UAE Experience" }
+  ];
+
+  const engagementModels = [
+    { icon: FaClock, label: 'Hourly', desc: 'Flexible billing for UAE projects' },
+    { icon: FaCode, label: 'Part-time', desc: 'Dedicated hours per week' },
+    { icon: FaUsers, label: 'Full-time', desc: 'Exclusive team members' },
+    { icon: FaHandshake, label: 'Dedicated Team', desc: 'Complete UAE project ownership' }
+  ];
+
+  const reasons = [
+    {
+      title: "UAE Market Expertise",
+      desc: "Deep understanding of UAE business culture, regulations, and user behavior"
+    },
+    {
+      title: "Local Talent Pool",
+      desc: "Access to pre-vetted developers and designers with UAE project experience"
+    },
+    {
+      title: "Rapid Deployment",
+      desc: "Start working with your UAE team within days, not months"
+    },
+    {
+      title: "Flexible Scaling",
+      desc: "Scale your UAE team up or down based on project demands"
+    },
+    {
+      title: "UAE Compliance",
+      desc: "All solutions meet UAE regulatory requirements and digital standards"
+    },
+    {
+      title: "Cost Efficiency",
+      desc: "Access world-class talent at competitive UAE market rates"
+    }
+  ];
+
+  return (
+    <>
+      {/* Hero Section with Video Background */}
+      <section className="relative bg-black text-white overflow-hidden min-h-screen flex items-center">
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+          {/* UAE Video (3 seconds) */}
+          <div className={`absolute inset-0 transition-opacity duration-700 ${currentVideo === 'uae' ? 'opacity-100' : 'opacity-0'}`}>
+            <video
+              ref={video1Ref}
+              className="w-full h-full object-cover"
+              src={uaeVideo}
+              autoPlay
+              muted
+              playsInline
+              loop={false}
+              onEnded={() => {
+                if (currentVideo === 'uae') {
+                  setCurrentVideo('uaetech');
+                }
+              }}
+            />
+          </div>
+          
+          {/* UaeTech Video (5 seconds) */}
+          <div className={`absolute inset-0 transition-opacity duration-700 ${currentVideo === 'uaetech' ? 'opacity-100' : 'opacity-0'}`}>
+            <video
+              ref={video2Ref}
+              className="w-full h-full object-cover"
+              src={uaeTechVideo}
+              autoPlay
+              muted
+              playsInline
+              loop={false}
+              onEnded={() => {
+                if (currentVideo === 'uaetech') {
+                  setCurrentVideo('uae');
+                }
+              }}
+            />
+          </div>
+
+          {/* Black tint overlay */}
+          <div className="absolute inset-0 bg-black/70"></div>
+          
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+        </div>
+
+        {/* Content Container - positioned to start below nav */}
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="z-10">
+              <div className="inline-flex items-center gap-3 mb-6">
+                <MdLocationOn className="w-6 h-6 text-red-500" />
+                <span className="text-sm font-semibold tracking-widest text-red-500 uppercase">
+                  Dubai, UAE
+                </span>
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
+                Digital Solutions
+                <span className="text-red-500"> Made for UAE</span>
+                <br />
+                Market Success
+              </h1>
+
+              <p className="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
+                Since 2025, we've been helping businesses thrive in the UAE with 
+                culturally-adapted, technology-driven solutions that understand 
+                local markets and deliver measurable results.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <Link to="/contact">
+                  <button className="flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-red-500 hover:bg-red-600 text-white rounded-full transition-all duration-300 hover:scale-105">
+                    START YOUR UAE PROJECT
+                    <span className="w-2 h-2 rounded-full bg-white"></span>
+                  </button>
+                </Link>
+                <Link to="#services">
+                  <button className="flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 hover:scale-105">
+                    EXPLORE SERVICES
+                    <span className="w-2 h-2 rounded-full bg-white"></span>
+                  </button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Stats */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 z-10">
+              {uaeStats.map((stat, index) => (
+                <div 
+                  key={index} 
+                  className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20 hover:border-red-500/50 transition-all duration-300 hover:scale-105"
+                >
+                  <div className="text-3xl sm:text-4xl font-bold text-red-400 mb-1 sm:mb-2">{stat.value}</div>
+                  <div className="text-sm sm:text-base text-gray-300">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+          </div>
+        </div>
+      </section>
+
+      <WaveDivider />
+
+      {/* Why Choose Us for UAE */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Why We Understand the
+              <span className="text-red-500"> UAE Market</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We combine global digital expertise with deep local insight to create 
+              solutions that truly resonate in the UAE.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                <FaUsers className="w-6 h-6 text-red-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Local Team, Global Standards</h3>
+              <p className="text-gray-600">
+                Our Dubai-based team combines international expertise with 
+                understanding of UAE culture, regulations, and business practices.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                <FaCheckCircle className="w-6 h-6 text-red-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">UAE Compliance Focus</h3>
+              <p className="text-gray-600">
+                All our solutions are built with UAE regulations in mind – from 
+                TDRA compliance to data localization and Arabic language requirements.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                <MdSpeed className="w-6 h-6 text-red-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Performance for UAE Users</h3>
+              <p className="text-gray-600">
+                Optimized for UAE internet speeds and mobile-first users, 
+                ensuring fast loading times and seamless experiences.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <WaveDivider flip={true}/>
+      
+      {/* Our UAE Services */}
+      <section id="services" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our
+              <span className="text-red-500"> UAE-Focused</span>
+              Services
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Comprehensive digital solutions tailored specifically for the 
+              United Arab Emirates market.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {services.map((service, index) => (
+              <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300">
+                <div className="text-red-500 mb-6">{service.icon}</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                <ul className="space-y-3">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-gray-700">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Divider Section */}
+      <WaveDivider/>
+
+      {/* UAE Tech Talent Section */}
+      <section className="py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              UAE Tech <span className="text-red-500">Talent Pool</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Access specialized developers and designers with UAE project experience
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {uaeTalents.map((item, i) => (
+              <Link
+                key={i}
+                to={item.link}
+                className="group block focus:outline-none"
+              >
+                <div
+                  className="
+                    relative bg-white border border-gray-200 rounded-2xl p-8
+                    hover:border-red-500 hover:shadow-2xl
+                    transition-all duration-500 hover:-translate-y-2
+                    h-full
+                  "
+                >
+                  {/* Icon */}
+                  <div className="mb-6 inline-flex p-4 bg-red-50 rounded-xl group-hover:bg-red-500 transition-colors duration-300">
+                    <item.icon className="text-4xl text-red-500 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {item.desc}
+                  </p>
+
+                  {/* Skills */}
+                  <div className="flex flex-wrap gap-2">
+                    {item.skills.map((skill, idx) => (
+                      <span
+                        key={idx}
+                        className="
+                          text-xs font-medium px-3 py-1 rounded-full
+                          bg-gray-100 text-gray-700
+                          group-hover:bg-red-50 group-hover:text-red-600
+                          transition-colors
+                        "
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Hover Line */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl" />
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Talent CTA */}
+          <div className="text-center mt-16">
+            <Link to="/hiretalents">
+              <button className="flex items-center gap-3 px-8 py-4 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors duration-300">
+                EXPLORE ALL UAE TALENTS
+                <span className="w-2 h-2 rounded-full bg-black"></span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <WaveDivider flip={true} />
+
+      {/* Engagement Models Section */}
+      <section className="py-28 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              Flexible UAE Engagement <span className="text-red-500">Models</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Choose the collaboration model that fits your UAE project needs
+            </p>
+          </div>
+
+          {/* Model Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {engagementModels.map((model, i) => (
+              <div
+                key={i}
+                className="group relative bg-white border-2 border-gray-200 rounded-2xl p-10 hover:border-red-500 hover:bg-gradient-to-br hover:from-red-500 hover:to-red-600 transition-all duration-500 cursor-pointer overflow-hidden"
+              >
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+                    backgroundSize: '20px 20px'
+                  }}></div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 text-center">
+                  <model.icon className="text-5xl mx-auto mb-6 text-red-500 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+                  <h3 className="text-2xl font-bold text-gray-900 group-hover:text-white mb-3 transition-colors">
+                    {model.label}
+                  </h3>
+                  <p className="text-gray-600 group-hover:text-white/90 transition-colors text-sm">
+                    {model.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* UAE Industries We Serve */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Industries We Transform in the
+              <span className="text-red-500"> UAE</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              From real estate to retail, we've delivered successful digital 
+              transformation across key UAE sectors.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            {industries.map((industry, index) => (
+              <div key={index} className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:border-red-500 hover:shadow-xl transition-all duration-300">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-bold text-gray-900">{industry.name}</h3>
+                  <div className="text-red-500 font-bold text-3xl">{industry.projects}+</div>
+                </div>
+                <p className="text-gray-600">{industry.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-28 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative overflow-hidden">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'linear-gradient(30deg, #ff0000 12%, transparent 12.5%, transparent 87%, #ff0000 87.5%, #ff0000), linear-gradient(150deg, #ff0000 12%, transparent 12.5%, transparent 87%, #ff0000 87.5%, #ff0000)',
+            backgroundSize: '80px 140px',
+            backgroundPosition: '0 0, 40px 70px'
+          }}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              Why Choose <span className="text-red-500">Vsachi Tech UAE</span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              We've refined our UAE approach to deliver exceptional results
+            </p>
+          </div>
+
+          {/* Reasons Grid */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {reasons.map((r, i) => (
+              <div
+                key={i}
+                className="group flex items-start gap-5 p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/10 hover:border-red-500/50 transition-all duration-300"
+              >
+                {/* Check Icon */}
+                <div className="flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 flex items-center justify-center bg-red-500 rounded-full group-hover:scale-110 transition-transform">
+                    <FaCheckCircle className="text-white text-lg" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-red-400 transition-colors">
+                    {r.title}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {r.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-28 bg-gradient-to-br from-red-500 to-red-600 text-white text-center relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Ready to Dominate the
+            <span className="block mt-2">UAE Market?</span>
+          </h2>
+
+          <p className="text-xl md:text-2xl mb-12 text-white/90 leading-relaxed max-w-2xl mx-auto">
+            Connect with our UAE experts who'll elevate your digital presence in the Emirates
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link
+              to="/contact#project-form"
+              className="inline-flex items-center gap-3 bg-white text-red-500 px-12 py-6 rounded-full font-bold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-2xl group"
+            >
+              Schedule UAE Consultation
+              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              to="/hiretalents"
+              className="inline-flex items-center gap-3 border-2 border-white text-white px-12 py-6 rounded-full font-bold text-lg hover:bg-white hover:text-red-500 transition-all duration-300 group"
+            >
+              Hire UAE Talent
+              <span className="w-2 h-2 rounded-full bg-white group-hover:bg-red-500"></span>
+            </Link>
+          </div>
+
+          {/* Additional Info */}
+          <div className="mt-12 pt-8 border-t border-white/20">
+            <div className="flex flex-wrap justify-center gap-8 text-white/80">
+              <div className="flex items-center gap-3">
+                <FaHandshake className="w-5 h-5" />
+                <span className="text-sm">Free UAE Market Consultation</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <MdLocationOn className="w-5 h-5" />
+                <span className="text-sm">Dubai Office Support</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <FaClock className="w-5 h-5" />
+                <span className="text-sm">UAE Business Hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default UAEServices;
