@@ -160,9 +160,9 @@ const UAEServices = () => {
   ];
 
   const uaeStats = [
-    { value: "200+", label: "UAE Projects Delivered" },
+    { value: "50+", label: "UAE Projects Delivered" },
     { value: "98%", label: "Client Satisfaction Rate" },
-    { value: "40+", label: "UAE Team Specialists" },
+    { value: "30+", label: "UAE Team Specialists" },
     { value: "8+", label: "Years UAE Experience" }
   ];
 
@@ -466,7 +466,7 @@ const UAEServices = () => {
                   </div>
 
                   {/* Hover Line */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-xl sm:rounded-b-2xl" />
+                  <div className="absolute bottom-0 left-4 w-11/12 h-1 bg-gradient-to-r from-red-500 to-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-xl sm:rounded-b-2xl" />
                 </div>
               </Link>
             ))}
@@ -476,7 +476,7 @@ const UAEServices = () => {
           <div className="text-center mt-8 sm:mt-12 md:mt-16">
             <Link to="/hiretalents">
               <button className="w-full sm:w-auto flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors duration-300 text-sm sm:text-base">
-                EXPLORE ALL UAE TALENTS
+                EXPLORE ALL TALENTS
                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-black"></span>
               </button>
             </Link>
@@ -632,14 +632,14 @@ const UAEServices = () => {
               to="/contact#project-form"
               className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-red-500 px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 rounded-full font-bold text-sm sm:text-base md:text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg sm:shadow-2xl group"
             >
-              Schedule UAE Consultation
+              Schedule Consultation
               <FaArrowRight className="group-hover:translate-x-0.5 sm:group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/hiretalents"
               className="inline-flex items-center justify-center gap-2 sm:gap-3 border-2 border-white text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 rounded-full font-bold text-sm sm:text-base md:text-lg hover:bg-white hover:text-red-500 transition-all duration-300 group"
             >
-              Hire UAE Talent
+              Hire Talent
               <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white group-hover:bg-red-500"></span>
             </Link>
           </div>
@@ -649,7 +649,7 @@ const UAEServices = () => {
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-white/80">
               <div className="flex items-center justify-center gap-2 sm:gap-3">
                 <FaHandshake className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="text-xs sm:text-sm">Free UAE Market Consultation</span>
+                <span className="text-xs sm:text-sm">Free Market Consultation</span>
               </div>
               <div className="flex items-center justify-center gap-2 sm:gap-3">
                 <MdLocationOn className="w-4 h-4 sm:w-5 sm:h-5" />
