@@ -135,7 +135,7 @@ const UAEServices = () => {
       title: "React Developers",
       desc: "Expert React developers building responsive, UAE-optimized interfaces",
       skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-      link: "/hiretalents/react-developers"
+      link: "/uaeservices/uae-react-dev"
     },
     {
       icon: FaPython,
