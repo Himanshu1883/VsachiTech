@@ -19,12 +19,14 @@ import ReactDevelopers from './pages/resources/ReactDevelopers';
 import UiUxDesigners from './pages/resources/UiUxDesigners';
 import UAEServices from './pages/services/UAEServices';
 import ReactDev from './pages/uae/ReactDev';
+import PythonDev from './pages/uae/PythonDev';
 export default function AppRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/uaeservices" element={<UAEServices />} />
             <Route path="/uaeservices/uae-react-dev" element={<ReactDev/>}/>
+            <Route path="/uaeservices/uae-python-dev" element={<PythonDev/>}/>
             <Route path="/who-we-are" element={<About />} />
             <Route path="/what-we-do" element={<Services />} />
             <Route path="/what-we-do/web-development" element={<WebDevelopment />} />

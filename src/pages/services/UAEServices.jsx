@@ -142,7 +142,7 @@ const UAEServices = () => {
       title: "Python Developers",
       desc: "Python specialists for scalable backends and AI solutions in UAE",
       skills: ["Python", "FastAPI", "Django", "PostgreSQL"],
-      link: "/hiretalents/python-developers"
+      link: "/uaeservices/uae-python-dev"
     },
     {
       icon: FaLaravel,
