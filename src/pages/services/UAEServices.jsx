@@ -239,7 +239,7 @@ const UAEServices = () => {
       icon: <GiDiamondRing className="w-8 h-8" />,
       title: "Luxury Retail Tech",
       description: "Premium e-commerce experiences for high-end Dubai brands",
-      stats: "40%",
+      
       statLabel: "Higher conversion rates",
       iconBg: "bg-yellow-500/20",
       iconColor: "text-yellow-400",
@@ -254,7 +254,7 @@ const UAEServices = () => {
       icon: <TbBuildingSkyscraper className="w-8 h-8" />,
       title: "Smart City Solutions",
       description: "IoT and AI integrations for Dubai's smart infrastructure",
-      stats: "24/7",
+      
       statLabel: "Real-time monitoring",
       iconBg: "bg-blue-500/20",
       iconColor: "text-blue-400",
@@ -269,7 +269,7 @@ const UAEServices = () => {
       icon: <GiPalmTree className="w-8 h-8" />,
       title: "Tourism & Hospitality",
       description: "Booking platforms and virtual experiences for UAE tourism",
-      stats: "3.5M+",
+     
       statLabel: "Tourists served digitally",
       iconBg: "bg-emerald-500/20",
       iconColor: "text-emerald-400",
@@ -284,7 +284,7 @@ const UAEServices = () => {
       icon: <FaCalendarCheck className="w-8 h-8" />,
       title: "EventTech for UAE",
       description: "Digital solutions for Dubai's world-class events and expos",
-      stats: "500+",
+      
       statLabel: "Events powered",
       iconBg: "bg-purple-500/20",
       iconColor: "text-purple-400",
@@ -299,7 +299,7 @@ const UAEServices = () => {
       icon: <FaLightbulb className="w-8 h-8" />,
       title: "Startup Ecosystem",
       description: "MVP development and scaling for UAE startups",
-      stats: "120+",
+      
       statLabel: "Startups launched",
       iconBg: "bg-orange-500/20",
       iconColor: "text-orange-400",
@@ -314,7 +314,7 @@ const UAEServices = () => {
       icon: <FaGlobeAmericas className="w-8 h-8" />,
       title: "Global Reach",
       description: "Bridging UAE businesses with international markets",
-      stats: "50+",
+      
       statLabel: "Countries connected",
       iconBg: "bg-indigo-500/20",
       iconColor: "text-indigo-400",

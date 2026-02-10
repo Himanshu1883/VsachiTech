@@ -292,7 +292,7 @@ useSEO({
             </Link>
           </div>
 
-          <div className="mt-10 sm:mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto px-4 sm:px-0">
+          {/* <div className="mt-10 sm:mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto px-4 sm:px-0">
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -305,7 +305,7 @@ useSEO({
                 <div className="text-xs sm:text-sm text-gray-400 text-center leading-tight">{stat.label}</div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
