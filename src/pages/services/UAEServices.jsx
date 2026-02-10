@@ -149,28 +149,28 @@ const UAEServices = () => {
       title: "Laravel Developers",
       desc: "PHP/Laravel experts for robust UAE enterprise applications",
       skills: ["Laravel", "PHP", "MySQL", "Redis"],
-      link: "/hiretalents/laravel-developers"
+      link: "/uaeservices/uae-laravel-dev"
     },
     {
       icon: FaMobileAlt,
       title: "Mobile Developers",
       desc: "Cross-platform specialists for UAE mobile market",
       skills: ["Flutter", "React Native", "iOS", "Android"],
-      link: "/hiretalents"
+      link: "/uaeservices/uae-mobile-dev"
     },
     {
       icon: FaCloud,
       title: "Cloud Engineers",
       desc: "DevOps professionals for UAE-based infrastructure",
       skills: ["AWS", "Docker", "Kubernetes", "Terraform"],
-      link: "/hiretalents"
+      link: "/uaeservices/uae-cloud-eng"
     },
     {
       icon: FaPalette,
       title: "UI/UX Designers",
       desc: "Design experts creating UAE-cultured user experiences",
       skills: ["Figma", "Arabic UI Design", "UX Research", "Prototyping"],
-      link: "/hiretalents/uiux-designers"
+      link: "/uaeservices/uae-uiux-design"
     }
   ];
 

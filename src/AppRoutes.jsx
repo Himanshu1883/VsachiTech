@@ -20,6 +20,10 @@ import UiUxDesigners from './pages/resources/UiUxDesigners';
 import UAEServices from './pages/services/UAEServices';
 import ReactDev from './pages/uae/ReactDev';
 import PythonDev from './pages/uae/PythonDev';
+import LaravelDev from './pages/uae/LaravelDev';
+import MobileDev from './pages/uae/MobileDev';
+import CloudEng from './pages/uae/CloudEng';
+import UiUxDesign from './pages/uae/UiUxDesign';
 export default function AppRoutes() {
     return (
         <Routes>
@@ -27,6 +31,10 @@ export default function AppRoutes() {
             <Route path="/uaeservices" element={<UAEServices />} />
             <Route path="/uaeservices/uae-react-dev" element={<ReactDev/>}/>
             <Route path="/uaeservices/uae-python-dev" element={<PythonDev/>}/>
+            <Route path="/uaeservices/uae-laravel-dev" element={<LaravelDev/>}/>
+            <Route path="/uaeservices/uae-mobile-dev" element={<MobileDev/>}/>
+            <Route path="/uaeservices/uae-cloud-eng" element={<CloudEng/>}/>
+            <Route path="/uaeservices/uae-uiux-design" element={<UiUxDesign/>}/>
             <Route path="/who-we-are" element={<About />} />
             <Route path="/what-we-do" element={<Services />} />
             <Route path="/what-we-do/web-development" element={<WebDevelopment />} />
