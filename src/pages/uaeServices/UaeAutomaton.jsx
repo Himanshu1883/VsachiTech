@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaRobot, FaCog, FaChartLine, FaCheckCircle,
@@ -31,7 +31,41 @@ const UaeAutomation = () => {
   const [hoursSaved, setHoursSaved] = useState(0);
   const [costSaved, setCostSaved] = useState(0);
   const [tasksAutomated, setTasksAutomated] = useState(0);
+  const scrollRef = useRef(null);
 
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    // Mouse wheel → horizontal scroll
+    const onWheel = (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        el.scrollBy({
+          left: e.deltaY * 1.2,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    // Keyboard arrow support
+    const onKeyDown = (e) => {
+      if (e.key === "ArrowRight") {
+        el.scrollBy({ left: 320, behavior: "smooth" });
+      }
+      if (e.key === "ArrowLeft") {
+        el.scrollBy({ left: -320, behavior: "smooth" });
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -833,161 +867,148 @@ const UaeAutomation = () => {
 
       <WaveDivider flip={true} />
 
-      {/* 6-Step Automation Process - HORIZONTAL WITH BACKGROUND IMAGE */}
-      <section 
-        className="relative py-16 sm:py-20 md:py-24 overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 animate-float hidden lg:block">
-            <div className="text-white/10 text-5xl">⚙️</div>
-          </div>
-          <div className="absolute top-1/3 right-1/4 animate-float delay-1000 hidden lg:block">
-            <div className="text-white/10 text-4xl">📊</div>
-          </div>
-          <div className="absolute bottom-1/4 left-1/3 animate-float delay-500 hidden lg:block">
-            <div className="text-white/10 text-3xl">🚀</div>
-          </div>
-          
-          <div 
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229, 62, 62, 0.3) 0%, transparent 50%)`
-            }}
-          />
+ <section
+      className="relative py-16 sm:py-20 md:py-24 overflow-hidden"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      {/* Ambient Background */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229,62,62,0.35) 0%, transparent 50%)`,
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Our <span className="text-red-400">6-Step Automation Process</span>
+          </h2>
+          <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+            Proven methodology for implementing automation that delivers
+            measurable ROI
+          </p>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-              Our <span className="text-red-400">6-Step Automation Process</span>
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
-              Proven methodology for implementing automation that delivers measurable ROI
-            </p>
-          </div>
-
-          {/* Horizontal Scroll Container */}
-          <div className="relative">
-            {/* Desktop View - Horizontal Layout */}
-            <div className="hidden md:block overflow-x-auto pb-8 scrollbar-hide">
-              <div className="flex gap-6 lg:gap-8 min-w-max px-4">
-                {automationProcess.map((step, index) => (
-                  <div
-                    key={index}
-                    className="flex-shrink-0 w-72 lg:w-80 xl:w-96 group"
-                  >
-                    {/* Connecting Line */}
-                    {index < automationProcess.length - 1 && (
-                      <div className="absolute top-16 left-full w-6 lg:w-8 h-1 bg-gradient-to-r from-red-500 to-red-400 z-0 hidden md:block"></div>
-                    )}
-                    
-                    <div className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 lg:p-8 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 hover:-translate-y-2 h-full">
-                      {/* Step Number Badge */}
-                      <div className="absolute -top-4 -left-4 w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-xl lg:text-2xl shadow-xl border-4 border-white/20">
-                        {step.step}
-                      </div>
-
-                      {/* Icon */}
-                      <div className="mb-6 mt-4 inline-flex p-4 lg:p-5 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl border border-red-500/30 backdrop-blur-sm">
-                        <step.icon className="w-8 h-8 lg:w-10 lg:h-10 text-red-400" />
-                      </div>
-                      
-                      {/* Content */}
-                      <h3 className="text-xl lg:text-2xl font-bold text-white mb-3 lg:mb-4">{step.title}</h3>
-                      <p className="text-sm lg:text-base text-gray-300 mb-4 lg:mb-6 leading-relaxed">{step.description}</p>
-                      
-                      {/* Deliverables */}
-                      <div className="mb-4 lg:mb-6">
-                        <div className="text-xs lg:text-sm text-red-400 font-semibold mb-3">Deliverables:</div>
-                        <div className="flex flex-wrap gap-2">
-                          {step.deliverables.map((item, idx) => (
-                            <span key={idx} className="px-3 py-1 bg-white/10 backdrop-blur-sm text-white text-xs rounded-full border border-white/20">
-                              {item}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Duration */}
-                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/20 to-green-600/20 backdrop-blur-sm text-green-400 text-sm font-semibold rounded-full border border-green-500/30">
-                        <FaClock className="w-4 h-4" />
-                        {step.duration}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile View - Vertical Stack */}
-            <div className="md:hidden space-y-6">
+        {/* Horizontal Scroll (Desktop) */}
+        <div className="relative hidden md:block">
+          <div
+            ref={scrollRef}
+            tabIndex={0}
+            className="overflow-x-auto scrollbar-hide snap-x snap-mandatory focus:outline-none"
+          >
+            <div className="flex gap-8 min-w-max px-4 pb-10">
               {automationProcess.map((step, index) => (
                 <div
                   key={index}
-                  className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
+                  className="flex-shrink-0 w-80 lg:w-96 snap-start group"
                 >
-                  {/* Step Number Badge */}
-                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-xl border-4 border-white/20">
-                    {step.step}
-                  </div>
-
-                  {/* Icon */}
-                  <div className="mb-4 inline-flex p-4 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl border border-red-500/30 backdrop-blur-sm">
-                    <step.icon className="w-8 h-8 text-red-400" />
-                  </div>
-                  
-                  {/* Content */}
-                  <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
-                  <p className="text-sm text-gray-300 mb-4 leading-relaxed">{step.description}</p>
-                  
-                  {/* Deliverables */}
-                  <div className="mb-4">
-                    <div className="text-xs text-red-400 font-semibold mb-2">Deliverables:</div>
-                    <div className="flex flex-wrap gap-2">
-                      {step.deliverables.map((item, idx) => (
-                        <span key={idx} className="px-2 py-1 bg-white/10 backdrop-blur-sm text-white text-xs rounded-full border border-white/20">
-                          {item}
-                        </span>
-                      ))}
+                  <div className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 lg:p-8 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 h-full">
+                    {/* Step Number */}
+                    <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl border-4 border-white/20">
+                      {step.step}
                     </div>
-                  </div>
 
-                  {/* Duration */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-green-500/20 to-green-600/20 backdrop-blur-sm text-green-400 text-xs font-semibold rounded-full border border-green-500/30">
-                    <FaClock className="w-3 h-3" />
-                    {step.duration}
+                    {/* Icon */}
+                    <div className="mb-6 mt-4 inline-flex p-5 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl border border-red-500/30">
+                      <step.icon className="w-10 h-10 text-red-400" />
+                    </div>
+
+                    {/* Content */}
+                    <h3 className="text-xl lg:text-2xl font-bold text-white mb-4">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm lg:text-base text-gray-300 mb-6 leading-relaxed">
+                      {step.description}
+                    </p>
+
+                    {/* Deliverables */}
+                    <div className="mb-6">
+                      <div className="text-sm text-red-400 font-semibold mb-3">
+                        Deliverables
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {step.deliverables.map((item, i) => (
+                          <span
+                            key={i}
+                            className="px-3 py-1 bg-white/10 text-white text-xs rounded-full border border-white/20"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Duration */}
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/20 to-green-600/20 text-green-400 text-sm font-semibold rounded-full border border-green-500/30">
+                      <FaClock className="w-4 h-4" />
+                      {step.duration}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
 
-            {/* Scroll Hint for Desktop */}
-            <div className="hidden md:flex justify-center mt-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm">
-                <span>Scroll horizontally to see all steps</span>
-                <FaArrowRight className="w-4 h-4 animate-pulse" />
-              </div>
+          {/* Scroll Hint */}
+          <div className="flex justify-center mt-6">
+            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm">
+              <span className="opacity-80">Scroll</span>
+              <span className="text-xs opacity-70">mouse / arrows</span>
+              <FaArrowRight className="w-4 h-4 animate-pulse" />
             </div>
           </div>
         </div>
 
-        <style jsx>{`
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
-          .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-        `}</style>
-      </section>
+        {/* Mobile Stack */}
+        <div className="md:hidden space-y-6">
+          {automationProcess.map((step, index) => (
+            <div
+              key={index}
+              className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6"
+            >
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold">
+                {step.step}
+              </div>
+
+              <div className="mb-4 inline-flex p-4 bg-red-500/20 rounded-xl">
+                <step.icon className="w-8 h-8 text-red-400" />
+              </div>
+
+              <h3 className="text-lg font-bold text-white mb-2">
+                {step.title}
+              </h3>
+              <p className="text-sm text-gray-300 mb-4">
+                {step.description}
+              </p>
+
+              <div className="inline-flex items-center gap-2 text-green-400 text-xs font-semibold">
+                <FaClock className="w-3 h-3" />
+                {step.duration}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+      `}</style>
+    </section>
 
       {/* Use Cases Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
