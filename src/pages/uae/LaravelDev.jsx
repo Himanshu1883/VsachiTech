@@ -19,7 +19,7 @@ import {
   FaCogs,
   FaRocket        // used for API / integration
 } from 'react-icons/fa';
-import { MdLocationOn, MdWork } from 'react-icons/md';
+import { MdLocationOn, MdWork, MdSpeed } from 'react-icons/md';
 
 // Wave Divider (unchanged)
 const WaveDivider = ({ flip }) => (
@@ -461,14 +461,53 @@ const LaravelDev = () => {
             </div>
           </div>
 
-          <div className="mt-20 flex justify-center">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-full blur-xl"></div>
-              <div className="relative bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-full font-semibold shadow-2xl shadow-red-500/30">
-                4 Clear Steps • Fast Turnaround • UAE Timezone Ready
-              </div>
-            </div>
-          </div>
+                    {/* Modern Info Card – fixed closure and structure */}
+                    <div className="mt-20 flex justify-center">
+                      <div className="relative group w-full max-w-4xl">
+                        <div className="absolute -top-2 -left-2 w-4 h-4 bg-red-400 rounded-full animate-ping opacity-75 hidden sm:block"></div>
+                        <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-red-400 rounded-full animate-ping opacity-75 delay-500 hidden sm:block"></div>
+          
+                        <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-2xl shadow-red-400/30 border border-white/40 hover:shadow-red-400/50 transition-shadow duration-300">
+                          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-pulse"></div>
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-900 text-center">Why Choose Our Process</h3>
+                            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-pulse delay-300"></div>
+                          </div>
+          
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                            <div className="text-center">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                                <MdSpeed className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                              </div>
+                              <div className="font-bold text-gray-900 text-sm sm:text-base">4 Steps</div>
+                              <div className="text-xs sm:text-sm text-gray-600">Streamlined Process</div>
+                            </div>
+          
+                            <div className="text-center">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                                <FaClock className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                              </div>
+                              <div className="font-bold text-gray-900 text-sm sm:text-base">2-3 Weeks</div>
+                              <div className="text-xs sm:text-sm text-gray-600">Fast Results</div>
+                            </div>
+          
+                            <div className="text-center">
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                                <MdLocationOn className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                              </div>
+                              <div className="font-bold text-gray-900 text-sm sm:text-base">UAE Focused</div>
+                              <div className="text-xs sm:text-sm text-gray-600">Local Expertise</div>
+                            </div>
+                          </div>
+          
+                          <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+                            <span className="text-gray-800 font-bold text-sm sm:text-base">
+                              Simple • Efficient • Tailored for UAE Market
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
         </div>
       </section>
 

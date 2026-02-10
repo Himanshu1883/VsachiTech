@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  FaPalette,        // main UI/UX icon
+  FaPalette,
   FaPencilRuler,
   FaMobileAlt,
   FaDesktop,
-  FaFigma,
-  FaSketch,
   FaUsers,
   FaCheckCircle,
   FaClock,
@@ -22,13 +20,13 @@ import {
 
 import {
   SiFigma,
-  SiAdobexd,          // ← correct name for Adobe XD
+  SiAdobexd,
   SiSketch,
   SiFramer,
-  SiAdobephotoshop,   // if you want Photoshop too
+  SiAdobephotoshop,
 } from 'react-icons/si';
 
-import { MdLocationOn, MdWork } from 'react-icons/md';
+import { MdLocationOn, MdWork, MdSpeed } from 'react-icons/md';
 
 // Wave Divider (unchanged)
 const WaveDivider = ({ flip }) => (
@@ -43,7 +41,7 @@ const WaveDivider = ({ flip }) => (
 );
 
 const UiUxDesign = () => {
-    const [scrollY, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -52,14 +50,14 @@ const UiUxDesign = () => {
   }, []);
 
   const technologies = [
-    { name: "Figma",          icon: FaFigma,      color: "text-purple-600" },
-    { name: "Adobe XD",       icon: SiAdobexd,      color: "text-red-600"  },
-    { name: "Sketch",         icon: FaSketch,     color: "text-yellow-600" },
-    { name: "Framer",         icon: FaLaptopCode, color: "text-pink-600"   },
-    { name: "Principle",      icon: FaMobileAlt,  color: "text-blue-600"   },
-    { name: "ProtoPie",       icon: FaPencilRuler,color: "text-teal-600"   },
-    { name: "UserTesting",    icon: FaUsers,      color: "text-indigo-600" },
-    { name: "Miro / FigJam",  icon: FaPalette,    color: "text-green-600"  },
+    { name: "Figma",          icon: SiFigma,         color: "text-purple-600" },
+    { name: "Adobe XD",       icon: SiAdobexd,       color: "text-red-600"    },
+    { name: "Sketch",         icon: SiSketch,        color: "text-yellow-600" },
+    { name: "Framer",         icon: SiFramer,        color: "text-pink-600"   },
+    { name: "Principle",      icon: FaMobileAlt,     color: "text-blue-600"   },
+    { name: "ProtoPie",       icon: FaPencilRuler,   color: "text-teal-600"   },
+    { name: "UserTesting",    icon: FaUsers,         color: "text-indigo-600" },
+    { name: "Miro / FigJam",  icon: FaPalette,       color: "text-green-600"  },
   ];
 
   const uxServices = [
@@ -184,9 +182,10 @@ const UiUxDesign = () => {
     { value: "34+", label: "Senior UI/UX Designers",    icon: FaUsers  },
     { value: "2-4", label: "Weeks to Hire",             icon: FaClock  }
   ];
+
   return (
     <div className="bg-white">
-      {/* Hero – slightly taller padding & different headline phrasing */}
+      {/* Hero */}
       <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-black">
         <div className="absolute inset-0">
           <div
@@ -259,7 +258,7 @@ const UiUxDesign = () => {
 
       <WaveDivider />
 
-      {/* Technologies Marquee – slightly wider cards & different hover */}
+      {/* Technologies Marquee */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -315,7 +314,7 @@ const UiUxDesign = () => {
 
       <WaveDivider flip={true} />
 
-      {/* Services – slightly larger icons & cards */}
+      {/* Services */}
       <section id="services" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -361,7 +360,7 @@ const UiUxDesign = () => {
 
       <WaveDivider />
 
-      {/* Projects – slightly larger images/icons space */}
+      {/* Projects */}
       <section id="projects" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -420,7 +419,7 @@ const UiUxDesign = () => {
 
       <WaveDivider flip={true} />
 
-      {/* Hiring Process – same timeline with red glow */}
+      {/* Hiring Process – now with font consistency in info card */}
       <section className="py-24 relative overflow-hidden bg-black">
         <div className="absolute inset-0 bg-[url('/skill-bg.webp')] bg-cover bg-center opacity-70" aria-hidden />
 
@@ -468,11 +467,50 @@ const UiUxDesign = () => {
             </div>
           </div>
 
-          <div className="mt-24 flex justify-center">
-            <div className="relative group">
-              <div className="absolute -inset-6 bg-gradient-to-r from-red-500/30 to-red-600/30 rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-5 rounded-full font-bold text-xl shadow-2xl shadow-red-500/40">
-                4 Steps • Fast • Tailored for UAE Market
+          {/* Modern Info Card – now exactly matching ReactDev.jsx font sizes */}
+          <div className="mt-20 flex justify-center">
+            <div className="relative group w-full max-w-4xl">
+              <div className="absolute -top-2 -left-2 w-4 h-4 bg-red-400 rounded-full animate-ping opacity-75 hidden sm:block"></div>
+              <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-red-400 rounded-full animate-ping opacity-75 delay-500 hidden sm:block"></div>
+
+              <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-2xl shadow-red-400/30 border border-white/40 hover:shadow-red-400/50 transition-shadow duration-300">
+                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-pulse"></div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 text-center">Why Choose Our Process</h3>
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-pulse delay-300"></div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <MdSpeed className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">4 Steps</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Streamlined Process</div>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <FaClock className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">2-3 Weeks</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Fast Results</div>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <MdLocationOn className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">UAE Focused</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Local Expertise</div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+                  <span className="text-gray-800 font-bold text-sm sm:text-base">
+                    Simple • Efficient • Tailored for UAE Market
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -540,7 +578,7 @@ const UiUxDesign = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default UiUxDesign
+export default UiUxDesign;

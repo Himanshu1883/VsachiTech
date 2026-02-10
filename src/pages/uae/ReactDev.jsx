@@ -1,14 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  FaReact, FaCode, FaServer, FaMobile, FaRocket, FaUsers,
-  FaCheckCircle, FaClock, FaHandshake, FaAward, FaGlobe,
-  FaShoppingCart, FaChartLine, FaShieldAlt, FaArrowRight,
-  FaDatabase
+  FaPalette,
+  FaPencilRuler,
+  FaMobileAlt,
+  FaDesktop,
+  FaUsers,
+  FaCheckCircle,
+  FaClock,
+  FaHandshake,
+  FaAward,
+  FaRocket,
+  FaChartLine,
+  FaArrowRight,
+  FaSearch,
+  FaLaptopCode,
+  FaShoppingCart
 } from 'react-icons/fa';
-import { MdLocationOn, MdWork } from 'react-icons/md';
 
-// Wave Divider Component
+import {
+  SiFigma,
+  SiAdobexd,
+  SiSketch,
+  SiFramer,
+  SiAdobephotoshop,
+} from 'react-icons/si';
+
+import { MdLocationOn, MdWork, MdSpeed } from 'react-icons/md';
+
+// Wave Divider (unchanged)
 const WaveDivider = ({ flip }) => (
   <div className={`overflow-hidden ${flip ? "rotate-180" : ""}`}>
     <svg viewBox="0 0 1440 80" className="w-full" aria-hidden="true">
@@ -20,7 +40,7 @@ const WaveDivider = ({ flip }) => (
   </div>
 );
 
-const ReactDev = () => {
+const UiUxDesign = () => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -29,93 +49,88 @@ const ReactDev = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // ────────────────────────────────────────────────
-  //  Color theme kept very close to PythonDev.jsx
-  //  Main accent: red-600 / red-500 / red-400 gradient
-  // ────────────────────────────────────────────────
-
   const technologies = [
-    { name: "React", icon: FaReact, color: "text-cyan-500" },
-    { name: "Next.js", icon: FaServer, color: "text-black" },
-    { name: "TypeScript", icon: FaCode, color: "text-blue-600" },
-    { name: "Tailwind CSS", icon: FaMobile, color: "text-teal-500" },
-    { name: "Redux", icon: FaDatabase, color: "text-purple-600" },
-    { name: "React Query", icon: FaChartLine, color: "text-red-500" },
-    { name: "Framer Motion", icon: FaRocket, color: "text-pink-500" },
-    { name: "Vite", icon: FaCode, color: "text-yellow-500" },
+    { name: "Figma",          icon: SiFigma,         color: "text-purple-600" },
+    { name: "Adobe XD",       icon: SiAdobexd,       color: "text-red-600"    },
+    { name: "Sketch",         icon: SiSketch,        color: "text-yellow-600" },
+    { name: "Framer",         icon: SiFramer,        color: "text-pink-600"   },
+    { name: "Principle",      icon: FaMobileAlt,     color: "text-blue-600"   },
+    { name: "ProtoPie",       icon: FaPencilRuler,   color: "text-teal-600"   },
+    { name: "UserTesting",    icon: FaUsers,         color: "text-indigo-600" },
+    { name: "Miro / FigJam",  icon: FaPalette,       color: "text-green-600"  },
   ];
 
-  const reactServices = [
+  const uxServices = [
     {
-      title: "Enterprise Web Apps",
-      desc: "Scalable React SPAs & dashboards for UAE enterprises",
-      projects: "28+ UAE Projects",
-      features: ["Next.js", "TypeScript", "Redux", "Real-time"],
-      icon: FaGlobe
+      title: "UI/UX Design & Prototyping",
+      desc: "Beautiful, intuitive interfaces crafted for UAE users",
+      projects: "31+ UAE Projects",
+      features: ["Figma", "High-Fidelity", "Interactive Prototypes", "Design Systems"],
+      icon: FaPalette
     },
     {
-      title: "E-commerce Solutions",
-      desc: "High-performance online stores tailored for UAE market",
-      projects: "22+ E-commerce",
-      features: ["Next.js Commerce", "Payment Gateways", "SSR", "SEO"],
+      title: "Mobile App UI/UX",
+      desc: "Engaging iOS & Android experiences tailored to UAE market",
+      projects: "24+ Mobile Designs",
+      features: ["Flutter / RN UI", "Gesture Design", "Dark Mode", "Accessibility"],
+      icon: FaMobileAlt
+    },
+    {
+      title: "Web & Dashboard Design",
+      desc: "Modern SaaS & enterprise dashboards for UAE businesses",
+      projects: "19+ Web Projects",
+      features: ["Responsive", "Data Viz", "Admin Panels", "B2B UX"],
+      icon: FaDesktop
+    },
+    {
+      title: "E-commerce & FinTech UX",
+      desc: "Conversion-focused designs compliant with UAE regulations",
+      projects: "17+ FinTech / E-com",
+      features: ["Checkout Flows", "Onboarding", "Trust Signals", "RTL Support"],
       icon: FaShoppingCart
     },
     {
-      title: "Progressive Web Apps",
-      desc: "App-like experiences with offline support for UAE users",
-      projects: "19+ PWAs",
-      features: ["PWA", "Service Workers", "Push", "Offline"],
-      icon: FaMobile
+      title: "User Research & Testing",
+      desc: "Deep insights into UAE user behavior & preferences",
+      projects: "22+ Research Studies",
+      features: ["Interviews", "Usability Testing", "Heatmaps", "A/B Testing"],
+      icon: FaUsers
     },
     {
-      title: "Admin & Analytics Dashboards",
-      desc: "Data-rich interfaces with real-time UAE business insights",
-      projects: "17+ Dashboards",
-      features: ["React Query", "Charts", "Auth", "Role-based"],
-      icon: FaChartLine
-    },
-    {
-      title: "FinTech & Secure Platforms",
-      desc: "Compliant React frontends for UAE financial sector",
-      projects: "14+ FinTech UIs",
-      features: ["Security", "Compliance", "Real-time", "KYC"],
-      icon: FaShieldAlt
-    },
-    {
-      title: "Custom UI/UX Components",
-      desc: "Reusable, accessible React components for UAE brands",
-      projects: "35+ Component Libraries",
-      features: ["Tailwind", "Framer Motion", "Accessibility", "Theming"],
-      icon: FaCode
+      title: "Design Systems & Component Libraries",
+      desc: "Scalable, consistent design languages for UAE brands",
+      projects: "28+ Design Systems",
+      features: ["Atomic Design", "Tokens", "Accessibility", "Documentation"],
+      icon: FaPencilRuler
     }
   ];
 
   const hiringProcess = [
     {
       step: "01",
-      title: "Discovery Call",
-      desc: "Discuss your UAE React project vision & needs",
+      title: "Vision & Goals Call",
+      desc: "Discuss your UAE project, brand, and user needs",
       icon: FaHandshake,
       duration: "1-2 Days"
     },
     {
       step: "02",
-      title: "Talent Matching",
-      desc: "Get matched with pre-vetted React specialists",
+      title: "Designer Matching",
+      desc: "Receive curated profiles of senior UI/UX talent",
       icon: FaUsers,
       duration: "1-3 Days"
     },
     {
       step: "03",
-      title: "Technical Review",
-      desc: "Skills validated with UAE-relevant challenges",
-      icon: FaCode,
+      title: "Portfolio & Case Review",
+      desc: "Evaluate relevant UAE/GCC design experience",
+      icon: FaSearch,
       duration: "2-4 Days"
     },
     {
       step: "04",
       title: "Onboarding & Kickoff",
-      desc: "Seamless start aligned with your UAE timezone",
+      desc: "Smooth start aligned with your UAE timezone",
       icon: FaRocket,
       duration: "1 Day"
     }
@@ -124,161 +139,161 @@ const ReactDev = () => {
   const uaeProjects = [
     {
       industry: "Real Estate",
-      project: "Dubai Luxury Property Portal",
-      tech: ["React", "Next.js", "TypeScript", "Tailwind"],
-      duration: "5 months",
-      client: "Leading Dubai Developer"
+      project: "Dubai Luxury Real Estate Mobile & Web Experience",
+      tech: ["Figma", "Framer", "RTL", "Interactive Prototype"],
+      duration: "4 months",
+      client: "Premium Dubai Developer"
     },
     {
       industry: "E-commerce",
-      project: "UAE Fashion & Retail Platform",
-      tech: ["React", "Next.js", "Redux", "Stripe"],
-      duration: "4 months",
-      client: "Prominent UAE Retail Brand"
+      project: "UAE Fashion Platform UI/UX Redesign",
+      tech: ["Figma", "Design System", "Mobile-First", "Checkout Flow"],
+      duration: "3 months",
+      client: "Leading UAE Retail Brand"
     },
     {
       industry: "FinTech",
-      project: "Abu Dhabi Digital Banking Interface",
-      tech: ["React", "TypeScript", "React Query", "Auth0"],
-      duration: "7 months",
-      client: "Regulated FinTech Firm"
+      project: "Abu Dhabi Digital Banking App UX Overhaul",
+      tech: ["Adobe XD", "User Testing", "Biometric Flows", "Compliance UI"],
+      duration: "6 months",
+      client: "Regulated UAE FinTech"
     },
     {
       industry: "Logistics",
-      project: "Sharjah Supply Chain Dashboard",
-      tech: ["React", "Framer Motion", "Tailwind", "Charts"],
-      duration: "6 months",
-      client: "Major Logistics Provider"
+      project: "Sharjah Delivery App Interface & Dashboard",
+      tech: ["Figma", "ProtoPie", "Real-time Tracking UX", "Driver UI"],
+      duration: "5 months",
+      client: "Major UAE Logistics Provider"
     }
   ];
 
   const benefits = [
-    "UAE timezone aligned React developers",
-    "Understanding of GCC digital market needs",
-    "TDRA & UAE compliance awareness",
-    "Experience with Arabic RTL support",
-    "Premium code quality & performance focus",
-    "Competitive AED-friendly pricing"
+    "UAE timezone aligned UI/UX designers",
+    "Deep understanding of Arabic RTL & cultural nuances",
+    "Experience with TDRA & UAE accessibility guidelines",
+    "Strong portfolio in luxury, fintech & e-commerce",
+    "Focus on conversion & user retention metrics",
+    "Competitive AED-based pricing & flexible engagement"
   ];
 
   const stats = [
-    { value: "45+", label: "React Projects in UAE/GCC", icon: FaReact },
-    { value: "97%", label: "Client Satisfaction", icon: FaAward },
-    { value: "35+", label: "Senior React Developers", icon: FaUsers },
-    { value: "2-4", label: "Weeks Average Hiring Time", icon: FaClock }
+    { value: "55+", label: "UI/UX Projects in UAE/GCC", icon: FaPalette },
+    { value: "96%", label: "Client Satisfaction",       icon: FaAward  },
+    { value: "34+", label: "Senior UI/UX Designers",    icon: FaUsers  },
+    { value: "2-4", label: "Weeks to Hire",             icon: FaClock  }
   ];
 
   return (
     <div className="bg-white">
-      {/* Hero – matching ReactDev style & colors */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Hero */}
+      <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-black">
         <div className="absolute inset-0">
           <div
-            className="absolute inset-0 bg-[url('/react-dev.jpg')] bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-[url('/uae-skyline.jpg')] bg-cover bg-center bg-no-repeat"
             aria-hidden="true"
           />
           <div className="absolute inset-0 bg-black/70" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-20">
-          <div className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-black/50 backdrop-blur-sm border border-red-500/30 rounded-full">
-            <MdLocationOn className="w-5 h-5 text-red-400" />
-            <span className="text-sm font-semibold tracking-widest text-red-400 uppercase">
+        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 text-center text-white py-24">
+          <div className="inline-flex items-center gap-3 mb-10 px-7 py-4 bg-black/50 backdrop-blur-md border border-red-500/40 rounded-full shadow-lg">
+            <MdLocationOn className="w-6 h-6 text-red-400" />
+            <span className="text-base font-semibold tracking-wider text-red-400 uppercase">
               Dubai • Abu Dhabi • Sharjah • GCC
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            <span className="block">React Excellence</span>
-            <span className="text-red-400 block mt-2">For UAE's</span>
-            <span className="block mt-2">Digital Transformation</span>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-8 leading-tight">
+            <span className="block">UI/UX Design</span>
+            <span className="text-red-400 block mt-3">Elevating UAE Brands</span>
+            <span className="block mt-3">Digitally</span>
           </h1>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Hire pre-vetted React developers who understand UAE market demands — 
-            delivering fast, modern, scalable frontends built for Dubai's competitive landscape.
+          <p className="text-xl sm:text-2xl text-gray-200 mb-12 max-w-4xl mx-auto leading-relaxed">
+            Hire world-class UI/UX designers who craft pixel-perfect, user-centered experiences 
+            that resonate with UAE audiences and drive business results.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/contact#project-form">
-              <button className="group relative px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-red-500/30 overflow-hidden">
-                <span className="relative z-10 flex items-center gap-3">
-                  HIRE REACT DEVELOPERS
-                  <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
+              <button className="group relative px-10 py-5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl font-bold text-xl hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-red-500/40 overflow-hidden">
+                <span className="relative z-10 flex items-center gap-4">
+                  HIRE UI/UX DESIGNERS
+                  <FaArrowRight className="group-hover:translate-x-3 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
               </button>
             </Link>
 
             <Link to="#services">
-              <button className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 text-base">
-                VIEW REACT SERVICES
-                <span className="w-2 h-2 rounded-full bg-white"></span>
+              <button className="w-full sm:w-auto flex items-center justify-center gap-4 px-10 py-5 border-2 border-red-400 text-red-400 rounded-xl hover:bg-red-400 hover:text-white transition-all duration-300 hover:scale-105 text-lg font-semibold">
+                VIEW DESIGN SERVICES
+                <span className="w-3 h-3 rounded-full bg-red-400"></span>
               </button>
             </Link>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-red-500/50 transition-all duration-300"
+                className="bg-black/45 backdrop-blur-lg border border-red-500/30 rounded-2xl p-8 hover:border-red-400 transition-all duration-300 shadow-xl"
               >
-                <div className="flex items-center justify-center gap-3 mb-3">
-                  <stat.icon className="w-6 h-6 text-red-400" />
-                  <div className="text-3xl font-bold text-white">{stat.value}</div>
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <stat.icon className="w-8 h-8 text-red-400" />
+                  <div className="text-4xl font-extrabold text-white">{stat.value}</div>
                 </div>
-                <div className="text-sm text-gray-400 text-center">{stat.label}</div>
+                <div className="text-base text-gray-300 text-center font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gradient-to-b from-red-400 to-red-600 rounded-full mt-2"></div>
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-7 h-12 border-2 border-red-400/40 rounded-full flex justify-center pt-2">
+            <div className="w-1.5 h-4 bg-gradient-to-b from-red-400 to-red-600 rounded-full"></div>
           </div>
         </div>
       </section>
 
       <WaveDivider />
 
-      {/* Technologies Marquee – same style */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              React Stack <span className="text-red-600">Mastered for UAE</span>
+      {/* Technologies Marquee */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8">
+              Design Tools <span className="text-red-600">Mastered for UAE</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our developers are proficient in the full modern React ecosystem — optimized for UAE performance & scalability needs
+            <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Elite proficiency across industry-leading UI/UX tools — delivering world-class experiences for UAE brands
             </p>
           </div>
 
-          <div className="relative overflow-hidden py-4">
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="relative overflow-hidden py-6">
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
             <div className="flex overflow-hidden">
               <div className="flex animate-scroll whitespace-nowrap">
                 {[...technologies, ...technologies, ...technologies].map((tech, index) => (
                   <div
                     key={index}
-                    className="group mx-5 bg-white border border-gray-200 rounded-xl p-6 hover:border-red-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex-shrink-0 w-48"
+                    className="group mx-6 bg-white border border-gray-200 rounded-2xl p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 flex-shrink-0 w-56"
                   >
-                    <tech.icon className={`w-12 h-12 mx-auto mb-4 ${tech.color} group-hover:scale-110 transition-transform duration-300`} />
-                    <div className="text-center text-sm font-semibold text-gray-900">{tech.name}</div>
+                    <tech.icon className={`w-14 h-14 mx-auto mb-5 ${tech.color} group-hover:scale-110 group-hover:rotate-6 transition-transform duration-400`} />
+                    <div className="text-center text-base font-bold text-gray-900">{tech.name}</div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-16">
             <Link to="/contact#project-form">
-              <button className="inline-flex items-center gap-3 px-8 py-4 border border-gray-950 text-gray-950 rounded-full hover:bg-gray-950 hover:text-white transition-all duration-300 hover:scale-105">
-                TALK TO REACT EXPERTS
-                <span className="w-2 h-2 rounded-full bg-gray-950"></span>
+              <button className="inline-flex items-center gap-4 px-10 py-5 border-2 border-gray-900 text-gray-900 rounded-xl hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-105 text-lg font-semibold">
+                CONNECT WITH UI/UX TALENT
+                <span className="w-3 h-3 rounded-full bg-gray-900"></span>
               </button>
             </Link>
           </div>
@@ -290,7 +305,7 @@ const ReactDev = () => {
             100% { transform: translateX(-33.333%); }
           }
           .animate-scroll {
-            animation: scroll 45s linear infinite;
+            animation: scroll 50s linear infinite;
             display: flex;
           }
           .animate-scroll:hover { animation-play-state: paused; }
@@ -299,39 +314,39 @@ const ReactDev = () => {
 
       <WaveDivider flip={true} />
 
-      {/* Services – identical layout & hover effects */}
-      <section id="services" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              React Solutions <span className="text-red-600">for UAE Industries</span>
+      {/* Services */}
+      <section id="services" className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8">
+              UI/UX Services <span className="text-red-600">for UAE Brands</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Tailored React development services designed for UAE's unique business landscape
+            <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Specialized design services crafted to meet the expectations of UAE users and businesses
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reactServices.map((service, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {uxServices.map((service, index) => (
               <div
                 key={index}
-                className="group bg-white border border-gray-200 rounded-2xl p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className="group bg-white border border-gray-200 rounded-3xl p-9 hover:border-red-500 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3"
               >
-                <div className="mb-6 inline-flex p-4 bg-red-50 rounded-xl">
-                  <service.icon className="w-8 h-8 text-red-600 group-hover:scale-110 transition-transform duration-300" />
+                <div className="mb-8 inline-flex p-5 bg-red-50 rounded-2xl shadow-md">
+                  <service.icon className="w-10 h-10 text-red-600 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-400" />
                 </div>
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
-                  <span className="px-3 py-1 bg-red-100 text-red-700 text-sm font-semibold rounded-full">
+                <div className="flex justify-between items-start mb-5">
+                  <h3 className="text-3xl font-bold text-gray-900">{service.title}</h3>
+                  <span className="px-4 py-2 bg-red-100 text-red-700 text-base font-semibold rounded-full">
                     {service.projects}
                   </span>
                 </div>
-                <p className="text-gray-600 mb-6 leading-relaxed">{service.desc}</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="text-gray-700 mb-8 leading-relaxed text-lg">{service.desc}</p>
+                <div className="flex flex-wrap gap-3">
                   {service.features.map((feature, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-red-100 hover:text-red-700 transition-colors duration-300"
+                      className="px-4 py-2 bg-gray-100 text-gray-800 text-base rounded-full hover:bg-red-100 hover:text-red-700 transition-colors duration-300"
                     >
                       {feature}
                     </span>
@@ -345,55 +360,55 @@ const ReactDev = () => {
 
       <WaveDivider />
 
-      {/* Projects Showcase – same card style */}
-      <section id="projects" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              React Success Stories <span className="text-red-600">in UAE</span>
+      {/* Projects */}
+      <section id="projects" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8">
+              Design Success Stories <span className="text-red-600">in UAE</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real React projects delivered for UAE businesses across key sectors
+            <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Impactful UI/UX projects delivered for leading organizations across the UAE
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {uaeProjects.map((project, index) => (
               <div
                 key={index}
-                className="group bg-white border border-gray-200 rounded-2xl p-8 hover:border-red-500 hover:shadow-xl transition-all duration-500"
+                className="group bg-white border border-gray-200 rounded-3xl p-9 hover:border-red-500 hover:shadow-2xl transition-all duration-500"
               >
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex justify-between items-start mb-8">
                   <div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 text-sm font-semibold rounded-full mb-3">
-                      <MdWork className="w-4 h-4" />
+                    <div className="inline-flex items-center gap-3 px-5 py-3 bg-red-100 text-red-700 text-base font-semibold rounded-2xl mb-5">
+                      <MdWork className="w-5 h-5" />
                       {project.industry}
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.project}</h3>
-                    <p className="text-gray-600 text-sm">{project.client}</p>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-3">{project.project}</h3>
+                    <p className="text-gray-700 text-lg">{project.client}</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-gray-500">Duration</div>
-                    <div className="text-lg font-bold text-gray-900">{project.duration}</div>
+                    <div className="text-base text-gray-500">Duration</div>
+                    <div className="text-2xl font-bold text-gray-900">{project.duration}</div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-3 mb-8">
                   {project.tech.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-lg hover:bg-red-600 hover:text-white transition-colors duration-300"
+                      className="px-4 py-2 bg-gray-100 text-gray-800 text-base rounded-2xl hover:bg-red-600 hover:text-white transition-colors duration-300"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="pt-6 border-t border-gray-200 flex items-center justify-between">
-                  <span className="text-sm text-gray-600">React Expertise Applied</span>
-                  <div className="flex items-center gap-2 text-red-600">
-                    <FaReact className="w-5 h-5" />
-                    <span className="font-semibold">Successfully Delivered</span>
+                <div className="pt-8 border-t border-gray-200 flex items-center justify-between">
+                  <span className="text-base text-gray-700">UI/UX Craftsmanship Delivered</span>
+                  <div className="flex items-center gap-3 text-red-600">
+                    <FaPalette className="w-6 h-6" />
+                    <span className="text-xl font-bold">Launched Successfully</span>
                   </div>
                 </div>
               </div>
@@ -404,17 +419,17 @@ const ReactDev = () => {
 
       <WaveDivider flip={true} />
 
-      {/* Hiring Process – timeline with red glow */}
-      <section className="py-20 relative overflow-hidden bg-black">
+      {/* Hiring Process – with font consistency applied */}
+      <section className="py-24 relative overflow-hidden bg-black">
         <div className="absolute inset-0 bg-[url('/skill-bg.webp')] bg-cover bg-center opacity-70" aria-hidden />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Streamlined <span className="text-red-400">Hiring Process</span>
+        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-8">
+              Streamlined <span className="text-red-400">Hiring Journey</span>
             </h2>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Our proven 4-step process to connect you with top React talent for UAE projects
+            <p className="text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
+              Clear 4-step process to bring top-tier UI/UX talent to your UAE team
             </p>
           </div>
 
@@ -423,26 +438,26 @@ const ReactDev = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-red-500 to-red-300 animate-pulse"></div>
             </div>
 
-            <div className="space-y-16">
+            <div className="space-y-20">
               {hiringProcess.map((step, index) => (
                 <div
                   key={index}
                   className={`relative flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center`}
                 >
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-white border-4 border-red-500 rounded-full flex items-center justify-center z-10 shadow-2xl shadow-red-500/40">
-                    <div className="text-sm font-bold text-gray-900">{step.step}</div>
-                    <div className="absolute -inset-1 bg-red-500 rounded-full blur opacity-30 animate-ping"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-white border-4 border-red-500 rounded-full flex items-center justify-center z-10 shadow-2xl shadow-red-500/50">
+                    <div className="text-lg font-bold text-gray-900">{step.step}</div>
+                    <div className="absolute -inset-2 bg-red-500 rounded-full blur-lg opacity-40 animate-ping"></div>
                   </div>
 
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
-                    <div className="bg-white/95 backdrop-blur-sm border border-white/30 rounded-2xl p-8 hover:border-red-400 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 hover:scale-105 shadow-xl">
-                      <div className="mb-4 inline-flex p-3 bg-gradient-to-br from-red-100 to-red-200 rounded-xl shadow-md">
-                        <step.icon className="w-6 h-6 text-red-600" />
+                  <div className={`w-5/12 ${index % 2 === 0 ? 'pr-16 text-right' : 'pl-16'}`}>
+                    <div className="bg-white/95 backdrop-blur-lg border border-white/30 rounded-3xl p-10 hover:border-red-400 hover:shadow-2xl hover:shadow-red-500/30 transition-all duration-500 hover:scale-105 shadow-xl">
+                      <div className="mb-6 inline-flex p-4 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl shadow-md">
+                        <step.icon className="w-8 h-8 text-red-600" />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                      <p className="text-gray-700 mb-4">{step.desc}</p>
-                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-50 to-red-100 text-red-700 text-sm font-semibold rounded-full border border-red-200">
-                        <FaClock className="w-3 h-3" />
+                      <h3 className="text-3xl font-bold text-gray-900 mb-4">{step.title}</h3>
+                      <p className="text-gray-700 mb-6 text-lg">{step.desc}</p>
+                      <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-red-50 to-red-100 text-red-700 text-base font-semibold rounded-2xl border border-red-200">
+                        <FaClock className="w-5 h-5" />
                         {step.duration}
                       </div>
                     </div>
@@ -452,11 +467,50 @@ const ReactDev = () => {
             </div>
           </div>
 
+          {/* Modern Info Card – exact match to ReactDev.jsx */}
           <div className="mt-20 flex justify-center">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-red-500/20 to-red-600/20 rounded-full blur-xl"></div>
-              <div className="relative bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-full font-semibold shadow-2xl shadow-red-500/30">
-                4 Simple Steps • Fast Results • UAE Focused
+            <div className="relative group w-full max-w-4xl">
+              <div className="absolute -top-2 -left-2 w-4 h-4 bg-red-400 rounded-full animate-ping opacity-75 hidden sm:block"></div>
+              <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-red-400 rounded-full animate-ping opacity-75 delay-500 hidden sm:block"></div>
+
+              <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-2xl shadow-red-400/30 border border-white/40 hover:shadow-red-400/50 transition-shadow duration-300">
+                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-pulse"></div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 text-center">Why Choose Our Process</h3>
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-red-500 to-red-400 rounded-full animate-pulse delay-300"></div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <MdSpeed className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">4 Steps</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Streamlined Process</div>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <FaClock className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">2-3 Weeks</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Fast Results</div>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center">
+                      <MdLocationOn className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
+                    </div>
+                    <div className="font-bold text-gray-900 text-sm sm:text-base">UAE Focused</div>
+                    <div className="text-xs sm:text-sm text-gray-600">Local Expertise</div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+                  <span className="text-gray-800 font-bold text-sm sm:text-base">
+                    Simple • Efficient • Tailored for UAE Market
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -465,57 +519,59 @@ const ReactDev = () => {
 
       <WaveDivider />
 
-      {/* Benefits – same card style */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Why Choose Our <span className="text-red-600">UAE React Team</span>
+      {/* Benefits */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8">
+              Why Our <span className="text-red-600">UAE Design Team</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Unique advantages when hiring React developers through us for UAE projects
+            <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+              Key advantages when hiring top UI/UX talent through us for UAE projects
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="group flex items-center gap-4 p-6 bg-white border border-gray-200 rounded-2xl hover:border-red-500 hover:shadow-lg transition-all duration-300"
+                className="group flex items-center gap-6 p-8 bg-white border border-gray-200 rounded-3xl hover:border-red-500 hover:shadow-xl transition-all duration-400"
               >
-                <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <FaCheckCircle className="w-5 h-5 text-red-600" />
+                <div className="flex-shrink-0 w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-400">
+                  <FaCheckCircle className="w-7 h-7 text-red-600" />
                 </div>
-                <span className="text-lg font-medium text-gray-900">{benefit}</span>
+                <span className="text-xl font-semibold text-gray-900">{benefit}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA – matching PythonDev colors */}
-      <section className="py-20 bg-gradient-to-br from-red-50 to-red-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Ready to Build with React in UAE?
+      {/* Final CTA */}
+      <section className="py-24 bg-gradient-to-br from-red-50 to-red-100">
+        <div className="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+          <h3 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8">
+            Ready to Elevate Your Brand with World-Class UI/UX in UAE?
           </h3>
-          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-            Let's discuss how our UAE-aligned React experts can turn your digital vision into reality
+          <p className="text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Let's create experiences that users in Dubai, Abu Dhabi and beyond will love.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+
+          <div className="flex flex-col sm:flex-row gap-8 justify-center">
             <Link to="/contact#project-form">
-              <button className="group relative px-10 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-red-500/40 overflow-hidden">
-                <span className="relative z-10 flex items-center gap-3">
-                  START YOUR UAE REACT PROJECT
-                  <FaArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
+              <button className="group relative px-12 py-6 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-2xl font-bold text-2xl hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-red-500/40 overflow-hidden">
+                <span className="relative z-10 flex items-center gap-4">
+                  START YOUR DESIGN PROJECT
+                  <FaArrowRight className="group-hover:translate-x-3 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
               </button>
             </Link>
+
             <Link to="/uaeservices">
-              <button className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-gray-900 text-gray-900 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-105">
-                EXPLORE UAE SERVICES
-                <span className="w-2 h-2 rounded-full bg-gray-900"></span>
+              <button className="w-full sm:w-auto flex items-center justify-center gap-4 px-12 py-6 border-2 border-gray-900 text-gray-900 rounded-2xl hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-105 text-xl font-bold">
+                MORE UAE DESIGN SERVICES
+                <span className="w-3 h-3 rounded-full bg-gray-900"></span>
               </button>
             </Link>
           </div>
@@ -525,4 +581,4 @@ const ReactDev = () => {
   );
 };
 
-export default ReactDev;
+export default UiUxDesign;
