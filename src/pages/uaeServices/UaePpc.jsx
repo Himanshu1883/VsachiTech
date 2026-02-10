@@ -520,37 +520,27 @@ const stats = [
 
   return (
     <div className="bg-white">
-      {/* ========== HERO SECTION ========== */}
+{/* ========== HERO SECTION ========== */}
       <section 
-        className="relative min-h-screen sm:min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 md:pt-24 pb-8 md:pb-0"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 animate-float hidden sm:block">
-            <div className="text-white/10 text-4xl font-mono">💰</div>
-          </div>
-          <div className="absolute top-1/3 right-1/4 animate-float delay-1000 hidden md:block">
-            <div className="text-white/10 text-3xl">📊</div>
-          </div>
-          <div className="absolute bottom-1/4 left-1/3 animate-float delay-500 hidden lg:block">
-            <div className="text-white/10 text-2xl">🎯</div>
-          </div>
-          
-          <div 
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229, 62, 62, 0.3) 0%, transparent 50%)`
-            }}
-          />
-        </div>
+  className="relative h-screen flex items-center justify-center overflow-hidden"
+  style={{
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/uaeppchero.jpg')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+  }}
+>
+  {/* Animated Background Elements */}
+  <div className="absolute inset-0">   
+    <div 
+      className="absolute inset-0 opacity-5"
+      style={{
+        backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229, 62, 62, 0.3) 0%, transparent 50%)`
+      }}
+    />
+  </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 w-full">
+<div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-12 lg:-mt-16">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
             <div className="order-2 lg:order-1">
@@ -599,38 +589,35 @@ const stats = [
 
               {/* Live Metrics */}
               <div className="mb-6 md:mb-8 bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6">
-  <div className="grid grid-cols-3 gap-3 sm:gap-4 text-center">
-    
-    <div>
-      <div className="text-xs sm:text-sm text-gray-400 mb-1">
-        Budget Strategy
-      </div>
-      <div className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
-        Optimized Spend
-      </div>
-    </div>
+                <div className="grid grid-cols-3 gap-3 sm:gap-4 text-center">
+                  <div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">
+                      Budget Strategy
+                    </div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
+                      Optimized Spend
+                    </div>
+                  </div>
 
-    <div>
-      <div className="text-xs sm:text-sm text-gray-400 mb-1">
-        Lead Quality
-      </div>
-      <div className="text-lg sm:text-xl md:text-2xl font-semibold text-green-400">
-        High Intent
-      </div>
-    </div>
+                  <div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">
+                      Lead Quality
+                    </div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-semibold text-green-400">
+                      High Intent
+                    </div>
+                  </div>
 
-    <div>
-      <div className="text-xs sm:text-sm text-gray-400 mb-1">
-        Return Health
-      </div>
-      <div className="text-lg sm:text-xl md:text-2xl font-semibold text-red-400">
-        Performance Positive
-      </div>
-    </div>
-
-  </div>
-</div>
-
+                  <div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">
+                      Return Health
+                    </div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-semibold text-red-400">
+                      Performance Positive
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -653,7 +640,7 @@ const stats = [
             </div>
 
             {/* Right Stats */}
-            <div className="order-1 lg:order-2 grid grid-cols-2 gap-3 sm:gap-4 lg:gap-4 mb-8 lg:mb-0">
+            <div className="order-1 lg:order-2 grid grid-cols-2 gap-3 sm:gap-4 lg:gap-4">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-500/50 transition-all duration-300 group">
                   <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 mx-auto mb-2 sm:mb-3 text-red-400 group-hover:scale-110 transition-transform duration-300" />
