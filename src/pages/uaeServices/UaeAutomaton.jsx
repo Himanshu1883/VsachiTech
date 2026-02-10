@@ -11,6 +11,8 @@ import {
 } from 'react-icons/fa';
 import { MdLocationOn, MdAutoGraph, MdSpeed, MdIntegrationInstructions } from 'react-icons/md';
 import { SiZapier, SiMake, SiAirtable } from 'react-icons/si';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
 
 // Divider Component
 const WaveDivider = ({ flip }) => (
@@ -25,6 +27,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const UaeAutomation = () => {
+  usePageTitle("Business Process Automation UAE - Dubai Automation Solutions");
+useSEO({
+  title: 'Business Process Automation UAE - Dubai Automation Solutions',
+  description: 'Business Process Automation services in UAE for Dubai & Abu Dhabi companies. CRM integration, workflow automation, UAE business tools synchronization.',
+  canonical: 'https://vsachitech.com/uaeservices/uae-automation'
+});
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeService, setActiveService] = useState(0);

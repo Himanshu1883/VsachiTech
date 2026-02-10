@@ -27,6 +27,8 @@ import {
   FaCompress
 } from 'react-icons/fa';
 import { MdLocationOn, MdWork, MdSpeed, MdSmartphone, MdDevices, MdSecurity } from 'react-icons/md';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
 
 // Wave Divider
 const WaveDivider = ({ flip }) => (
@@ -41,6 +43,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const MobileDev = () => {
+    usePageTitle("Hire Mobile App Developers in UAE - React Native & Flutter Experts Dubai");
+useSEO({
+  title: 'Hire Mobile App Developers in UAE - React Native & Flutter Experts Dubai',
+  description: 'Hire dedicated Mobile App Developers in UAE for Dubai & Abu Dhabi apps. React Native, Flutter, iOS, Android experts with UAE market knowledge.',
+  canonical: 'https://vsachitech.com/hiretalents/mobile-developers-uae'
+});
     const [scrollY, setScrollY] = useState(0);
     const [activeApproach, setActiveApproach] = useState(0);
 

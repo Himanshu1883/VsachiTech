@@ -25,6 +25,8 @@ import {
   FaMicrochip
 } from 'react-icons/fa';
 import { MdLocationOn, MdWork, MdSpeed, MdSecurity, MdApi, MdArchitecture } from 'react-icons/md';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
 
 // Wave Divider
 const WaveDivider = ({ flip }) => (
@@ -39,6 +41,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const LaravelDev = () => {
+    usePageTitle("Hire Laravel Developers in UAE - PHP Laravel Experts Dubai");
+useSEO({
+  title: 'Hire Laravel Developers in UAE - PHP Laravel Experts Dubai',
+  description: 'Hire dedicated Laravel Developers in UAE for Dubai & Abu Dhabi web projects. PHP, MySQL, API development experts with UAE project experience.',
+  canonical: 'https://vsachitech.com/hiretalents/laravel-developers-uae'
+});
     const [scrollY, setScrollY] = useState(0);
     const [activeMethodology, setActiveMethodology] = useState(0);
 

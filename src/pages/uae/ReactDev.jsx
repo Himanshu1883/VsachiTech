@@ -8,6 +8,8 @@ import {
   FaCubes, FaNetworkWired, FaInfinity
 } from 'react-icons/fa';
 import { MdLocationOn, MdWork, MdSpeed, MdArchitecture, MdDevices, MdApi, MdMemory } from 'react-icons/md';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
 
 // Wave Divider Component
 const WaveDivider = ({ flip }) => (
@@ -22,6 +24,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const ReactDev = () => {
+  usePageTitle("Hire React Developers in UAE - React.js & Next.js Experts Dubai");
+useSEO({
+  title: 'Hire React Developers in UAE - React.js & Next.js Experts Dubai',
+  description: 'Hire dedicated React Developers in UAE for Dubai & Abu Dhabi web applications. React.js, Next.js, TypeScript experts with UAE market experience.',
+  canonical: 'https://vsachitech.com/hiretalents/react-developers-uae'
+});
   const [scrollY, setScrollY] = useState(0);
   const [activePattern, setActivePattern] = useState(0);
 

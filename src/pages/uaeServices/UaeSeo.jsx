@@ -8,6 +8,8 @@ import {
   FaCode, FaServer, FaDatabase, FaPalette, FaRocket
 } from 'react-icons/fa';
 import { MdLocationOn, MdTrendingUp, MdSpeed, MdLanguage } from 'react-icons/md';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
 
 // Divider Component
 const WaveDivider = ({ flip }) => (
@@ -22,6 +24,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const UaeSeo = () => {
+  usePageTitle("Local SEO Services UAE - Dubai SEO Optimization Experts");
+useSEO({
+  title: 'Local SEO Services UAE - Dubai SEO Optimization Experts',
+  description: 'Local SEO Services in UAE for Dubai & Abu Dhabi businesses. Google My Business optimization, Arabic keyword strategy, UAE directory listings.',
+  canonical: 'https://vsachitech.com/uaeservices/uae-seo'
+});
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeService, setActiveService] = useState(0);
