@@ -7,7 +7,12 @@ import {
   FaClock, FaArrowRight
 } from 'react-icons/fa';
 import { MdLocationOn, MdSpeed, MdSecurity } from 'react-icons/md';
-
+import { 
+  FaBullhorn,  
+  FaRobot, 
+  FaComments, 
+   
+} from 'react-icons/fa';
 // Import video files from assets
 import uaeVideo from '../../assets/uae.mp4';
 import uaeTechVideo from '../../assets/uaetech.mp4';
@@ -82,52 +87,56 @@ const UAEServices = () => {
     ]
   };
 
-  // UAE-Focused Services with Schema
-  const services = [
-    {
-      icon: <FaGlobe className="w-6 h-6 sm:w-8 sm:h-8" />,
-      title: "UAE Web Development",
-      description: "Custom websites built for UAE market compliance and user preferences",
-      features: ["Arabic/English Bilingual", "UAE Hosting Solutions", "Local Payment Integration"],
-      schemaType: "WebDevelopment"
-    },
-    {
-      icon: <FaMobileAlt className="w-6 h-6 sm:w-8 sm:h-8" />,
-      title: "Mobile App Development",
-      description: "Native & cross-platform apps optimized for UAE smartphone users",
-      features: ["iOS & Android", "Arabic UI/UX", "Local App Store Optimization"],
-      schemaType: "MobileApplication"
-    },
-    {
-      icon: <FaShoppingCart className="w-6 h-6 sm:w-8 sm:h-8" />,
-      title: "E-Commerce Solutions",
-      description: "Complete online stores for UAE retail market",
-      features: ["Moyasar/Tap Payment", "Arabic Catalog", "UAE Logistics Integration"],
-      schemaType: "ECommercePlatform"
-    },
-    {
-      icon: <FaSearch className="w-6 h-6 sm:w-8 sm:h-8" />,
-      title: "UAE Local SEO",
-      description: "Dominate local search results in Dubai, Abu Dhabi, and across UAE",
-      features: ["Google My Business UAE", "Arabic Keyword Research", "Local Directory Listing"],
-      schemaType: "SEO Service"
-    },
-    {
-      icon: <FaShieldAlt className="w-6 h-6 sm:w-8 sm:h-8" />,
-      title: "UAE Compliance & Security",
-      description: "Ensure your digital presence meets UAE regulations",
-      features: ["TDRA Compliance", "Data Localization", "UAE Cyber Security Standards"],
-      schemaType: "SecurityService"
-    },
-    {
-      icon: <FaUsers className="w-6 h-6 sm:w-8 sm:h-8" />,
-      title: "UAE Tech Talent",
-      description: "Access to specialized developers for your UAE projects",
-      features: ["Python/Rust Experts", "React Specialists", "Laravel Professionals"],
-      schemaType: "StaffingService"
-    }
-  ];
-
+const services = [
+  {
+    icon: <FaGlobe className="w-6 h-6 sm:w-8 sm:h-8" />,
+    title: "Web Development",
+    description: "Custom websites built specifically for UAE market compliance and user preferences",
+    features: ["Arabic/English Bilingual Design", "UAE Hosting Solutions", "Local Payment Gateways"],
+    schemaType: "WebDevelopment",
+    url: "/uaeservices/uae-web-dev" 
+  },
+  {
+    icon: <FaBullhorn className="w-6 h-6 sm:w-8 sm:h-8" />,
+    title: "PPC Advertising",
+    description: "Targeted paid campaigns for Dubai, Abu Dhabi, and across UAE",
+    features: ["Google Ads UAE Optimization", "Arabic/English Campaigns", "Local Audience Targeting"],
+    schemaType: "AdvertisingService",
+    url: "/uaeservices/uae-seo"
+  },
+  {
+    icon: <FaSearch className="w-6 h-6 sm:w-8 sm:h-8" />,
+    title: "Local SEO",
+    description: "Dominate search results in Dubai, Abu Dhabi, and across the Emirates",
+    features: ["Google My Business UAE", "Arabic Keyword Strategy", "Local Directory Optimization"],
+    schemaType: "SEOService",
+    url: "/uaeservices/uae-seo"
+  },
+  {
+    icon: <FaRobot className="w-6 h-6 sm:w-8 sm:h-8" />,
+    title: "Business Process Automation",
+    description: "Streamline UAE business operations with smart automation solutions",
+    features: ["CRM Integration", "Workflow Automation", "UAE Business Tools Sync"],
+    schemaType: "AutomationService",
+    url: "/services/automation-uae"
+  },
+  {
+    icon: <FaComments className="w-6 h-6 sm:w-8 sm:h-8" />,
+    title: "AI Chatbots",
+    description: "Intelligent Arabic/English chatbots for UAE customer service",
+    features: ["Arabic NLP Processing", "24/7 Customer Support", "WhatsApp Business Integration"],
+    schemaType: "ChatbotService",
+    url: "/services/ai-chatbots-uae"
+  },
+  {
+    icon: <FaUsers className="w-6 h-6 sm:w-8 sm:h-8" />,
+    title: "Talent Solutions",
+    description: "Access specialized developers and tech professionals in the UAE",
+    features: ["Python/Rust UAE Experts", "React Specialists", "Laravel Professionals"],
+    schemaType: "StaffingService",
+    url: "/services/tech-talent-uae"
+  }
+];
   // UAE Tech Talent (from Hire Talents)
   const uaeTalents = [
     {
@@ -445,51 +454,57 @@ const UAEServices = () => {
       
       <WaveDivider flip={true}/>
       
-      {/* Our UAE Services */}
-      <section id="services" className="py-12 sm:py-16 md:py-24 bg-white" aria-labelledby="uae-services-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <header className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 id="uae-services-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-              Our
-              <span className="text-red-500"> UAE-Focused</span>
-              Services
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Comprehensive digital solutions tailored specifically for the 
-              United Arab Emirates market.
-            </p>
-          </header>
+  <section id="services" className="py-12 sm:py-16 md:py-24 bg-white" aria-labelledby="uae-services-heading">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="text-center mb-8 sm:mb-12 md:mb-16">
+      <h2 id="uae-services-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+        Our
+        <span className="text-red-500"> UAE Focused </span>
+        Services
+      </h2>
+      <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+        Comprehensive digital solutions tailored specifically for the 
+        United Arab Emirates market.
+      </p>
+    </header>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20">
-            {services.map((service, index) => (
-              <article 
-                key={index} 
-                className="bg-gray-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:shadow-xl transition-shadow duration-300"
-                itemScope 
-                itemType="https://schema.org/Service"
-              >
-                <div className="text-red-500 mb-4 sm:mb-6" aria-hidden="true">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4" itemProp="name">
-                  {service.title}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6" itemProp="description">
-                  {service.description}
-                </p>
-                <ul className="space-y-2 sm:space-y-3">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-gray-700">
-                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full flex-shrink-0" aria-hidden="true"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20">
+      {services.map((service, index) => (
+        <a 
+          key={index} 
+          href={service.url}
+          className="block bg-gray-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white group cursor-pointer"
+          itemScope 
+          itemType="https://schema.org/Service"
+          aria-label={`Learn more about ${service.title}`}
+        >
+          <div className="text-red-500 mb-4 sm:mb-6 group-hover:text-red-600 transition-colors duration-300" aria-hidden="true">
+            {service.icon}
           </div>
-        </div>
-      </section>
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:text-gray-800" itemProp="name">
+            {service.title}
+          </h3>
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 group-hover:text-gray-700" itemProp="description">
+            {service.description}
+          </p>
+          <ul className="space-y-2 sm:space-y-3">
+            {service.features.map((feature, idx) => (
+              <li key={idx} className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-gray-700 group-hover:text-gray-800">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full flex-shrink-0 group-hover:bg-red-600" aria-hidden="true"></div>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200 flex items-center justify-end">
+            <span className="text-red-500 text-sm sm:text-base font-medium group-hover:text-red-600 transition-colors duration-300">
+              Learn more →
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Divider Section */}
       <WaveDivider/>
