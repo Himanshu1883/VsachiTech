@@ -26,6 +26,9 @@ import CloudEng from './pages/uae/CloudEng';
 import UiUxDesign from './pages/uae/UiUxDesign';
 import UaeWebDev from './pages/uaeServices/UaeWebDev';
 import UaeSeo from './pages/uaeServices/UaeSeo';
+import UaePpc from './pages/uaeServices/UaePpc';
+import UaeAutomation from './pages/uaeServices/UaeAutomaton';
+import UaeChatbot from './pages/uaeServices/UaeChatbot';
 export default function AppRoutes() {
     return (
         <Routes>
@@ -39,6 +42,9 @@ export default function AppRoutes() {
             <Route path="/uaeservices/uae-uiux-design" element={<UiUxDesign/>}/>
             <Route path="/uaeservices/uae-web-dev" element={<UaeWebDev/>}/>
             <Route path="/uaeservices/uae-seo" element={<UaeSeo/>}/>
+            <Route path="/uaeservices/uae-ppc" element={<UaePpc/>}/>
+            <Route path="/uaeservices/uae-automation" element={<UaeAutomation/>}/>
+            <Route path="/uaeservices/uae-chatbots" element={<UaeChatbot/>}/>
             <Route path="/who-we-are" element={<About />} />
             <Route path="/what-we-do" element={<Services />} />
             <Route path="/what-we-do/web-development" element={<WebDevelopment />} />

@@ -102,7 +102,7 @@ const services = [
     description: "Targeted paid campaigns for Dubai, Abu Dhabi, and across UAE",
     features: ["Google Ads UAE Optimization", "Arabic/English Campaigns", "Local Audience Targeting"],
     schemaType: "AdvertisingService",
-    url: "/uaeservices/uae-seo"
+    url: "/uaeservices/uae-ppc"
   },
   {
     icon: <FaSearch className="w-6 h-6 sm:w-8 sm:h-8" />,
@@ -118,7 +118,7 @@ const services = [
     description: "Streamline UAE business operations with smart automation solutions",
     features: ["CRM Integration", "Workflow Automation", "UAE Business Tools Sync"],
     schemaType: "AutomationService",
-    url: "/services/automation-uae"
+    url: "/uaeservices/uae-automation"
   },
   {
     icon: <FaComments className="w-6 h-6 sm:w-8 sm:h-8" />,
@@ -126,7 +126,7 @@ const services = [
     description: "Intelligent Arabic/English chatbots for UAE customer service",
     features: ["Arabic NLP Processing", "24/7 Customer Support", "WhatsApp Business Integration"],
     schemaType: "ChatbotService",
-    url: "/services/ai-chatbots-uae"
+    url: "/uaeservices/uae-chatbots"
   },
   {
     icon: <FaUsers className="w-6 h-6 sm:w-8 sm:h-8" />,
@@ -134,7 +134,7 @@ const services = [
     description: "Access specialized developers and tech professionals in the UAE",
     features: ["Python/Rust UAE Experts", "React Specialists", "Laravel Professionals"],
     schemaType: "StaffingService",
-    url: "/services/tech-talent-uae"
+    url: "/uaeservices#uaetalent"
   }
 ];
   // UAE Tech Talent (from Hire Talents)
@@ -510,7 +510,7 @@ const services = [
       <WaveDivider/>
 
       {/* UAE Tech Talent Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-white" aria-labelledby="uae-talent-heading">
+      <section id='uaetalent' className="py-12 sm:py-16 md:py-20 lg:py-28 bg-white" aria-labelledby="uae-talent-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <header className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">
