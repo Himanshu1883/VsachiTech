@@ -10,6 +10,8 @@ import {
 } from 'react-icons/fa';
 import { MdLocationOn, MdTrendingUp, MdSpeed, MdAutoGraph } from 'react-icons/md';
 import { FaBolt, FaCrosshairs, FaCalculator, FaSlidersH } from 'react-icons/fa';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
 
 // Divider Component
 const WaveDivider = ({ flip }) => (
@@ -24,6 +26,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const UaePpc = () => {
+  usePageTitle("PPC Advertising UAE - Dubai Google Ads Management");
+useSEO({
+  title: 'PPC Advertising UAE - Dubai Google Ads Management',
+  description: 'PPC Advertising services in UAE for Dubai & Abu Dhabi businesses. Google Ads optimization, Arabic/English campaigns, UAE audience targeting.',
+  canonical: 'https://vsachitech.com/uaeservices/uae-ppc'
+});
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeService, setActiveService] = useState(0);

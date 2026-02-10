@@ -18,6 +18,9 @@ import {
   SiTensorflow, SiPytorch
 } from 'react-icons/si';
 
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
+
 // Divider Component
 const WaveDivider = ({ flip }) => (
   <div className={`overflow-hidden ${flip ? "rotate-180" : ""}`}>
@@ -32,6 +35,12 @@ const WaveDivider = ({ flip }) => (
 
 // Chatbot Tools Marquee Component
 const ChatbotToolsMarquee = () => {
+  usePageTitle("AI Chatbot Development UAE - Dubai Arabic Chatbot Services");
+useSEO({
+  title: 'AI Chatbot Development UAE - Dubai Arabic Chatbot Services',
+  description: 'AI Chatbot Development in UAE for Dubai & Abu Dhabi businesses. Arabic/English chatbots, 24/7 customer support, WhatsApp Business integration.',
+  canonical: 'https://vsachitech.com/uaeservices/uae-chatbots'
+});
   const tools = [
     { icon: SiDialogflow, name: "Dialogflow", color: "text-blue-500" },
     { icon: SiBmcsoftware, name: "IBM Watson", color: "text-blue-600" },

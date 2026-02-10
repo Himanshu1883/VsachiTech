@@ -33,6 +33,9 @@ import {
 } from 'react-icons/si';
 
 import { MdLocationOn, MdWork, MdSpeed, MdTouchApp, MdColorLens, MdTrendingUp } from 'react-icons/md';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
+
 
 // Wave Divider
 const WaveDivider = ({ flip }) => (
@@ -47,6 +50,13 @@ const WaveDivider = ({ flip }) => (
 );
 
 const UiUxDesign = () => {
+    usePageTitle("Hire UI/UX Designers in UAE - Product Design Experts Dubai");
+useSEO({
+  title: 'Hire UI/UX Designers in UAE - Product Design Experts Dubai',
+  description: 'Hire dedicated UI/UX Designers in UAE for Dubai & Abu Dhabi projects. Figma, user research, prototyping experts with UAE cultural understanding.',
+  canonical: 'https://vsachitech.com/hiretalents/uiux-designers-uae'
+});
+
   const [scrollY, setScrollY] = useState(0);
   const [activeMethodology, setActiveMethodology] = useState(0);
 

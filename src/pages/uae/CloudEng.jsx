@@ -24,6 +24,8 @@ import {
   FaCubes
 } from 'react-icons/fa';
 import { MdLocationOn, MdWork, MdSpeed, MdStorage, MdSecurity } from 'react-icons/md';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
 
 // Wave Divider
 const WaveDivider = ({ flip }) => (
@@ -38,6 +40,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const CloudEng = () => {
+    usePageTitle("Hire Cloud Engineers in UAE - AWS, Azure, Kubernetes Experts Dubai");
+useSEO({
+  title: 'Hire Cloud Engineers in UAE - AWS, Azure, Kubernetes Experts Dubai',
+  description: 'Hire dedicated Cloud Engineers in UAE for Dubai & Abu Dhabi projects. AWS, Azure, GCP, Kubernetes, Docker, Terraform experts available immediately.',
+  canonical: 'https://vsachitech.com/hiretalents/cloud-engineers-uae'
+});
   const [scrollY, setScrollY] = useState(0);
   const [activeArchitecture, setActiveArchitecture] = useState(0);
 

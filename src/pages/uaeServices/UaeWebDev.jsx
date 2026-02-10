@@ -9,6 +9,9 @@ import {
 import { MdLocationOn, MdSpeed, MdDesignServices, MdSecurity } from 'react-icons/md';
 import { FaHeartbeat, FaBuilding } from 'react-icons/fa';
 import { FaStar, FaClock, FaHeadset } from 'react-icons/fa';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
+
 
 const WaveDivider = ({ flip }) => (
   <div className={`overflow-hidden ${flip ? "rotate-180" : ""}`}>
@@ -22,6 +25,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const UaeWebDev = () => {
+  usePageTitle("Web Development UAE - Dubai Website Design Services");
+useSEO({
+  title: 'Web Development UAE - Dubai Website Design Services',
+  description: 'Web Development services in UAE for Dubai & Abu Dhabi businesses. Arabic/English bilingual design, UAE hosting, local payment gateways.',
+  canonical: 'https://vsachitech.com/uaeservices/uae-web-dev'
+});
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeService, setActiveService] = useState(0);

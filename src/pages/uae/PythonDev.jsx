@@ -9,6 +9,8 @@ import {
   FaBrain, FaInfinity, FaCodeBranch
 } from 'react-icons/fa';
 import { MdLocationOn, MdSpeed, MdTrendingUp, MdVerified, MdWork, MdArchitecture, MdApi, MdDataUsage } from 'react-icons/md';
+import usePageTitle from '../../components/hooks/usePageTitle';
+import useSEO from '../../components/hooks/useSEO';
 
 // Divider Component
 const WaveDivider = ({ flip }) => (
@@ -23,6 +25,12 @@ const WaveDivider = ({ flip }) => (
 );
 
 const PythonDev = () => {
+  usePageTitle("Hire Python Developers in UAE - Django, AI/ML Experts Dubai");
+useSEO({
+  title: 'Hire Python Developers in UAE - Django, AI/ML Experts Dubai',
+  description: 'Hire dedicated Python Developers in UAE for Dubai & Abu Dhabi projects. Django, FastAPI, AI/ML, data science experts with UAE business understanding.',
+  canonical: 'https://vsachitech.com/hiretalents/python-developers-uae'
+});
   const [scrollY, setScrollY] = useState(0);
   const [activeParadigm, setActiveParadigm] = useState(0);
 
