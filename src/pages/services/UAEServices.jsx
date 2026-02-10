@@ -4,15 +4,20 @@ import {
   FaPython, FaReact, FaLaravel, FaPalette, FaMobileAlt, FaCloud,
   FaGlobe, FaShoppingCart, FaSearch, FaShieldAlt, FaUsers,
   FaCheckCircle, FaChartBar, FaHeadset, FaHandshake, FaCode,
-  FaClock, FaArrowRight
+  FaClock, FaArrowRight, FaCrown, FaRocket, FaGem, FaStar
 } from 'react-icons/fa';
 import { MdLocationOn, MdSpeed, MdSecurity } from 'react-icons/md';
 import { 
   FaBullhorn,  
   FaRobot, 
   FaComments, 
-   
+  FaCalendarCheck,
+  FaLightbulb,
+  FaGlobeAmericas,
+  FaChartLine
 } from 'react-icons/fa';
+import { GiDiamondRing, GiPalmTree } from 'react-icons/gi';
+import { TbBuildingSkyscraper } from 'react-icons/tb';
 // Import video files from assets
 import uaeVideo from '../../assets/uae.mp4';
 import uaeTechVideo from '../../assets/uaetech.mp4';
@@ -87,56 +92,101 @@ const UAEServices = () => {
     ]
   };
 
-const services = [
-  {
-    icon: <FaGlobe className="w-6 h-6 sm:w-8 sm:h-8" />,
-    title: "Web Development",
-    description: "Custom websites built specifically for UAE market compliance and user preferences",
-    features: ["Arabic/English Bilingual Design", "UAE Hosting Solutions", "Local Payment Gateways"],
-    schemaType: "WebDevelopment",
-    url: "/uaeservices/uae-web-dev" 
-  },
-  {
-    icon: <FaBullhorn className="w-6 h-6 sm:w-8 sm:h-8" />,
-    title: "PPC Advertising",
-    description: "Targeted paid campaigns for Dubai, Abu Dhabi, and across UAE",
-    features: ["Google Ads UAE Optimization", "Arabic/English Campaigns", "Local Audience Targeting"],
-    schemaType: "AdvertisingService",
-    url: "/uaeservices/uae-ppc"
-  },
-  {
-    icon: <FaSearch className="w-6 h-6 sm:w-8 sm:h-8" />,
-    title: "Local SEO",
-    description: "Dominate search results in Dubai, Abu Dhabi, and across the Emirates",
-    features: ["Google My Business UAE", "Arabic Keyword Strategy", "Local Directory Optimization"],
-    schemaType: "SEOService",
-    url: "/uaeservices/uae-seo"
-  },
-  {
-    icon: <FaRobot className="w-6 h-6 sm:w-8 sm:h-8" />,
-    title: "Business Process Automation",
-    description: "Streamline UAE business operations with smart automation solutions",
-    features: ["CRM Integration", "Workflow Automation", "UAE Business Tools Sync"],
-    schemaType: "AutomationService",
-    url: "/uaeservices/uae-automation"
-  },
-  {
-    icon: <FaComments className="w-6 h-6 sm:w-8 sm:h-8" />,
-    title: "AI Chatbots",
-    description: "Intelligent Arabic/English chatbots for UAE customer service",
-    features: ["Arabic NLP Processing", "24/7 Customer Support", "WhatsApp Business Integration"],
-    schemaType: "ChatbotService",
-    url: "/uaeservices/uae-chatbots"
-  },
-  {
-    icon: <FaUsers className="w-6 h-6 sm:w-8 sm:h-8" />,
-    title: "Talent Solutions",
-    description: "Access specialized developers and tech professionals in the UAE",
-    features: ["Python/Rust UAE Experts", "React Specialists", "Laravel Professionals"],
-    schemaType: "StaffingService",
-    url: "/uaeservices#uaetalent"
-  }
-];
+  // UPDATED: Hero Section Cards without gradients
+  const heroCards = [
+    {
+      icon: <FaCrown className="w-6 h-6" />,
+      title: "Premium Dubai Experiences",
+      description: "Luxury digital solutions tailored for UAE's premium market",
+      iconBg: "bg-yellow-100",
+      iconColor: "text-yellow-600",
+      borderColor: "border-yellow-200",
+      bgColor: "bg-white/10 hover:bg-white/15",
+      textColor: "text-white"
+    },
+    {
+      icon: <FaRocket className="w-6 h-6" />,
+      title: "Rapid Market Entry",
+      description: "Launch your digital presence in UAE within weeks",
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
+      borderColor: "border-blue-200",
+      bgColor: "bg-white/10 hover:bg-white/15",
+      textColor: "text-white"
+    },
+    {
+      icon: <FaGem className="w-6 h-6" />,
+      title: "Arabic Digital Excellence",
+      description: "Native Arabic interfaces with cultural precision",
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-600",
+      borderColor: "border-emerald-200",
+      bgColor: "bg-white/10 hover:bg-white/15",
+      textColor: "text-white"
+    },
+    {
+      icon: <FaStar className="w-6 h-6" />,
+      title: "Expo 2030 Ready",
+      description: "Future-proof solutions for UAE's global ambitions",
+      iconBg: "bg-purple-100",
+      iconColor: "text-purple-600",
+      borderColor: "border-purple-200",
+      bgColor: "bg-white/10 hover:bg-white/15",
+      textColor: "text-white"
+    }
+  ];
+
+  const services = [
+    {
+      icon: <FaGlobe className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "Web Development",
+      description: "Custom websites built specifically for UAE market compliance and user preferences",
+      features: ["Arabic/English Bilingual Design", "UAE Hosting Solutions", "Local Payment Gateways"],
+      schemaType: "WebDevelopment",
+      url: "/uaeservices/uae-web-dev" 
+    },
+    {
+      icon: <FaBullhorn className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "PPC Advertising",
+      description: "Targeted paid campaigns for Dubai, Abu Dhabi, and across UAE",
+      features: ["Google Ads UAE Optimization", "Arabic/English Campaigns", "Local Audience Targeting"],
+      schemaType: "AdvertisingService",
+      url: "/uaeservices/uae-ppc"
+    },
+    {
+      icon: <FaSearch className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "Local SEO",
+      description: "Dominate search results in Dubai, Abu Dhabi, and across the Emirates",
+      features: ["Google My Business UAE", "Arabic Keyword Strategy", "Local Directory Optimization"],
+      schemaType: "SEOService",
+      url: "/uaeservices/uae-seo"
+    },
+    {
+      icon: <FaRobot className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "Business Process Automation",
+      description: "Streamline UAE business operations with smart automation solutions",
+      features: ["CRM Integration", "Workflow Automation", "UAE Business Tools Sync"],
+      schemaType: "AutomationService",
+      url: "/uaeservices/uae-automation"
+    },
+    {
+      icon: <FaComments className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "AI Chatbots",
+      description: "Intelligent Arabic/English chatbots for UAE customer service",
+      features: ["Arabic NLP Processing", "24/7 Customer Support", "WhatsApp Business Integration"],
+      schemaType: "ChatbotService",
+      url: "/uaeservices/uae-chatbots"
+    },
+    {
+      icon: <FaUsers className="w-6 h-6 sm:w-8 sm:h-8" />,
+      title: "Talent Solutions",
+      description: "Access specialized developers and tech professionals in the UAE",
+      features: ["Python/Rust UAE Experts", "React Specialists", "Laravel Professionals"],
+      schemaType: "StaffingService",
+      url: "/uaeservices#uaetalent"
+    }
+  ];
+  
   // UAE Tech Talent (from Hire Talents)
   const uaeTalents = [
     {
@@ -183,36 +233,97 @@ const services = [
     }
   ];
 
-  const industries = [
+  // UPDATED: Dubai Digital Excellence Section with Glassmorphism Black Tint Cards
+  const dubaiExcellence = [
     {
-      name: "Real Estate",
-      projects: 24,
-      description: "Property portals & virtual tours for Dubai market"
+      icon: <GiDiamondRing className="w-8 h-8" />,
+      title: "Luxury Retail Tech",
+      description: "Premium e-commerce experiences for high-end Dubai brands",
+      stats: "40%",
+      statLabel: "Higher conversion rates",
+      iconBg: "bg-yellow-500/20",
+      iconColor: "text-yellow-400",
+      cardBg: "bg-black/30 backdrop-blur-lg",
+      borderColor: "border-white/10",
+      titleColor: "text-white",
+      descColor: "text-gray-300",
+      statsColor: "text-yellow-400",
+      statLabelColor: "text-yellow-300/80"
     },
     {
-      name: "Healthcare",
-      projects: 18,
-      description: "Medical platforms with Arabic patient interfaces"
+      icon: <TbBuildingSkyscraper className="w-8 h-8" />,
+      title: "Smart City Solutions",
+      description: "IoT and AI integrations for Dubai's smart infrastructure",
+      stats: "24/7",
+      statLabel: "Real-time monitoring",
+      iconBg: "bg-blue-500/20",
+      iconColor: "text-blue-400",
+      cardBg: "bg-black/30 backdrop-blur-lg",
+      borderColor: "border-white/10",
+      titleColor: "text-white",
+      descColor: "text-gray-300",
+      statsColor: "text-blue-400",
+      statLabelColor: "text-blue-300/80"
     },
     {
-      name: "Retail & E-commerce",
-      projects: 42,
-      description: "Online stores with UAE payment gateways"
+      icon: <GiPalmTree className="w-8 h-8" />,
+      title: "Tourism & Hospitality",
+      description: "Booking platforms and virtual experiences for UAE tourism",
+      stats: "3.5M+",
+      statLabel: "Tourists served digitally",
+      iconBg: "bg-emerald-500/20",
+      iconColor: "text-emerald-400",
+      cardBg: "bg-black/30 backdrop-blur-lg",
+      borderColor: "border-white/10",
+      titleColor: "text-white",
+      descColor: "text-gray-300",
+      statsColor: "text-emerald-400",
+      statLabelColor: "text-emerald-300/80"
     },
     {
-      name: "Hospitality",
-      projects: 16,
-      description: "Booking systems for hotels & tourism"
+      icon: <FaCalendarCheck className="w-8 h-8" />,
+      title: "EventTech for UAE",
+      description: "Digital solutions for Dubai's world-class events and expos",
+      stats: "500+",
+      statLabel: "Events powered",
+      iconBg: "bg-purple-500/20",
+      iconColor: "text-purple-400",
+      cardBg: "bg-black/30 backdrop-blur-lg",
+      borderColor: "border-white/10",
+      titleColor: "text-white",
+      descColor: "text-gray-300",
+      statsColor: "text-purple-400",
+      statLabelColor: "text-purple-300/80"
     },
     {
-      name: "Government",
-      projects: 8,
-      description: "Digital transformation for public services"
+      icon: <FaLightbulb className="w-8 h-8" />,
+      title: "Startup Ecosystem",
+      description: "MVP development and scaling for UAE startups",
+      stats: "120+",
+      statLabel: "Startups launched",
+      iconBg: "bg-orange-500/20",
+      iconColor: "text-orange-400",
+      cardBg: "bg-black/30 backdrop-blur-lg",
+      borderColor: "border-white/10",
+      titleColor: "text-white",
+      descColor: "text-gray-300",
+      statsColor: "text-orange-400",
+      statLabelColor: "text-orange-300/80"
     },
     {
-      name: "Education",
-      projects: 12,
-      description: "E-learning platforms with Arabic content"
+      icon: <FaGlobeAmericas className="w-8 h-8" />,
+      title: "Global Reach",
+      description: "Bridging UAE businesses with international markets",
+      stats: "50+",
+      statLabel: "Countries connected",
+      iconBg: "bg-indigo-500/20",
+      iconColor: "text-indigo-400",
+      cardBg: "bg-black/30 backdrop-blur-lg",
+      borderColor: "border-white/10",
+      titleColor: "text-white",
+      descColor: "text-gray-300",
+      statsColor: "text-indigo-400",
+      statLabelColor: "text-indigo-300/80"
     }
   ];
 
@@ -376,15 +487,26 @@ const services = [
               </div>
             </div>
 
-            {/* Right Stats */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 z-10" role="complementary" aria-label="UAE market statistics">
-              {uaeStats.map((stat, index) => (
+            {/* UPDATED: Hero Cards without gradients */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 z-10" role="complementary" aria-label="UAE digital excellence features">
+              {heroCards.map((card, index) => (
                 <div 
                   key={index} 
-                  className="bg-white/10 backdrop-blur-sm sm:backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/20 hover:border-red-500/50 transition-all duration-300 hover:scale-105"
+                  className={`${card.bgColor} ${card.textColor} backdrop-blur-sm sm:backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border ${card.borderColor} hover:border-red-500 transition-all duration-300 hover:scale-105 group cursor-pointer relative overflow-hidden`}
                 >
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-400 mb-1 sm:mb-2">{stat.value}</div>
-                  <div className="text-xs sm:text-sm md:text-base text-gray-300 leading-tight">{stat.label}</div>
+                  <div className="relative z-10">
+                    <div className={`inline-flex p-2 sm:p-3 rounded-lg sm:rounded-xl mb-2 sm:mb-3 ${card.iconBg}`}>
+                      <div className={card.iconColor}>
+                        {card.icon}
+                      </div>
+                    </div>
+                    <div className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 group-hover:text-red-400 transition-colors">
+                      {card.title}
+                    </div>
+                    <div className="text-xs sm:text-sm text-gray-300 leading-tight group-hover:text-gray-200 transition-colors">
+                      {card.description}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -454,57 +576,57 @@ const services = [
       
       <WaveDivider flip={true}/>
       
-  <section id="services" className="py-12 sm:py-16 md:py-24 bg-white" aria-labelledby="uae-services-heading">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <header className="text-center mb-8 sm:mb-12 md:mb-16">
-      <h2 id="uae-services-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-        Our
-        <span className="text-red-500"> UAE Focused </span>
-        Services
-      </h2>
-      <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-        Comprehensive digital solutions tailored specifically for the 
-        United Arab Emirates market.
-      </p>
-    </header>
+      <section id="services" className="py-12 sm:py-16 md:py-24 bg-white" aria-labelledby="uae-services-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <header className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 id="uae-services-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+              Our
+              <span className="text-red-500"> UAE Focused </span>
+              Services
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+              Comprehensive digital solutions tailored specifically for the 
+              United Arab Emirates market.
+            </p>
+          </header>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20">
-      {services.map((service, index) => (
-        <a 
-          key={index} 
-          href={service.url}
-          className="block bg-gray-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white group cursor-pointer"
-          itemScope 
-          itemType="https://schema.org/Service"
-          aria-label={`Learn more about ${service.title}`}
-        >
-          <div className="text-red-500 mb-4 sm:mb-6 group-hover:text-red-600 transition-colors duration-300" aria-hidden="true">
-            {service.icon}
-          </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:text-gray-800" itemProp="name">
-            {service.title}
-          </h3>
-          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 group-hover:text-gray-700" itemProp="description">
-            {service.description}
-          </p>
-          <ul className="space-y-2 sm:space-y-3">
-            {service.features.map((feature, idx) => (
-              <li key={idx} className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-gray-700 group-hover:text-gray-800">
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full flex-shrink-0 group-hover:bg-red-600" aria-hidden="true"></div>
-                {feature}
-              </li>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20">
+            {services.map((service, index) => (
+              <a 
+                key={index} 
+                href={service.url}
+                className="block bg-gray-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white group cursor-pointer"
+                itemScope 
+                itemType="https://schema.org/Service"
+                aria-label={`Learn more about ${service.title}`}
+              >
+                <div className="text-red-500 mb-4 sm:mb-6 group-hover:text-red-600 transition-colors duration-300" aria-hidden="true">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:text-gray-800" itemProp="name">
+                  {service.title}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 group-hover:text-gray-700" itemProp="description">
+                  {service.description}
+                </p>
+                <ul className="space-y-2 sm:space-y-3">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-gray-700 group-hover:text-gray-800">
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full flex-shrink-0 group-hover:bg-red-600" aria-hidden="true"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200 flex items-center justify-end">
+                  <span className="text-red-500 text-sm sm:text-base font-medium group-hover:text-red-600 transition-colors duration-300">
+                    Learn more →
+                  </span>
+                </div>
+              </a>
             ))}
-          </ul>
-          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200 flex items-center justify-end">
-            <span className="text-red-500 text-sm sm:text-base font-medium group-hover:text-red-600 transition-colors duration-300">
-              Learn more →
-            </span>
           </div>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
       {/* Divider Section */}
       <WaveDivider/>
@@ -624,41 +746,90 @@ const services = [
         </div>
       </section>
 
-      {/* UAE Industries We Serve */}
-      <section className="py-12 sm:py-16 md:py-24 bg-white" aria-labelledby="uae-industries-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <header className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 id="uae-industries-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-              Industries We Transform in the
-              <span className="text-red-500"> UAE</span>
+      {/* UPDATED: Dubai Digital Excellence Section with Glassmorphism Black Tint Cards */}
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 relative overflow-hidden" aria-labelledby="dubai-excellence-heading">
+        {/* Image Background with Black Tint */}
+        <div className="absolute inset-0 w-full h-full">
+          <img 
+            src="/uae-services-excellence.jpg" 
+            alt="Dubai digital excellence background showing modern UAE architecture and technology"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          {/* Black tint overlay */}
+          <div className="absolute inset-0 bg-black/70"></div>
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <header className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">
+            <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <MdLocationOn className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" aria-hidden="true" />
+              <span className="text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest text-red-500 uppercase">
+                Dubai Focused
+              </span>
+            </div>
+            <h2 id="dubai-excellence-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6">
+              Shaping <span className="text-red-500">Dubai's Digital Future</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              From real estate to retail, we've delivered successful digital 
-              transformation across key UAE sectors.
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+              Pioneering innovative solutions that align with Dubai's vision for 
+              smart cities, luxury experiences, and global leadership
             </p>
           </header>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16 md:mb-20">
-            {industries.map((industry, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20">
+            {dubaiExcellence.map((item, index) => (
               <article 
                 key={index} 
-                className="bg-gray-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-200 hover:border-red-500 hover:shadow-xl transition-all duration-300"
+                className={`group relative ${item.cardBg} border ${item.borderColor} rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:border-red-500 hover:bg-black/40 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer`}
                 itemScope 
                 itemType="https://schema.org/Service"
               >
-                <div className="flex justify-between items-start mb-3 sm:mb-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900" itemProp="name">
-                    {industry.name}
-                  </h3>
-                  <div className="text-red-500 font-bold text-2xl sm:text-3xl" aria-label={`${industry.projects} projects completed`}>
-                    {industry.projects}+
+                {/* Content */}
+                <div className="relative z-10">
+                  <div className={`inline-flex p-3 sm:p-4 rounded-lg sm:rounded-xl mb-4 sm:mb-6 ${item.iconBg} backdrop-blur-sm`}>
+                    <div className={item.iconColor}>
+                      {item.icon}
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-start mb-3 sm:mb-4">
+                    <h3 className={`text-xl sm:text-2xl font-bold ${item.titleColor}`} itemProp="name">
+                      {item.title}
+                    </h3>
+                    <div className={`text-2xl sm:text-3xl font-bold ${item.statsColor} group-hover:scale-110 transition-all duration-300`}>
+                      {item.stats}
+                    </div>
+                  </div>
+                  
+                  <p className={`text-sm sm:text-base ${item.descColor} mb-3 sm:mb-4`} itemProp="description">
+                    {item.description}
+                  </p>
+                  
+                  <div className={`text-xs sm:text-sm font-medium ${item.statLabelColor} group-hover:${item.statsColor} transition-colors`}>
+                    {item.statLabel}
                   </div>
                 </div>
-                <p className="text-sm sm:text-base text-gray-600" itemProp="description">
-                  {industry.description}
-                </p>
+
+                {/* Hover effect line */}
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
               </article>
             ))}
+          </div>
+
+          {/* Dubai Vision CTA - Fixed positioning */}
+          <div className="text-center">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+              Join Dubai's digital revolution with solutions built for tomorrow's challenges
+            </p>
+            <Link to="/contact#project-form" aria-label="Start your Dubai digital project">
+              <button className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-red-500 hover:bg-red-600 text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 rounded-full font-bold text-sm sm:text-base md:text-lg hover:scale-105 transition-all duration-300 shadow-lg sm:shadow-2xl group">
+                START YOUR DUBAI PROJECT
+                <FaRocket className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              </button>
+            </Link>
           </div>
         </div>
       </section>
