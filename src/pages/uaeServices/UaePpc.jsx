@@ -494,12 +494,29 @@ useSEO({
     "Proven ROI across industries"
   ];
 
-  const stats = [
-    { value: "4.2x", label: "Average ROAS", icon: FaChartLine },
-    { value: "AED 50M+", label: "Ad Spend Managed", icon: FaDollarSign },
-    { value: "200+", label: "UAE Campaigns", icon: FaRocket },
-    { value: "24/7", label: "Campaign Monitoring", icon: FaClock }
-  ];
+const stats = [
+  {
+    value: "Performance Driven",
+    label: "Return-Focused Strategy",
+    icon: FaChartLine,
+  },
+  {
+    value: "Budget Efficient",
+    label: "Smart Spend Management",
+    icon: FaDollarSign,
+  },
+  {
+    value: "UAE Expertise",
+    label: "Region-Specific Campaigns",
+    icon: FaRocket,
+  },
+  {
+    value: "Always Active",
+    label: "Continuous Monitoring",
+    icon: FaClock,
+  },
+];
+
 
   return (
     <div className="bg-white">
@@ -582,27 +599,38 @@ useSEO({
 
               {/* Live Metrics */}
               <div className="mb-6 md:mb-8 bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6">
-                <div className="grid grid-cols-3 gap-3 sm:gap-4 text-center">
-                  <div>
-                    <div className="text-xs sm:text-sm text-gray-400 mb-1">Ad Spend</div>
-                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
-                      AED {adSpend.toLocaleString()}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs sm:text-sm text-gray-400 mb-1">Conversions</div>
-                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-400">
-                      {conversions}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs sm:text-sm text-gray-400 mb-1">ROAS</div>
-                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-red-400">
-                      {roas}%
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div className="grid grid-cols-3 gap-3 sm:gap-4 text-center">
+    
+    <div>
+      <div className="text-xs sm:text-sm text-gray-400 mb-1">
+        Budget Strategy
+      </div>
+      <div className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
+        Optimized Spend
+      </div>
+    </div>
+
+    <div>
+      <div className="text-xs sm:text-sm text-gray-400 mb-1">
+        Lead Quality
+      </div>
+      <div className="text-lg sm:text-xl md:text-2xl font-semibold text-green-400">
+        High Intent
+      </div>
+    </div>
+
+    <div>
+      <div className="text-xs sm:text-sm text-gray-400 mb-1">
+        Return Health
+      </div>
+      <div className="text-lg sm:text-xl md:text-2xl font-semibold text-red-400">
+        Performance Positive
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaRobot, FaCog, FaChartLine, FaCheckCircle,
@@ -7,12 +7,11 @@ import {
   FaMobileAlt, FaEnvelope, FaShoppingCart, FaDatabase,
   FaClipboardCheck, FaChartBar, FaBrain, FaCloud,
   FaSync, FaBell, FaFileInvoiceDollar, FaCalendarAlt,
-  FaComments, FaWhatsapp, FaSlack, FaGoogle
+  FaComments, FaWhatsapp, FaSlack, FaGoogle,
+  FaArrowLeft
 } from 'react-icons/fa';
 import { MdLocationOn, MdAutoGraph, MdSpeed, MdIntegrationInstructions } from 'react-icons/md';
 import { SiZapier, SiMake, SiAirtable } from 'react-icons/si';
-import usePageTitle from '../../components/hooks/usePageTitle';
-import useSEO from '../../components/hooks/useSEO';
 
 // Divider Component
 const WaveDivider = ({ flip }) => (
@@ -27,53 +26,16 @@ const WaveDivider = ({ flip }) => (
 );
 
 const UaeAutomation = () => {
-  usePageTitle("Business Process Automation UAE - Dubai Automation Solutions");
-useSEO({
-  title: 'Business Process Automation UAE - Dubai Automation Solutions',
-  description: 'Business Process Automation services in UAE for Dubai & Abu Dhabi companies. CRM integration, workflow automation, UAE business tools synchronization.',
-  canonical: 'https://vsachitech.com/uaeservices/uae-automation'
-});
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeService, setActiveService] = useState(0);
   const [hoursSaved, setHoursSaved] = useState(0);
   const [costSaved, setCostSaved] = useState(0);
   const [tasksAutomated, setTasksAutomated] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    // Mouse wheel → horizontal scroll
-    const onWheel = (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        el.scrollBy({
-          left: e.deltaY * 1.2,
-          behavior: "smooth",
-        });
-      }
-    };
-
-    // Keyboard arrow support
-    const onKeyDown = (e) => {
-      if (e.key === "ArrowRight") {
-        el.scrollBy({ left: 320, behavior: "smooth" });
-      }
-      if (e.key === "ArrowLeft") {
-        el.scrollBy({ left: -320, behavior: "smooth" });
-      }
-    };
-
-    el.addEventListener("wheel", onWheel, { passive: false });
-    el.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      el.removeEventListener("wheel", onWheel);
-      el.removeEventListener("keydown", onKeyDown);
-    };
-  }, []);
+  // Mouse tracking
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -81,6 +43,55 @@ useSEO({
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Carousel autoplay with hover control
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let autoplayInterval;
+
+    // Start autoplay
+    const startAutoplay = () => {
+      autoplayInterval = setInterval(() => {
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        const cardWidth = 300; // Match w-[300px]
+        const gap = 24; // gap-6 = 24px
+
+        if (el.scrollLeft >= maxScroll - 10) {
+          // If at the end, scroll back to start
+          el.scrollTo({ left: 0, behavior: 'smooth' });
+          setCurrentStep(0);
+        } else {
+          // Scroll right by one card width
+          el.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+          setCurrentStep(prev => {
+            const next = prev + 1;
+            return next >= automationProcess.length ? 0 : next;
+          });
+        }
+      }, 3000); // Move every 3 seconds
+    };
+
+    // Stop autoplay on hover
+    const stopAutoplay = () => {
+      clearInterval(autoplayInterval);
+    };
+
+    // Start autoplay initially
+    startAutoplay();
+
+    // Add event listeners
+    el.addEventListener('mouseenter', stopAutoplay);
+    el.addEventListener('mouseleave', startAutoplay);
+
+    // Cleanup
+    return () => {
+      clearInterval(autoplayInterval);
+      el.removeEventListener('mouseenter', stopAutoplay);
+      el.removeEventListener('mouseleave', startAutoplay);
+    };
   }, []);
 
   // Rotate through features
@@ -110,6 +121,58 @@ useSEO({
 
     return () => clearInterval(interval);
   }, []);
+
+  // Navigation functions for carousel
+  const scrollToStep = (index) => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const cardWidth = 300;
+    const gap = 24;
+    el.scrollTo({
+      left: index * (cardWidth + gap),
+      behavior: 'smooth'
+    });
+    setCurrentStep(index);
+  };
+
+  const scrollNext = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const cardWidth = 300;
+    const gap = 24;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+
+    if (el.scrollLeft >= maxScroll - 10) {
+      // Go back to start
+      el.scrollTo({ left: 0, behavior: 'smooth' });
+      setCurrentStep(0);
+    } else {
+      el.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+      setCurrentStep(prev => {
+        const next = prev + 1;
+        return next >= automationProcess.length ? 0 : next;
+      });
+    }
+  };
+
+  const scrollPrev = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const cardWidth = 300;
+    const gap = 24;
+
+    if (el.scrollLeft <= 10) {
+      // Go to end
+      el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' });
+      setCurrentStep(automationProcess.length - 1);
+    } else {
+      el.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
+      setCurrentStep(prev => prev - 1);
+    }
+  };
 
   const heroFeatures = [
     "AI-Powered Business Automation",
@@ -218,58 +281,58 @@ useSEO({
   ];
 
   const automationPlatforms = [
-    { 
-      name: "Zapier", 
-      icon: SiZapier, 
+    {
+      name: "Zapier",
+      icon: SiZapier,
       color: "text-orange-600",
       apps: "5000+",
       bestFor: "Multi-app Integration"
     },
-    { 
-      name: "Make (Integromat)", 
-      icon: SiMake, 
+    {
+      name: "Make (Integromat)",
+      icon: SiMake,
       color: "text-purple-600",
       apps: "1000+",
       bestFor: "Complex Workflows"
     },
-    { 
-      name: "Google Workspace", 
-      icon: FaGoogle, 
+    {
+      name: "Google Workspace",
+      icon: FaGoogle,
       color: "text-blue-600",
       apps: "All Google Apps",
       bestFor: "Document Automation"
     },
-    { 
-      name: "Airtable", 
-      icon: SiAirtable, 
+    {
+      name: "Airtable",
+      icon: SiAirtable,
       color: "text-yellow-600",
       apps: "Database + Apps",
       bestFor: "Custom Databases"
     },
-    { 
-      name: "Slack", 
-      icon: FaSlack, 
+    {
+      name: "Slack",
+      icon: FaSlack,
       color: "text-purple-700",
       apps: "2000+",
       bestFor: "Team Communication"
     },
-    { 
-      name: "WhatsApp Business", 
-      icon: FaWhatsapp, 
+    {
+      name: "WhatsApp Business",
+      icon: FaWhatsapp,
       color: "text-green-600",
       apps: "CRM Integration",
       bestFor: "UAE Customer Service"
     },
-    { 
-      name: "HubSpot", 
-      icon: FaRocket, 
+    {
+      name: "HubSpot",
+      icon: FaRocket,
       color: "text-orange-500",
       apps: "1000+",
       bestFor: "Marketing & Sales"
     },
-    { 
-      name: "Salesforce", 
-      icon: FaCloud, 
+    {
+      name: "Salesforce",
+      icon: FaCloud,
       color: "text-blue-500",
       apps: "3000+",
       bestFor: "Enterprise CRM"
@@ -564,16 +627,17 @@ useSEO({
   ];
 
   const stats = [
-    { value: `${hoursSaved}+`, label: "Hours Saved Monthly", icon: FaClock },
-    { value: `AED ${costSaved.toLocaleString()}`, label: "Cost Savings", icon: FaDollarSign },
-    { value: `${tasksAutomated}+`, label: "Tasks Automated", icon: FaRobot },
-    { value: "99.9%", label: "Uptime Reliability", icon: FaShieldAlt }
+    { value: "Time Optimized", label: "Operational Efficiency", icon: FaClock },
+    { value: "Cost Optimized", label: "Budget Efficiency", icon: FaDollarSign },
+    { value: "Fully Automated", label: "Smart Workflows", icon: FaRobot },
+    { value: "Always Reliable", label: "Platform Stability", icon: FaShieldAlt }
   ];
+
 
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-12 sm:py-16 md:py-20"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070')`,
@@ -594,9 +658,9 @@ useSEO({
           <div className="absolute bottom-1/4 left-1/3 animate-float delay-500 hidden md:block">
             <div className="text-white/10 text-2xl">⚡</div>
           </div>
-          
+
           {/* Dynamic Grid */}
-          <div 
+          <div
             className="absolute inset-0 opacity-5"
             style={{
               backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229, 62, 62, 0.3) 0%, transparent 50%)`
@@ -631,11 +695,10 @@ useSEO({
                   {heroFeatures.map((feature, index) => (
                     <div
                       key={index}
-                      className={`absolute top-0 left-0 w-full text-lg sm:text-xl md:text-2xl font-bold text-white transition-all duration-1000 ${
-                        index === activeFeature
+                      className={`absolute top-0 left-0 w-full text-lg sm:text-xl md:text-2xl font-bold text-white transition-all duration-1000 ${index === activeFeature
                           ? 'opacity-100 translate-y-0'
                           : 'opacity-0 translate-y-full'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-3 sm:gap-4">
                         <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-400 rounded-full animate-pulse"></div>
@@ -648,27 +711,44 @@ useSEO({
 
               {/* Description */}
               <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 max-w-2xl leading-relaxed">
-                Transform your UAE business with intelligent automation. Save time, reduce costs, 
+                Transform your UAE business with intelligent automation. Save time, reduce costs,
                 and scale operations with AI-powered workflows tailored for the Emirates market.
               </p>
 
               {/* Live Metrics Demo */}
               <div className="mb-6 sm:mb-8 bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6">
                 <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+
                   <div>
-                    <div className="text-xs sm:text-sm text-gray-400 mb-1">Hours Saved</div>
-                    <div className="text-xl sm:text-2xl font-bold text-green-400">{hoursSaved}</div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">
+                      Time Efficiency
+                    </div>
+                    <div className="text-lg sm:text-xl font-semibold text-green-400">
+                      Significant Time Gain
+                    </div>
                   </div>
+
                   <div>
-                    <div className="text-xs sm:text-sm text-gray-400 mb-1">Cost Saved</div>
-                    <div className="text-xl sm:text-2xl font-bold text-white">AED {costSaved.toLocaleString()}</div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">
+                      Cost Control
+                    </div>
+                    <div className="text-lg sm:text-xl font-semibold text-white">
+                      Optimized Spend
+                    </div>
                   </div>
+
                   <div>
-                    <div className="text-xs sm:text-sm text-gray-400 mb-1">Tasks Automated</div>
-                    <div className="text-xl sm:text-2xl font-bold text-red-400">{tasksAutomated}</div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">
+                      Automation Coverage
+                    </div>
+                    <div className="text-lg sm:text-xl font-semibold text-red-400">
+                      Broad Workflow Automation
+                    </div>
                   </div>
+
                 </div>
               </div>
+
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -749,16 +829,14 @@ useSEO({
             {automationServices.map((service, index) => (
               <div
                 key={index}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                } flex-col gap-6 md:gap-8`}
+                className={`relative flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                  } flex-col gap-6 md:gap-8`}
                 onMouseEnter={() => setActiveService(index)}
               >
                 <div className="w-full lg:w-5/12">
                   <div
-                    className={`group relative bg-white border-2 border-gray-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-500 ${
-                      activeService === index ? 'scale-105 border-red-500 shadow-2xl' : ''
-                    }`}
+                    className={`group relative bg-white border-2 border-gray-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-500 ${activeService === index ? 'scale-105 border-red-500 shadow-2xl' : ''
+                      }`}
                   >
                     <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
                       {index + 1}
@@ -767,10 +845,10 @@ useSEO({
                     <div className={`mb-4 sm:mb-6 inline-flex p-4 sm:p-5 bg-gradient-to-br ${service.color} rounded-xl sm:rounded-2xl shadow-lg`}>
                       <div className="text-white">{service.icon}</div>
                     </div>
-                    
+
                     <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">{service.title}</h3>
                     <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">{service.description}</p>
-                    
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-6">
                       {service.features.map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2">
@@ -795,24 +873,21 @@ useSEO({
                       </div>
                     </div>
 
-                    <div className={`absolute top-1/2 ${
-                      index % 2 === 0 ? 'right-0 translate-x-full' : 'left-0 -translate-x-full'
-                    } hidden lg:block transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                      <FaArrowRight className={`w-5 h-5 sm:w-6 sm:h-6 text-red-500 ${
-                        index % 2 !== 0 ? 'rotate-180' : ''
-                      }`} />
+                    <div className={`absolute top-1/2 ${index % 2 === 0 ? 'right-0 translate-x-full' : 'left-0 -translate-x-full'
+                      } hidden lg:block transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                      <FaArrowRight className={`w-5 h-5 sm:w-6 sm:h-6 text-red-500 ${index % 2 !== 0 ? 'rotate-180' : ''
+                        }`} />
                     </div>
                   </div>
                 </div>
 
                 <div className="hidden lg:block w-2/12 flex-shrink-0">
                   <div className="relative flex justify-center">
-                    <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br ${service.color} flex items-center justify-center shadow-xl transition-all duration-500 ${
-                      activeService === index ? 'scale-125' : 'scale-100'
-                    }`}>
+                    <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br ${service.color} flex items-center justify-center shadow-xl transition-all duration-500 ${activeService === index ? 'scale-125' : 'scale-100'
+                      }`}>
                       <div className="text-white">{service.icon}</div>
                     </div>
-                    
+
                     {activeService === index && (
                       <div className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-20"></div>
                     )}
@@ -875,148 +950,134 @@ useSEO({
 
       <WaveDivider flip={true} />
 
- <section
-      className="relative py-16 sm:py-20 md:py-24 overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      {/* Ambient Background */}
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229,62,62,0.35) 0%, transparent 50%)`,
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Our <span className="text-red-400">6-Step Automation Process</span>
-          </h2>
-          <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
-            Proven methodology for implementing automation that delivers
-            measurable ROI
-          </p>
+      {/* 6-Step Automation Process Carousel */}
+      <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-br from-gray-900 to-black">
+        {/* Ambient Background */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229,62,62,0.35) 0%, transparent 50%)`,
+            }}
+          />
         </div>
 
-        {/* Horizontal Scroll (Desktop) */}
-        <div className="relative hidden md:block">
-          <div
-            ref={scrollRef}
-            tabIndex={0}
-            className="overflow-x-auto scrollbar-hide snap-x snap-mandatory focus:outline-none"
-          >
-            <div className="flex gap-8 min-w-max px-4 pb-10">
-              {automationProcess.map((step, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 w-80 lg:w-96 snap-start group"
-                >
-                  <div className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 lg:p-8 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 h-full">
-                    {/* Step Number */}
-                    <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl border-4 border-white/20">
-                      {step.step}
-                    </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Our <span className="text-red-400">6-Step Automation Process</span>
+            </h2>
+            <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto">
+              Proven methodology for implementing automation that delivers measurable ROI
+            </p>
+          </div>
 
-                    {/* Icon */}
-                    <div className="mb-6 mt-4 inline-flex p-5 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl border border-red-500/30">
-                      <step.icon className="w-10 h-10 text-red-400" />
-                    </div>
+          {/* Carousel Container */}
+          <div className="relative group">
+            {/* Navigation Arrows */}
+            <button
+              onClick={scrollPrev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-8 z-20 w-10 h-10 lg:w-12 lg:h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
+              aria-label="Previous step"
+            >
+              <FaArrowLeft className="w-5 h-5 lg:w-6 lg:h-6 text-gray-900" />
+            </button>
 
-                    {/* Content */}
-                    <h3 className="text-xl lg:text-2xl font-bold text-white mb-4">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm lg:text-base text-gray-300 mb-6 leading-relaxed">
-                      {step.description}
-                    </p>
+            <button
+              onClick={scrollNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-8 z-20 w-10 h-10 lg:w-12 lg:h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 opacity-0 group-hover:opacity-100"
+              aria-label="Next step"
+            >
+              <FaArrowRight className="w-5 h-5 lg:w-6 lg:h-6 text-gray-900" />
+            </button>
 
-                    {/* Deliverables */}
-                    <div className="mb-6">
-                      <div className="text-sm text-red-400 font-semibold mb-3">
-                        Deliverables
+            {/* Carousel Items */}
+            <div
+              id="process-carousel"
+              className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth px-2 pb-8"
+              ref={scrollRef}
+            >
+              <div className="flex gap-6 lg:gap-8">
+                {automationProcess.map((step, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 w-[300px] sm:w-[350px] lg:w-[400px] snap-start"
+                  >
+                    <div className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 lg:p-8 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 h-full">
+                      {/* Step Number */}
+                      <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl border-4 border-white/20">
+                        {step.step}
                       </div>
-                      <div className="flex flex-wrap gap-2">
-                        {step.deliverables.map((item, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 bg-white/10 text-white text-xs rounded-full border border-white/20"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
 
-                    {/* Duration */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/20 to-green-600/20 text-green-400 text-sm font-semibold rounded-full border border-green-500/30">
-                      <FaClock className="w-4 h-4" />
-                      {step.duration}
+                      {/* Icon */}
+                      <div className="mb-6 mt-4 inline-flex p-5 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl border border-red-500/30">
+                        <step.icon className="w-10 h-10 text-red-400" />
+                      </div>
+
+                      {/* Content */}
+                      <h3 className="text-xl lg:text-2xl font-bold text-white mb-4">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm lg:text-base text-gray-300 mb-6 leading-relaxed">
+                        {step.description}
+                      </p>
+
+                      {/* Deliverables */}
+                      <div className="mb-6">
+                        <div className="text-sm text-red-400 font-semibold mb-3">
+                          Deliverables
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {step.deliverables.map((item, i) => (
+                            <span
+                              key={i}
+                              className="px-3 py-1 bg-white/10 text-white text-xs rounded-full border border-white/20"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Duration */}
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/20 to-green-600/20 text-green-400 text-sm font-semibold rounded-full border border-green-500/30">
+                        <FaClock className="w-4 h-4" />
+                        {step.duration}
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Carousel Indicators */}
+            <div className="flex justify-center gap-2 mt-8">
+              {automationProcess.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToStep(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentStep === index
+                      ? 'bg-red-500 scale-125'
+                      : 'bg-white/30 hover:bg-white/50'
+                    }`}
+                  aria-label={`Go to step ${index + 1}`}
+                />
               ))}
             </div>
           </div>
-
-          {/* Scroll Hint */}
-          <div className="flex justify-center mt-6">
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm">
-              <span className="opacity-80">Scroll</span>
-              <span className="text-xs opacity-70">mouse / arrows</span>
-              <FaArrowRight className="w-4 h-4 animate-pulse" />
-            </div>
-          </div>
         </div>
 
-        {/* Mobile Stack */}
-        <div className="md:hidden space-y-6">
-          {automationProcess.map((step, index) => (
-            <div
-              key={index}
-              className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6"
-            >
-              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold">
-                {step.step}
-              </div>
-
-              <div className="mb-4 inline-flex p-4 bg-red-500/20 rounded-xl">
-                <step.icon className="w-8 h-8 text-red-400" />
-              </div>
-
-              <h3 className="text-lg font-bold text-white mb-2">
-                {step.title}
-              </h3>
-              <p className="text-sm text-gray-300 mb-4">
-                {step.description}
-              </p>
-
-              <div className="inline-flex items-center gap-2 text-green-400 text-xs font-semibold">
-                <FaClock className="w-3 h-3" />
-                {step.duration}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-      `}</style>
-    </section>
+        <style jsx>{`
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+          .scrollbar-hide {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+        `}</style>
+      </section>
 
       {/* Use Cases Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
@@ -1039,10 +1100,10 @@ useSEO({
                 <div className="mb-4 sm:mb-6 inline-flex p-3 sm:p-4 bg-red-50 rounded-lg sm:rounded-xl group-hover:bg-red-100 transition-colors duration-300">
                   <useCase.icon className="w-8 h-8 sm:w-10 sm:h-10 text-red-600" />
                 </div>
-                
+
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{useCase.title}</h3>
                 <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6 leading-relaxed">{useCase.description}</p>
-                
+
                 <div className="mb-4 sm:mb-6">
                   <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Workflow Steps:</div>
                   <div className="space-y-2">
@@ -1092,9 +1153,9 @@ useSEO({
                 <div className={`mb-4 sm:mb-6 inline-flex p-4 sm:p-5 bg-gradient-to-br ${integration.color} rounded-xl sm:rounded-2xl shadow-lg`}>
                   <integration.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
-                
+
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">{integration.category}</h3>
-                
+
                 <div className="grid grid-cols-2 gap-2">
                   {integration.tools.map((tool, idx) => (
                     <div key={idx} className="flex items-center gap-2 p-2 bg-white rounded-lg border border-gray-100">
@@ -1131,17 +1192,16 @@ useSEO({
               >
                 <div className="flex justify-between items-start mb-4 sm:mb-6">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900">{industry.name}</h3>
-                  <div className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-bold ${
-                    industry.potential === 'Excellent' 
+                  <div className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-bold ${industry.potential === 'Excellent'
                       ? 'bg-green-100 text-green-700'
                       : industry.potential === 'High'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-yellow-100 text-yellow-700'
-                  }`}>
+                        ? 'bg-blue-100 text-blue-700'
+                        : 'bg-yellow-100 text-yellow-700'
+                    }`}>
                     {industry.potential}
                   </div>
                 </div>
-                
+
                 <div className="mb-4 sm:mb-6">
                   <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Top Automations:</div>
                   <div className="space-y-2">
@@ -1291,7 +1351,7 @@ useSEO({
                 Ready to Automate Your UAE Business?
               </h3>
               <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-                Let's transform your operations with intelligent automation that saves time, 
+                Let's transform your operations with intelligent automation that saves time,
                 reduces costs, and scales your business effortlessly
               </p>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">

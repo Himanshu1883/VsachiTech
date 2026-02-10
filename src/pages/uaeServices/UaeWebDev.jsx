@@ -233,23 +233,43 @@ useSEO({
 
             {/* Right Column - Stats Bar - Responsive Grid */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-8 lg:mt-0">
-              <div className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-400">150+</div>
-                <div className="text-xs sm:text-sm text-gray-400">UAE Projects</div>
-              </div>
-              <div className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-400">98%</div>
-                <div className="text-xs sm:text-sm text-gray-400">Satisfaction</div>
-              </div>
-              <div className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-400">24/7</div>
-                <div className="text-xs sm:text-sm text-gray-400">UAE Support</div>
-              </div>
-              <div className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-400">AED</div>
-                <div className="text-xs sm:text-sm text-gray-400">Local Pricing</div>
-              </div>
-            </div>
+  <div className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-500/40 transition">
+    <div className="text-sm sm:text-base md:text-lg font-semibold text-red-400">
+      UAE Market Expertise
+    </div>
+    <div className="text-xs sm:text-sm text-gray-400 mt-1">
+      Deep understanding of regional platforms & audiences
+    </div>
+  </div>
+
+  <div className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-500/40 transition">
+    <div className="text-sm sm:text-base md:text-lg font-semibold text-red-400">
+      Client First Approach
+    </div>
+    <div className="text-xs sm:text-sm text-gray-400 mt-1">
+      Strategy built around your business goals
+    </div>
+  </div>
+
+  <div className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-500/40 transition">
+    <div className="text-sm sm:text-base md:text-lg font-semibold text-red-400">
+      Always On Support
+    </div>
+    <div className="text-xs sm:text-sm text-gray-400 mt-1">
+      Monitoring, optimization & rapid response
+    </div>
+  </div>
+
+  <div className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-500/40 transition">
+    <div className="text-sm sm:text-base md:text-lg font-semibold text-red-400">
+      Transparent Local Pricing
+    </div>
+    <div className="text-xs sm:text-sm text-gray-400 mt-1">
+      Clear costs aligned with UAE standards
+    </div>
+  </div>
+</div>
+
           </div>
         </div>
 
@@ -589,7 +609,7 @@ useSEO({
           <div className="mb-12 sm:mb-16 bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl sm:shadow-2xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {[
-                { label: "Websites Launched", value: "50+", suffix: "", color: "text-red-400", icon: <FaGlobe /> },
+                { label: "Websites Launched", value: "10+", suffix: "", color: "text-red-400", icon: <FaGlobe /> },
                 { label: "Client Satisfaction", value: "98", suffix: "%", color: "text-green-400", icon: <FaStar /> },
                 { label: "Years of Experience", value: "1", suffix: "+", color: "text-blue-400", icon: <FaClock /> },
                 { label: "Support Hours", value: "24", suffix: "/7", color: "text-purple-400", icon: <FaHeadset /> }
