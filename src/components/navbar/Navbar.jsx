@@ -2,9 +2,10 @@ import { FiGrid, FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import WhatWeDoMegaMenu from '../ui/WhatWeDoMegaMenu';
-
+import UaeVisionMegaMenu from '../ui/UaeVisionMegaMenu.JSX';
 import Logo from '../ui/logo';
 import WhatWeDoMobileMegaMenu from '../ui/Whatwedomobilemegamenu';
+import UaeVisionMobileMegaMenu from '../ui/UaeVisionMobileMegaMenu';
 
 export default function Navbar() {
   const location = useLocation();
@@ -16,19 +17,24 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isHeroActive, setIsHeroActive] = useState(true);
   const [showWhatWeDo, setShowWhatWeDo] = useState(false);
+  const [showUaeVision, setShowUaeVision] = useState(false);
   const [mobileWhatWeDoOpen, setMobileWhatWeDoOpen] = useState(false);
+  const [mobileUaeVisionOpen, setMobileUaeVisionOpen] = useState(false);
 
   const navRef = useRef(null);
   const itemRefs = useRef([]);
   
   const closeMenu = () => {
-    setTimeout(() => setShowWhatWeDo(false), 80);
+    setTimeout(() => {
+      setShowWhatWeDo(false);
+      setShowUaeVision(false);
+    }, 80);
   };
 
   const navItems = [
     { label: "Who we are", to: "/who-we-are" },
-    { label: "What we do", to: "/what-we-do", hasMegaMenu: true },
-    { label: "UAE vision", to: "/uaeservices" }, 
+    { label: "What we do", to: "/what-we-do", hasMegaMenu: true, menuType: 'whatWeDo' },
+    { label: "UAE vision", to: "/uaeservices", hasMegaMenu: true, menuType: 'uaeVision' }, 
     { label: "Dev Room", to: "/hiretalents" },
     { label: "Contact us", to: "/contact" }
   ];
@@ -94,8 +100,10 @@ export default function Navbar() {
   useEffect(() => {
     // Always close mega menu on navigation
     setShowWhatWeDo(false);
+    setShowUaeVision(false);
     setMobileOpen(false);
     setMobileWhatWeDoOpen(false);
+    setMobileUaeVisionOpen(false);
 
     // Instantly fix navbar background on route change
     if (location.pathname !== "/") {
@@ -109,16 +117,28 @@ export default function Navbar() {
     navigate(to);
     setMobileOpen(false);
     setShowWhatWeDo(false);
+    setShowUaeVision(false);
     setMobileWhatWeDoOpen(false);
+    setMobileUaeVisionOpen(false);
   };
 
   const toggleMobileWhatWeDo = (e) => {
     e.stopPropagation();
     setMobileWhatWeDoOpen(prev => !prev);
+    if (mobileUaeVisionOpen) setMobileUaeVisionOpen(false);
+  };
+
+  const toggleMobileUaeVision = (e) => {
+    e.stopPropagation();
+    setMobileUaeVisionOpen(prev => !prev);
+    if (mobileWhatWeDoOpen) setMobileWhatWeDoOpen(false);
   };
 
   useEffect(() => {
-    if (!mobileOpen) setMobileWhatWeDoOpen(false);
+    if (!mobileOpen) {
+      setMobileWhatWeDoOpen(false);
+      setMobileUaeVisionOpen(false);
+    }
   }, [mobileOpen]);
 
   return (
@@ -149,7 +169,10 @@ export default function Navbar() {
           <div
             ref={navRef}
             className="hidden lg:flex relative items-center border border-white/30 rounded-full px-2 py-2"
-            onMouseLeave={() => setShowWhatWeDo(false)}
+            onMouseLeave={() => {
+              setShowWhatWeDo(false);
+              setShowUaeVision(false);
+            }}
           >
             <div
               className="absolute bg-white rounded-full h-[calc(100%-8px)] top-1"
@@ -158,6 +181,7 @@ export default function Navbar() {
 
             {navItems.map((item, i) => {
               const isWhatWeDo = item.label === "What we do";
+              const isUaeVision = item.label === "UAE vision";
 
               return (
                 <button
@@ -166,9 +190,13 @@ export default function Navbar() {
                   onClick={() => handleNavigate(item.to)}
                   onMouseEnter={() => {
                     if (isWhatWeDo) {
-                        setShowWhatWeDo(true);
+                      setShowWhatWeDo(true);
+                      setShowUaeVision(false);
+                    } else if (isUaeVision) {
+                      setShowUaeVision(true);
+                      setShowWhatWeDo(false);
                     } else {
-                        closeMenu();
+                      closeMenu();
                     }
                   }}
                   className={`relative z-10 px-6 py-2 uppercase text-sm font-semibold rounded-full transition-colors
@@ -180,7 +208,6 @@ export default function Navbar() {
                     }`}
                 >
                   {item.label}
-                  {/* Removed the pulse animation */}
                 </button>
               );
             })}
@@ -205,7 +232,7 @@ export default function Navbar() {
         {/* MOBILE MENU */}
         <div
           className={`
-            lg:hidden fixed top-[80px] left-0 w-full h-[calc(50vh)]
+            lg:hidden fixed top-[80px] left-0 w-full h-[calc(60vh)]
             bg-gray-800 backdrop-blur-xl border-t border-white/10
             transition-all duration-300 overflow-y-auto
             ${mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}
@@ -213,7 +240,8 @@ export default function Navbar() {
         >
           <div className="container mx-auto px-6 py-6 space-y-2">
             {navItems.map((item) => {
-              const isWhatWeDo = item.hasMegaMenu;
+              const isWhatWeDo = item.menuType === 'whatWeDo';
+              const isUaeVision = item.menuType === 'uaeVision';
               const isActive = location.pathname === item.to;
 
               return (
@@ -235,12 +263,12 @@ export default function Navbar() {
                       </span>
                     </button>
 
-                    {isWhatWeDo && (
+                    {(isWhatWeDo || isUaeVision) && (
                       <button
-                        onClick={toggleMobileWhatWeDo}
+                        onClick={isWhatWeDo ? toggleMobileWhatWeDo : toggleMobileUaeVision}
                         className={`
                           px-4 py-3.5 rounded-full transition-all duration-200
-                          ${mobileWhatWeDoOpen 
+                          ${(isWhatWeDo && mobileWhatWeDoOpen) || (isUaeVision && mobileUaeVisionOpen) 
                             ? 'bg-[#e44f39] text-white' 
                             : 'bg-white/10 text-white border border-white/20 hover:bg-white/20'
                           }
@@ -248,14 +276,14 @@ export default function Navbar() {
                       >
                         <FiChevronDown 
                           className={`text-lg transition-transform duration-300 ${
-                            mobileWhatWeDoOpen ? 'rotate-180' : ''
+                            (isWhatWeDo && mobileWhatWeDoOpen) || (isUaeVision && mobileUaeVisionOpen) ? 'rotate-180' : ''
                           }`}
                         />
                       </button>
                     )}
                   </div>
 
-                  {/* Mobile Mega Menu */}
+                  {/* Mobile Mega Menu for What We Do */}
                   {isWhatWeDo && (
                     <div
                       className={`
@@ -264,6 +292,20 @@ export default function Navbar() {
                       `}
                     >
                       <WhatWeDoMobileMegaMenu
+                        onNavigate={handleNavigate}
+                      />
+                    </div>
+                  )}
+
+                  {/* Mobile Mega Menu for UAE Vision */}
+                  {isUaeVision && (
+                    <div
+                      className={`
+                        overflow-hidden transition-all duration-300
+                        ${mobileUaeVisionOpen ? 'max-h-[2000px] opacity-100 mt-3' : 'max-h-0 opacity-0'}
+                      `}
+                    >
+                      <UaeVisionMobileMegaMenu
                         onNavigate={handleNavigate}
                       />
                     </div>
@@ -283,11 +325,23 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* DESKTOP MEGA MENU */}
+      {/* DESKTOP MEGA MENUS */}
       <WhatWeDoMegaMenu
         open={showWhatWeDo}
-        onEnter={() => setShowWhatWeDo(true)}
+        onEnter={() => {
+          setShowWhatWeDo(true);
+          setShowUaeVision(false);
+        }}
         onLeave={() => setShowWhatWeDo(false)}
+      />
+      
+      <UaeVisionMegaMenu
+        open={showUaeVision}
+        onEnter={() => {
+          setShowUaeVision(true);
+          setShowWhatWeDo(false);
+        }}
+        onLeave={() => setShowUaeVision(false)}
       />
     </>
   );

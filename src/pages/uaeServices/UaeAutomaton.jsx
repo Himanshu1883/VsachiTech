@@ -78,7 +78,7 @@ const UaeAutomation = () => {
 
   const automationServices = [
     {
-      icon: <FaEnvelope className="w-8 h-8" />,
+      icon: <FaEnvelope className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "Email Marketing Automation",
       description: "Automate your email campaigns with personalized sequences, triggers, and Arabic content for UAE audience",
       features: [
@@ -94,7 +94,7 @@ const UaeAutomation = () => {
       color: "from-blue-500 to-blue-700"
     },
     {
-      icon: <FaWhatsapp className="w-8 h-8" />,
+      icon: <FaWhatsapp className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "WhatsApp Business Automation",
       description: "Automate customer interactions on WhatsApp with chatbots, broadcasts, and CRM integration for UAE market",
       features: [
@@ -110,7 +110,7 @@ const UaeAutomation = () => {
       color: "from-green-500 to-green-700"
     },
     {
-      icon: <FaShoppingCart className="w-8 h-8" />,
+      icon: <FaShoppingCart className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "E-commerce Automation",
       description: "Streamline order processing, inventory management, and customer communications for UAE online stores",
       features: [
@@ -126,7 +126,7 @@ const UaeAutomation = () => {
       color: "from-purple-500 to-purple-700"
     },
     {
-      icon: <FaUsers className="w-8 h-8" />,
+      icon: <FaUsers className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "CRM & Sales Automation",
       description: "Automate lead management, follow-ups, and sales pipeline for UAE businesses to never miss opportunities",
       features: [
@@ -142,7 +142,7 @@ const UaeAutomation = () => {
       color: "from-orange-500 to-orange-700"
     },
     {
-      icon: <FaFileInvoiceDollar className="w-8 h-8" />,
+      icon: <FaFileInvoiceDollar className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "Accounting & Finance Automation",
       description: "Automate invoicing, expense tracking, and financial reporting for UAE companies with local compliance",
       features: [
@@ -158,7 +158,7 @@ const UaeAutomation = () => {
       color: "from-red-500 to-red-700"
     },
     {
-      icon: <FaCalendarAlt className="w-8 h-8" />,
+      icon: <FaCalendarAlt className="w-6 h-6 sm:w-8 sm:h-8" />,
       title: "Scheduling & Appointment Automation",
       description: "Automate booking, reminders, and calendar management for UAE service businesses and professionals",
       features: [
@@ -486,48 +486,6 @@ const UaeAutomation = () => {
     }
   ];
 
-  const caseStudies = [
-    {
-      client: "Dubai Real Estate Agency",
-      industry: "Real Estate",
-      challenge: "Manual lead management causing 40% lead loss and slow follow-ups",
-      solution: "Automated lead capture from portals, instant CRM entry, auto-response emails, and sales team notifications",
-      results: {
-        leadLoss: "-95%",
-        responseTime: "5 mins",
-        conversions: "+180%",
-        timeSaved: "35 hrs/week"
-      },
-      platforms: ["Zapier", "HubSpot", "WhatsApp Business"]
-    },
-    {
-      client: "Abu Dhabi E-commerce Store",
-      industry: "Fashion Retail",
-      challenge: "Order processing taking 3-4 hours daily, frequent inventory errors",
-      solution: "Complete order-to-shipment automation with inventory sync, invoice generation, and tracking emails",
-      results: {
-        processingTime: "-90%",
-        errors: "-98%",
-        satisfaction: "+85%",
-        costSaved: "AED 18K/mo"
-      },
-      platforms: ["Shopify", "Zapier", "Google Sheets"]
-    },
-    {
-      client: "Dubai Healthcare Network",
-      industry: "Medical Services",
-      challenge: "30% no-show rate, manual appointment scheduling overwhelming staff",
-      solution: "Online booking system with auto-reminders via SMS, email, and WhatsApp",
-      results: {
-        noShows: "-75%",
-        bookings: "+140%",
-        staffTime: "-60%",
-        revenue: "+AED 45K/mo"
-      },
-      platforms: ["Calendly", "Twilio", "WhatsApp API"]
-    }
-  ];
-
   const whyChooseUs = [
     "5+ years automation expertise in UAE",
     "Certified Zapier & Make experts",
@@ -574,7 +532,7 @@ const UaeAutomation = () => {
     <div className="bg-white">
       {/* Hero Section */}
       <section 
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden py-12 sm:py-16 md:py-20"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070')`,
           backgroundSize: 'cover',
@@ -585,13 +543,13 @@ const UaeAutomation = () => {
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           {/* Floating Icons */}
-          <div className="absolute top-1/4 left-1/4 animate-float">
+          <div className="absolute top-1/4 left-1/4 animate-float hidden md:block">
             <div className="text-white/10 text-4xl">⚙️</div>
           </div>
-          <div className="absolute top-1/3 right-1/4 animate-float delay-1000">
+          <div className="absolute top-1/3 right-1/4 animate-float delay-1000 hidden md:block">
             <div className="text-white/10 text-3xl">🤖</div>
           </div>
-          <div className="absolute bottom-1/4 left-1/3 animate-float delay-500">
+          <div className="absolute bottom-1/4 left-1/3 animate-float delay-500 hidden md:block">
             <div className="text-white/10 text-2xl">⚡</div>
           </div>
           
@@ -605,20 +563,20 @@ const UaeAutomation = () => {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Column */}
             <div>
               {/* Automation Badge */}
-              <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-red-600/20 to-red-800/20 backdrop-blur-sm border border-red-500/30 rounded-full">
-                <FaRobot className="w-5 h-5 text-red-400 animate-pulse" />
-                <span className="text-sm font-semibold tracking-widest text-red-400 uppercase">
+              <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-red-600/20 to-red-800/20 backdrop-blur-sm border border-red-500/30 rounded-full">
+                <FaRobot className="w-4 h-4 sm:w-5 sm:h-5 text-red-400 animate-pulse" />
+                <span className="text-xs sm:text-sm font-semibold tracking-widest text-red-400 uppercase">
                   Business Automation • Dubai • UAE
                 </span>
               </div>
 
               {/* Main Heading */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
                 <span className="block text-white">Automate & Scale</span>
                 <span className="block bg-gradient-to-r from-red-400 via-red-300 to-red-500 bg-clip-text text-transparent animate-gradient">
                   Your UAE Business
@@ -626,19 +584,19 @@ const UaeAutomation = () => {
               </h1>
 
               {/* Rotating Feature Display */}
-              <div className="mb-8">
-                <div className="relative h-12 overflow-hidden">
+              <div className="mb-6 sm:mb-8">
+                <div className="relative h-10 sm:h-12 overflow-hidden">
                   {heroFeatures.map((feature, index) => (
                     <div
                       key={index}
-                      className={`absolute top-0 left-0 w-full text-xl sm:text-2xl font-bold text-white transition-all duration-1000 ${
+                      className={`absolute top-0 left-0 w-full text-lg sm:text-xl md:text-2xl font-bold text-white transition-all duration-1000 ${
                         index === activeFeature
                           ? 'opacity-100 translate-y-0'
                           : 'opacity-0 translate-y-full'
                       }`}
                     >
-                      <div className="flex items-center gap-4">
-                        <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-400 rounded-full animate-pulse"></div>
                         {feature}
                       </div>
                     </div>
@@ -647,42 +605,42 @@ const UaeAutomation = () => {
               </div>
 
               {/* Description */}
-              <p className="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 max-w-2xl leading-relaxed">
                 Transform your UAE business with intelligent automation. Save time, reduce costs, 
                 and scale operations with AI-powered workflows tailored for the Emirates market.
               </p>
 
               {/* Live Metrics Demo */}
-              <div className="mb-8 bg-black/40 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
-                <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="mb-6 sm:mb-8 bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
                   <div>
-                    <div className="text-sm text-gray-400 mb-1">Hours Saved</div>
-                    <div className="text-2xl font-bold text-green-400">{hoursSaved}</div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">Hours Saved</div>
+                    <div className="text-xl sm:text-2xl font-bold text-green-400">{hoursSaved}</div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400 mb-1">Cost Saved</div>
-                    <div className="text-2xl font-bold text-white">AED {costSaved.toLocaleString()}</div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">Cost Saved</div>
+                    <div className="text-xl sm:text-2xl font-bold text-white">AED {costSaved.toLocaleString()}</div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400 mb-1">Tasks Automated</div>
-                    <div className="text-2xl font-bold text-red-400">{tasksAutomated}</div>
+                    <div className="text-xs sm:text-sm text-gray-400 mb-1">Tasks Automated</div>
+                    <div className="text-xl sm:text-2xl font-bold text-red-400">{tasksAutomated}</div>
                   </div>
                 </div>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/contact#project-form" aria-label="Get automation consultation">
-                  <button className="group relative px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-bold text-base hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-red-500/40 overflow-hidden">
-                    <span className="relative z-10 flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link to="/contact#project-form" aria-label="Get automation consultation" className="w-full sm:w-auto">
+                  <button className="w-full group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-bold text-sm sm:text-base hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-red-500/40 overflow-hidden">
+                    <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
                       START AUTOMATION
                       <FaArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                   </button>
                 </Link>
-                <Link to="#services" aria-label="View automation services">
-                  <button className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 text-base font-semibold">
+                <Link to="#services" aria-label="View automation services" className="w-full sm:w-auto">
+                  <button className="w-full flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 text-sm sm:text-base font-semibold">
                     VIEW SERVICES
                     <span className="w-2 h-2 rounded-full bg-white"></span>
                   </button>
@@ -691,12 +649,12 @@ const UaeAutomation = () => {
             </div>
 
             {/* Right Column - Stats */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-500/50 transition-all duration-300 group">
-                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-red-400 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-sm text-gray-400">{stat.label}</div>
+                <div key={index} className="text-center p-4 sm:p-6 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10 hover:border-red-500/50 transition-all duration-300 group">
+                  <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-red-400 group-hover:scale-110 transition-transform duration-300" />
+                  <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-gray-400">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -704,9 +662,9 @@ const UaeAutomation = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gradient-to-b from-red-400 to-red-600 rounded-full mt-2 animate-pulse"></div>
+        <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-2 sm:h-3 bg-gradient-to-b from-red-400 to-red-600 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
 
@@ -732,129 +690,125 @@ const UaeAutomation = () => {
 
       <WaveDivider />
 
-      {/* Automation Services Section - Timeline Layout */}
-      <section id="services" className="py-20 bg-white">
+      {/* Automation Services Section */}
+      <section id="services" className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               UAE Business <span className="text-red-600">Automation Services</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Comprehensive automation solutions to streamline every aspect of your UAE operations
             </p>
           </div>
 
-          {/* Timeline Layout */}
-          <div className="relative">
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-red-200 via-red-500 to-red-200 transform -translate-x-1/2"></div>
+          {/* Grid Layout for Mobile, Timeline for Desktop */}
+          <div className="space-y-6 sm:space-y-8 md:space-y-12">
+            {automationServices.map((service, index) => (
+              <div
+                key={index}
+                className={`relative flex items-center ${
+                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                } flex-col gap-6 md:gap-8`}
+                onMouseEnter={() => setActiveService(index)}
+              >
+                <div className="w-full lg:w-5/12">
+                  <div
+                    className={`group relative bg-white border-2 border-gray-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-500 ${
+                      activeService === index ? 'scale-105 border-red-500 shadow-2xl' : ''
+                    }`}
+                  >
+                    <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
+                      {index + 1}
+                    </div>
 
-            <div className="space-y-12">
-              {automationServices.map((service, index) => (
-                <div
-                  key={index}
-                  className={`relative flex items-center ${
-                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  } flex-col gap-8`}
-                  onMouseEnter={() => setActiveService(index)}
-                >
-                  <div className="w-full lg:w-5/12">
-                    <div
-                      className={`group relative bg-white border-2 border-gray-200 rounded-3xl p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-500 ${
-                        activeService === index ? 'scale-105 border-red-500 shadow-2xl' : ''
-                      }`}
-                    >
-                      <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                        {index + 1}
-                      </div>
-
-                      <div className={`mb-6 inline-flex p-5 bg-gradient-to-br ${service.color} rounded-2xl shadow-lg`}>
-                        <div className="text-white">{service.icon}</div>
-                      </div>
-                      
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-                      
-                      <div className="grid grid-cols-2 gap-3 mb-6">
-                        {service.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-2">
-                            <FaCheckCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-1" />
-                            <span className="text-gray-700 text-sm">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3 pt-4 border-t border-gray-100">
-                        <div>
-                          <span className="text-sm text-gray-500 block mb-1">Expected ROI</span>
-                          <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full inline-block">
-                            {service.roi}
-                          </span>
+                    <div className={`mb-4 sm:mb-6 inline-flex p-4 sm:p-5 bg-gradient-to-br ${service.color} rounded-xl sm:rounded-2xl shadow-lg`}>
+                      <div className="text-white">{service.icon}</div>
+                    </div>
+                    
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">{service.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">{service.description}</p>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-6">
+                      {service.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <FaCheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-red-500 flex-shrink-0 mt-1" />
+                          <span className="text-gray-700 text-xs sm:text-sm">{feature}</span>
                         </div>
-                        <div>
-                          <span className="text-sm text-gray-500 block mb-1">Timeframe</span>
-                          <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full inline-block">
-                            {service.timeframe}
-                          </span>
-                        </div>
-                      </div>
+                      ))}
+                    </div>
 
-                      <div className={`absolute top-1/2 ${
-                        index % 2 === 0 ? 'right-0 translate-x-full' : 'left-0 -translate-x-full'
-                      } hidden lg:block transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                        <FaArrowRight className={`w-6 h-6 text-red-500 ${
-                          index % 2 !== 0 ? 'rotate-180' : ''
-                        }`} />
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-gray-100">
+                      <div>
+                        <span className="text-xs sm:text-sm text-gray-500 block mb-1">Expected ROI</span>
+                        <span className="px-2 sm:px-3 py-1 bg-green-100 text-green-700 text-xs sm:text-sm font-semibold rounded-full inline-block">
+                          {service.roi}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-xs sm:text-sm text-gray-500 block mb-1">Timeframe</span>
+                        <span className="px-2 sm:px-3 py-1 bg-blue-100 text-blue-700 text-xs sm:text-sm font-semibold rounded-full inline-block">
+                          {service.timeframe}
+                        </span>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="hidden lg:block w-2/12 flex-shrink-0">
-                    <div className="relative flex justify-center">
-                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${service.color} flex items-center justify-center shadow-xl transition-all duration-500 ${
-                        activeService === index ? 'scale-125' : 'scale-100'
-                      }`}>
-                        <div className="text-white">{service.icon}</div>
-                      </div>
-                      
-                      {activeService === index && (
-                        <div className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-20"></div>
-                      )}
+                    <div className={`absolute top-1/2 ${
+                      index % 2 === 0 ? 'right-0 translate-x-full' : 'left-0 -translate-x-full'
+                    } hidden lg:block transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                      <FaArrowRight className={`w-5 h-5 sm:w-6 sm:h-6 text-red-500 ${
+                        index % 2 !== 0 ? 'rotate-180' : ''
+                      }`} />
                     </div>
                   </div>
-
-                  <div className="hidden lg:block w-5/12"></div>
                 </div>
-              ))}
-            </div>
+
+                <div className="hidden lg:block w-2/12 flex-shrink-0">
+                  <div className="relative flex justify-center">
+                    <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br ${service.color} flex items-center justify-center shadow-xl transition-all duration-500 ${
+                      activeService === index ? 'scale-125' : 'scale-100'
+                    }`}>
+                      <div className="text-white">{service.icon}</div>
+                    </div>
+                    
+                    {activeService === index && (
+                      <div className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-20"></div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="hidden lg:block w-5/12"></div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Automation Platforms - Marquee */}
-      <section className="py-20 bg-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               <span className="text-red-600">Platforms</span> We Automate With
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Expert integration across all major automation and business platforms
             </p>
           </div>
         </div>
 
         <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
 
           <div className="flex animate-marquee hover:pause-marquee">
             {[...automationPlatforms, ...automationPlatforms].map((platform, index) => (
-              <div key={index} className="flex-shrink-0 mx-4 group">
-                <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-red-500 hover:shadow-xl transition-all duration-300 w-72 h-56 flex flex-col items-center justify-center hover:-translate-y-2">
-                  <platform.icon className={`w-16 h-16 mb-4 ${platform.color} group-hover:scale-110 transition-transform duration-300`} />
+              <div key={index} className="flex-shrink-0 mx-3 sm:mx-4 group">
+                <div className="bg-white border-2 border-gray-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:border-red-500 hover:shadow-xl transition-all duration-300 w-56 sm:w-72 h-44 sm:h-56 flex flex-col items-center justify-center hover:-translate-y-2">
+                  <platform.icon className={`w-12 h-12 sm:w-16 sm:h-16 mb-3 sm:mb-4 ${platform.color} group-hover:scale-110 transition-transform duration-300`} />
                   <div className="text-center">
-                    <div className="text-xl font-bold text-gray-900 mb-2">{platform.name}</div>
-                    <div className="text-sm text-gray-600 mb-2">{platform.apps}</div>
+                    <div className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{platform.name}</div>
+                    <div className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">{platform.apps}</div>
                     <div className="text-xs text-gray-500 italic">{platform.bestFor}</div>
                   </div>
                 </div>
@@ -879,106 +833,205 @@ const UaeAutomation = () => {
 
       <WaveDivider flip={true} />
 
-      {/* Automation Process */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Our <span className="text-red-600">6-Step Automation Process</span>
+      {/* 6-Step Automation Process - HORIZONTAL WITH BACKGROUND IMAGE */}
+      <section 
+        className="relative py-16 sm:py-20 md:py-24 overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 animate-float hidden lg:block">
+            <div className="text-white/10 text-5xl">⚙️</div>
+          </div>
+          <div className="absolute top-1/3 right-1/4 animate-float delay-1000 hidden lg:block">
+            <div className="text-white/10 text-4xl">📊</div>
+          </div>
+          <div className="absolute bottom-1/4 left-1/3 animate-float delay-500 hidden lg:block">
+            <div className="text-white/10 text-3xl">🚀</div>
+          </div>
+          
+          <div 
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(229, 62, 62, 0.3) 0%, transparent 50%)`
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
+              Our <span className="text-red-400">6-Step Automation Process</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
               Proven methodology for implementing automation that delivers measurable ROI
             </p>
           </div>
 
+          {/* Horizontal Scroll Container */}
           <div className="relative">
-            <div className="absolute left-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 h-full w-1 lg:w-1.5 bg-gradient-to-b from-red-400 via-red-500 to-red-600 rounded-full"></div>
-
-            <div className="space-y-12">
-              {automationProcess.map((step, index) => (
-                <div
-                  key={index}
-                  className={`relative flex flex-col lg:flex-row ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
-                >
-                  <div className={`absolute left-0 lg:left-1/2 transform lg:-translate-x-1/2 w-14 h-14 bg-white border-4 border-red-500 rounded-full flex items-center justify-center z-10 shadow-xl`}>
-                    <div className="text-sm font-bold text-gray-900">{step.step}</div>
-                  </div>
-
-                  <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12 lg:text-left'} ml-20 lg:ml-0 lg:mt-0`}>
-                    <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-red-500 hover:shadow-xl transition-all duration-500">
-                      <div className={`mb-4 inline-flex p-4 bg-red-100 rounded-xl ${index % 2 === 0 ? 'lg:float-right' : ''}`}>
-                        <step.icon className="w-8 h-8 text-red-600" />
+            {/* Desktop View - Horizontal Layout */}
+            <div className="hidden md:block overflow-x-auto pb-8 scrollbar-hide">
+              <div className="flex gap-6 lg:gap-8 min-w-max px-4">
+                {automationProcess.map((step, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 w-72 lg:w-80 xl:w-96 group"
+                  >
+                    {/* Connecting Line */}
+                    {index < automationProcess.length - 1 && (
+                      <div className="absolute top-16 left-full w-6 lg:w-8 h-1 bg-gradient-to-r from-red-500 to-red-400 z-0 hidden md:block"></div>
+                    )}
+                    
+                    <div className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 lg:p-8 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 hover:-translate-y-2 h-full">
+                      {/* Step Number Badge */}
+                      <div className="absolute -top-4 -left-4 w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-xl lg:text-2xl shadow-xl border-4 border-white/20">
+                        {step.step}
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">{step.description}</p>
+
+                      {/* Icon */}
+                      <div className="mb-6 mt-4 inline-flex p-4 lg:p-5 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl border border-red-500/30 backdrop-blur-sm">
+                        <step.icon className="w-8 h-8 lg:w-10 lg:h-10 text-red-400" />
+                      </div>
                       
-                      <div className="mb-4">
-                        <div className="text-sm text-gray-500 mb-2">Deliverables:</div>
+                      {/* Content */}
+                      <h3 className="text-xl lg:text-2xl font-bold text-white mb-3 lg:mb-4">{step.title}</h3>
+                      <p className="text-sm lg:text-base text-gray-300 mb-4 lg:mb-6 leading-relaxed">{step.description}</p>
+                      
+                      {/* Deliverables */}
+                      <div className="mb-4 lg:mb-6">
+                        <div className="text-xs lg:text-sm text-red-400 font-semibold mb-3">Deliverables:</div>
                         <div className="flex flex-wrap gap-2">
                           {step.deliverables.map((item, idx) => (
-                            <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                            <span key={idx} className="px-3 py-1 bg-white/10 backdrop-blur-sm text-white text-xs rounded-full border border-white/20">
                               {item}
                             </span>
                           ))}
                         </div>
                       </div>
 
-                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 text-sm font-semibold rounded-full">
+                      {/* Duration */}
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/20 to-green-600/20 backdrop-blur-sm text-green-400 text-sm font-semibold rounded-full border border-green-500/30">
                         <FaClock className="w-4 h-4" />
                         {step.duration}
                       </div>
                     </div>
                   </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile View - Vertical Stack */}
+            <div className="md:hidden space-y-6">
+              {automationProcess.map((step, index) => (
+                <div
+                  key={index}
+                  className="relative bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-2xl p-6 hover:border-red-500 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
+                >
+                  {/* Step Number Badge */}
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-xl border-4 border-white/20">
+                    {step.step}
+                  </div>
+
+                  {/* Icon */}
+                  <div className="mb-4 inline-flex p-4 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl border border-red-500/30 backdrop-blur-sm">
+                    <step.icon className="w-8 h-8 text-red-400" />
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
+                  <p className="text-sm text-gray-300 mb-4 leading-relaxed">{step.description}</p>
+                  
+                  {/* Deliverables */}
+                  <div className="mb-4">
+                    <div className="text-xs text-red-400 font-semibold mb-2">Deliverables:</div>
+                    <div className="flex flex-wrap gap-2">
+                      {step.deliverables.map((item, idx) => (
+                        <span key={idx} className="px-2 py-1 bg-white/10 backdrop-blur-sm text-white text-xs rounded-full border border-white/20">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Duration */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-green-500/20 to-green-600/20 backdrop-blur-sm text-green-400 text-xs font-semibold rounded-full border border-green-500/30">
+                    <FaClock className="w-3 h-3" />
+                    {step.duration}
+                  </div>
                 </div>
               ))}
             </div>
+
+            {/* Scroll Hint for Desktop */}
+            <div className="hidden md:flex justify-center mt-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm">
+                <span>Scroll horizontally to see all steps</span>
+                <FaArrowRight className="w-4 h-4 animate-pulse" />
+              </div>
+            </div>
           </div>
         </div>
+
+        <style jsx>{`
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+          .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
       </section>
 
       {/* Use Cases Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Popular <span className="text-red-600">Automation Workflows</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Real-world automation examples that save UAE businesses time and money
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {automationUseCases.map((useCase, index) => (
               <div
                 key={index}
-                className="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-500 hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+                className="group bg-white border-2 border-gray-200 rounded-xl sm:rounded-2xl p-5 sm:p-6 hover:border-red-500 hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="mb-6 inline-flex p-4 bg-red-50 rounded-xl group-hover:bg-red-100 transition-colors duration-300">
-                  <useCase.icon className="w-10 h-10 text-red-600" />
+                <div className="mb-4 sm:mb-6 inline-flex p-3 sm:p-4 bg-red-50 rounded-lg sm:rounded-xl group-hover:bg-red-100 transition-colors duration-300">
+                  <useCase.icon className="w-8 h-8 sm:w-10 sm:h-10 text-red-600" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{useCase.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed text-sm">{useCase.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{useCase.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6 leading-relaxed">{useCase.description}</p>
                 
-                <div className="mb-6">
-                  <div className="text-sm font-semibold text-gray-700 mb-3">Workflow Steps:</div>
+                <div className="mb-4 sm:mb-6">
+                  <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Workflow Steps:</div>
                   <div className="space-y-2">
                     {useCase.steps.map((step, idx) => (
-                      <div key={idx} className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
+                      <div key={idx} className="flex items-center gap-2 sm:gap-3">
+                        <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-red-100 rounded-full flex items-center justify-center">
                           <span className="text-red-600 text-xs font-bold">{idx + 1}</span>
                         </div>
-                        <span className="text-gray-700 text-sm">{step}</span>
+                        <span className="text-gray-700 text-xs sm:text-sm">{step}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-100">
+                <div className="pt-3 sm:pt-4 border-t border-gray-100">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">Time Saved</span>
-                    <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-bold rounded-full">
+                    <span className="text-xs sm:text-sm text-gray-500">Time Saved</span>
+                    <span className="px-2 sm:px-3 py-1 bg-green-100 text-green-700 text-xs sm:text-sm font-bold rounded-full">
                       {useCase.timeSaved}
                     </span>
                   </div>
@@ -990,34 +1043,34 @@ const UaeAutomation = () => {
       </section>
 
       {/* Integration Categories */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               <span className="text-red-600">1000+</span> App Integrations
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Connect and automate all your favorite business tools seamlessly
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {integrations.map((integration, index) => (
               <div
                 key={index}
-                className="group bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-2xl p-8 hover:border-red-500 hover:shadow-xl transition-all duration-500"
+                className="group bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:border-red-500 hover:shadow-xl transition-all duration-500"
               >
-                <div className={`mb-6 inline-flex p-5 bg-gradient-to-br ${integration.color} rounded-2xl shadow-lg`}>
-                  <integration.icon className="w-8 h-8 text-white" />
+                <div className={`mb-4 sm:mb-6 inline-flex p-4 sm:p-5 bg-gradient-to-br ${integration.color} rounded-xl sm:rounded-2xl shadow-lg`}>
+                  <integration.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">{integration.category}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">{integration.category}</h3>
                 
                 <div className="grid grid-cols-2 gap-2">
                   {integration.tools.map((tool, idx) => (
                     <div key={idx} className="flex items-center gap-2 p-2 bg-white rounded-lg border border-gray-100">
                       <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
-                      <span className="text-gray-700 text-sm truncate">{tool}</span>
+                      <span className="text-gray-700 text-xs sm:text-sm truncate">{tool}</span>
                     </div>
                   ))}
                 </div>
@@ -1030,26 +1083,26 @@ const UaeAutomation = () => {
       <WaveDivider />
 
       {/* Industries Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Automation by <span className="text-red-600">UAE Industry</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Industry-specific automation solutions with proven ROI
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-red-500 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+                className="group bg-white border-2 border-gray-200 rounded-xl sm:rounded-2xl p-5 sm:p-6 hover:border-red-500 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
               >
-                <div className="flex justify-between items-start mb-6">
-                  <h3 className="text-xl font-bold text-gray-900">{industry.name}</h3>
-                  <div className={`px-3 py-1.5 rounded-full text-xs font-bold ${
+                <div className="flex justify-between items-start mb-4 sm:mb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{industry.name}</h3>
+                  <div className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-bold ${
                     industry.potential === 'Excellent' 
                       ? 'bg-green-100 text-green-700'
                       : industry.potential === 'High'
@@ -1060,26 +1113,26 @@ const UaeAutomation = () => {
                   </div>
                 </div>
                 
-                <div className="mb-6">
-                  <div className="text-sm font-semibold text-gray-700 mb-3">Top Automations:</div>
+                <div className="mb-4 sm:mb-6">
+                  <div className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Top Automations:</div>
                   <div className="space-y-2">
                     {industry.topAutomations.map((automation, idx) => (
                       <div key={idx} className="flex items-start gap-2">
-                        <FaCheckCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700 text-sm">{automation}</span>
+                        <FaCheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700 text-xs sm:text-sm">{automation}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 pt-4 border-t border-gray-100">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-gray-100">
                   <div>
                     <div className="text-xs text-gray-500 mb-1">Time Saved</div>
-                    <div className="text-sm font-bold text-green-600">{industry.timeSaved}</div>
+                    <div className="text-xs sm:text-sm font-bold text-green-600">{industry.timeSaved}</div>
                   </div>
                   <div>
                     <div className="text-xs text-gray-500 mb-1">Cost Saving</div>
-                    <div className="text-sm font-bold text-red-600">{industry.costSaving}</div>
+                    <div className="text-xs sm:text-sm font-bold text-red-600">{industry.costSaving}</div>
                   </div>
                 </div>
               </div>
@@ -1089,47 +1142,47 @@ const UaeAutomation = () => {
       </section>
 
       {/* ROI Calculator Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Automation <span className="text-red-600">ROI Calculator</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               See the potential return on investment for your UAE business automation
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {automationROI.map((package_info, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-2xl p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:border-red-500 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{package_info.investment}</h3>
-                  <div className="text-3xl font-bold text-red-600">{package_info.cost}</div>
+                <div className="text-center mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{package_info.investment}</h3>
+                  <div className="text-2xl sm:text-3xl font-bold text-red-600">{package_info.cost}</div>
                 </div>
 
-                <div className="space-y-4 mb-6">
-                  <div className="p-4 bg-green-50 rounded-xl">
-                    <div className="text-sm text-gray-600 mb-1">Monthly Savings</div>
-                    <div className="text-xl font-bold text-green-600">{package_info.monthlySavings}</div>
+                <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+                  <div className="p-3 sm:p-4 bg-green-50 rounded-xl">
+                    <div className="text-xs sm:text-sm text-gray-600 mb-1">Monthly Savings</div>
+                    <div className="text-lg sm:text-xl font-bold text-green-600">{package_info.monthlySavings}</div>
                   </div>
 
-                  <div className="p-4 bg-blue-50 rounded-xl">
-                    <div className="text-sm text-gray-600 mb-1">Payback Period</div>
-                    <div className="text-xl font-bold text-blue-600">{package_info.paybackPeriod}</div>
+                  <div className="p-3 sm:p-4 bg-blue-50 rounded-xl">
+                    <div className="text-xs sm:text-sm text-gray-600 mb-1">Payback Period</div>
+                    <div className="text-lg sm:text-xl font-bold text-blue-600">{package_info.paybackPeriod}</div>
                   </div>
 
-                  <div className="p-4 bg-purple-50 rounded-xl">
-                    <div className="text-sm text-gray-600 mb-1">Annual ROI</div>
-                    <div className="text-xl font-bold text-purple-600">{package_info.annualROI}</div>
+                  <div className="p-3 sm:p-4 bg-purple-50 rounded-xl">
+                    <div className="text-xs sm:text-sm text-gray-600 mb-1">Annual ROI</div>
+                    <div className="text-lg sm:text-xl font-bold text-purple-600">{package_info.annualROI}</div>
                   </div>
                 </div>
 
-                <Link to="/contact#project-form">
-                  <button className="w-full py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-bold hover:scale-105 transition-all duration-300">
+                <Link to="/contact#project-form" className="block">
+                  <button className="w-full py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-bold hover:scale-105 transition-all duration-300 text-sm sm:text-base">
                     Get Started
                   </button>
                 </Link>
@@ -1139,98 +1192,32 @@ const UaeAutomation = () => {
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              UAE <span className="text-red-600">Success Stories</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real automation results from UAE businesses across different industries
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {caseStudies.map((study, index) => (
-              <div
-                key={index}
-                className="bg-white border-2 border-gray-200 rounded-3xl p-8 md:p-12 hover:border-red-500 hover:shadow-2xl transition-all duration-500"
-              >
-                <div className="grid md:grid-cols-3 gap-8">
-                  <div className="md:col-span-1">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 text-sm font-semibold rounded-full mb-4">
-                      <FaTrophy className="w-4 h-4" />
-                      {study.industry}
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{study.client}</h3>
-                    
-                    <div className="mb-6">
-                      <div className="text-sm font-semibold text-gray-700 mb-2">Challenge:</div>
-                      <p className="text-gray-600">{study.challenge}</p>
-                    </div>
-
-                    <div>
-                      <div className="text-sm font-semibold text-gray-700 mb-2">Solution:</div>
-                      <p className="text-gray-600">{study.solution}</p>
-                    </div>
-                  </div>
-
-                  <div className="md:col-span-1 flex items-center">
-                    <div className="grid grid-cols-2 gap-4 w-full">
-                      {Object.entries(study.results).map(([key, value], idx) => (
-                        <div key={idx} className="bg-gray-50 rounded-xl p-4 border border-gray-200 text-center">
-                          <div className="text-3xl font-bold text-red-600 mb-1">{value}</div>
-                          <div className="text-sm text-gray-600 uppercase tracking-wide">{key}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="md:col-span-1 flex flex-col justify-center">
-                    <div className="text-sm font-semibold text-gray-700 mb-4">Tools Used:</div>
-                    <div className="space-y-3">
-                      {study.platforms.map((platform, idx) => (
-                        <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                          <span className="text-gray-700 font-medium">{platform}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <WaveDivider flip={true} />
 
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Why <span className="text-red-600">Automate</span> Your Business
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               The transformative benefits of business automation for UAE companies
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {automationBenefits.map((benefit, index) => (
               <div
                 key={index}
-                className="group bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-2xl p-6 hover:border-red-500 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="group bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-xl sm:rounded-2xl p-5 sm:p-6 hover:border-red-500 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="mb-4 inline-flex p-4 bg-red-50 rounded-xl group-hover:bg-red-100 transition-colors duration-300">
-                  <benefit.icon className="w-8 h-8 text-red-600" />
+                <div className="mb-3 sm:mb-4 inline-flex p-3 sm:p-4 bg-red-50 rounded-lg sm:rounded-xl group-hover:bg-red-100 transition-colors duration-300">
+                  <benefit.icon className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{benefit.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{benefit.description}</p>
-                <div className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-full inline-block">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">{benefit.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3 sm:mb-4">{benefit.description}</p>
+                <div className="px-2 sm:px-3 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-full inline-block">
                   {benefit.metric}
                 </div>
               </div>
@@ -1240,28 +1227,28 @@ const UaeAutomation = () => {
       </section>
 
       {/* Why Choose Us + CTA */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Why Choose <span className="text-red-600">Our Automation Team</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Expertise and experience that ensures successful automation implementation
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto mb-12 sm:mb-20">
             {whyChooseUs.map((benefit, index) => (
               <div
                 key={index}
-                className="group flex items-start gap-4 p-6 bg-white border-2 border-gray-200 rounded-2xl hover:border-red-500 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-white border-2 border-gray-200 rounded-xl sm:rounded-2xl hover:border-red-500 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-red-100 to-red-50 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <FaCheckCircle className="w-6 h-6 text-red-600" />
+                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-100 to-red-50 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <FaCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" />
                 </div>
                 <div>
-                  <span className="text-base font-semibold text-gray-900">{benefit}</span>
+                  <span className="text-sm sm:text-base font-semibold text-gray-900">{benefit}</span>
                 </div>
               </div>
             ))}
@@ -1269,19 +1256,19 @@ const UaeAutomation = () => {
 
           {/* Final CTA */}
           <div className="text-center">
-            <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-3xl p-12 text-white shadow-2xl shadow-red-500/30">
-              <FaRobot className="w-16 h-16 mx-auto mb-6 text-white/90" />
-              <h3 className="text-3xl md:text-4xl font-bold mb-6">
+            <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl sm:rounded-3xl p-8 sm:p-12 text-white shadow-2xl shadow-red-500/30">
+              <FaRobot className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 text-white/90" />
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
                 Ready to Automate Your UAE Business?
               </h3>
-              <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
                 Let's transform your operations with intelligent automation that saves time, 
                 reduces costs, and scales your business effortlessly
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link to="/contact#project-form" aria-label="Get automation consultation">
-                  <button className="group relative px-12 py-5 bg-white text-red-600 rounded-full font-bold text-lg hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-white/40 overflow-hidden">
-                    <span className="relative z-10 flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                <Link to="/contact#project-form" aria-label="Get automation consultation" className="w-full sm:w-auto">
+                  <button className="w-full group relative px-8 sm:px-12 py-4 sm:py-5 bg-white text-red-600 rounded-full font-bold text-base sm:text-lg hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-white/40 overflow-hidden">
+                    <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
                       START AUTOMATING NOW
                       <FaArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
                     </span>
@@ -1291,19 +1278,19 @@ const UaeAutomation = () => {
               </div>
 
               {/* Trust Indicators */}
-              <div className="mt-12 pt-8 border-t border-white/20">
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-white/80">
+              <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/20">
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-white/80">
                   <div className="flex items-center gap-2">
-                    <FaShieldAlt className="w-5 h-5" />
-                    <span>Certified Automation Experts</span>
+                    <FaShieldAlt className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-sm sm:text-base">Certified Automation Experts</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <FaHandshake className="w-5 h-5" />
-                    <span>Ongoing Support Included</span>
+                    <FaHandshake className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-sm sm:text-base">Ongoing Support Included</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <FaChartLine className="w-5 h-5" />
-                    <span>Guaranteed ROI</span>
+                    <FaChartLine className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-sm sm:text-base">Guaranteed ROI</span>
                   </div>
                 </div>
               </div>
