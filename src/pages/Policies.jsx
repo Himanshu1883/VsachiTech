@@ -44,7 +44,7 @@ usePageTitle("Privacy Policy & Terms");
         <PolicySection
           title="Privacy Policy"
           content={[
-            "CloudCoder AI respects your privacy and is committed to protecting your personal data. This policy explains how we collect, use, and safeguard your information.",
+            "Vsachitech respects your privacy and is committed to protecting your personal data. This policy explains how we collect, use, and safeguard your information.",
             "We collect only the information necessary to provide our services, including name, email address, and project-related details. We never sell or misuse your data.",
             "All information shared with us is stored securely and accessed only by authorized personnel."
           ]}
@@ -62,7 +62,7 @@ usePageTitle("Privacy Policy & Terms");
         <PolicySection
           title="Web Dev/Design Policy"
           content={[
-            "All designs and code created by CloudCoder AI are tailored specifically for each client.",
+            "All designs and code created by Vsachitech are tailored specifically for each client.",
             "Ownership of the final deliverables is transferred upon full payment, unless otherwise agreed.",
             "We reserve the right to showcase completed projects in our portfolio unless confidentiality is requested."
           ]}

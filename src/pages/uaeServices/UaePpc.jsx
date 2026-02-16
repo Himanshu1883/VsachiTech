@@ -13,7 +13,6 @@ import { FaBolt, FaCrosshairs, FaCalculator, FaSlidersH } from 'react-icons/fa';
 import usePageTitle from '../../components/hooks/usePageTitle';
 import useSEO from '../../components/hooks/useSEO';
 
-// Divider Component
 const WaveDivider = ({ flip }) => (
   <div className={`overflow-hidden ${flip ? "rotate-180" : ""}`}>
     <svg viewBox="0 0 1440 80" className="w-full" aria-hidden="true">
@@ -49,7 +48,6 @@ useSEO({
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Rotate through features
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveFeature((prev) => (prev + 1) % heroFeatures.length);
@@ -57,7 +55,6 @@ useSEO({
     return () => clearInterval(interval);
   }, []);
 
-  // Animate metrics
   useEffect(() => {
     const interval = setInterval(() => {
       setConversions(prev => {
