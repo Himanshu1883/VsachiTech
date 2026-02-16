@@ -24,8 +24,8 @@ const TeamSection = () => {
     { 
       name: "Nikhil Sain", 
       role: "Business Development Head", 
-      img: "people/nikhil.png",
-      bio: "Visionary leader driving innovation",
+      img: "people/nikhil.jpeg",
+      bio: "Building strategic partnerships",
     },
     { 
       name: "Rajiv Bhatia", 
