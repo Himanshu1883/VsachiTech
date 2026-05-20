@@ -50,6 +50,7 @@ const TeamSection = () => {
 
   // Auto-play carousel
   useEffect(() => {
+    
     if (!isAutoPlay) return;
     
     const interval = setInterval(() => {
