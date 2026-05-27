@@ -39,18 +39,7 @@ const TeamSection = () => {
     //   img: "people/p2.jpeg",
     //   bio: "Building strategic partnerships",
     // },
-        { 
-      name: "Prateek sah", 
-      role: "Digital Marketing", 
-      img: "people/prateek.png",
-      bio: "Building strategic partnerships",
-    },
-    { 
-      name: "Abhishek sah", 
-      role: "Junior Python Developer", 
-      img: "people/abhishek.png",
-      bio: "Building strategic partnerships",
-    },
+
     { 
       name: "Ritika Malhotra", 
       role: "Project Manager", 
@@ -61,6 +50,7 @@ const TeamSection = () => {
 
   // Auto-play carousel
   useEffect(() => {
+    
     if (!isAutoPlay) return;
     
     const interval = setInterval(() => {
