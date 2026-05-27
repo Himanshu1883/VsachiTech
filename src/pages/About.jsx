@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Scroll from "../components/ui/Scroll";
 import TeamSection from "../components/ui/TeamSection ";
 import useSEO from "../components/hooks/useSEO";
+import TeamSectionNew from "../components/ui/TeamSectionNew";
 function About() {
   usePageTitle("Who We Are");
   useSEO({
@@ -166,7 +167,7 @@ function About() {
         <Scroll />
       </section>
 
-      <TeamSection />
+      <TeamSectionNew />
 
       {/* Content Section */}
       <section className="py-20 bg-gray-100">

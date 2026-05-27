@@ -127,3 +127,48 @@ html {
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 30s linear infinite;
+}
+
+.marquee-wrapper.reverse .marquee-content {
+  animation: marqueeRight 30s linear infinite;
+}
+
+.marquee-content span {
+  font-size: 110px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.06);
+  margin-right: 80px;
+  line-height: 1;
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
