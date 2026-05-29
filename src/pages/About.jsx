@@ -13,6 +13,9 @@ import Scroll from "../components/ui/Scroll";
 import TeamSection from "../components/ui/TeamSection ";
 import useSEO from "../components/hooks/useSEO";
 import TeamSectionNew from "../components/ui/TeamSectionNew";
+import TeamSection3 from "../components/ui/TeamSection3";
+import TeamSection4 from "../components/ui/TeamSection4";
+
 function About() {
   usePageTitle("Who We Are");
   useSEO({
@@ -167,7 +170,7 @@ function About() {
         <Scroll />
       </section>
 
-      <TeamSectionNew />
+      <TeamSection4 />
 
       {/* Content Section */}
       <section className="py-20 bg-gray-100">

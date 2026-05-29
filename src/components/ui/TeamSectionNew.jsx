@@ -1,211 +1,249 @@
-import React, { useState, useEffect } from "react";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
-import { FaLinkedinIn } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
+import React from "react";
 
 const TeamSectionNew = () => {
-  const [active, setActive] = useState(0);
 
-  const teamMembers = [
-    {
-      name: "Shub Kumar",
-      role: "Chief Executive Officer",
-      img: "/people/shubhsir.jpeg",
-      bio: "Visionary leader driving innovation",
-    },
-    {
-      name: "Himanshu Dubey",
-      role: "Python Fullstack Engineer",
-      img: "/people/himanshu.png",
-      bio: "Architecting scalable solutions",
-    },
-    {
-      name: "Nikhil Sain",
-      role: "Business Development Head",
-      img: "/people/nikhil.jpeg",
-      bio: "Building strategic partnerships",
-    },
-    {
-      name: "Rajiv Bhatia",
-      role: "VP Strategic Partnerships",
-      img: "/people/p7.jpeg",
-      bio: "Strategic Alliance Builder",
-    },
-    {
-      name: "Prateek Sah",
-      role: "Digital Marketing",
-      img: "/people/prateek.png",
-      bio: "Marketing and growth expert",
-    },
-    {
-      name: "Abhishek Sah",
-      role: "Junior Python Developer",
-      img: "/people/abhishek.png",
-      bio: "Backend and API developer",
-    },
-    {
-      name: "Ritika Malhotra",
-      role: "Project Manager",
-      img: "/people/p5.jpeg",
-      bio: "Managing projects efficiently",
-    },
-  ];
+const teamMembers = [
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActive((prev) => (prev + 1) % teamMembers.length);
-    }, 4000);
+{
+name:"Shub Kumar",
+role:"Chief Executive Officer",
+img:"/people/shubhsir.jpeg",
+bio:"Visionary leader driving company growth and innovation."
+},
 
-    return () => clearInterval(timer);
-  }, []);
+{
+name:"Himanshu Dubey",
+role:"Python Fullstack Engineer",
+img:"/people/himanshu.png",
+bio:"Building scalable systems and backend architecture."
+},
 
-  const nextSlide = () => {
-    setActive((prev) => (prev + 1) % teamMembers.length);
-  };
+{
+name:"Nikhil Sain",
+role:"Business Development Head",
+img:"/people/nikhil.jpeg",
+bio:"Creating strategic partnerships and opportunities."
+},
 
-  const prevSlide = () => {
-    setActive((prev) =>
-      prev === 0 ? teamMembers.length - 1 : prev - 1
-    );
-  };
+{
+name:"Rajiv Bhatia",
+role:"VP Strategic Partnerships",
+img:"/people/p7.jpeg",
+bio:"Strengthening long-term business relationships."
+},
 
-  return (
-    <section className="relative bg-[#050505] text-white py-28 overflow-hidden">
+{
+name:"Prateek Sah",
+role:"Digital Marketing Lead",
+img:"/people/prateek.png",
+bio:"Driving online presence and brand visibility."
+},
 
-      {/* Background glow */}
+{
+name:"Abhishek Sah",
+role:"Junior Python Developer",
+img:"/people/abhishek.png",
+bio:"Developing APIs and backend features."
+},
 
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-700/20 blur-[180px]" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-700/20 blur-[180px]" />
+{
+name:"Ritika Malhotra",
+role:"Project Manager",
+img:"/people/p5.jpeg",
+bio:"Managing teams and project execution."
+},
 
-      <div className="relative max-w-7xl mx-auto px-6">
+// New random people
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+{
+name:"Sophia Carter",
+role:"UI/UX Designer",
+img:"/people/p1.jpeg",
+bio:"Designing intuitive user experiences."
+},
 
-          {/* LEFT CONTENT */}
+{
+name:"Daniel Ross",
+role:"Frontend Engineer",
+img:"/people/p2.jpeg",
+bio:"Building modern interactive interfaces."
+},
 
-          <div>
+{
+name:"Emma Wilson",
+role:"Cloud Engineer",
+img:"/people/p3.jpeg",
+bio:"Handling deployment and infrastructure."
+},
 
-            <p className="tracking-[4px] text-gray-400 text-sm mb-5">
-              MEET OUR TEAM
-            </p>
+{
+name:"James Cooper",
+role:"DevOps Engineer",
+img:"/people/p4.jpeg",
+bio:"Automating systems and workflows."
+},
 
-            <h2 className="text-5xl md:text-7xl font-bold leading-tight">
+{
+name:"Olivia Brown",
+role:"AI Specialist",
+img:"/people/p6.jpeg",
+bio:"Developing intelligent AI systems."
+},
 
-              The people
-              <br />
+{
+name:"Lucas White",
+role:"Mobile Developer",
+img:"/people/p8.jpeg",
+bio:"Building Android and iOS experiences."
+},
 
-              behind
-              <br />
+{
+name:"Mia Anderson",
+role:"QA Engineer",
+img:"/people/p9.jpeg",
+bio:"Ensuring software quality and reliability."
+},
 
-              <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                extraordinary
-              </span>
+];
 
-              <br />
+return (
 
-              ideas
+<section className="bg-[#0D1117] text-white py-32 relative overflow-hidden">
 
-            </h2>
+{/* background effects */}
 
-            <p className="mt-8 text-gray-400 max-w-lg">
-              We are strategists, creators and innovators
-              building digital experiences that help brands
-              grow faster and stand out.
-            </p>
+<div className="absolute top-0 left-0 w-[600px] h-[600px] bg-red-500/10 blur-[180px]" />
 
-            <div className="flex gap-4 mt-10">
+<div className="absolute right-0 bottom-0 w-[600px] h-[600px] bg-blue-500/10 blur-[180px]" />
 
-              <button className="px-7 py-3 rounded-xl bg-white text-black font-medium">
-                Join Our Team
-              </button>
+<div className="max-w-7xl mx-auto px-6">
 
-              <button className="px-7 py-3 rounded-xl border border-gray-600">
-                View Culture
-              </button>
+<div className="text-center mb-24">
 
-            </div>
+<p className="tracking-[5px] text-gray-400 mb-6">
 
-          </div>
+(OUR TEAM)
 
-          {/* RIGHT SIDE CARDS */}
+</p>
 
-          <div>
+<h2 className="text-5xl md:text-7xl font-bold">
 
-            <div className="grid grid-cols-2 gap-5">
+Meet The People Behind
 
-              {teamMembers.slice(active, active + 4).map(
-                (member, index) => (
+<br/>
 
-                <div
-                  key={index}
-                  className="group relative overflow-hidden rounded-3xl bg-white/5 backdrop-blur-md border border-white/10"
-                >
+<span className="text-[#ff4a4a]">
+Vsachi Tech
+</span>
 
-                  <img
-                    src={member.img}
-                    alt={member.name}
-                    className="w-full h-[280px] object-cover transition duration-700 group-hover:scale-110"
-                  />
+</h2>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"/>
+</div>
 
-                  <div className="absolute bottom-0 p-5 w-full">
+<div className="space-y-28">
 
-                    <h3 className="font-bold text-xl">
-                      {member.name}
-                    </h3>
+{teamMembers.map((member,index)=>(
 
-                    <p className="text-gray-300 text-sm">
-                      {member.role}
-                    </p>
+<div
+key={index}
+className={`
+grid 
+md:grid-cols-2
+gap-16
+items-center
+${index % 2 !== 0 ? "md:[&>*:first-child]:order-2" : ""}
+`}
+>
 
-                    <div className="flex gap-3 mt-3">
+{/* IMAGE */}
 
-                      <button className="p-2 rounded-full bg-white/10 hover:bg-red-500 transition">
-                        <FaLinkedinIn size={14}/>
-                      </button>
+<div
+className="
+rounded-[35px]
+overflow-hidden
+bg-[#161B22]
+border border-white/5
+hover:scale-[1.02]
+transition-all duration-700
+"
+>
 
-                      <button className="p-2 rounded-full bg-white/10 hover:bg-blue-500 transition">
-                        <HiOutlineMail size={14}/>
-                      </button>
+<img
+src={member.img}
+alt={member.name}
+className="
+w-full
+h-[450px]
+object-contain
+p-6
+"
+/>
 
-                    </div>
+</div>
 
-                  </div>
 
-                </div>
+{/* CONTENT */}
 
-              ))}
-            </div>
+<div>
 
-            {/* Navigation */}
+<p className="text-[#ff4a4a] mb-4">
+TEAM MEMBER
+</p>
 
-            <div className="flex justify-center gap-6 mt-8">
+<h3 className="text-5xl font-bold">
 
-              <button
-                onClick={prevSlide}
-                className="p-4 rounded-full border border-white/20 hover:bg-white/10"
-              >
-                <IoChevronBack/>
-              </button>
+{member.name}
 
-              <button
-                onClick={nextSlide}
-                className="p-4 rounded-full border border-white/20 hover:bg-white/10"
-              >
-                <IoChevronForward/>
-              </button>
+</h3>
 
-            </div>
+<p className="text-xl text-gray-400 mt-4">
 
-          </div>
+{member.role}
 
-        </div>
+</p>
 
-      </div>
+<p className="text-gray-500 leading-8 mt-8 max-w-lg">
 
-    </section>
-  );
+{member.bio}
+
+</p>
+
+<div className="flex gap-4 mt-8">
+
+<div className="
+px-5 py-3
+rounded-full
+bg-[#1B2430]
+text-sm
+">
+Team Player
+</div>
+
+<div className="
+px-5 py-3
+rounded-full
+bg-[#1B2430]
+text-sm
+">
+Innovation
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+))}
+
+</div>
+
+</div>
+
+</section>
+
+);
+
 };
 
 export default TeamSectionNew;
