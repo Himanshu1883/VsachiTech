@@ -1,10 +1,7 @@
-import { FaPalette, FaCheckCircle, FaRocket, FaPencilRuler, FaUsers, FaClock, FaShieldAlt, FaDollarSign, FaLightbulb } from "react-icons/fa";
+import { FaPalette, FaCheckCircle, FaRocket, FaPencilRuler, FaUsers, FaClock, FaShieldAlt, FaDollarSign, FaLightbulb, FaLayerGroup, FaImage, FaPenNib } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { 
     SiFigma,
-    SiAdobexd,
-    SiAdobephotoshop,
-    SiAdobeillustrator,
     SiSketch,
     SiInvision,
     SiFramer,
@@ -675,9 +672,9 @@ export default function UiUxDesigners() {
 function UiUxMarqueeSection() {
     const technologies = [
         { name: "Figma", icon: SiFigma, color: "#F24E1E" },
-        { name: "Adobe XD", icon: SiAdobexd, color: "#FF61F6" },
-        { name: "Photoshop", icon: SiAdobephotoshop, color: "#31A8FF" },
-        { name: "Illustrator", icon: SiAdobeillustrator, color: "#FF9A00" },
+        { name: "Adobe XD", icon: FaLayerGroup, color: "#FF61F6" },
+        { name: "Photoshop", icon: FaImage, color: "#31A8FF" },
+        { name: "Illustrator", icon: FaPenNib, color: "#FF9A00" },
         { name: "Sketch", icon: SiSketch, color: "#F7B500" },
         { name: "InVision", icon: SiInvision, color: "#FF3366" },
         { name: "Framer", icon: SiFramer, color: "#0055FF" },

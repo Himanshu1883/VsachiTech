@@ -8,8 +8,7 @@ import {
     FaLaravel,
     FaReact,
     FaPalette,
-    FaArrowRight,
-    FaBriefcase,
+    FaArrowRight
 } from "react-icons/fa";
 
 /* ---------------- SERVICES ---------------- */
@@ -48,14 +47,7 @@ const services = [
         title: "AI Chatbots",
         desc: "24/7 support",
         link: "/what-we-do/ai-chatbots"
-    },
-    {
-        id: 5,
-        icon: FaBriefcase,
-        title: "View Portfolio",
-        desc: "Explore our work",
-        link: "/our-work",
-    },
+    }
 ];
 
 /* ---------------- HIRING ---------------- */
@@ -150,14 +142,14 @@ export default function WhatWeDoMobileMegaMenu({ onNavigate }) {
                     Hire Experts
                 </h3>
 
-                <div className="flex flex-col gap-3">
+                <div className="space-y-2">
                     {hiringResources.map((resource) => {
                         const Icon = resource.icon;
                         return (
                             <button
                                 key={resource.id}
                                 onClick={() => onNavigate(resource.link)}
-                                className="w-full group block"
+                                className="w-full group"
                             >
                                 <div className="
                                     flex items-center gap-3 p-3 rounded-lg

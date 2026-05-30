@@ -6,7 +6,6 @@ import UaeVisionMegaMenu from '../ui/UaeVisionMegaMenu.JSX';
 import Logo from '../ui/logo';
 import WhatWeDoMobileMegaMenu from '../ui/Whatwedomobilemegamenu';
 import UaeVisionMobileMegaMenu from '../ui/UaeVisionMobileMegaMenu';
-import PortfolioDrawer from '../portfolio/PortfolioDrawer';
 
 export default function Navbar() {
   const location = useLocation();
@@ -21,7 +20,6 @@ export default function Navbar() {
   const [showUaeVision, setShowUaeVision] = useState(false);
   const [mobileWhatWeDoOpen, setMobileWhatWeDoOpen] = useState(false);
   const [mobileUaeVisionOpen, setMobileUaeVisionOpen] = useState(false);
-  const [portfolioDrawerOpen, setPortfolioDrawerOpen] = useState(false);
 
   const navRef = useRef(null);
   const itemRefs = useRef([]);
@@ -106,7 +104,6 @@ export default function Navbar() {
     setMobileOpen(false);
     setMobileWhatWeDoOpen(false);
     setMobileUaeVisionOpen(false);
-    setPortfolioDrawerOpen(false);
 
     // Instantly fix navbar background on route change
     if (location.pathname !== "/") {
@@ -123,7 +120,6 @@ export default function Navbar() {
     setShowUaeVision(false);
     setMobileWhatWeDoOpen(false);
     setMobileUaeVisionOpen(false);
-    setPortfolioDrawerOpen(false);
   };
 
   const toggleMobileWhatWeDo = (e) => {
@@ -144,16 +140,6 @@ export default function Navbar() {
       setMobileUaeVisionOpen(false);
     }
   }, [mobileOpen]);
-
-  const openPortfolioDrawer = () => {
-    setShowWhatWeDo(false);
-    setShowUaeVision(false);
-    setPortfolioDrawerOpen(true);
-  };
-
-  const isPortfolioActive =
-    location.pathname === "/our-work" ||
-    location.pathname.startsWith("/our-work/");
 
   return (
     <>
@@ -229,18 +215,9 @@ export default function Navbar() {
 
           {/* DESKTOP ACTION */}
           <div className="hidden lg:flex gap-5 items-center">
-            <button
-              type="button"
-              onClick={openPortfolioDrawer}
-              className={`inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold uppercase tracking-wide transition-colors
-                ${
-                  isPortfolioActive
-                    ? "bg-white text-black"
-                    : "bg-[#e44f39] text-white hover:bg-[#ff6b55]"
-                }`}
-            >
-              Portfolio
-            </button>
+            <div className="bg-[#e44f39] p-3 rounded-full cursor-pointer">
+              <FiGrid className="text-white" />
+            </div>
           </div>
 
           {/* MOBILE TOGGLE */}
@@ -337,21 +314,12 @@ export default function Navbar() {
               );
             })}
 
-            {/* Mobile portfolio CTA */}
-            <div className="pt-4 space-y-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileOpen(false);
-                  setPortfolioDrawerOpen(true);
-                }}
-                className="w-full bg-[#e44f39] p-4 rounded-full cursor-pointer flex items-center justify-center gap-3 hover:bg-[#ff6b55] transition-colors"
-              >
+            {/* Mobile CTA */}
+            <div className="pt-4">
+              <div className="bg-[#e44f39] p-4 rounded-full cursor-pointer flex items-center justify-center gap-3 hover:bg-[#ff6b55] transition-colors">
                 <FiGrid className="text-white text-xl" />
-                <span className="text-white font-semibold uppercase text-sm tracking-wide">
-                  View Portfolio
-                </span>
-              </button>
+                <span className="text-white font-semibold">Get Started</span>
+              </div>
             </div>
           </div>
         </div>
@@ -374,11 +342,6 @@ export default function Navbar() {
           setShowWhatWeDo(false);
         }}
         onLeave={() => setShowUaeVision(false)}
-      />
-
-      <PortfolioDrawer
-        open={portfolioDrawerOpen}
-        onClose={() => setPortfolioDrawerOpen(false)}
       />
     </>
   );

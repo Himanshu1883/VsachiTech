@@ -7,7 +7,7 @@ import {
   FaMobileAlt, FaShoppingCart, FaHeadset, FaCalendarAlt,
   FaFacebookMessenger, FaInstagram, FaTelegram, FaLanguage,
   FaUserCheck, FaBrain, FaSync, FaBullseye, FaChartBar,
-  FaLightbulb, FaRocket, FaCogs, FaGlobe
+  FaLightbulb, FaRocket, FaCogs, FaGlobe, FaCloud
 } from 'react-icons/fa';
 import { MdSpeed, MdSupportAgent, MdChat, MdSmartToy } from 'react-icons/md';
 import { SiOpenai } from 'react-icons/si';
@@ -15,7 +15,7 @@ import { FaMicrosoft } from "react-icons/fa";
 // Import tech stack icons for Chatbot tools
 import { 
   SiGoogleanalytics, SiGoogleads, SiDialogflow, 
-  SiBmcsoftware, SiAmazonwebservices,
+  SiBmcsoftware,
   SiTensorflow, SiPytorch
 } from 'react-icons/si';
 
@@ -46,7 +46,7 @@ useSEO({
     { icon: SiDialogflow, name: "Dialogflow", color: "text-blue-500" },
     { icon: SiBmcsoftware, name: "IBM Watson", color: "text-blue-600" },
     { icon: FaMicrosoft, name: "Azure AI", color: "text-blue-400" },
-    { icon: SiAmazonwebservices, name: "AWS Lex", color: "text-yellow-600" },
+    { icon: FaCloud, name: "AWS Lex", color: "text-yellow-600" },
     { icon: SiTensorflow, name: "TensorFlow", color: "text-orange-600" },
     { icon: SiPytorch, name: "PyTorch", color: "text-red-600" },
     { icon: SiGoogleanalytics, name: "Analytics", color: "text-orange-500" },

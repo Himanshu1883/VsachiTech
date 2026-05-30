@@ -26,10 +26,8 @@ import {
 
 import {
   SiFigma,
-  SiAdobexd,
   SiSketch,
   SiFramer,
-  SiAdobephotoshop,
 } from 'react-icons/si';
 
 import { MdLocationOn, MdWork, MdSpeed, MdTouchApp, MdColorLens, MdTrendingUp } from 'react-icons/md';
@@ -68,7 +66,7 @@ useSEO({
 
   const technologies = [
     { name: "Figma",          icon: SiFigma,         color: "text-purple-600" },
-    { name: "Adobe XD",       icon: SiAdobexd,       color: "text-red-600"    },
+    { name: "Adobe XD",       icon: FaLayerGroup,    color: "text-red-600"    },
     { name: "Sketch",         icon: SiSketch,        color: "text-yellow-600" },
     { name: "Framer",         icon: SiFramer,        color: "text-pink-600"   },
     { name: "Principle",      icon: FaMobileAlt,     color: "text-blue-600"   },
