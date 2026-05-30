@@ -1,581 +1,328 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import useSEO from "../components/hooks/useSEO";
+import { PORTFOLIO_CLIENTS } from "../data/portfolioCaseStudies";
+import ProjectCaseStudy from "../components/portfolio/ProjectCaseStudy";
+import PortfolioTrustBanner from "../components/portfolio/PortfolioTrustBanner";
+import FeaturedInfiniteScroll from "../components/portfolio/FeaturedInfiniteScroll";
+
+const BRAND = "#de6b58";
 
 function Portfolio() {
-
-const recentProjects=[
-"/portfolio1.jpg",
-"/portfolio2.jpg",
-"/portfolio3.jpg",
-"/portfolio4.jpg"
-];
-
-const aiProjects=[
-"/ai1.jpg",
-"/ai2.jpg",
-"/ai3.jpg",
-"/ai4.jpg"
-];
-
-const webProjects=[
-"/web1.jpg",
-"/web2.jpg",
-"/web3.jpg",
-"/web4.jpg"
-];
-
-const engagementProjects=[
-"/engage1.jpg",
-"/engage2.jpg",
-"/engage3.jpg",
-"/engage4.jpg"
-];
-
-const Row = ({ title, data }) => (
-
-<section className="mt-24">
-
-<div className="flex items-center justify-between mb-8">
-
-<h2
-className="
-text-3xl
-md:text-4xl
-font-black
-tracking-[-0.03em]
-"
->
-
-{title}
-
-</h2>
-
-
-</div>
-
-
-<motion.div
-
-animate={{
-x:["0%","-50%"]
-}}
-
-transition={{
-duration:25,
-repeat:Infinity,
-ease:"linear"
-}}
-
-className="
-flex
-gap-6
-w-max
-"
->
-
-{[...data,...data].map((image,index)=>(
-
-<motion.div
-
-key={index}
-
-whileHover={{
-y:-10,
-scale:1.03
-}}
-
-className="
-group
-relative
-
-min-w-[350px]
-md:min-w-[420px]
-
-rounded-[32px]
-overflow-hidden
-
-bg-[#141414]
-border
-border-white/10
-
-hover:border-[#de6b58]/40
-
-transition-all
-duration-500
-"
->
-
-<div className="h-[260px] overflow-hidden">
-
-<img
-src={image}
-alt=""
-
-className="
-w-full
-h-full
-object-cover
-
-transition-all
-duration-[3000ms]
-
-group-hover:scale-110
-"
-/>
-
-</div>
-
-
-{/* overlay */}
-
-<div
-className="
-absolute
-inset-0
-
-bg-gradient-to-t
-from-black/80
-via-transparent
-to-transparent
-"
-/>
-
-
-{/* content */}
-
-<div
-className="
-absolute
-bottom-0
-left-0
-p-8
-"
->
-
-<p
-className="
-text-[#de6b58]
-text-sm
-mb-2
-"
->
-
-VSACHI PROJECT
-
-</p>
-
-<h3
-className="
-text-2xl
-font-bold
-"
->
-
-Project {((index%data.length)+1)}
-
-</h3>
-
-<p
-className="
-mt-2
-text-gray-300
-text-sm
-"
->
-
-Creative systems designed for growth.
-
-</p>
-
-</div>
-
-</motion.div>
-
-))}
-
-</motion.div>
-
-</section>
-
-)
-
-return (
-
-<div className="bg-[#0b0b0b] text-white min-h-screen overflow-hidden">
-
-{/* ===== LEFT GLOW ===== */}
-
-<motion.div
-animate={{
-y:[0,-40,0],
-x:[0,20,0]
-}}
-transition={{
-duration:10,
-repeat:Infinity,
-ease:"easeInOut"
-}}
-className="
-absolute
-left-[-250px]
-top-[20%]
-
-w-[500px]
-h-[500px]
-
-rounded-full
-bg-[#de6b58]/10
-blur-[140px]
-"
-/>
-
-
-{/* ===== RIGHT GLOW ===== */}
-
-<motion.div
-animate={{
-y:[0,40,0],
-x:[0,-20,0]
-}}
-transition={{
-duration:12,
-repeat:Infinity,
-ease:"easeInOut"
-}}
-className="
-absolute
-right-[-250px]
-top-[50%]
-
-w-[450px]
-h-[450px]
-
-rounded-full
-bg-[#de6b58]/8
-blur-[140px]
-"
-/>
-
-
-{/* ===== LEFT RING ===== */}
-
-<motion.div
-animate={{
-rotate:[0,360]
-}}
-transition={{
-duration:45,
-repeat:Infinity,
-ease:"linear"
-}}
-className="
-absolute
-left-[-300px]
-top-[35%]
-
-w-[650px]
-h-[650px]
-
-rounded-full
-border-[2px]
-border-[#de6b58]/10
-"
-/>
-
-
-{/* ===== RIGHT RING ===== */}
-
-<motion.div
-animate={{
-rotate:[360,0]
-}}
-transition={{
-duration:60,
-repeat:Infinity,
-ease:"linear"
-}}
-className="
-absolute
-right-[-300px]
-bottom-[15%]
-
-w-[700px]
-h-[700px]
-
-rounded-full
-border-[2px]
-border-white/5
-"
-/>
-
-
-{/* ===== FLOATING LIGHT PARTICLES ===== */}
-
-{[...Array(8)].map((_,i)=>(
-
-<motion.div
-key={i}
-animate={{
-y:[0,-40,0],
-opacity:[0.2,.7,.2]
-}}
-transition={{
-duration:4+i,
-repeat:Infinity
-}}
-className="
-absolute
-rounded-full
-bg-[#de6b58]
-"
-style={{
-width:`${4+i}px`,
-height:`${4+i}px`,
-left:`${10+i*10}%`,
-top:`${20+(i*8)}%`
-}}
-/>
-
-))}
-
-
-{/* HERO */}
-
-<section
-className="
-relative
-py-32
-px-6
-"
->
-
-<div
-className="
-absolute
-top-[-200px]
-right-[-150px]
-w-[500px]
-h-[500px]
-rounded-full
-bg-[#de6b58]/20
-blur-[140px]
-"
-/>
-
-
-<div className="max-w-7xl mx-auto">
-
-<p
-className="
-uppercase
-tracking-[0.35em]
-text-sm
-text-[#de6b58]
-mb-6
-"
->
-
-( OUR PORTFOLIO )
-
-</p>
-
-<h1
-className="
-font-black
-leading-[0.9]
-tracking-[-0.05em]
-
-text-[48px]
-md:text-[90px]
-"
->
-
-Projects that build
-
-<span className="block text-[#de6b58]">
-
-digital momentum
-
-</span>
-
-</h1>
-
-<p
-className="
-mt-8
-max-w-2xl
-text-gray-400
-leading-[1.9]
-"
->
-
-Explore our work across AI systems,
-web experiences, digital engagement
-and growth solutions.
-
-</p>
-
-</div>
-
-</section>
-
-
-
-{/* FEATURED */}
-
-<section className="max-w-7xl mx-auto px-6">
-
-<div
-className="
-rounded-[40px]
-overflow-hidden
-bg-[#141414]
-border
-border-white/10
-"
->
-
-<div className="h-[550px] overflow-hidden">
-
-<img
-src="/featured.jpg"
-alt=""
-className="
-w-full
-h-full
-object-cover
-"
-/>
-
-</div>
-
-<div className="p-10">
-
-<p className="text-[#de6b58]">
-
-FEATURED PROJECT
-
-</p>
-
-<h2
-className="
-text-4xl
-font-black
-mt-4
-"
->
-
-Digital Engagement System
-
-</h2>
-
-<p
-className="
-text-gray-400
-mt-6
-leading-[1.8]
-"
->
-
-Built a content ecosystem designed
-to increase engagement and audience growth.
-
-</p>
-
-<div className="flex gap-6 mt-8">
-
-<div>+220% Reach</div>
-<div>+90% Engagement</div>
-<div>+140% Retention</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<div className="max-w-7xl mx-auto px-6 pb-32">
-
-<Row
-title="Recent Projects"
-data={recentProjects}
-/>
-
-<Row
-title="AI Projects"
-data={aiProjects}
-/>
-
-<Row
-title="Web Development"
-data={webProjects}
-/>
-
-<Row
-title="Digital Engagement"
-data={engagementProjects}
-/>
-
-</div>
-
-
-
-{/* CTA */}
-
-<section className="pb-28 px-6">
-
-<div
-className="
-max-w-5xl
-mx-auto
-rounded-[40px]
-bg-[#de6b58]
-py-20
-text-center
-"
->
-
-<h2
-className="
-text-5xl
-font-black
-"
->
-
-Ready to create something amazing?
-
-</h2>
-
-<Link
-to="/contact"
-className="
-inline-flex
-mt-8
-px-8
-py-4
-rounded-full
-bg-white
-text-black
-font-semibold
-"
->
-
-Start Project →
-
-</Link>
-
-</div>
-
-</section>
-
-</div>
-
-)
-
+  const [activeClientId, setActiveClientId] = useState(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useSEO({
+    title: "Our Work & Client Projects | Vsachi Tech",
+    description:
+      "Explore Vsachi Tech client websites — bespoke tailoring, wholesale zari, designer blouses, and luxury portfolios built with modern UI/UX and full-stack engineering.",
+    canonical: "https://vsachitech.com/our-work",
+  });
+
+  const selectedClient = useMemo(
+    () => PORTFOLIO_CLIENTS.find((client) => client.id === activeClientId) || null,
+    [activeClientId],
+  );
+
+  const openClientModal = (clientId, imageIndex = 0) => {
+    setActiveClientId(clientId);
+    setActiveImageIndex(imageIndex);
+  };
+
+  const closeModal = () => {
+    setActiveClientId(null);
+    setActiveImageIndex(0);
+  };
+
+  const goPrev = () => {
+    if (!selectedClient) return;
+    const total = selectedClient.images.length;
+    setActiveImageIndex((prev) => (prev - 1 + total) % total);
+  };
+
+  const goNext = () => {
+    if (!selectedClient) return;
+    const total = selectedClient.images.length;
+    setActiveImageIndex((prev) => (prev + 1) % total);
+  };
+
+  return (
+    <div className="relative bg-[#0b0b0b] text-white min-h-screen overflow-x-hidden max-w-[100vw]">
+      {/* ambient */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute left-[-260px] top-[20%] w-[520px] h-[520px] rounded-full blur-[150px]"
+        style={{ background: `${BRAND}14` }}
+        animate={{ x: [0, 18, 0], y: [0, -28, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute right-[-260px] top-[52%] w-[520px] h-[520px] rounded-full blur-[160px]"
+        style={{ background: `${BRAND}10` }}
+        animate={{ x: [0, -18, 0], y: [0, 28, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* trust banner */}
+      <PortfolioTrustBanner />
+
+      {/* quick overview */}
+      <section className="relative pt-4 sm:pt-6 lg:pt-8 pb-14 px-2 sm:px-3 overflow-x-hidden">
+        <div className="w-full max-w-[100rem] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div className="lg:col-span-8">
+              <p className="max-w-2xl text-gray-300/75 leading-[1.9] text-sm sm:text-base">
+                Preview each build, open full-screen galleries, and read how we
+                solved business problems with UI/UX and engineering.
+              </p>
+
+              <nav
+                className="mt-8 flex flex-wrap gap-2"
+                aria-label="Jump to project details"
+              >
+                {PORTFOLIO_CLIENTS.map((c) => (
+                  <a
+                    key={c.id}
+                    href={`#${c.id}`}
+                    className="text-xs sm:text-sm px-3 py-1.5 rounded-full border border-white/15 text-gray-300 hover:border-[#de6b58]/60 hover:text-white transition"
+                  >
+                    {c.name.split(" ")[0]}
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* <div className="lg:col-span-4">
+              <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 sm:p-7">
+                <p className="text-xs uppercase tracking-[0.28em] text-gray-300/70">
+                  Quick stats
+                </p>
+                <div className="mt-5 grid grid-cols-3 gap-4">
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-black text-[#de6b58]">
+                      {PORTFOLIO_CLIENTS.reduce(
+                        (count, client) => count + client.images.length,
+                        0,
+                      )}
+                    </div>
+                    <div className="text-[11px] sm:text-xs text-gray-300/70">
+                      Screens
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-black text-[#de6b58]">
+                      {PORTFOLIO_CLIENTS.length}
+                    </div>
+                    <div className="text-[11px] sm:text-xs text-gray-300/70">
+                      Clients
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-2xl sm:text-3xl font-black text-[#de6b58]">
+                      4
+                    </div>
+                    <div className="text-[11px] sm:text-xs text-gray-300/70">
+                      Case studies
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center rounded-full px-6 py-3 bg-[#de6b58] text-black font-semibold hover:brightness-110 transition"
+                  >
+                    Start a project
+                  </Link>
+                  <Link
+                    to="/what-we-do"
+                    className="inline-flex items-center justify-center rounded-full px-6 py-3 border border-white/20 text-white hover:border-[#de6b58]/70 hover:text-[#de6b58] transition"
+                  >
+                    View services
+                  </Link>
+                </div>
+              </div>
+            </div> */}
+          </div>
+        </div>
+      </section>
+
+      {/* featured infinite scroll */}
+      <FeaturedInfiniteScroll
+        projects={PORTFOLIO_CLIENTS}
+        onOpenGallery={openClientModal}
+      />
+
+      {/* Case studies */}
+      <section id="case-studies" className="pb-24 px-2 sm:px-3">
+        <div className="w-full max-w-[100rem] mx-auto">
+          <div className="mb-10 sm:mb-12">
+            <p className="text-xs uppercase tracking-[0.28em] text-[#de6b58] mb-3">
+              ( PROJECT DETAILS )
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-[-0.04em]">
+              How we built each product
+            </h2>
+            <p className="mt-4 max-w-3xl text-gray-300/80 leading-[1.85] text-sm sm:text-base">
+              Challenge, solution, functionality, UI/UX decisions, and the tech
+              behind every delivery — the way leading product teams document client
+              work.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-10 sm:gap-14">
+            {PORTFOLIO_CLIENTS.map((project, i) => (
+              <ProjectCaseStudy
+                key={project.id}
+                project={project}
+                reverse={i % 2 === 1}
+                onOpenGallery={openClientModal}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="pb-20 px-2 sm:px-3">
+        <div className="w-full max-w-[100rem] mx-auto">
+          <div className="rounded-[40px] border border-white/10 bg-gradient-to-r from-white/5 to-white/0 p-10 sm:p-12">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+              <div>
+                <p className="text-xs uppercase tracking-[0.28em] text-gray-200/70">
+                  Want a site like this?
+                </p>
+                <h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-[-0.04em]">
+                  Let’s build a website your customers trust.
+                </h2>
+                <p className="mt-4 text-gray-200/70 leading-[1.8] max-w-2xl">
+                  We combine UI/UX design with modern development to create fast,
+                  premium experiences for real businesses.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center rounded-full px-7 py-3.5 bg-[#de6b58] text-black font-semibold hover:brightness-110 transition"
+                >
+                  Start project
+                </Link>
+                <Link
+                  to="/what-we-do/web-development"
+                  className="inline-flex items-center justify-center rounded-full px-7 py-3.5 border border-white/20 text-white hover:border-[#de6b58]/70 hover:text-[#de6b58] transition"
+                >
+                  Web development
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* lightbox */}
+      <AnimatePresence>
+        {selectedClient && (
+          <motion.div
+            className="fixed inset-0 z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <button
+              type="button"
+              onClick={closeModal}
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+              aria-label="Close preview"
+            />
+
+            <div className="relative mx-auto max-w-6xl w-[92vw] sm:w-[90vw] top-[6vh]">
+              <motion.div
+                className="rounded-[28px] overflow-hidden border border-white/15 bg-[#0b0b0b]"
+                initial={{ y: 18, scale: 0.98, opacity: 0 }}
+                animate={{ y: 0, scale: 1, opacity: 1 }}
+                exit={{ y: 18, scale: 0.98, opacity: 0 }}
+                transition={{ duration: 0.22, ease: "easeOut" }}
+              >
+                <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-white/10">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.28em] text-[#de6b58]">
+                      {selectedClient.name}
+                    </p>
+                    <p className="text-sm text-gray-200/70">
+                      {selectedClient.type} • {activeImageIndex + 1}/
+                      {selectedClient.images.length}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={goPrev}
+                      className="px-3 py-2 rounded-full border border-white/15 text-white/90 hover:border-[#de6b58]/60 hover:text-white transition"
+                      aria-label="Previous"
+                    >
+                      Prev
+                    </button>
+                    <button
+                      type="button"
+                      onClick={goNext}
+                      className="px-3 py-2 rounded-full border border-white/15 text-white/90 hover:border-[#de6b58]/60 hover:text-white transition"
+                      aria-label="Next"
+                    >
+                      Next
+                    </button>
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className="px-3 py-2 rounded-full border border-white/15 text-white/90 hover:border-[#de6b58]/60 hover:text-white transition"
+                      aria-label="Close"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+
+                <div className="relative max-h-[76vh] overflow-auto">
+                  <img
+                    src={selectedClient.images[activeImageIndex]}
+                    alt={`${selectedClient.name} website screenshot ${activeImageIndex + 1}`}
+                    className="w-full h-auto"
+                  />
+                </div>
+
+                <div className="px-4 sm:px-6 py-4 border-t border-white/10">
+                  <div className="flex gap-3 overflow-x-auto pb-1">
+                    {selectedClient.images.map((img, idx) => (
+                      <button
+                        key={img}
+                        type="button"
+                        onClick={() => setActiveImageIndex(idx)}
+                        className={`shrink-0 rounded-xl overflow-hidden border transition ${
+                          idx === activeImageIndex
+                            ? "border-[#de6b58] opacity-100"
+                            : "border-white/15 opacity-70 hover:opacity-100"
+                        }`}
+                        aria-label={`Open screenshot ${idx + 1}`}
+                      >
+                        <img
+                          src={img}
+                          alt={`${selectedClient.name} thumbnail ${idx + 1}`}
+                          className="w-24 h-16 sm:w-28 sm:h-20 object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
-export default Portfolio
+export default Portfolio;

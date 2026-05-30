@@ -8,7 +8,8 @@ import {
     FaLaravel,
     FaReact,
     FaPalette,
-    FaArrowRight
+    FaArrowRight,
+    FaBriefcase,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -48,8 +49,16 @@ const services = [
         title: "AI Chatbots",
         desc: "24/7 support",
         link: "/what-we-do/ai-chatbots"
-    }
+    },
+    {
+        id: 5,
+        icon: FaBriefcase,
+        title: "View Portfolio",
+        desc: "Explore our work",
+        link: "/our-work",
+    },
 ];
+
 /* ---------------- HIRING ---------------- */
 const hiringResources = [
     {
@@ -91,7 +100,7 @@ export default function WhatWeDoMegaMenu({ open, onEnter, onLeave }) {
             className={`
         fixed top-[94px] left-1/2 -translate-x-1/2
         w-[1100px] max-w-[1100px]   
-        h-[420px]                  
+        min-h-[500px] h-auto max-h-[90vh]
         z-40
         bg-[#121212]/90 backdrop-blur-xl
         rounded-3xl border border-white/10 shadow-2xl
@@ -99,8 +108,8 @@ export default function WhatWeDoMegaMenu({ open, onEnter, onLeave }) {
         ${open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-4"}
       `}
         >
-            <div className="h-full w-full px-12 py-10 flex items-center"> 
-                <div className="grid grid-cols-12 gap-10 w-full h-full">
+            <div className="w-full px-12 py-10"> 
+                <div className="grid grid-cols-12 gap-10 w-full items-start">
 
                     {/* SERVICES */}
                     <div className="col-span-7 flex flex-col">
@@ -161,7 +170,7 @@ export default function WhatWeDoMegaMenu({ open, onEnter, onLeave }) {
                             Hire Experts
                         </h3>
 
-                        <div className="space-y-3">
+                        <div className="flex flex-col gap-4">
                             {hiringResources.map((resource) => {
                                 const Icon = resource.icon;
                                 return (
@@ -169,7 +178,7 @@ export default function WhatWeDoMegaMenu({ open, onEnter, onLeave }) {
                                         key={resource.id}
                                         to={resource.link}
                                         onClick={onLeave}
-                                        className="group"
+                                        className="group block"
                                     >
                                         <div className="
                                             flex items-center gap-4 p-4 rounded-xl

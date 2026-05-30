@@ -1,5 +1,14 @@
 import React, { useState } from "react";
 
+/** Vite serves static files from public/ at /. Never use dist/ in src paths. */
+const PLACEHOLDER_IMG = "/people/p1.jpeg";
+
+function teamImagePath(path) {
+  if (!path) return PLACEHOLDER_IMG;
+  if (path.startsWith("/")) return path;
+  return `/${path.replace(/^dist\//, "")}`;
+}
+
 const teamMembers = [
   {
     name: "Shub Kumar",
@@ -12,9 +21,9 @@ const teamMembers = [
  
   {
     name: "Himanshu Dubey",
-    role: "Python Fullstack Engineer",
+    role: "Tech Head",
     img: "/people/himanshu.png",
-    bio: "Building scalable systems and backend architecture.",
+    bio: "Leading technical strategy, architecture, and engineering excellence across the team.",
     tag: "ENGINEERING",
     index: "01",
   },
@@ -35,9 +44,9 @@ const teamMembers = [
     index: "03",
   },
   {
-    name: "Ritika Malhotra",
+    name: "Charu Sharma",
     role: "Project Manager",
-    img: "/people/p5.jpeg",
+    img: "/people/Charu_Sharma_PM_.png",
     bio: "Managing execution and delivery.",
     tag: "OPS",
     index: "04",
@@ -46,103 +55,103 @@ const teamMembers = [
   {
     name: "Gargie",
     role: "Graphic Designer",
-    img: "dist/people/gargie.png",
-    bio: "Building intelligent systems.",
+    img: "/people/gargie.png",
+    bio: "Crafting visual identity and engaging brand creatives.",
     tag: "Digital Engagement",
     index: "09",
   },
   {
     name: "Saurav",
     role: "Business Developer",
-    img: "dist/people/saurav.png",
-    bio: "Creating Android experiences.",
+    img: "/people/saurav.png",
+    bio: "Identifying opportunities and growing client relationships.",
     tag: "Growth",
     index: "10",
   },
   {
     name: "Priyanshu Yadav",
     role: "Business Analyst Intern",
-    img: "dist/people/priyanshu.png",
-    bio: "Ensuring product quality.",
+    img: "/people/priyanshu.png",
+    bio: "Analyzing data and insights to support business decisions.",
     tag: "Business",
     index: "11",
   },
   {
     name: "Sumit Mishra",
     role: "Full Stack Developer ",
-    img: "dist/people/sumit.png",
-    bio: "Visionary leader driving innovation and long-term company growth.",
+    img: "/people/sumit.png",
+    bio: "Delivering end-to-end web applications with modern frameworks.",
     tag: "Engineer",
     index: "12",
   },
   {
     name: "Shubh Shukla ",
     role: "Python Developer",
-    img: "dist/people/shubh_dataentry.png",
-    bio: "Visionary leader driving innovation and long-term company growth.",
+    img: "/people/shubh_dataentry.png",
+    bio: "Developing robust Python solutions and backend services.",
     tag: "Engineer",
     index: "13",
   },
   {
     name: "Mohit Giri",
     role: "Full Stack Developer",
-    img: "dist/people/mohit.png",
-    bio: "Visionary leader driving innovation and long-term company growth.",
+    img: "/people/mohit_giri.jpeg",
+    bio: "Building responsive frontends and reliable full stack features.",
     tag: "Engineer",
     index: "14",
   },
   {
     name: "Satyam",
     role: " Creative Video Editor",
-    img: "dist/people/satyam.png",
-    bio: "Visionary leader driving innovation and long-term company growth.",
+    img: "/people/satyam.png",
+    bio: "Producing compelling video content for brand storytelling.",
     tag: "Digital Engagement",
     index: "15",
   },
   {
     name: "Anjali Saini",
-    role: "Automation Engineering Intern",
-    img: "dist/people/anjali.png",
-    bio: "Visionary leader driving innovation and long-term company growth.",
+    role: "Automation Engineer",
+    img: "/people/anjali.png",
+    bio: "Supporting workflow automation and engineering integrations.",
     tag: "Engineer",
     index: "16",
   },
    {
     name: "Raju",
     role: "Photographer",
-    img: "dist/people/raju.png",
-    bio: "Ensuring product quality.",
+    img: "/people/raju.png",
+    bio: "Capturing high-quality visuals for campaigns and events.",
     tag: "Digital Engagemnt",
     index: "17",
   }, {
     name: "Jithin Simon",
     role: "Video Editor",
-    img: "dist/people/jithin.png",
-    bio: "Ensuring product quality.",
+    img: "/people/jithin.png",
+    bio: "Editing polished videos that elevate brand narratives.",
     tag: "Digital Engagement",
     index: "18",
   },
    {
     name: "Neeraj Gupta",
     role: "Full Stack Developer Intern",
-    img: "dist/people/neeraj.png",
-    bio: "Ensuring product quality.",
+    img: "/people/neeraj.png",
+    bio: "Building and learning full stack features across the product.",
     tag: "Engineer",
     index: "19",
   },
    {
     name: "Ankit Kumar",
     role: "Admin",
-    img: "dist/people/mohit_kumar.png",
-    bio: "Ensuring product quality.",
+    img: "/people/mohit_kumar.png",
+    bio: "Keeping daily operations organized and the office running smoothly.",
     tag: "Digital Engagement",
     index: "18",
   },
    {
     name: "Rajesh ",
     role: "Office Help",
-    img: "dist/people/rajesh.png",
-    bio: "Ensuring product quality.",
+    img: "/people/rajesh.png",
+    bio: "Supporting the team with essential workplace assistance.",
     tag: "Digital Engagement",
     index: "20",
   },
@@ -152,7 +161,7 @@ const teamMembers = [
 
 function MemberCard({ member }) {
   const [hovered, setHovered] = useState(false);
-  
+  const [imgSrc, setImgSrc] = useState(() => teamImagePath(member.img));
 
   return (
     <div
@@ -165,7 +174,15 @@ function MemberCard({ member }) {
 
       {/* photo */}
       <div className="gc-photo">
-        <img src={member.img} alt={member.name} className="gc-img" />
+        <img
+          src={imgSrc}
+          alt={member.name}
+          className="gc-img"
+          loading="lazy"
+          onError={() => {
+            if (imgSrc !== PLACEHOLDER_IMG) setImgSrc(PLACEHOLDER_IMG);
+          }}
+        />
         <div className="gc-fade" />
        
 
@@ -402,13 +419,16 @@ const TeamSection3 = () => {
 }
        .gc-bio {
   font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  color: #2d4055;
-  line-height: 2.0;
+  font-size: 13px;
+  color: #9db0c9;
+  line-height: 1.65;
   margin: 0;
   font-weight: 400;
   letter-spacing: -0.1px;
 }
+        .gc--on .gc-bio {
+          color: #c5d4e8;
+        }
 
         /* accent bar */
         .gc-bar {

@@ -4,6 +4,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Portfolio from './pages/Portfolio';
+import ProjectDetail from './pages/ProjectDetail';
 import Blog from './pages/Blog';
 import Policies from './pages/Policies';
 import HireTalents from './pages/HireTalents';
@@ -54,6 +55,7 @@ export default function AppRoutes() {
             <Route path="/what-we-do/automation" element={<Automation />} />
             <Route path="/what-we-do/ai-chatbots" element={<AiChatbots />} />
             <Route path="/our-work" element={<Portfolio />} />
+            <Route path="/our-work/:projectId" element={<ProjectDetail />} />
             <Route path="/our-blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/policies" element={<Policies />} />
