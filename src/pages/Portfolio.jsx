@@ -155,6 +155,7 @@ function Portfolio() {
         onOpenGallery={openClientModal}
       />
 
+
       
 
       {/* Case studies */}
