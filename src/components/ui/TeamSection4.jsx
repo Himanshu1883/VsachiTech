@@ -149,7 +149,7 @@ const teamMembers = [
   },
    {
     name: "Rajesh ",
-    role: "Office Help",
+    role: "Office Manager",
     img: "/people/rajesh.png",
     bio: "Supporting the team with essential workplace assistance.",
     tag: "Digital Engagement",
