@@ -243,6 +243,8 @@ export default function Navbar() {
             </button>
           </div>
 
+          
+
           {/* MOBILE TOGGLE */}
           <button
             className="lg:hidden text-white text-2xl z-50"
