@@ -74,7 +74,7 @@ function FeaturedHero({ project, index, onOpenGallery, isLast }) {
             >
               Gallery
             </button>
-            <a
+            {/* <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -82,7 +82,7 @@ function FeaturedHero({ project, index, onOpenGallery, isLast }) {
             >
               Live site
               <FiExternalLink className="text-xs" />
-            </a>
+            </a> */}
           </div>
 
           {isLast && (

@@ -197,7 +197,7 @@ export default function ProjectDetailView({ project }) {
         </p>
 
         <div className="pd-hero-cta mt-8 flex flex-wrap gap-3">
-          <a
+          {/* <a
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -205,7 +205,7 @@ export default function ProjectDetailView({ project }) {
           >
             Visit live site
             <FaExternalLinkAlt className="text-sm" />
-          </a>
+          </a> */}
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 border border-white/20 text-white font-semibold hover:border-[#de6b58]/60 hover:text-[#de6b58] transition"

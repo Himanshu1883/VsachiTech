@@ -91,7 +91,7 @@ export default function ProjectCaseStudy({
             >
               View full case study
             </Link>
-            <a
+            {/* <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -99,7 +99,7 @@ export default function ProjectCaseStudy({
             >
               Visit live site
               <FaExternalLinkAlt className="text-xs" />
-            </a>
+            </a> */}
             <button
               type="button"
               onClick={() => onOpenGallery(project.id, 0)}
