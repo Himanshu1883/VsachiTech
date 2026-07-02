@@ -6,6 +6,18 @@ import { PORTFOLIO_CLIENTS } from "../../data/portfolioCaseStudies";
 
 const TOP_PROJECTS = PORTFOLIO_CLIENTS.slice(0, 3);
 
+/** Drawer card previews — brand logos from public/portfolio/ */
+const DRAWER_PREVIEW_IMAGES = {
+  "silver-stitch": "/portfolio/silver_logo.png",
+  anuraag: "/portfolio/anuraag_logo.png",
+  zenmen: "/portfolio/zenmen_logo.png",
+  zari: "/portfolio/zari_logo.png",
+};
+
+function getDrawerPreviewImage(project) {
+  return DRAWER_PREVIEW_IMAGES[project.id] ?? project.images[0];
+}
+
 const TAGLINES = [
   "Vsachi Tech Portfolio",
   "Premium Client Work",
@@ -134,7 +146,7 @@ export default function PortfolioDrawer({ open, onClose }) {
                         >
                           <div className="shrink-0 h-full w-[38%] max-w-[148px] min-w-[100px] rounded-xl overflow-hidden border border-white/10">
                             <img
-                              src={project.images[0]}
+                              src={getDrawerPreviewImage(project)}
                               alt={project.name}
                               className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                             />

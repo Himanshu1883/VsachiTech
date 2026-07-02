@@ -2,6 +2,18 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { PORTFOLIO_CLIENTS } from "../../data/portfolioCaseStudies";
 
+/** Actual brand logos from public/portfolio/ */
+const CLIENT_LOGOS = {
+  "silver-stitch": "/portfolio/silver_logo.png",
+  anuraag: "/portfolio/anuraag_logo.png",
+  zenmen: "/portfolio/zenmen_logo.png",
+  zari: "/portfolio/zari_logo.png",
+};
+
+function getClientLogo(client) {
+  return CLIENT_LOGOS[client.id] ?? client.images[0];
+}
+
 export default function PortfolioTrustBanner() {
   return (
     <section className="relative pt-28 sm:pt-32 pb-14 sm:pb-20 px-2 sm:px-3 mb-8 sm:mb-12 lg:mb-16 border-b border-white/[0.08] overflow-x-hidden">
@@ -75,13 +87,23 @@ export default function PortfolioTrustBanner() {
               <li key={client.id}>
                 <a
                   href={`#${client.id}`}
-                  className="group block text-center sm:text-left"
+                  className="group flex items-center gap-3 justify-center sm:justify-start"
                 >
-                  <span className="block text-base sm:text-lg md:text-xl font-bold tracking-[-0.02em] text-white/35 group-hover:text-white/70 transition-colors duration-300">
-                    {client.name}
+                  <span className="shrink-0 h-12 w-12 sm:h-14 sm:w-14 rounded-full overflow-hidden border border-white/10 bg-black opacity-80 group-hover:opacity-100 group-hover:border-[#de6b58]/50 transition-all duration-300">
+                    <img
+                      src={getClientLogo(client)}
+                      alt={`${client.name} logo`}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
                   </span>
-                  <span className="mt-1 block text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-gray-600 group-hover:text-[#de6b58]/80 transition-colors">
-                    {client.type.split(" ").slice(0, 2).join(" ")}
+                  <span className="min-w-0 text-left">
+                    <span className="block text-base sm:text-lg md:text-xl font-bold tracking-[-0.02em] text-white/35 group-hover:text-white/70 transition-colors duration-300 truncate">
+                      {client.name}
+                    </span>
+                    <span className="mt-1 block text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-gray-600 group-hover:text-[#de6b58]/80 transition-colors truncate">
+                      {client.type.split(" ").slice(0, 2).join(" ")}
+                    </span>
                   </span>
                 </a>
               </li>
