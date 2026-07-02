@@ -22,72 +22,35 @@ const TAGLINES = [
 ];
 
 function BackgroundMarquee() {
-  const techStack = useMemo(
-    () => [...new Set(PORTFOLIO_CLIENTS.flatMap((p) => p.techStack))],
-    [],
-  );
-
-  const lineOne = useMemo(() => {
-    const names = PORTFOLIO_CLIENTS.map((p) => p.name);
-    return [...names, ...TAGLINES.slice(0, 6)].join(" · ");
+  const strip = useMemo(() => {
+    const phrases = [
+      "Our Portfolio",
+      "Vsachi Tech",
+      ...PORTFOLIO_CLIENTS.map((p) => p.name),
+      ...TAGLINES.slice(0, 4),
+    ];
+    return [...phrases, ...phrases];
   }, []);
-
-  const lineTwo = useMemo(() => {
-    return [...TAGLINES.slice(6), ...techStack].join(" · ");
-  }, [techStack]);
-
-  const marqueeText =
-    "text-white text-[3.5rem] sm:text-[4.5rem] font-bold tracking-tighter mx-10 whitespace-nowrap portfolio-drawer-serif italic leading-none";
 
   return (
     <div
-      className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none"
+      className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none opacity-[0.07]"
       aria-hidden
     >
-      <div className="absolute top-[18%] left-0 right-0 overflow-hidden opacity-[0.09]">
-        <motion.div
-          className="flex whitespace-nowrap w-max"
-          animate={{ x: [0, -2800] }}
-          transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
-        >
-          {[...Array(5)].map((_, i) => (
-            <span key={`a-${i}`} className={marqueeText}>
-              {lineOne}
-            </span>
-          ))}
-        </motion.div>
-      </div>
-
-      <div className="absolute top-[52%] left-0 right-0 overflow-hidden opacity-[0.07]">
-        <motion.div
-          className="flex whitespace-nowrap w-max"
-          animate={{ x: [-2800, 0] }}
-          transition={{ repeat: Infinity, duration: 58, ease: "linear" }}
-        >
-          {[...Array(5)].map((_, i) => (
-            <span key={`b-${i}`} className={marqueeText}>
-              {lineTwo}
-            </span>
-          ))}
-        </motion.div>
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden opacity-[0.11]">
-        <motion.div
-          className="flex whitespace-nowrap w-max"
-          animate={{ x: [0, -3200] }}
-          transition={{ repeat: Infinity, duration: 65, ease: "linear" }}
-        >
-          {[...Array(6)].map((_, i) => (
-            <span
-              key={`c-${i}`}
-              className="text-white text-[4rem] sm:text-[5rem] font-bold tracking-tighter mx-12 whitespace-nowrap portfolio-drawer-serif italic leading-none"
-            >
-              Our Portfolio
-            </span>
-          ))}
-        </motion.div>
-      </div>
+      <motion.div
+        className="flex flex-col items-center w-full will-change-transform"
+        animate={{ y: ["0%", "-50%"] }}
+        transition={{ repeat: Infinity, duration: 55, ease: "linear" }}
+      >
+        {strip.map((phrase, i) => (
+          <span
+            key={`${phrase}-${i}`}
+            className="block text-white font-bold tracking-tighter leading-none text-center portfolio-drawer-serif italic text-[5rem] sm:text-[6.5rem] py-12 px-4 whitespace-nowrap"
+          >
+            {phrase}
+          </span>
+        ))}
+      </motion.div>
     </div>
   );
 }

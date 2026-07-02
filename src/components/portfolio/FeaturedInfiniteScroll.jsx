@@ -281,3 +281,5 @@ export default function FeaturedInfiniteScroll({ projects, onOpenGallery }) {
     </section>
   );
 }
+
+

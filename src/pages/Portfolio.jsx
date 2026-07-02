@@ -155,6 +155,9 @@ function Portfolio() {
         onOpenGallery={openClientModal}
       />
 
+
+      
+
       {/* Case studies */}
       <section id="case-studies" className="pb-24 px-2 sm:px-3">
         <div className="w-full max-w-[100rem] mx-auto">
