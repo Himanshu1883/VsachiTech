@@ -4,6 +4,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Portfolio from './pages/Portfolio';
+import Portfolio1 from './pages/Portfolio1';
 import ProjectDetail from './pages/ProjectDetail';
 import Blog from './pages/Blog';
 import Policies from './pages/Policies';
@@ -11,6 +12,7 @@ import HireTalents from './pages/HireTalents';
 import WebDevelopment from "./pages/services/WebDevelopment";
 import SeoServices from "./pages/services/SeoServices";
 import DigitalEngagement from './pages/DigitalEngagement';
+
 
 import Automation from "./pages/services/Automation";
 import AiChatbots from "./pages/services/AiChatbots";
@@ -31,6 +33,8 @@ import UaeSeo from './pages/uaeServices/UaeSeo';
 import UaePpc from './pages/uaeServices/UaePpc';
 import UaeAutomation from './pages/uaeServices/UaeAutomaton';
 import UaeChatbot from './pages/uaeServices/UaeChatbot';
+import SocialMediaHandling from "./pages/Sm";
+
 export default function AppRoutes() {
     return (
         <Routes>
@@ -53,8 +57,10 @@ export default function AppRoutes() {
             <Route path="/what-we-do/seo-services" element={<SeoServices />} />
             <Route path="/what-we-do/ppc-advertising" element={<PPCAdvertising />} />
             <Route path="/what-we-do/automation" element={<Automation />} />
+            
             <Route path="/what-we-do/ai-chatbots" element={<AiChatbots />} />
             <Route path="/our-work" element={<Portfolio />} />
+            <Route path="/portfolio1" element={<Portfolio1 />} />
             <Route path="/our-work/:projectId" element={<ProjectDetail />} />
             <Route path="/our-blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
@@ -65,6 +71,7 @@ export default function AppRoutes() {
             <Route path="/hiretalents/react-developers" element={<ReactDevelopers />} />
             <Route path="/hiretalents/uiux-designers" element={<UiUxDesigners />} />
             <Route path="/digital-engagement" element={<DigitalEngagement  />} />
+            <Route path="/what-we-do/social-media-handling" element={<SocialMediaHandling />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="/portfolio" element={<Portfolio />} />

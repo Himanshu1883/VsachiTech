@@ -4,6 +4,7 @@ import {
     FaAd,
     FaRobot,
     FaComments,
+    FaHashtag,
     FaPython,
     FaLaravel,
     FaReact,
@@ -44,6 +45,13 @@ const services = [
     },
     {
         id: 4,
+        icon: FaHashtag,
+        title: "Social Media Handling",
+        desc: "Grow your reach",
+        link: "/what-we-do/social-media-handling"
+    },
+    {
+        id: 5,
         icon: FaComments,
         title: "AI Chatbots",
         desc: "24/7 support",
