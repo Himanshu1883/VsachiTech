@@ -6,12 +6,12 @@ import { PORTFOLIO_CLIENTS } from "../../data/portfolioCaseStudies";
 
 const TOP_PROJECTS = PORTFOLIO_CLIENTS.slice(0, 3);
 
-/** Drawer card previews — brand logos from public/portfolio/ */
+/** Drawer card previews — curated hero shots from public/portfolio/ */
 const DRAWER_PREVIEW_IMAGES = {
-  "silver-stitch": "/portfolio/silver_logo.png",
-  anuraag: "/portfolio/anuraag_logo.png",
-  zenmen: "/portfolio/zenmen_logo.png",
-  zari: "/portfolio/zari_logo.png",
+  "silver-stitch": "/portfolio/silver_port.jpeg",
+  anuraag: "/portfolio/anuraag_port.jpeg",
+  zenmen: "/portfolio/zenmen_port.jpeg",
+  zari: "/portfolio/zari_1.png",
 };
 
 function getDrawerPreviewImage(project) {
