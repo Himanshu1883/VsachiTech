@@ -21,6 +21,25 @@ export default function ProjectDetailView({ project }) {
   ];
 
   useLayoutEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    html.classList.remove(
+      "lenis",
+      "lenis-smooth",
+      "lenis-scrolling",
+      "lenis-stopped",
+    );
+    html.style.overflow = "";
+    html.style.height = "";
+    body.style.overflow = "";
+    body.style.height = "";
+
+    ScrollTrigger.scrollerProxy(document.documentElement);
+    ScrollTrigger.defaults({ scroller: undefined });
+  }, [project.id]);
+
+  useLayoutEffect(() => {
     const root = rootRef.current;
     if (!root) return;
 
@@ -165,7 +184,7 @@ export default function ProjectDetailView({ project }) {
   return (
     <div
       ref={rootRef}
-      className="relative bg-[#0b0b0b] text-white min-h-screen overflow-x-hidden"
+      className="relative bg-[#0b0b0b] text-white min-h-screen overflow-x-clip"
     >
       <div
         aria-hidden
