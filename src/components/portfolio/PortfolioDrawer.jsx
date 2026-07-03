@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FiArrowRight, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { PORTFOLIO_CLIENTS } from "../../data/portfolioCaseStudies";
@@ -18,6 +18,38 @@ function getDrawerPreviewImage(project) {
   return DRAWER_PREVIEW_IMAGES[project.id] ?? project.images[0];
 }
 
+const SOCIAL_MEDIA_PROJECTS = [
+  {
+    id: "royal-touch",
+    name: "Royal Touch",
+    type: "Social Media Management",
+    tags: ["Social Media", "Branding"],
+    image: "/portfolio/royal_touch_white_social.png",
+    link: "/digital-engagement",
+  },
+  {
+    id: "sitaravastram",
+    name: "Sitaravastram",
+    type: "Social Media & Content",
+    tags: ["Social Media", "Reels"],
+    image: "/portfolio/sitaravastram_social.jpeg",
+    link: "/digital-engagement",
+  },
+  {
+    id: "kaur-studio",
+    name: "Kaur Studio",
+    type: "Social Media Management",
+    tags: ["Social Media", "Growth"],
+    image: "/portfolio/kaur_studio_social.jpeg",
+    link: "/digital-engagement",
+  },
+];
+
+const TABS = [
+  { id: "web-dev", label: "Web Dev" },
+  { id: "social-media", label: "Social Media" },
+];
+
 const TAGLINES = [
   "Vsachi Tech Portfolio",
   "Premium Client Work",
@@ -33,16 +65,20 @@ const TAGLINES = [
   "Modern Digital Products",
 ];
 
-function BackgroundMarquee() {
+function BackgroundMarquee({ activeTab }) {
   const strip = useMemo(() => {
+    const names =
+      activeTab === "social-media"
+        ? SOCIAL_MEDIA_PROJECTS.map((p) => p.name)
+        : PORTFOLIO_CLIENTS.map((p) => p.name);
     const phrases = [
       "Our Portfolio",
       "Vsachi Tech",
-      ...PORTFOLIO_CLIENTS.map((p) => p.name),
+      ...names,
       ...TAGLINES.slice(0, 4),
     ];
     return [...phrases, ...phrases];
-  }, []);
+  }, [activeTab]);
 
   return (
     <div
@@ -67,7 +103,63 @@ function BackgroundMarquee() {
   );
 }
 
+function DrawerProjectCard({ item, index, onClose, variant = "web-dev" }) {
+  const imageSrc =
+    variant === "web-dev" ? getDrawerPreviewImage(item) : item.image;
+  const href =
+    variant === "web-dev" ? `/our-work/${item.id}` : item.link;
+  const ctaLabel =
+    variant === "web-dev" ? "View case study" : "View work";
+
+  return (
+    <motion.div
+      className="min-h-0 h-full"
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.08 + index * 0.08, duration: 0.4 }}
+    >
+      <Link
+        to={href}
+        onClick={onClose}
+        className="group flex h-full gap-4 p-4 rounded-2xl border border-white/10 bg-[#1a1a1a]/45 backdrop-blur-[2px] hover:border-[#e44f39]/50 hover:bg-[#1f1f1f]/55 transition-all duration-300"
+      >
+        <div className="shrink-0 h-full w-[38%] max-w-[148px] min-w-[100px] rounded-xl overflow-hidden border border-white/10">
+          <img
+            src={imageSrc}
+            alt={item.name}
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
+        <div className="flex-1 min-w-0 flex flex-col justify-center py-1">
+          <div className="flex flex-wrap gap-1.5 mb-2">
+            {item.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] px-2 py-0.5 rounded-full bg-[#e44f39]/15 text-[#e44f39] font-medium"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h3 className="text-base font-bold text-white group-hover:text-[#e44f39] transition-colors line-clamp-2 leading-snug">
+            {item.name}
+          </h3>
+          <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+            {item.type}
+          </p>
+          <span className="mt-auto pt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#e44f39] opacity-0 group-hover:opacity-100 transition-opacity">
+            {ctaLabel}
+            <FiArrowRight className="group-hover:translate-x-0.5 transition-transform" />
+          </span>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
 export default function PortfolioDrawer({ open, onClose }) {
+  const [activeTab, setActiveTab] = useState("web-dev");
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -78,6 +170,18 @@ export default function PortfolioDrawer({ open, onClose }) {
       document.body.style.overflow = "";
     };
   }, [open, onClose]);
+
+  useEffect(() => {
+    if (!open) setActiveTab("web-dev");
+  }, [open]);
+
+  const isWebDev = activeTab === "web-dev";
+  const activeProjects = isWebDev ? TOP_PROJECTS : SOCIAL_MEDIA_PROJECTS;
+  const footerLink = isWebDev ? "/our-work" : "/digital-engagement";
+  const footerLabel = isWebDev ? "Show more projects" : "Explore digital engagement";
+  const footerMeta = isWebDev
+    ? `${PORTFOLIO_CLIENTS.length} client builds · full case studies`
+    : `${SOCIAL_MEDIA_PROJECTS.length} social clients · reels & growth`;
 
   return (
     <AnimatePresence>
@@ -104,7 +208,7 @@ export default function PortfolioDrawer({ open, onClose }) {
             transition={{ type: "spring", damping: 32, stiffness: 320 }}
           >
             <div className="relative flex flex-col h-full w-full bg-[#141414] border-l border-white/10 overflow-hidden">
-              <BackgroundMarquee />
+              <BackgroundMarquee activeTab={activeTab} />
 
               <div className="relative z-10 flex flex-col h-full min-h-0">
                 <div className="flex items-start justify-between gap-4 p-[28px] border-b border-white/10 shrink-0 bg-[#141414]/40 backdrop-blur-[2px]">
@@ -113,10 +217,12 @@ export default function PortfolioDrawer({ open, onClose }) {
                       Featured work
                     </p>
                     <h2 className="portfolio-drawer-serif text-2xl sm:text-[1.65rem] font-medium italic text-white tracking-[-0.02em] leading-tight">
-                    Portfolio
+                      Portfolio
                     </h2>
                     <p className="mt-2 text-sm text-gray-400 leading-relaxed">
-                      Premium client websites — UI/UX led, conversion focused.
+                      {isWebDev
+                        ? "Premium client websites — UI/UX led, conversion focused."
+                        : "Social media management — reels, content, and audience growth."}
                     </p>
                   </div>
                   <button
@@ -129,67 +235,59 @@ export default function PortfolioDrawer({ open, onClose }) {
                   </button>
                 </div>
 
-                <div className="flex-1 min-h-0 px-[28px] py-4 portfolio-drawer-scroll overflow-hidden">
-                  <div className="h-full grid grid-rows-3 gap-3">
-                    {TOP_PROJECTS.map((project, i) => (
-                      <motion.div
-                        key={project.id}
-                        className="min-h-0 h-full"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.08 + i * 0.08, duration: 0.4 }}
+                <div className="px-[28px] pt-4 pb-3 shrink-0">
+                  <div className="flex gap-2 p-1 rounded-full bg-white/[0.06] border border-white/10">
+                    {TABS.map((tab) => (
+                      <button
+                        key={tab.id}
+                        type="button"
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`flex-1 rounded-full py-2 px-3 text-xs font-semibold uppercase tracking-wide transition-colors ${
+                          activeTab === tab.id
+                            ? "bg-[#e44f39] text-white"
+                            : "text-gray-400 hover:text-white"
+                        }`}
                       >
-                        <Link
-                          to={`/our-work/${project.id}`}
-                          onClick={onClose}
-                          className="group flex h-full gap-4 p-4 rounded-2xl border border-white/10 bg-[#1a1a1a]/45 backdrop-blur-[2px] hover:border-[#e44f39]/50 hover:bg-[#1f1f1f]/55 transition-all duration-300"
-                        >
-                          <div className="shrink-0 h-full w-[38%] max-w-[148px] min-w-[100px] rounded-xl overflow-hidden border border-white/10">
-                            <img
-                              src={getDrawerPreviewImage(project)}
-                              alt={project.name}
-                              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0 flex flex-col justify-center py-1">
-                            <div className="flex flex-wrap gap-1.5 mb-2">
-                              {project.tags.map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="text-[10px] px-2 py-0.5 rounded-full bg-[#e44f39]/15 text-[#e44f39] font-medium"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                            <h3 className="text-base font-bold text-white group-hover:text-[#e44f39] transition-colors line-clamp-2 leading-snug">
-                              {project.name}
-                            </h3>
-                            <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
-                              {project.type}
-                            </p>
-                            <span className="mt-auto pt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#e44f39] opacity-0 group-hover:opacity-100 transition-opacity">
-                              View case study
-                              <FiArrowRight className="group-hover:translate-x-0.5 transition-transform" />
-                            </span>
-                          </div>
-                        </Link>
-                      </motion.div>
+                        {tab.label}
+                      </button>
                     ))}
                   </div>
                 </div>
 
+                <div className="flex-1 min-h-0 px-[28px] py-4 portfolio-drawer-scroll overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeTab}
+                      className="h-full grid grid-rows-3 gap-3"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      {activeProjects.map((project, i) => (
+                        <DrawerProjectCard
+                          key={project.id}
+                          item={project}
+                          index={i}
+                          onClose={onClose}
+                          variant={activeTab}
+                        />
+                      ))}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
                 <div className="p-[28px] border-t border-white/10 bg-[#0f0f0f]/45 backdrop-blur-[2px] shrink-0">
                   <Link
-                    to="/our-work"
+                    to={footerLink}
                     onClick={onClose}
                     className="flex items-center justify-center gap-2 w-full rounded-full py-3 px-6 bg-[#e44f39] text-white font-semibold text-sm uppercase tracking-wide hover:bg-[#ff6b55] transition-colors"
                   >
-                    Show more projects
+                    {footerLabel}
                     <FiArrowRight />
                   </Link>
                   <p className="mt-2.5 text-center text-[10px] text-gray-500">
-                    {PORTFOLIO_CLIENTS.length} client builds · full case studies
+                    {footerMeta}
                   </p>
                 </div>
               </div>
