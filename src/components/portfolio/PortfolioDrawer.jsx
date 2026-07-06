@@ -18,13 +18,19 @@ function getDrawerPreviewImage(project) {
   return DRAWER_PREVIEW_IMAGES[project.id] ?? project.images[0];
 }
 
+function portfolioImageSrc(path) {
+  if (!path?.startsWith("/portfolio/")) return path;
+  const file = path.slice("/portfolio/".length);
+  return `/portfolio/${encodeURIComponent(file)}`;
+}
+
 const SOCIAL_MEDIA_PROJECTS = [
   {
     id: "royal-touch",
     name: "Royal Touch",
     type: "Social Media Management",
     tags: ["Social Media", "Branding"],
-    image: "/portfolio/royal_touch_white_social.png",
+    image: "/portfolio/royal_touch.jpeg",
     link: "/digital-engagement",
   },
   {
@@ -32,7 +38,7 @@ const SOCIAL_MEDIA_PROJECTS = [
     name: "Sitaravastram",
     type: "Social Media & Content",
     tags: ["Social Media", "Reels"],
-    image: "/portfolio/sitaravastram_social.jpeg",
+    image: "/portfolio/sitaravastram.jpeg",
     link: "/digital-engagement",
   },
   {
@@ -43,11 +49,68 @@ const SOCIAL_MEDIA_PROJECTS = [
     image: "/portfolio/kaur_studio_social.jpeg",
     link: "/digital-engagement",
   },
+  {
+    id: "swim-n-gym",
+    name: "Swim n Gym",
+    type: "Social Media Management",
+    tags: ["Social Media", "Fitness"],
+    image: "/portfolio/swim'n'gym.png",
+    link: "/digital-engagement",
+  },
+  {
+    id: "enlightenment-yoga",
+    name: "Enlightenment with Yoga",
+    type: "Social Media & Wellness",
+    tags: ["Social Media", "Wellness"],
+    image: "/portfolio/enightnment with yoga.png",
+    link: "/digital-engagement",
+  },
+  {
+    id: "ivva",
+    name: "IVVA",
+    type: "Social Media Management",
+    tags: ["Social Media", "Branding"],
+    image: "/portfolio/ivva.jpeg",
+    link: "/digital-engagement",
+  },
+  {
+    id: "orvella",
+    name: "Orvella",
+    type: "Social Media & Content",
+    tags: ["Social Media", "Reels"],
+    image: "/portfolio/orvella.jpeg",
+    link: "/digital-engagement",
+  },
 ];
 
+/** Fine-tune circular logo crop — some source files are square with extra padding/text */
+const SOCIAL_LOGO_DISPLAY = {
+  "royal-touch": {
+    bg: "#f3ece4",
+    imgClass: "object-cover object-[center_28%] scale-[1.72]",
+  },
+  sitaravastram: {
+    bg: "#0b1528",
+    imgClass: "object-cover object-center scale-[1.14]",
+  },
+  ivva: {
+    bg: "#d8d4cc",
+    imgClass: "object-cover object-center scale-[1.18]",
+  },
+};
+
+function getSocialLogoDisplay(id) {
+  return (
+    SOCIAL_LOGO_DISPLAY[id] ?? {
+      bg: "#0a0a0a",
+      imgClass: "object-cover object-center scale-105",
+    }
+  );
+}
+
 const TABS = [
-  { id: "web-dev", label: "Web Dev" },
   { id: "social-media", label: "Social Media" },
+  { id: "web-dev", label: "Web Dev" },
 ];
 
 const TAGLINES = [
@@ -104,16 +167,19 @@ function BackgroundMarquee({ activeTab }) {
 }
 
 function DrawerProjectCard({ item, index, onClose, variant = "web-dev" }) {
-  const imageSrc =
-    variant === "web-dev" ? getDrawerPreviewImage(item) : item.image;
+  const isSocial = variant === "social-media";
+  const imageSrc = portfolioImageSrc(
+    variant === "web-dev" ? getDrawerPreviewImage(item) : item.image,
+  );
   const href =
     variant === "web-dev" ? `/our-work/${item.id}` : item.link;
   const ctaLabel =
     variant === "web-dev" ? "View case study" : "View work";
+  const socialLogo = isSocial ? getSocialLogoDisplay(item.id) : null;
 
   return (
     <motion.div
-      className="min-h-0 h-full"
+      className={isSocial ? "shrink-0" : "min-h-0 h-full"}
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.08 + index * 0.08, duration: 0.4 }}
@@ -121,15 +187,30 @@ function DrawerProjectCard({ item, index, onClose, variant = "web-dev" }) {
       <Link
         to={href}
         onClick={onClose}
-        className="group flex h-full gap-4 p-4 rounded-2xl border border-white/10 bg-[#1a1a1a]/45 backdrop-blur-[2px] hover:border-[#e44f39]/50 hover:bg-[#1f1f1f]/55 transition-all duration-300"
+        className={`group flex gap-4 p-4 rounded-2xl border border-white/10 bg-[#1a1a1a]/45 backdrop-blur-[2px] hover:border-[#e44f39]/50 hover:bg-[#1f1f1f]/55 transition-all duration-300 ${
+          isSocial ? "min-h-[118px]" : "h-full"
+        }`}
       >
-        <div className="shrink-0 h-full w-[38%] max-w-[148px] min-w-[100px] rounded-xl overflow-hidden border border-white/10">
-          <img
-            src={imageSrc}
-            alt={item.name}
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-          />
-        </div>
+        {isSocial ? (
+          <div
+            className="relative shrink-0 h-[86px] w-[86px] aspect-square rounded-full overflow-hidden border border-white/10"
+            style={{ backgroundColor: socialLogo.bg }}
+          >
+            <img
+              src={imageSrc}
+              alt={item.name}
+              className={`absolute inset-0 h-full w-full ${socialLogo.imgClass}`}
+            />
+          </div>
+        ) : (
+          <div className="shrink-0 h-full w-[38%] max-w-[148px] min-w-[100px] rounded-xl overflow-hidden border border-white/10">
+            <img
+              src={imageSrc}
+              alt={item.name}
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </div>
+        )}
         <div className="flex-1 min-w-0 flex flex-col justify-center py-1">
           <div className="flex flex-wrap gap-1.5 mb-2">
             {item.tags.map((tag) => (
@@ -158,7 +239,7 @@ function DrawerProjectCard({ item, index, onClose, variant = "web-dev" }) {
 }
 
 export default function PortfolioDrawer({ open, onClose }) {
-  const [activeTab, setActiveTab] = useState("web-dev");
+  const [activeTab, setActiveTab] = useState("social-media");
 
   useEffect(() => {
     if (!open) return;
@@ -172,7 +253,7 @@ export default function PortfolioDrawer({ open, onClose }) {
   }, [open, onClose]);
 
   useEffect(() => {
-    if (!open) setActiveTab("web-dev");
+    if (open) setActiveTab("social-media");
   }, [open]);
 
   const isWebDev = activeTab === "web-dev";
@@ -254,11 +335,19 @@ export default function PortfolioDrawer({ open, onClose }) {
                   </div>
                 </div>
 
-                <div className="flex-1 min-h-0 px-[28px] py-4 portfolio-drawer-scroll overflow-hidden">
+                <div
+                  className={`flex-1 min-h-0 px-[28px] py-4 portfolio-drawer-scroll ${
+                    isWebDev ? "overflow-hidden" : "overflow-y-auto"
+                  }`}
+                >
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeTab}
-                      className="h-full grid grid-rows-3 gap-3"
+                      className={
+                        isWebDev
+                          ? "h-full grid grid-rows-3 gap-3"
+                          : "flex flex-col gap-3 pb-2"
+                      }
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
