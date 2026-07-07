@@ -1,12 +1,114 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
-import { FiArrowRight, FiX } from "react-icons/fi";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+} from "react-icons/fa";
+import { FiArrowRight, FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { pauseLenis, resumeLenis } from "../../utils/lenisController";
 import { PORTFOLIO_CLIENTS } from "../../data/portfolioCaseStudies";
+
+const SOCIAL_PLATFORMS = {
+  instagram: {
+    icon: FaInstagram,
+    color: "#E4405F",
+    label: "Instagram",
+  },
+  facebook: {
+    icon: FaFacebook,
+    color: "#1877F2",
+    label: "Facebook",
+  },
+  youtube: {
+    icon: FaYoutube,
+    color: "#FF0000",
+    label: "YouTube",
+  },
+  linkedin: {
+    icon: FaLinkedin,
+    color: "#0A66C2",
+    label: "LinkedIn",
+  },
+};
+
+const SOCIAL_CLIENT_QUOTES = [
+  "Reels that doubled our reach in 90 days.",
+  "Content that finally matches our brand voice.",
+  "Our Instagram finally feels premium.",
+  "Campaigns that convert followers into leads.",
+  "Consistent posting without the daily stress.",
+  "Storytelling that built real community trust.",
+  "Growth we could measure week over week.",
+  "Creative direction our audience loves.",
+  "A social presence we're proud to share.",
+  "Engagement that outperformed every quarter.",
+];
+
+const SOCIAL_PLATFORM_PATTERNS = [
+  ["instagram", "facebook"],
+  ["instagram"],
+  ["instagram", "youtube"],
+  ["instagram", "facebook", "youtube"],
+  ["instagram", "linkedin"],
+  ["facebook", "instagram"],
+  ["instagram"],
+  ["instagram", "facebook"],
+  ["instagram", "youtube"],
+  ["instagram"],
+];
+
+function slugify(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+function buildClientSocials(client, index) {
+  const platforms =
+    SOCIAL_PLATFORM_PATTERNS[index % SOCIAL_PLATFORM_PATTERNS.length];
+  const slug = slugify(client.name);
+
+  return platforms.map((platform) => {
+    if (platform === "instagram") {
+      return {
+        platform,
+        handle: `@${slug}`,
+        url: `https://instagram.com/${slug}`,
+      };
+    }
+    if (platform === "facebook") {
+      return {
+        platform,
+        handle: client.name,
+        url: `https://facebook.com/${slug}`,
+      };
+    }
+    if (platform === "youtube") {
+      return {
+        platform,
+        handle: client.name,
+        url: `https://youtube.com/@${slug}`,
+      };
+    }
+    return {
+      platform: "linkedin",
+      handle: client.name,
+      url: `https://linkedin.com/company/${slug}`,
+    };
+  });
+}
+
+function enrichSocialClient(client, index) {
+  return {
+    ...client,
+    quote: SOCIAL_CLIENT_QUOTES[index % SOCIAL_CLIENT_QUOTES.length],
+    socials: buildClientSocials(client, index),
+  };
+}
 
 const TOP_PROJECTS = PORTFOLIO_CLIENTS.slice(0, 3);
 
-/** Drawer card previews — curated hero shots from public/portfolio/ */
 const DRAWER_PREVIEW_IMAGES = {
   "silver-stitch": "/portfolio/silver_port.jpeg",
   anuraag: "/portfolio/anuraag_port.jpeg",
@@ -24,66 +126,202 @@ function portfolioImageSrc(path) {
   return `/portfolio/${encodeURIComponent(file)}`;
 }
 
-const SOCIAL_MEDIA_PROJECTS = [
+/** Placeholder set — swap with real 20 clients later */
+const SOCIAL_MEDIA_CLIENTS_RAW = [
   {
     id: "royal-touch",
+    logoKey: "royal-touch",
     name: "Royal Touch",
-    type: "Social Media Management",
-    tags: ["Social Media", "Branding"],
+    niche: "Luxury Fashion",
+    specialty: "Branding",
+    category: "Fashion",
     image: "/portfolio/royal_touch.jpeg",
-    link: "/digital-engagement",
   },
   {
     id: "sitaravastram",
+    logoKey: "sitaravastram",
     name: "Sitaravastram",
-    type: "Social Media & Content",
-    tags: ["Social Media", "Reels"],
+    niche: "Ethnic Wear",
+    specialty: "Reels",
+    category: "Fashion",
     image: "/portfolio/sitaravastram.jpeg",
-    link: "/digital-engagement",
   },
   {
     id: "kaur-studio",
+    logoKey: "kaur-studio",
     name: "Kaur Studio",
-    type: "Social Media Management",
-    tags: ["Social Media", "Growth"],
+    niche: "Photography",
+    specialty: "Growth",
+    category: "Lifestyle",
     image: "/portfolio/kaur_studio_social.jpeg",
-    link: "/digital-engagement",
   },
   {
     id: "swim-n-gym",
+    logoKey: "swim-n-gym",
     name: "Swim n Gym",
-    type: "Social Media Management",
-    tags: ["Social Media", "Fitness"],
+    niche: "Fitness Club",
+    specialty: "Reels",
+    category: "Fitness",
     image: "/portfolio/swim'n'gym.png",
-    link: "/digital-engagement",
   },
   {
     id: "enlightenment-yoga",
+    logoKey: "enlightenment-yoga",
     name: "Enlightenment with Yoga",
-    type: "Social Media & Wellness",
-    tags: ["Social Media", "Wellness"],
+    niche: "Wellness Studio",
+    specialty: "Content",
+    category: "Wellness",
     image: "/portfolio/enightnment with yoga.png",
-    link: "/digital-engagement",
   },
   {
     id: "ivva",
+    logoKey: "ivva",
     name: "IVVA",
-    type: "Social Media Management",
-    tags: ["Social Media", "Branding"],
+    niche: "Awards & Events",
+    specialty: "Branding",
+    category: "Events",
     image: "/portfolio/ivva.jpeg",
-    link: "/digital-engagement",
   },
   {
     id: "orvella",
+    logoKey: "orvella",
     name: "Orvella",
-    type: "Social Media & Content",
-    tags: ["Social Media", "Reels"],
+    niche: "Beauty & Skincare",
+    specialty: "Ads",
+    category: "Beauty",
     image: "/portfolio/orvella.jpeg",
-    link: "/digital-engagement",
+  },
+  {
+    id: "maison-bloom",
+    logoKey: "royal-touch",
+    name: "Maison Bloom",
+    niche: "Designer Boutique",
+    specialty: "Reels",
+    category: "Fashion",
+    image: "/portfolio/royal_touch.jpeg",
+  },
+  {
+    id: "aura-skin",
+    logoKey: "orvella",
+    name: "Aura Skin Co.",
+    niche: "D2C Beauty",
+    specialty: "UGC",
+    category: "Beauty",
+    image: "/portfolio/orvella.jpeg",
+  },
+  {
+    id: "fit-core",
+    logoKey: "swim-n-gym",
+    name: "FitCore Labs",
+    niche: "Gym & Training",
+    specialty: "Growth",
+    category: "Fitness",
+    image: "/portfolio/swim'n'gym.png",
+  },
+  {
+    id: "zen-flow",
+    logoKey: "enlightenment-yoga",
+    name: "Zen Flow",
+    niche: "Yoga Retreats",
+    specialty: "Content",
+    category: "Wellness",
+    image: "/portfolio/enightnment with yoga.png",
+  },
+  {
+    id: "luxe-frames",
+    logoKey: "kaur-studio",
+    name: "Luxe Frames",
+    niche: "Wedding Studio",
+    specialty: "Branding",
+    category: "Lifestyle",
+    image: "/portfolio/kaur_studio_social.jpeg",
+  },
+  {
+    id: "vastram-house",
+    logoKey: "sitaravastram",
+    name: "Vastram House",
+    niche: "Heritage Fashion",
+    specialty: "Reels",
+    category: "Fashion",
+    image: "/portfolio/sitaravastram.jpeg",
+  },
+  {
+    id: "crown-events",
+    logoKey: "ivva",
+    name: "Crown Events",
+    niche: "Luxury Galas",
+    specialty: "Ads",
+    category: "Events",
+    image: "/portfolio/ivva.jpeg",
+  },
+  {
+    id: "velvet-row",
+    logoKey: "royal-touch",
+    name: "Velvet Row",
+    niche: "Premium Retail",
+    specialty: "Branding",
+    category: "Fashion",
+    image: "/portfolio/royal_touch.jpeg",
+  },
+  {
+    id: "glow-bar",
+    logoKey: "orvella",
+    name: "Glow Bar",
+    niche: "Salon Chain",
+    specialty: "Reels",
+    category: "Beauty",
+    image: "/portfolio/orvella.jpeg",
+  },
+  {
+    id: "active-pulse",
+    logoKey: "swim-n-gym",
+    name: "Active Pulse",
+    niche: "Sports Academy",
+    specialty: "Growth",
+    category: "Fitness",
+    image: "/portfolio/swim'n'gym.png",
+  },
+  {
+    id: "mindful-co",
+    logoKey: "enlightenment-yoga",
+    name: "Mindful Co.",
+    niche: "Holistic Health",
+    specialty: "Content",
+    category: "Wellness",
+    image: "/portfolio/enightnment with yoga.png",
+  },
+  {
+    id: "studio-kaur",
+    logoKey: "kaur-studio",
+    name: "Studio Kaur",
+    niche: "Portrait Brand",
+    specialty: "UGC",
+    category: "Lifestyle",
+    image: "/portfolio/kaur_studio_social.jpeg",
+  },
+  {
+    id: "silk-route",
+    logoKey: "sitaravastram",
+    name: "Silk Route",
+    niche: "Artisan Textiles",
+    specialty: "Branding",
+    category: "Fashion",
+    image: "/portfolio/sitaravastram.jpeg",
   },
 ];
 
-/** Fine-tune circular logo crop — some source files are square with extra padding/text */
+const SOCIAL_MEDIA_CLIENTS = SOCIAL_MEDIA_CLIENTS_RAW.map(enrichSocialClient);
+
+const SOCIAL_CATEGORIES = [
+  "All",
+  "Fashion",
+  "Beauty",
+  "Fitness",
+  "Wellness",
+  "Events",
+  "Lifestyle",
+];
+
 const SOCIAL_LOGO_DISPLAY = {
   "royal-touch": {
     bg: "#f3ece4",
@@ -99,9 +337,9 @@ const SOCIAL_LOGO_DISPLAY = {
   },
 };
 
-function getSocialLogoDisplay(id) {
+function getSocialLogoDisplay(logoKey) {
   return (
-    SOCIAL_LOGO_DISPLAY[id] ?? {
+    SOCIAL_LOGO_DISPLAY[logoKey] ?? {
       bg: "#0a0a0a",
       imgClass: "object-cover object-center scale-105",
     }
@@ -128,20 +366,20 @@ const TAGLINES = [
   "Modern Digital Products",
 ];
 
-function BackgroundMarquee({ activeTab }) {
+function BackgroundMarquee({ activeTab, socialClients }) {
   const strip = useMemo(() => {
     const names =
       activeTab === "social-media"
-        ? SOCIAL_MEDIA_PROJECTS.map((p) => p.name)
+        ? socialClients.map((p) => p.name)
         : PORTFOLIO_CLIENTS.map((p) => p.name);
     const phrases = [
       "Our Portfolio",
       "Vsachi Tech",
-      ...names,
+      ...names.slice(0, 8),
       ...TAGLINES.slice(0, 4),
     ];
     return [...phrases, ...phrases];
-  }, [activeTab]);
+  }, [activeTab, socialClients]);
 
   return (
     <div
@@ -166,51 +404,28 @@ function BackgroundMarquee({ activeTab }) {
   );
 }
 
-function DrawerProjectCard({ item, index, onClose, variant = "web-dev" }) {
-  const isSocial = variant === "social-media";
-  const imageSrc = portfolioImageSrc(
-    variant === "web-dev" ? getDrawerPreviewImage(item) : item.image,
-  );
-  const href =
-    variant === "web-dev" ? `/our-work/${item.id}` : item.link;
-  const ctaLabel =
-    variant === "web-dev" ? "View case study" : "View work";
-  const socialLogo = isSocial ? getSocialLogoDisplay(item.id) : null;
+function DrawerWebDevCard({ item, index, onClose }) {
+  const imageSrc = portfolioImageSrc(getDrawerPreviewImage(item));
 
   return (
     <motion.div
-      className={isSocial ? "shrink-0" : "min-h-0 h-full"}
+      className="min-h-0 h-full"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.08 + index * 0.08, duration: 0.4 }}
     >
       <Link
-        to={href}
+        to={`/our-work/${item.id}`}
         onClick={onClose}
-        className={`group flex gap-4 p-4 rounded-2xl border border-white/10 bg-[#1a1a1a]/45 backdrop-blur-[2px] hover:border-[#e44f39]/50 hover:bg-[#1f1f1f]/55 transition-all duration-300 ${
-          isSocial ? "min-h-[118px]" : "h-full"
-        }`}
+        className="group flex h-full gap-4 p-4 rounded-2xl border border-white/10 bg-[#1a1a1a]/45 backdrop-blur-[2px] hover:border-[#e44f39]/50 hover:bg-[#1f1f1f]/55 transition-all duration-300"
       >
-        {isSocial ? (
-          <div
-            className="relative shrink-0 h-[86px] w-[86px] aspect-square rounded-full overflow-hidden border border-white/10"
-            style={{ backgroundColor: socialLogo.bg }}
-          >
-            <img
-              src={imageSrc}
-              alt={item.name}
-              className={`absolute inset-0 h-full w-full ${socialLogo.imgClass}`}
-            />
-          </div>
-        ) : (
-          <div className="shrink-0 h-full w-[38%] max-w-[148px] min-w-[100px] rounded-xl overflow-hidden border border-white/10">
-            <img
-              src={imageSrc}
-              alt={item.name}
-              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-          </div>
-        )}
+        <div className="shrink-0 h-full w-[38%] max-w-[148px] min-w-[100px] rounded-xl overflow-hidden border border-white/10">
+          <img
+            src={imageSrc}
+            alt={item.name}
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
         <div className="flex-1 min-w-0 flex flex-col justify-center py-1">
           <div className="flex flex-wrap gap-1.5 mb-2">
             {item.tags.map((tag) => (
@@ -222,14 +437,14 @@ function DrawerProjectCard({ item, index, onClose, variant = "web-dev" }) {
               </span>
             ))}
           </div>
-          <h3 className="text-base font-bold text-white group-hover:text-[#e44f39] transition-colors line-clamp-2 leading-snug">
+          <h3 className="text-base font-extrabold text-white group-hover:text-[#ff6b55] transition-colors line-clamp-2 leading-snug">
             {item.name}
           </h3>
-          <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+          <p className="text-xs font-semibold text-gray-300 mt-1 line-clamp-2 leading-relaxed">
             {item.type}
           </p>
           <span className="mt-auto pt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#e44f39] opacity-0 group-hover:opacity-100 transition-opacity">
-            {ctaLabel}
+            View case study
             <FiArrowRight className="group-hover:translate-x-0.5 transition-transform" />
           </span>
         </div>
@@ -238,17 +453,411 @@ function DrawerProjectCard({ item, index, onClose, variant = "web-dev" }) {
   );
 }
 
+function SocialHandleTile({ social, index }) {
+  const platform = SOCIAL_PLATFORMS[social.platform];
+  const Icon = platform.icon;
+
+  return (
+    <motion.a
+      href={social.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.04 + index * 0.07,
+        duration: 0.28,
+        ease: "easeOut",
+      }}
+      onClick={(e) => e.stopPropagation()}
+      className="flex flex-col items-center text-center rounded-xl px-2 py-2.5 transition-colors group/social w-full min-w-0 hover:opacity-90"
+    >
+      <span
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+        style={{ color: platform.color }}
+      >
+        <Icon className="text-[17px]" aria-hidden />
+      </span>
+      <span
+        className="mt-1.5 block text-[9px] font-bold uppercase tracking-wide leading-none"
+        style={{ color: platform.color }}
+      >
+        {platform.label}
+      </span>
+      <span className="mt-1 block text-[10px] font-bold text-white leading-snug break-all line-clamp-2 group-hover/social:text-[#ffe8e4] transition-colors">
+        {social.handle}
+      </span>
+    </motion.a>
+  );
+}
+
+function SocialHandlesGrid({ socials }) {
+  const rows = [];
+  for (let i = 0; i < socials.length; i += 2) {
+    rows.push(socials.slice(i, i + 2));
+  }
+
+  return (
+    <div className="flex flex-col gap-1.5 w-full">
+      {rows.map((row, rowIndex) => (
+        <div
+          key={`social-row-${rowIndex}`}
+          className={
+            row.length === 1
+              ? "flex justify-center"
+              : "grid grid-cols-2 gap-1.5"
+          }
+        >
+          {row.map((social, colIndex) => {
+            const index = rowIndex * 2 + colIndex;
+            return (
+              <div
+                key={social.platform}
+                className={row.length === 1 ? "w-[calc(50%-3px)]" : "min-w-0"}
+              >
+                <SocialHandleTile social={social} index={index} />
+              </div>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function pickCelebrationIds(clients, priorityCount = 3) {
+  return new Set(clients.slice(0, priorityCount).map((client) => client.id));
+}
+
+const CELEBRATION_BURST_MS = 5200;
+const CELEBRATION_INTERVAL_MIN_MS = 6000;
+const CELEBRATION_INTERVAL_MAX_MS = 14000;
+
+function SocialIconBurst({ socials, active, burstKey }) {
+  const particles = useMemo(() => {
+    if (!active || socials.length === 0) return [];
+
+    const total = Math.max(8, socials.length * 4);
+    return Array.from({ length: total }, (_, i) => {
+      const social = socials[i % socials.length];
+      return {
+        id: `${burstKey}-${i}`,
+        social,
+        left: 8 + Math.random() * 84,
+        delay: Math.random() * 1.6,
+        duration: 1.6 + Math.random() * 1.1,
+        size: 13 + Math.random() * 9,
+        drift: -12 + Math.random() * 24,
+      };
+    });
+  }, [active, socials, burstKey]);
+
+  if (!active || particles.length === 0) return null;
+
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 z-20 overflow-hidden rounded-2xl"
+      aria-hidden
+    >
+      {particles.map((particle) => {
+        const platform = SOCIAL_PLATFORMS[particle.social.platform];
+        const Icon = platform.icon;
+
+        return (
+          <motion.span
+            key={particle.id}
+            className="absolute bottom-2"
+            style={{
+              left: `${particle.left}%`,
+              color: platform.color,
+              filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.45))",
+            }}
+            initial={{ y: 24, x: 0, opacity: 0, scale: 0.35 }}
+            animate={{
+              y: -190,
+              x: particle.drift,
+              opacity: [0, 0.95, 0.85, 0],
+              scale: [0.35, 1.05, 0.95, 0.55],
+              rotate: [0, particle.drift > 0 ? 14 : -14, 0],
+            }}
+            transition={{
+              duration: particle.duration,
+              delay: particle.delay,
+              repeat: 2,
+              repeatDelay: 0.35,
+              ease: "easeOut",
+            }}
+          >
+            <Icon style={{ fontSize: particle.size }} />
+          </motion.span>
+        );
+      })}
+    </div>
+  );
+}
+
+function SocialClientTile({ client, index, celebrate, celebrationKey }) {
+  const [revealed, setRevealed] = useState(false);
+  const logo = getSocialLogoDisplay(client.logoKey);
+  const imageSrc = portfolioImageSrc(client.image);
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.03 + index * 0.025, duration: 0.35 }}
+      className="relative w-full"
+      onMouseEnter={() => setRevealed(true)}
+      onMouseLeave={() => setRevealed(false)}
+      onClick={() => setRevealed((prev) => !prev)}
+    >
+      <motion.div
+        layout
+        transition={{ layout: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+        className={`relative w-full overflow-hidden rounded-2xl border transition-colors duration-300 ${
+          revealed
+            ? "border-[#e44f39]/55"
+            : "border-transparent min-h-[178px] hover:border-white/20"
+        }`}
+        style={{ perspective: "1000px" }}
+      >
+        <SocialIconBurst
+          socials={client.socials}
+          active={celebrate && !revealed}
+          burstKey={celebrationKey}
+        />
+        <AnimatePresence mode="wait" initial={false}>
+          {!revealed ? (
+            <motion.div
+              key="front"
+              layout
+              initial={{ opacity: 0, rotateY: -72, scale: 0.96 }}
+              animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+              exit={{ opacity: 0, rotateY: 72, scale: 0.96 }}
+              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+              className="flex min-h-[178px] flex-col items-center justify-center p-3.5 text-center"
+              style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+            >
+              <div
+                className="relative h-[68px] w-[68px] rounded-full overflow-hidden border border-white/10"
+                style={{ backgroundColor: logo.bg }}
+              >
+                <img
+                  src={imageSrc}
+                  alt={client.name}
+                  className={`absolute inset-0 h-full w-full ${logo.imgClass}`}
+                />
+              </div>
+              <h3 className="mt-2.5 text-[14px] font-extrabold text-white leading-tight line-clamp-2 tracking-tight drop-shadow-sm">
+                {client.name}
+              </h3>
+              <p className="mt-1 text-[11px] font-semibold text-gray-200 leading-snug line-clamp-1">
+                {client.niche}
+              </p>
+              {/* <span className="mt-2 text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full bg-[#e44f39]/20 border border-[#e44f39]/35 text-white">
+                {client.specialty}
+              </span> */}
+              <p className="mt-2.5 text-[10px] font-semibold text-gray-300 tracking-wide hidden sm:block">
+                Hover to view handles
+              </p>
+              <p className="mt-2.5 text-[10px] font-semibold text-gray-300 tracking-wide sm:hidden">
+                Tap to view handles
+              </p>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="back"
+              layout
+              initial={{ opacity: 0, rotateY: 72, scale: 0.96 }}
+              animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+              exit={{ opacity: 0, rotateY: -72, scale: 0.96 }}
+              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-3 p-3.5"
+              style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+            >
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#ff6b55] mb-1.5">
+                  Client voice
+                </p>
+                <p className="text-[11px] font-semibold leading-relaxed text-white/95">
+                  &ldquo;{client.quote}&rdquo;
+                </p>
+              </div>
+
+              <SocialHandlesGrid socials={client.socials} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function SocialCategoryFilters({ activeCategory, onSelect }) {
+  const trackRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateScrollState = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    setCanScrollLeft(scrollLeft > 4);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 4);
+  };
+
+  useEffect(() => {
+    updateScrollState();
+    const el = trackRef.current;
+    if (!el) return;
+
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const activeBtn = el.querySelector(`[data-category="${activeCategory}"]`);
+    activeBtn?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+    requestAnimationFrame(updateScrollState);
+  }, [activeCategory]);
+
+  const scrollByAmount = (direction) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({
+      left: direction * Math.max(120, el.clientWidth * 0.55),
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="flex items-center gap-1.5">
+      <button
+        type="button"
+        onClick={() => scrollByAmount(-1)}
+        disabled={!canScrollLeft}
+        aria-label="Scroll filters left"
+        className={`shrink-0 h-7 w-7 rounded-full border border-white/15 bg-[#1a1a1a]/90 text-white/80 flex items-center justify-center shadow-lg transition-all duration-200 ${
+          canScrollLeft
+            ? "hover:text-white hover:border-[#e44f39]/50 hover:bg-[#222] opacity-100"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <FiChevronLeft size={14} />
+      </button>
+
+      <div
+        ref={trackRef}
+        data-lenis-prevent
+        className="flex-1 min-w-0 flex gap-1.5 overflow-x-auto py-0.5 portfolio-drawer-scroll scroll-smooth snap-x snap-mandatory overscroll-contain"
+      >
+        {SOCIAL_CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            data-category={cat}
+            onClick={() => onSelect(cat)}
+            className={`shrink-0 snap-start rounded-full px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wide transition-all duration-200 ${
+              activeCategory === cat
+                ? "bg-[#e44f39] text-white border border-[#e44f39] shadow-[0_0_20px_rgba(228,79,57,0.25)]"
+                : "text-gray-200 hover:text-white border border-white/15 bg-white/[0.06] hover:border-white/30"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        onClick={() => scrollByAmount(1)}
+        disabled={!canScrollRight}
+        aria-label="Scroll filters right"
+        className={`shrink-0 h-7 w-7 rounded-full border border-white/15 bg-[#1a1a1a]/90 text-white/80 flex items-center justify-center shadow-lg transition-all duration-200 ${
+          canScrollRight
+            ? "hover:text-white hover:border-[#e44f39]/50 hover:bg-[#222] opacity-100"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <FiChevronRight size={14} />
+      </button>
+    </div>
+  );
+}
+
+function SocialMediaGrid({ clients, celebrationIds, celebrationKey }) {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filtered = useMemo(() => {
+    if (activeCategory === "All") return clients;
+    return clients.filter((c) => c.category === activeCategory);
+  }, [clients, activeCategory]);
+
+  return (
+    <div className="flex flex-col gap-4 pb-2">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-gray-200">
+          Brand partners
+        </p>
+        <span className="text-[11px] font-extrabold text-[#ff6b55] tabular-nums">
+          {filtered.length} brands
+        </span>
+      </div>
+
+      <SocialCategoryFilters
+        activeCategory={activeCategory}
+        onSelect={setActiveCategory}
+      />
+
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-3 items-start">
+        {filtered.map((client, i) => (
+          <SocialClientTile
+            key={client.id}
+            client={client}
+            index={i}
+            celebrate={celebrationIds.has(client.id)}
+            celebrationKey={celebrationKey}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function PortfolioDrawer({ open, onClose }) {
   const [activeTab, setActiveTab] = useState("social-media");
+  const [celebrationIds, setCelebrationIds] = useState(() => new Set());
+  const [celebrationKey, setCelebrationKey] = useState(0);
+  const activeTabRef = useRef(activeTab);
+
+  activeTabRef.current = activeTab;
 
   useEffect(() => {
     if (!open) return;
+
     const onKey = (e) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    pauseLenis();
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      resumeLenis();
     };
   }, [open, onClose]);
 
@@ -256,13 +865,56 @@ export default function PortfolioDrawer({ open, onClose }) {
     if (open) setActiveTab("social-media");
   }, [open]);
 
+  useEffect(() => {
+    if (!open) {
+      setCelebrationIds(new Set());
+      return;
+    }
+
+    let burstClearTimer;
+    let nextBurstTimer;
+    let cancelled = false;
+
+    const runBurst = () => {
+      if (cancelled || activeTabRef.current !== "social-media") return;
+
+      setCelebrationIds(pickCelebrationIds(SOCIAL_MEDIA_CLIENTS, 3));
+      setCelebrationKey((key) => key + 1);
+
+      window.clearTimeout(burstClearTimer);
+      burstClearTimer = window.setTimeout(() => {
+        if (!cancelled) setCelebrationIds(new Set());
+      }, CELEBRATION_BURST_MS);
+    };
+
+    const scheduleNextBurst = () => {
+      const delay =
+        CELEBRATION_INTERVAL_MIN_MS +
+        Math.random() * (CELEBRATION_INTERVAL_MAX_MS - CELEBRATION_INTERVAL_MIN_MS);
+
+      nextBurstTimer = window.setTimeout(() => {
+        if (cancelled) return;
+        runBurst();
+        scheduleNextBurst();
+      }, delay);
+    };
+
+    runBurst();
+    scheduleNextBurst();
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(burstClearTimer);
+      window.clearTimeout(nextBurstTimer);
+    };
+  }, [open]);
+
   const isWebDev = activeTab === "web-dev";
-  const activeProjects = isWebDev ? TOP_PROJECTS : SOCIAL_MEDIA_PROJECTS;
   const footerLink = isWebDev ? "/our-work" : "/digital-engagement";
   const footerLabel = isWebDev ? "Show more projects" : "Explore digital engagement";
   const footerMeta = isWebDev
     ? `${PORTFOLIO_CLIENTS.length} client builds · full case studies`
-    : `${SOCIAL_MEDIA_PROJECTS.length} social clients · reels & growth`;
+    : `${SOCIAL_MEDIA_CLIENTS.length} brand partners · reels & campaigns`;
 
   return (
     <AnimatePresence>
@@ -282,6 +934,7 @@ export default function PortfolioDrawer({ open, onClose }) {
             role="dialog"
             aria-modal="true"
             aria-label="Portfolio preview"
+            data-lenis-prevent
             className="fixed top-0 right-0 z-[70] h-full w-full max-w-[520px] shadow-2xl overflow-hidden"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -289,21 +942,24 @@ export default function PortfolioDrawer({ open, onClose }) {
             transition={{ type: "spring", damping: 32, stiffness: 320 }}
           >
             <div className="relative flex flex-col h-full w-full bg-[#141414] border-l border-white/10 overflow-hidden">
-              <BackgroundMarquee activeTab={activeTab} />
+              <BackgroundMarquee
+                activeTab={activeTab}
+                socialClients={SOCIAL_MEDIA_CLIENTS}
+              />
 
               <div className="relative z-10 flex flex-col h-full min-h-0">
                 <div className="flex items-start justify-between gap-4 p-[28px] border-b border-white/10 shrink-0 bg-[#141414]/40 backdrop-blur-[2px]">
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.35em] text-[#e44f39] mb-2">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-[#ff6b55] mb-2">
                       Featured work
                     </p>
-                    <h2 className="portfolio-drawer-serif text-2xl sm:text-[1.65rem] font-medium italic text-white tracking-[-0.02em] leading-tight">
+                    <h2 className="portfolio-drawer-serif text-2xl sm:text-[1.65rem] font-semibold italic text-white tracking-[-0.02em] leading-tight">
                       Portfolio
                     </h2>
-                    <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+                    <p className="mt-2 text-sm font-medium text-gray-200 leading-relaxed">
                       {isWebDev
                         ? "Premium client websites — UI/UX led, conversion focused."
-                        : "Social media management — reels, content, and audience growth."}
+                        : "20 brands we've grown — reels, content & campaigns."}
                     </p>
                   </div>
                   <button
@@ -323,10 +979,10 @@ export default function PortfolioDrawer({ open, onClose }) {
                         key={tab.id}
                         type="button"
                         onClick={() => setActiveTab(tab.id)}
-                        className={`flex-1 rounded-full py-2 px-3 text-xs font-semibold uppercase tracking-wide transition-colors ${
+                        className={`flex-1 rounded-full py-2 px-3 text-xs font-bold uppercase tracking-wide transition-colors ${
                           activeTab === tab.id
                             ? "bg-[#e44f39] text-white"
-                            : "text-gray-400 hover:text-white"
+                            : "text-gray-200 hover:text-white"
                         }`}
                       >
                         {tab.label}
@@ -336,32 +992,36 @@ export default function PortfolioDrawer({ open, onClose }) {
                 </div>
 
                 <div
+                  data-lenis-prevent
                   className={`flex-1 min-h-0 px-[28px] py-4 portfolio-drawer-scroll ${
-                    isWebDev ? "overflow-hidden" : "overflow-y-auto"
+                    isWebDev ? "overflow-hidden" : "overflow-y-auto overscroll-contain"
                   }`}
                 >
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeTab}
-                      className={
-                        isWebDev
-                          ? "h-full grid grid-rows-3 gap-3"
-                          : "flex flex-col gap-3 pb-2"
-                      }
+                      className={isWebDev ? "h-full grid grid-rows-3 gap-3" : ""}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.25 }}
                     >
-                      {activeProjects.map((project, i) => (
-                        <DrawerProjectCard
-                          key={project.id}
-                          item={project}
-                          index={i}
-                          onClose={onClose}
-                          variant={activeTab}
+                      {isWebDev ? (
+                        TOP_PROJECTS.map((project, i) => (
+                          <DrawerWebDevCard
+                            key={project.id}
+                            item={project}
+                            index={i}
+                            onClose={onClose}
+                          />
+                        ))
+                      ) : (
+                        <SocialMediaGrid
+                          clients={SOCIAL_MEDIA_CLIENTS}
+                          celebrationIds={celebrationIds}
+                          celebrationKey={celebrationKey}
                         />
-                      ))}
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -375,7 +1035,7 @@ export default function PortfolioDrawer({ open, onClose }) {
                     {footerLabel}
                     <FiArrowRight />
                   </Link>
-                  <p className="mt-2.5 text-center text-[10px] text-gray-500">
+                  <p className="mt-2.5 text-center text-[11px] font-semibold text-gray-300">
                     {footerMeta}
                   </p>
                 </div>

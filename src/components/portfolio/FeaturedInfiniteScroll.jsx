@@ -4,6 +4,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { FiArrowDown, FiExternalLink } from "react-icons/fi";
+import {
+  registerLenis,
+  unregisterLenis,
+} from "../../utils/lenisController";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -114,7 +118,10 @@ export default function FeaturedInfiniteScroll({ projects, onOpenGallery }) {
       syncTouch: true,
       touchMultiplier: 1.15,
       wheelMultiplier: 0.95,
+      allowNestedScroll: true,
     });
+
+    registerLenis(lenis);
 
     ScrollTrigger.scrollerProxy(document.documentElement, {
       scrollTop(value) {
@@ -237,6 +244,7 @@ export default function FeaturedInfiniteScroll({ projects, onOpenGallery }) {
       mm.revert();
       lenis.off("scroll", onLenisScroll);
       gsap.ticker.remove(raf);
+      unregisterLenis(lenis);
       lenis.destroy();
       ScrollTrigger.scrollerProxy(document.documentElement, {});
     };

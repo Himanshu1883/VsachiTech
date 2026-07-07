@@ -9,6 +9,7 @@ export default function Layout({ children }) {
   const location = useLocation();
 
   const isHome = location.pathname === '/';
+  const isDigitalEngagement = location.pathname === '/digital-engagement';
 
   // Scroll to top on route change
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function Layout({ children }) {
       {/* MAIN CONTENT */}
       <main
         className={`flex-1 ${
-          isHome ? 'pt-0' : 'pt-[72px]'
+          isHome || isDigitalEngagement ? 'pt-0' : 'pt-[72px]'
         }`}
       >
         {children}
