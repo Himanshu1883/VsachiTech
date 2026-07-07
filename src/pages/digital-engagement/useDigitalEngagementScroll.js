@@ -254,13 +254,12 @@ export function useDigitalEngagementScroll(rootRef) {
         ease: "power3.out",
       });
 
-      gsap.from(".de-engine-core, .de-orbit-card", {
+      gsap.from(".de-engine-core, .de-orbit-node", {
         scrollTrigger: {
           trigger: ".de-engine-orbit",
           start: "top 84%",
           toggleActions: "play none none reverse",
         },
-        scale: 0.92,
         opacity: 0,
         duration: 1,
         stagger: 0.06,

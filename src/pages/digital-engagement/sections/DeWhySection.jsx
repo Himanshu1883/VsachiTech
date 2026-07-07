@@ -283,7 +283,7 @@ export default function DeWhySection() {
         <div className="de-why-header mb-16 md:mb-20 text-center">
           <h2 className="de-why-title text-[34px] sm:text-[44px] md:text-[56px] font-black leading-[1.02] tracking-[-0.04em] text-white drop-shadow-[0_0_28px_rgba(255,255,255,0.12)]">
             <span className="block">{WHY_SECTION.titleLine1}</span>
-            <span className="de-serif de-why-title-accent mt-1 block text-[38px] sm:text-[48px] md:text-[60px] font-medium italic">
+            <span className="de-why-title-accent mt-1 block text-[38px] sm:text-[48px] md:text-[60px] font-bold">
               {WHY_SECTION.titleLine2}
             </span>
           </h2>
@@ -446,11 +446,8 @@ export default function DeWhySection() {
 
       <style>{`
         .de-why-title-accent {
-          background: linear-gradient(90deg, #f9a8d4 0%, #fb923c 45%, #fde047 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-          filter: drop-shadow(0 0 22px rgba(251, 146, 60, 0.35));
+          color: #e44f39;
+          text-shadow: 0 0 24px rgba(228, 79, 57, 0.35);
         }
 
         .de-why-subtitle {

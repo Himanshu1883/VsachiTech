@@ -1,4 +1,4 @@
-import { PROCESS_SECTION, PROCESS_STEPS } from "../digitalEngagementData";
+import { PROCESS_SECTION, PROCESS_STEPS, BRAND } from "../digitalEngagementData";
 
 const PROCESS_ICONS = {
   research: (
@@ -83,7 +83,10 @@ export default function DeProcess() {
         <div className="de-process-header mb-14 text-center md:mb-20">
           <h2 className="text-[30px] font-black leading-[1.08] tracking-[-0.03em] text-white drop-shadow-[0_0_24px_rgba(255,255,255,0.1)] sm:text-[40px] md:text-[52px]">
             {PROCESS_SECTION.titleBefore}{" "}
-            <span className="de-serif de-process-accent font-medium italic">
+            <span
+              className="de-process-accent font-bold"
+              style={{ color: BRAND }}
+            >
               {PROCESS_SECTION.titleAccent}
             </span>{" "}
             {PROCESS_SECTION.titleAfter}
@@ -239,11 +242,8 @@ export default function DeProcess() {
 
       <style>{`
         .de-process-accent {
-          background: linear-gradient(90deg, #c084fc 0%, #f472b6 55%, #fb923c 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-          filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.28));
+          color: #e44f39;
+          text-shadow: 0 0 24px rgba(228, 79, 57, 0.35);
         }
 
         .de-process-subtitle {

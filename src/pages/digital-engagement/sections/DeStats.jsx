@@ -141,7 +141,7 @@ export default function DeStats() {
           <h2 className="text-5xl md:text-7xl font-black leading-[0.95] text-[#0f172a]">
             Building more than
             <br />
-            <span className="de-stats-serif italic text-[#e44f39]">content.</span>
+            <span className="font-bold text-[#e44f39]">content.</span>
           </h2>
 
           <p className="mt-8 text-lg text-gray-600 max-w-3xl mx-auto">
@@ -198,12 +198,6 @@ export default function DeStats() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&display=swap');
-
-        .de-stats-serif {
-          font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-        }
-
         .de-stat-card {
           will-change: transform, opacity;
         }

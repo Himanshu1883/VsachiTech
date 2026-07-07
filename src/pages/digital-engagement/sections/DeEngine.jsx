@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import Logo from "../../../components/ui/logo";
-import { ENGINE_ITEMS, ENGINE_SECTION } from "../digitalEngagementData";
+import { ENGINE_ITEMS, ENGINE_SECTION, BRAND } from "../digitalEngagementData";
 
 const ORBIT_COUNT = ENGINE_ITEMS.length;
 const ORBIT_DURATION = 88;
@@ -152,51 +152,71 @@ export default function DeEngine() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const layoutOrbit = (progressDeg) => {
-      const size = stage.offsetWidth;
-      const radius = getOrbitRadius(size);
-      const center = size / 2;
+    const baseAngles = nodes.map((_, index) => (getOrbitAngle(index) * Math.PI) / 180);
 
+    const setters = nodes.map((node) => ({
+      x: gsap.quickSetter(node, "x", "px"),
+      y: gsap.quickSetter(node, "y", "px"),
+    }));
+
+    gsap.set(nodes, {
+      left: 0,
+      top: 0,
+      xPercent: -50,
+      yPercent: -50,
+      rotation: 0,
+      force3D: true,
+      transformOrigin: "50% 50%",
+    });
+
+    const layoutGuide = () => {
+      const radius = getOrbitRadius(stage.offsetWidth);
       guide.style.width = `${radius * 2}px`;
       guide.style.height = `${radius * 2}px`;
+      return radius;
+    };
 
-      nodes.forEach((node, index) => {
-        const angleRad =
-          ((getOrbitAngle(index) + progressDeg) * Math.PI) / 180;
-        const x = center + Math.cos(angleRad) * radius;
-        const y = center + Math.sin(angleRad) * radius;
+    let radius = layoutGuide();
 
-        gsap.set(node, {
-          left: x,
-          top: y,
-          xPercent: -50,
-          yPercent: -50,
-          rotation: 0,
-          force3D: true,
-        });
+    const updateOrbit = (progressRad) => {
+      nodes.forEach((_, index) => {
+        const angle = baseAngles[index] + progressRad;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        setters[index].x(x);
+        setters[index].y(y);
       });
     };
 
-    layoutOrbit(0);
+    updateOrbit(0);
 
     if (prefersReducedMotion) return;
 
+    gsap.config({ autoRound: false });
+
     const orbitTween = gsap.to(orbitRef.current, {
-      progress: 360,
+      progress: Math.PI * 2,
       duration: ORBIT_DURATION,
       ease: "none",
       repeat: -1,
-      onUpdate: () => layoutOrbit(orbitRef.current.progress),
+      onUpdate: () => updateOrbit(orbitRef.current.progress),
     });
 
+    let resizeRaf = null;
     const resizeObserver = new ResizeObserver(() => {
-      layoutOrbit(orbitRef.current.progress);
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        radius = layoutGuide();
+        updateOrbit(orbitRef.current.progress);
+      });
     });
     resizeObserver.observe(stage);
 
     return () => {
       orbitTween.kill();
       resizeObserver.disconnect();
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      gsap.config({ autoRound: true });
     };
   }, []);
 
@@ -224,14 +244,10 @@ export default function DeEngine() {
           <h2 className="font-black leading-[1.02] tracking-[-0.04em] text-white text-[34px] sm:text-[48px] md:text-[58px]">
             <span className="de-engine-title-line">{ENGINE_SECTION.titleBefore} </span>
             <span
-              className="de-engine-title-line font-serif font-normal italic"
+              className="de-engine-title-line font-bold"
               style={{
-                background:
-                  "linear-gradient(120deg, #7dd3fc 0%, #a5b4fc 45%, #c4b5fd 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                textShadow: "0 0 40px rgba(125,211,252,0.25)",
+                color: BRAND,
+                textShadow: "0 0 28px rgba(228, 79, 57, 0.35)",
               }}
             >
               {ENGINE_SECTION.titleHighlight}
@@ -268,15 +284,17 @@ export default function DeEngine() {
               </div>
             </div>
 
-            <div className="de-orbit-layer absolute inset-0">
-              {ENGINE_ITEMS.map((item) => (
-                <div
-                  key={item.textHighlight}
-                  className="de-orbit-node absolute will-change-transform"
-                >
-                  <OrbitCard item={item} />
-                </div>
-              ))}
+            <div className="de-orbit-pivot absolute left-1/2 top-1/2 h-0 w-0">
+              <div className="de-orbit-layer absolute left-0 top-0">
+                {ENGINE_ITEMS.map((item) => (
+                  <div
+                    key={item.textHighlight}
+                    className="de-orbit-node absolute left-0 top-0"
+                  >
+                    <OrbitCard item={item} />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -288,6 +306,12 @@ export default function DeEngine() {
         .de-orbit-card {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
+        }
+
+        .de-orbit-node {
+          will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
       `}</style>
     </section>
