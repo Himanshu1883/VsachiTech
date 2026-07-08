@@ -149,6 +149,19 @@ export function useDigitalEngagementScroll(rootRef) {
 
       const marqueeSection = root.querySelector(".de-marquee-section");
       if (marqueeSection && !prefersReducedMotion) {
+        gsap.from(".de-marquee-header", {
+          scrollTrigger: {
+            trigger: marqueeSection,
+            start: "top 86%",
+            toggleActions: "play none none reverse",
+          },
+          y: 26,
+          opacity: 0,
+          duration: 0.75,
+          stagger: 0.09,
+          ease: "power3.out",
+        });
+
         gsap.fromTo(
           marqueeSection,
           { y: 40 },
@@ -263,6 +276,32 @@ export function useDigitalEngagementScroll(rootRef) {
         opacity: 0,
         duration: 1,
         stagger: 0.06,
+        ease: "power3.out",
+      });
+
+      gsap.from(".de-engine-aside", {
+        scrollTrigger: {
+          trigger: ".de-engine-orbit",
+          start: "top 84%",
+          toggleActions: "play none none reverse",
+        },
+        y: 22,
+        opacity: 0,
+        duration: 0.85,
+        stagger: 0.14,
+        ease: "power3.out",
+      });
+
+      gsap.from(".de-engine-detail", {
+        scrollTrigger: {
+          trigger: ".de-engine-details",
+          start: "top 88%",
+          toggleActions: "play none none reverse",
+        },
+        y: 28,
+        opacity: 0,
+        duration: 0.75,
+        stagger: 0.08,
         ease: "power3.out",
       });
 

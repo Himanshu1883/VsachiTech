@@ -2,48 +2,53 @@ export const BRAND = "#e44f39";
 export const BRAND_ALT = "#de6b58";
 
 export const HERO = {
-  eyebrow: "(HOME - DIGITAL ENGAGEMENT)",
-  lines: ["Build Powerful", "Digital Engagement", "Experiences"],
+  eyebrow: "( DIGITAL ENGAGEMENT — VSACHI TECH )",
+  lines: ["Design What's", "Next For Your", "Digital Legacy"],
   accentLine: 2,
   highlightRows: [
-    ["Social Media Management", "Cinematic Editing", "Content Systems"],
-    ["Branding", "Audience-Focused Growth"],
+    ["Cinematic Storytelling", "Social-First Strategy", "Content Systems"],
+    ["Brand Vision", "Audience-Led Growth"],
   ],
-  highlightTagline: "Designed for modern businesses.",
+  highlightTagline: "Where bold vision meets cinematic execution.",
   image: "/distorted-hero2.jpg",
   marquee: "DIGITAL ENGAGEMENT",
 };
 
 export const MARQUEE_ROW_1 = [
-  "VIDEO EDITING",
-  "SHORT FORM CONTENT",
-  "SOCIAL MEDIA",
-  "REELS & SHORTS",
-  "CONTENT CREATION",
-  "BRAND STORYTELLING",
+  "CINEMATIC STORYTELLING",
+  "BOLD BRAND VISION",
+  "SOCIAL DOMINANCE",
+  "ICONIC REELS",
+  "AUDIENCE OBSESSION",
+  "CREATIVE FUTURES",
 ];
 
 export const MARQUEE_ROW_2 = [
-  "TRENDING CONTENT",
-  "DIGITAL GROWTH",
-  "AUDIENCE ENGAGEMENT",
-  "CREATIVE STRATEGY",
-  "VISUAL IDENTITY",
-  "CONTENT SYSTEMS",
+  "CULTURE-LED CONTENT",
+  "EXPONENTIAL GROWTH",
+  "MEMORABLE MOMENTS",
+  "STRATEGIC INNOVATION",
+  "VISUAL LEGACY",
+  "SCALABLE IMPACT",
 ];
 
 export const WHY_SECTION = {
-  titleLine1: "It's that simple,",
-  titleLine2: "in 4 pillars",
+  titleLine1: "The blueprint for",
+  titleLine2: "iconic presence",
   subtitle:
-    "This is how brands build powerful digital engagement with cinematic content, consistent identity, and growth-focused strategy.",
+    "We don't just post content — we architect digital experiences that make brands unforgettable, trusted, and impossible to ignore.",
+  backgroundVideo: "/portfolio/new_video_back.mp4",
+  cta: {
+    label: "Start Your Vision",
+    href: "/contact",
+  },
 };
 
 export const WHY_BLOCKS = [
   {
     titleBefore: "Creative",
     titleHighlight: "Storytelling",
-    text: "We build engaging visual stories that connect brands with audiences emotionally.",
+    text: "We craft visual narratives that stir emotion, build belief, and turn passive viewers into loyal advocates.",
     icon: "story",
     color: "#e879f9",
     glow: "#c026d3",
@@ -51,7 +56,7 @@ export const WHY_BLOCKS = [
   {
     titleBefore: "Short Form",
     titleHighlight: "Content",
-    text: "High-performing reels, TikToks, YouTube Shorts, and social-first video production.",
+    text: "Scroll-stopping reels and shorts engineered for the attention economy — fast, fierce, and fiercely on-brand.",
     icon: "content",
     color: "#38bdf8",
     glow: "#0ea5e9",
@@ -59,7 +64,7 @@ export const WHY_BLOCKS = [
   {
     titleBefore: "Brand",
     titleHighlight: "Consistency",
-    text: "Unified visual systems across all platforms to strengthen recognition and trust.",
+    text: "A unified visual language across every touchpoint — so your brand is recognized before the logo even appears.",
     icon: "brand",
     color: "#fb923c",
     glow: "#f97316",
@@ -67,7 +72,7 @@ export const WHY_BLOCKS = [
   {
     titleBefore: "Growth",
     titleHighlight: "Strategy",
-    text: "Performance-focused content systems designed for engagement and reach.",
+    text: "Data-informed creative systems built to compound reach, deepen engagement, and accelerate momentum.",
     icon: "growth",
     color: "#4ade80",
     glow: "#22c55e",
@@ -82,98 +87,132 @@ export const SLIDER_IMAGES = [
 ];
 
 export const PROCESS_SECTION = {
-  titleBefore: "How should your",
-  titleAccent: "digital engagement",
-  titleAfter: "grow?",
-  subtitle: "Our proven four-step process from audience insight to scalable performance.",
+  titleBefore: "Our Four Step",
+  titleAccent: "Delivery",
+  titleLineAccent: "Process",
+  subtitle:
+    "Our process is built to deliver clarity, consistency, and results at every stage. By combining strategy, cinematic content, and execution, we ensure each brand engagement is thoughtfully crafted, aligned with your goals, and optimized for long-term audience growth.",
 };
 
 export const PROCESS_STEPS = [
   {
     number: "01",
+    title: "Discovery & Strategy",
     tag: "RESEARCH",
-    headline: "To understand exactly what resonates.",
-    text: "Understanding audience behaviour, trends, and platform psychology.",
-    bullets: ["Audience & trend analysis", "Platform psychology insights"],
-    cta: "Start with research",
+    headline: "Decode what moves your audience.",
+    text: "We uncover the cultural signals, behaviours, and desires that shape how people connect with brands today.",
+    bullets: ["Audience & trend intelligence", "Platform psychology mapping"],
+    cta: "Begin with insight",
     image: "/marketing_research.jpg",
     color: "#38bdf8",
     glow: "#0ea5e9",
     icon: "research",
+    featured: false,
   },
   {
     number: "02",
+    title: "Content Architecture",
     tag: "STRATEGY",
-    headline: "Systems that align with your brand goals.",
-    text: "Building scalable engagement systems aligned with brand goals.",
-    bullets: ["Content roadmap & calendars", "Channel-specific growth plans"],
-    cta: "Build your strategy",
+    headline: "Architect a roadmap to relevance.",
+    text: "We design scalable engagement systems that align creative ambition with your long-term brand vision.",
+    bullets: ["Vision-led content roadmaps", "Channel-specific growth architecture"],
+    cta: "Shape your strategy",
     image: "/marketing_strategy.jpg",
     color: "#c084fc",
     glow: "#a855f7",
     icon: "strategy",
+    featured: false,
   },
   {
     number: "03",
+    title: "Design & Production",
     tag: "CREATE",
-    headline: "Cinematic content that captures attention.",
-    text: "Producing cinematic edits, visuals, reels, and premium assets.",
-    bullets: ["Reels, shorts & long-form edits", "Premium visual storytelling"],
+    headline: "Bring your story to life — cinematically.",
+    text: "We produce premium edits, visuals, and social assets that feel iconic the moment they hit the feed.",
+    bullets: ["Reels, shorts & cinematic edits", "Premium visual storytelling"],
     cta: "Start creating",
     image: "/marketing_create.jpg",
     color: "#4ade80",
     glow: "#22c55e",
     icon: "create",
+    featured: false,
   },
   {
     number: "04",
+    title: "Scale, Ship & Keep Growing",
     tag: "SCALE",
-    headline: "Performance that compounds over time.",
-    text: "Optimizing content performance and audience retention consistently.",
-    bullets: ["Engagement & retention tracking", "Continuous content optimization"],
-    cta: "Scale your reach",
+    headline: "Turn momentum into a movement.",
+    text: "We publish with precision, track engagement and retention, and keep iterating on content performance. Your social presence doesn't go quiet after launch — it compounds.",
+    bullets: ["Engagement & retention intelligence", "Continuous creative evolution"],
+    cta: "Scale your impact",
     image: "/marketing_scale.jpg",
     color: "#fb923c",
     glow: "#f97316",
     icon: "scale",
+    featured: true,
   },
 ];
+
+export const STATS_SECTION = {
+  eyebrow: "( THE IMPACT WE CREATE )",
+  titleBefore: "Numbers that reflect",
+  titleHighlight: "real momentum.",
+  subtitle:
+    "We measure success in attention earned, audiences built, and brands elevated — not just posts published.",
+};
 
 export const STATS = [
   {
     value: "120+",
     numeric: 120,
     suffix: "+",
-    title: "Projects Delivered",
-    desc: "Creating high-performing content systems.",
+    title: "Visions Delivered",
+    desc: "Brands transformed through cinematic content systems built to perform.",
   },
   {
     value: "95%",
     numeric: 95,
     suffix: "%",
     title: "Audience Retention",
-    desc: "Designed for engagement and conversion.",
+    desc: "Content crafted to hold attention, spark action, and build lasting connection.",
   },
   {
     value: "24/7",
     numeric: null,
     suffix: "",
-    title: "Creative Support",
-    desc: "Continuous optimization and strategy.",
+    title: "Creative Momentum",
+    desc: "Always-on strategy, optimization, and creative support for brands in motion.",
   },
 ];
 
 export const ENGINE_SECTION = {
-  titleBefore: "Our five",
-  titleHighlight: "deliverables",
+  titleBefore: "Five pillars of",
+  titleHighlight: "digital excellence",
+  eyebrow: "The creative engine behind iconic brands",
+  asideRightLabel: "Built into every partnership",
   subtitle:
-    "Every engagement is built to grow your brand through cinematic content and scalable systems.",
+    "Every engagement is engineered to elevate your brand — cinematic in craft, relentless in growth, unforgettable in impact.",
+  extendedCopy:
+    "We don't hand you content — we build the creative engine that powers your brand's next chapter. From vision to publish, every frame, caption, and campaign is designed to move people and move the needle.",
+  highlights: [
+    "Vision-led creative direction",
+    "Growth intelligence & reporting",
+    "Dedicated cinematic team",
+    "End-to-end publishing excellence",
+  ],
+  metrics: [
+    { label: "Platforms mastered", value: "5+" },
+    { label: "Content formats", value: "12+" },
+    { label: "Creative turnaround", value: "48h" },
+  ],
 };
 
 export const ENGINE_ITEMS = [
   {
     textBefore: "High-impact social media",
     textHighlight: "campaigns",
+    desc: "Campaigns that don't just reach feeds — they own them. Built for virality, saves, and conversion.",
+    tags: ["Reels", "Ads", "Growth"],
     icon: "campaign",
     color: "#fb923c",
     glow: "#f97316",
@@ -181,6 +220,8 @@ export const ENGINE_ITEMS = [
   {
     textBefore: "Cinematic brand",
     textHighlight: "storytelling",
+    desc: "Stories that feel like cinema — premium, emotional, and impossible to scroll past.",
+    tags: ["Brand films", "Visual tone", "Narrative"],
     icon: "story",
     color: "#c084fc",
     glow: "#a855f7",
@@ -188,6 +229,8 @@ export const ENGINE_ITEMS = [
   {
     textBefore: "Performance-focused content",
     textHighlight: "systems",
+    desc: "Repeatable creative pipelines that turn consistency into compounding brand power.",
+    tags: ["Calendars", "Templates", "Workflows"],
     icon: "systems",
     color: "#f472b6",
     glow: "#ec4899",
@@ -195,6 +238,8 @@ export const ENGINE_ITEMS = [
   {
     textBefore: "Short-form video editing &",
     textHighlight: "strategy",
+    desc: "Hooks, pacing, and platform-native formats engineered to stop the scroll and start conversations.",
+    tags: ["Shorts", "Hooks", "Retention"],
     icon: "video",
     color: "#38bdf8",
     glow: "#0ea5e9",
@@ -202,6 +247,8 @@ export const ENGINE_ITEMS = [
   {
     textBefore: "Creative direction for modern",
     textHighlight: "brands",
+    desc: "The visual standards, identity systems, and creative guardrails that make great brands iconic.",
+    tags: ["Art direction", "Identity", "Guidelines"],
     icon: "direction",
     color: "#4ade80",
     glow: "#22c55e",
@@ -213,4 +260,14 @@ export const DELIVERABLES = ENGINE_ITEMS.map(
   ({ textBefore, textHighlight }) => `${textBefore} ${textHighlight}`,
 );
 
-export const CTA_TAGS = ["Social Growth", "Content", "Strategy"];
+export const CTA_SECTION = {
+  eyebrow: "( LET'S BUILD THE FUTURE )",
+  titleBefore: "Ready to define your",
+  titleHighlight: "digital legacy?",
+  subtitle:
+    "Partner with a team that thinks in vision, creates in cinema, and builds brands meant to lead — not follow.",
+  primaryCta: "Start Your Vision →",
+  secondaryCta: "Explore Our Work →",
+};
+
+export const CTA_TAGS = ["Vision-Led Growth", "Cinematic Content", "Bold Strategy"];

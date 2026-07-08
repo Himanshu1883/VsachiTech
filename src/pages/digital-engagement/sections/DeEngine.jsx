@@ -5,9 +5,8 @@ import { ENGINE_ITEMS, ENGINE_SECTION, BRAND } from "../digitalEngagementData";
 
 const ORBIT_COUNT = ENGINE_ITEMS.length;
 const ORBIT_DURATION = 88;
-const ORBIT_RADIUS_RATIO = 0.37;
+const ORBIT_RADIUS_RATIO = 0.43;
 
-/** Slot angle in degrees — evenly spaced, first card at 12 o'clock. */
 function getOrbitAngle(index, total = ORBIT_COUNT) {
   return -90 + (360 / total) * index;
 }
@@ -91,14 +90,14 @@ const ENGINE_ICONS = {
 function OrbitCard({ item }) {
   return (
     <article
-      className="de-orbit-card relative w-[clamp(128px,17vw,168px)] rounded-2xl p-[1px]"
+      className="de-orbit-card relative w-[clamp(140px,18vw,188px)] rounded-2xl p-[1px]"
       style={{
         boxShadow: `0 0 28px ${item.glow}33, 0 18px 40px rgba(0,0,0,0.45)`,
         background: `linear-gradient(135deg, ${item.color}88, ${item.glow}22, rgba(255,255,255,0.08))`,
       }}
     >
       <div
-        className="relative overflow-hidden rounded-[15px] bg-[#0a0a0f]/88 px-3.5 py-4 backdrop-blur-xl"
+        className="relative overflow-hidden rounded-[15px] bg-[#0a0a0f]/90 px-3.5 py-4 backdrop-blur-xl sm:px-4 sm:py-4"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
@@ -128,8 +127,144 @@ function OrbitCard({ item }) {
             {item.textHighlight}
           </span>
         </p>
+
+        <p className="mt-2 line-clamp-2 text-left text-[9px] leading-relaxed text-white/45 sm:text-[10px]">
+          {item.desc}
+        </p>
       </div>
     </article>
+  );
+}
+
+function DeliverableDetailCard({ item, index }) {
+  return (
+    <article
+      className="de-engine-detail group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.06] sm:p-5"
+    >
+      <div
+        className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full blur-2xl opacity-40 transition-opacity duration-300 group-hover:opacity-70"
+        style={{ backgroundColor: `${item.glow}44` }}
+      />
+
+      <div className="relative z-10">
+        <div className="mb-3 flex items-center justify-between gap-2">
+          <div
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10"
+            style={{
+              color: item.color,
+              boxShadow: `0 0 16px ${item.glow}44`,
+              background: `linear-gradient(135deg, ${item.glow}18, transparent)`,
+            }}
+          >
+            {ENGINE_ICONS[item.icon]}
+          </div>
+          <span className="font-mono text-[10px] tracking-[0.2em] text-white/35">
+            0{index + 1}
+          </span>
+        </div>
+
+        <h3 className="text-[13px] font-bold leading-snug text-white sm:text-[14px]">
+          {item.textBefore}{" "}
+          <span className="de-serif italic" style={{ color: item.color }}>
+            {item.textHighlight}
+          </span>
+        </h3>
+
+        <p className="mt-2 text-[11px] leading-relaxed text-white/55 sm:text-[12px]">
+          {item.desc}
+        </p>
+
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {item.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/55"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function EngineAsideLeft() {
+  return (
+    <aside className="de-engine-aside flex h-full flex-col justify-center gap-5 pr-2 xl:pr-4">
+      <div>
+        <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#e44f39]">
+          {ENGINE_SECTION.eyebrow}
+        </p>
+        <p className="mt-3 text-[13px] leading-relaxed text-white/65 xl:text-[14px]">
+          {ENGINE_SECTION.extendedCopy}
+        </p>
+      </div>
+
+      <ul className="space-y-2.5">
+        {ENGINE_SECTION.highlights.map((highlight) => (
+          <li
+            key={highlight}
+            className="flex items-start gap-2.5 text-[12px] leading-snug text-white/75"
+          >
+            <span
+              className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+              style={{ backgroundColor: BRAND, boxShadow: `0 0 10px ${BRAND}88` }}
+            />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+
+      <div className="grid grid-cols-1 gap-2.5 border-t border-white/10 pt-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+        {ENGINE_SECTION.metrics.map((metric) => (
+          <div
+            key={metric.label}
+            className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-center lg:text-left xl:text-center"
+          >
+            <p className="text-[18px] font-black tabular-nums text-white">{metric.value}</p>
+            <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-white/45">
+              {metric.label}
+            </p>
+          </div>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+function EngineAsideRight() {
+  return (
+    <aside className="de-engine-aside flex h-full flex-col justify-center gap-3 pl-2 xl:pl-4">
+      <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.24em] text-white/40">
+        {ENGINE_SECTION.asideRightLabel}
+      </p>
+
+      {ENGINE_ITEMS.map((item, index) => (
+        <div
+          key={item.textHighlight}
+          className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-3 transition-colors duration-300 hover:border-white/15 hover:bg-white/[0.05]"
+        >
+          <div className="flex items-center gap-2.5">
+            <span
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-white/10"
+              style={{ color: item.color }}
+            >
+              {ENGINE_ICONS[item.icon]}
+            </span>
+            <div className="min-w-0">
+              <p className="text-[11px] font-bold leading-tight text-white/90">
+                <span className="font-mono text-[9px] text-white/35">0{index + 1} · </span>
+                {item.textHighlight}
+              </p>
+              <p className="mt-0.5 line-clamp-2 text-[10px] leading-relaxed text-white/45">
+                {item.desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </aside>
   );
 }
 
@@ -223,7 +358,7 @@ export default function DeEngine() {
   return (
     <section
       ref={sectionRef}
-      className="de-engine relative overflow-hidden min-h-screen bg-[#07070b]"
+      className="de-engine relative overflow-hidden bg-[#07070b] py-16 md:py-24 lg:min-h-screen lg:py-28"
     >
       <div className="de-engine-bg pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(56,189,248,0.08),transparent_55%)]" />
@@ -239,9 +374,12 @@ export default function DeEngine() {
         />
       </div>
 
-      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-20 sm:px-6 sm:py-24">
-        <header className="de-engine-header mb-10 max-w-3xl text-center sm:mb-14">
-          <h2 className="font-black leading-[1.02] tracking-[-0.04em] text-white text-[34px] sm:text-[48px] md:text-[58px]">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6">
+        <header className="de-engine-header mx-auto mb-10 max-w-4xl text-center lg:mb-12">
+          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#e44f39]">
+            {ENGINE_SECTION.eyebrow}
+          </p>
+          <h2 className="mt-3 font-black leading-[1.02] tracking-[-0.04em] text-white text-[34px] sm:text-[48px] md:text-[58px]">
             <span className="de-engine-title-line">{ENGINE_SECTION.titleBefore} </span>
             <span
               className="de-engine-title-line font-bold"
@@ -253,57 +391,86 @@ export default function DeEngine() {
               {ENGINE_SECTION.titleHighlight}
             </span>
           </h2>
-          <p className="de-engine-subtitle mx-auto mt-4 max-w-xl text-[14px] leading-relaxed text-white/70 sm:text-[16px]">
+          <p className="de-engine-subtitle mx-auto mt-4 max-w-2xl text-[14px] leading-relaxed text-white/70 sm:text-[16px]">
             {ENGINE_SECTION.subtitle}
           </p>
         </header>
 
-        <div className="de-engine-orbit relative mx-auto w-full max-w-[680px] px-2 sm:max-w-[760px]">
-          <div
-            ref={stageRef}
-            className="de-engine-orbit-stage relative mx-auto aspect-square w-full"
-          >
-            <div
-              ref={guideRef}
-              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.1]"
-              style={{
-                boxShadow: "inset 0 0 60px rgba(255,255,255,0.03)",
-              }}
-            />
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-2 lg:hidden">
+          {ENGINE_SECTION.highlights.map((highlight) => (
+            <span
+              key={highlight}
+              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/65"
+            >
+              {highlight}
+            </span>
+          ))}
+        </div>
 
-            <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-5 xl:gap-8">
+          <div className="hidden lg:block lg:col-span-3">
+            <EngineAsideLeft />
+          </div>
+
+          <div className="de-engine-orbit relative w-full lg:col-span-6">
+            <div
+              ref={stageRef}
+              className="de-engine-orbit-stage relative mx-auto aspect-square w-full max-w-[min(100%,920px)]"
+            >
               <div
-                className="de-engine-core absolute left-1/2 top-1/2 h-[100px] w-[100px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl sm:h-[130px] sm:w-[130px]"
+                ref={guideRef}
+                className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.1]"
                 style={{
-                  background:
-                    "radial-gradient(circle, rgba(56,189,248,0.35) 0%, rgba(168,85,247,0.28) 45%, rgba(249,115,22,0.2) 75%, transparent 100%)",
+                  boxShadow: "inset 0 0 60px rgba(255,255,255,0.03)",
                 }}
               />
-              <div className="relative flex h-[64px] w-[64px] items-center justify-center rounded-full border border-white/10 bg-black/30 backdrop-blur-md sm:h-[80px] sm:w-[80px]">
-                <Logo className="h-9 w-9 sm:h-11 sm:w-11" />
-              </div>
-            </div>
 
-            <div className="de-orbit-pivot absolute left-1/2 top-1/2 h-0 w-0">
-              <div className="de-orbit-layer absolute left-0 top-0">
-                {ENGINE_ITEMS.map((item) => (
-                  <div
-                    key={item.textHighlight}
-                    className="de-orbit-node absolute left-0 top-0"
-                  >
-                    <OrbitCard item={item} />
-                  </div>
-                ))}
+              <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+                <div
+                  className="de-engine-core absolute left-1/2 top-1/2 h-[100px] w-[100px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl sm:h-[130px] sm:w-[130px]"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(56,189,248,0.35) 0%, rgba(168,85,247,0.28) 45%, rgba(249,115,22,0.2) 75%, transparent 100%)",
+                  }}
+                />
+                <div className="relative flex h-[64px] w-[64px] items-center justify-center rounded-full border border-white/10 bg-black/30 backdrop-blur-md sm:h-[80px] sm:w-[80px]">
+                  <Logo className="h-9 w-9 sm:h-11 sm:w-11" />
+                </div>
+              </div>
+
+              <div className="de-orbit-pivot absolute left-1/2 top-1/2 h-0 w-0">
+                <div className="de-orbit-layer absolute left-0 top-0">
+                  {ENGINE_ITEMS.map((item) => (
+                    <div
+                      key={item.textHighlight}
+                      className="de-orbit-node absolute left-0 top-0"
+                    >
+                      <OrbitCard item={item} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+
+          <div className="hidden lg:block lg:col-span-3">
+            <EngineAsideRight />
+          </div>
+        </div>
+
+        <div className="de-engine-details mt-12 grid gap-4 sm:grid-cols-2 xl:mt-16 xl:grid-cols-5">
+          {ENGINE_ITEMS.map((item, index) => (
+            <DeliverableDetailCard key={item.textHighlight} item={item} index={index} />
+          ))}
         </div>
       </div>
 
       <style>{`
         .de-engine-title-line,
         .de-engine-subtitle,
-        .de-orbit-card {
+        .de-orbit-card,
+        .de-engine-detail,
+        .de-engine-aside {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }

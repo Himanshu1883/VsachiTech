@@ -21,7 +21,7 @@ export default function HomeHero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24">
+    <section className="home-gutter relative flex min-h-screen items-center overflow-hidden bg-black">
 
       {/* VIDEO BACKGROUND */}
       <div className="absolute inset-0 z-0">
@@ -69,7 +69,7 @@ export default function HomeHero() {
 
       {/* MAIN CONTENT */}
       <motion.div
-        className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+        className="home-container relative z-10 grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20"
         style={{ opacity, scale }}
       >
 

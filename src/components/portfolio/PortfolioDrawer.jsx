@@ -3,13 +3,19 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
-  FaLinkedin,
   FaYoutube,
 } from "react-icons/fa";
 import { FiArrowRight, FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { pauseLenis, resumeLenis } from "../../utils/lenisController";
 import { PORTFOLIO_CLIENTS } from "../../data/portfolioCaseStudies";
+import {
+  SOCIAL_CATEGORIES,
+  UNIQUE_SOCIAL_CLIENTS,
+  SOCIAL_PROFILE_HANDLES,
+  getSocialLogoDisplay,
+  portfolioImageSrc,
+} from "../../data/socialMediaClients";
 
 const SOCIAL_PLATFORMS = {
   instagram: {
@@ -26,11 +32,6 @@ const SOCIAL_PLATFORMS = {
     icon: FaYoutube,
     color: "#FF0000",
     label: "YouTube",
-  },
-  linkedin: {
-    icon: FaLinkedin,
-    color: "#0A66C2",
-    label: "LinkedIn",
   },
 };
 
@@ -52,7 +53,7 @@ const SOCIAL_PLATFORM_PATTERNS = [
   ["instagram"],
   ["instagram", "youtube"],
   ["instagram", "facebook", "youtube"],
-  ["instagram", "linkedin"],
+  ["instagram", "youtube"],
   ["facebook", "instagram"],
   ["instagram"],
   ["instagram", "facebook"],
@@ -65,38 +66,36 @@ function slugify(name) {
 }
 
 function buildClientSocials(client, index) {
-  const platforms =
-    SOCIAL_PLATFORM_PATTERNS[index % SOCIAL_PLATFORM_PATTERNS.length];
-  const slug = slugify(client.name);
+  const profileHandle = SOCIAL_PROFILE_HANDLES[client.logoKey];
+  const platforms = profileHandle
+    ? ["instagram", "facebook", "youtube"]
+    : SOCIAL_PLATFORM_PATTERNS[index % SOCIAL_PLATFORM_PATTERNS.length];
+  const slug = profileHandle ?? slugify(client.name);
 
   return platforms.map((platform) => {
     if (platform === "instagram") {
       return {
         platform,
         handle: `@${slug}`,
-        url: `https://instagram.com/${slug}`,
+        url: `https://www.instagram.com/${slug}/`,
       };
     }
     if (platform === "facebook") {
       return {
         platform,
-        handle: client.name,
-        url: `https://facebook.com/${slug}`,
+        handle: `@${slug}`,
+        url: `https://www.facebook.com/${slug}`,
       };
     }
     if (platform === "youtube") {
       return {
         platform,
-        handle: client.name,
-        url: `https://youtube.com/@${slug}`,
+        handle: `@${slug}`,
+        url: `https://www.youtube.com/@${slug}`,
       };
     }
-    return {
-      platform: "linkedin",
-      handle: client.name,
-      url: `https://linkedin.com/company/${slug}`,
-    };
-  });
+    return null;
+  }).filter(Boolean);
 }
 
 function enrichSocialClient(client, index) {
@@ -120,231 +119,7 @@ function getDrawerPreviewImage(project) {
   return DRAWER_PREVIEW_IMAGES[project.id] ?? project.images[0];
 }
 
-function portfolioImageSrc(path) {
-  if (!path?.startsWith("/portfolio/")) return path;
-  const file = path.slice("/portfolio/".length);
-  return `/portfolio/${encodeURIComponent(file)}`;
-}
-
-/** Placeholder set — swap with real 20 clients later */
-const SOCIAL_MEDIA_CLIENTS_RAW = [
-  {
-    id: "royal-touch",
-    logoKey: "royal-touch",
-    name: "Royal Touch",
-    niche: "Luxury Fashion",
-    specialty: "Branding",
-    category: "Fashion",
-    image: "/portfolio/royal_touch.jpeg",
-  },
-  {
-    id: "sitaravastram",
-    logoKey: "sitaravastram",
-    name: "Sitaravastram",
-    niche: "Ethnic Wear",
-    specialty: "Reels",
-    category: "Fashion",
-    image: "/portfolio/sitaravastram.jpeg",
-  },
-  {
-    id: "kaur-studio",
-    logoKey: "kaur-studio",
-    name: "Kaur Studio",
-    niche: "Photography",
-    specialty: "Growth",
-    category: "Lifestyle",
-    image: "/portfolio/kaur_studio_social.jpeg",
-  },
-  {
-    id: "swim-n-gym",
-    logoKey: "swim-n-gym",
-    name: "Swim n Gym",
-    niche: "Fitness Club",
-    specialty: "Reels",
-    category: "Fitness",
-    image: "/portfolio/swim'n'gym.png",
-  },
-  {
-    id: "enlightenment-yoga",
-    logoKey: "enlightenment-yoga",
-    name: "Enlightenment with Yoga",
-    niche: "Wellness Studio",
-    specialty: "Content",
-    category: "Wellness",
-    image: "/portfolio/enightnment with yoga.png",
-  },
-  {
-    id: "ivva",
-    logoKey: "ivva",
-    name: "IVVA",
-    niche: "Awards & Events",
-    specialty: "Branding",
-    category: "Events",
-    image: "/portfolio/ivva.jpeg",
-  },
-  {
-    id: "orvella",
-    logoKey: "orvella",
-    name: "Orvella",
-    niche: "Beauty & Skincare",
-    specialty: "Ads",
-    category: "Beauty",
-    image: "/portfolio/orvella.jpeg",
-  },
-  {
-    id: "maison-bloom",
-    logoKey: "royal-touch",
-    name: "Maison Bloom",
-    niche: "Designer Boutique",
-    specialty: "Reels",
-    category: "Fashion",
-    image: "/portfolio/royal_touch.jpeg",
-  },
-  {
-    id: "aura-skin",
-    logoKey: "orvella",
-    name: "Aura Skin Co.",
-    niche: "D2C Beauty",
-    specialty: "UGC",
-    category: "Beauty",
-    image: "/portfolio/orvella.jpeg",
-  },
-  {
-    id: "fit-core",
-    logoKey: "swim-n-gym",
-    name: "FitCore Labs",
-    niche: "Gym & Training",
-    specialty: "Growth",
-    category: "Fitness",
-    image: "/portfolio/swim'n'gym.png",
-  },
-  {
-    id: "zen-flow",
-    logoKey: "enlightenment-yoga",
-    name: "Zen Flow",
-    niche: "Yoga Retreats",
-    specialty: "Content",
-    category: "Wellness",
-    image: "/portfolio/enightnment with yoga.png",
-  },
-  {
-    id: "luxe-frames",
-    logoKey: "kaur-studio",
-    name: "Luxe Frames",
-    niche: "Wedding Studio",
-    specialty: "Branding",
-    category: "Lifestyle",
-    image: "/portfolio/kaur_studio_social.jpeg",
-  },
-  {
-    id: "vastram-house",
-    logoKey: "sitaravastram",
-    name: "Vastram House",
-    niche: "Heritage Fashion",
-    specialty: "Reels",
-    category: "Fashion",
-    image: "/portfolio/sitaravastram.jpeg",
-  },
-  {
-    id: "crown-events",
-    logoKey: "ivva",
-    name: "Crown Events",
-    niche: "Luxury Galas",
-    specialty: "Ads",
-    category: "Events",
-    image: "/portfolio/ivva.jpeg",
-  },
-  {
-    id: "velvet-row",
-    logoKey: "royal-touch",
-    name: "Velvet Row",
-    niche: "Premium Retail",
-    specialty: "Branding",
-    category: "Fashion",
-    image: "/portfolio/royal_touch.jpeg",
-  },
-  {
-    id: "glow-bar",
-    logoKey: "orvella",
-    name: "Glow Bar",
-    niche: "Salon Chain",
-    specialty: "Reels",
-    category: "Beauty",
-    image: "/portfolio/orvella.jpeg",
-  },
-  {
-    id: "active-pulse",
-    logoKey: "swim-n-gym",
-    name: "Active Pulse",
-    niche: "Sports Academy",
-    specialty: "Growth",
-    category: "Fitness",
-    image: "/portfolio/swim'n'gym.png",
-  },
-  {
-    id: "mindful-co",
-    logoKey: "enlightenment-yoga",
-    name: "Mindful Co.",
-    niche: "Holistic Health",
-    specialty: "Content",
-    category: "Wellness",
-    image: "/portfolio/enightnment with yoga.png",
-  },
-  {
-    id: "studio-kaur",
-    logoKey: "kaur-studio",
-    name: "Studio Kaur",
-    niche: "Portrait Brand",
-    specialty: "UGC",
-    category: "Lifestyle",
-    image: "/portfolio/kaur_studio_social.jpeg",
-  },
-  {
-    id: "silk-route",
-    logoKey: "sitaravastram",
-    name: "Silk Route",
-    niche: "Artisan Textiles",
-    specialty: "Branding",
-    category: "Fashion",
-    image: "/portfolio/sitaravastram.jpeg",
-  },
-];
-
-const SOCIAL_MEDIA_CLIENTS = SOCIAL_MEDIA_CLIENTS_RAW.map(enrichSocialClient);
-
-const SOCIAL_CATEGORIES = [
-  "All",
-  "Fashion",
-  "Beauty",
-  "Fitness",
-  "Wellness",
-  "Events",
-  "Lifestyle",
-];
-
-const SOCIAL_LOGO_DISPLAY = {
-  "royal-touch": {
-    bg: "#f3ece4",
-    imgClass: "object-cover object-[center_28%] scale-[1.72]",
-  },
-  sitaravastram: {
-    bg: "#0b1528",
-    imgClass: "object-cover object-center scale-[1.14]",
-  },
-  ivva: {
-    bg: "#d8d4cc",
-    imgClass: "object-cover object-center scale-[1.18]",
-  },
-};
-
-function getSocialLogoDisplay(logoKey) {
-  return (
-    SOCIAL_LOGO_DISPLAY[logoKey] ?? {
-      bg: "#0a0a0a",
-      imgClass: "object-cover object-center scale-105",
-    }
-  );
-}
+const SOCIAL_MEDIA_CLIENTS = UNIQUE_SOCIAL_CLIENTS.map(enrichSocialClient);
 
 const TABS = [
   { id: "social-media", label: "Social Media" },
@@ -453,7 +228,7 @@ function DrawerWebDevCard({ item, index, onClose }) {
   );
 }
 
-function SocialHandleTile({ social, index }) {
+function SocialHandleTile({ social, index, compact = false }) {
   const platform = SOCIAL_PLATFORMS[social.platform];
   const Icon = platform.icon;
 
@@ -470,21 +245,35 @@ function SocialHandleTile({ social, index }) {
         ease: "easeOut",
       }}
       onClick={(e) => e.stopPropagation()}
-      className="flex flex-col items-center text-center rounded-xl px-2 py-2.5 transition-colors group/social w-full min-w-0 hover:opacity-90"
+      className={`flex min-w-0 flex-col items-center text-center transition-colors group/social w-full hover:opacity-90 ${
+        compact ? "gap-1 px-1 py-1" : "gap-1.5 rounded-xl px-2 py-2"
+      }`}
+      title={`${platform.label} · ${social.handle}`}
+      aria-label={`${platform.label} ${social.handle}`}
     >
       <span
-        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+        className={`flex shrink-0 items-center justify-center rounded-full ${
+          compact ? "h-7 w-7" : "h-8 w-8"
+        }`}
         style={{ color: platform.color }}
       >
-        <Icon className="text-[17px]" aria-hidden />
+        <Icon className={compact ? "text-[15px]" : "text-[17px]"} aria-hidden />
       </span>
+      {!compact && (
+        <span
+          className="block text-[9px] font-bold uppercase tracking-wide leading-none"
+          style={{ color: platform.color }}
+        >
+          {platform.label}
+        </span>
+      )}
       <span
-        className="mt-1.5 block text-[9px] font-bold uppercase tracking-wide leading-none"
-        style={{ color: platform.color }}
+        className={`block w-full font-semibold text-white/95 group-hover/social:text-[#ffe8e4] transition-colors ${
+          compact
+            ? "text-[9px] leading-[1.15] line-clamp-2 break-words"
+            : "text-[10px] leading-snug line-clamp-2 break-words"
+        }`}
       >
-        {platform.label}
-      </span>
-      <span className="mt-1 block text-[10px] font-bold text-white leading-snug break-all line-clamp-2 group-hover/social:text-[#ffe8e4] transition-colors">
         {social.handle}
       </span>
     </motion.a>
@@ -492,33 +281,22 @@ function SocialHandleTile({ social, index }) {
 }
 
 function SocialHandlesGrid({ socials }) {
-  const rows = [];
-  for (let i = 0; i < socials.length; i += 2) {
-    rows.push(socials.slice(i, i + 2));
-  }
+  const compact = socials.length >= 3;
+  const layoutClass =
+    socials.length === 1
+      ? "flex justify-center"
+      : socials.length === 2
+        ? "grid grid-cols-2 gap-2"
+        : "grid grid-cols-3 gap-1.5";
 
   return (
-    <div className="flex flex-col gap-1.5 w-full">
-      {rows.map((row, rowIndex) => (
+    <div className={`w-full max-w-[220px] mx-auto ${layoutClass}`}>
+      {socials.map((social, index) => (
         <div
-          key={`social-row-${rowIndex}`}
-          className={
-            row.length === 1
-              ? "flex justify-center"
-              : "grid grid-cols-2 gap-1.5"
-          }
+          key={social.platform}
+          className={socials.length === 1 ? "w-[52%] min-w-0" : "min-w-0"}
         >
-          {row.map((social, colIndex) => {
-            const index = rowIndex * 2 + colIndex;
-            return (
-              <div
-                key={social.platform}
-                className={row.length === 1 ? "w-[calc(50%-3px)]" : "min-w-0"}
-              >
-                <SocialHandleTile social={social} index={index} />
-              </div>
-            );
-          })}
+          <SocialHandleTile social={social} index={index} compact={compact} />
         </div>
       ))}
     </div>
@@ -603,22 +381,19 @@ function SocialClientTile({ client, index, celebrate, celebrationKey }) {
 
   return (
     <motion.div
-      layout
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.03 + index * 0.025, duration: 0.35 }}
-      className="relative w-full"
+      className="relative h-[238px] w-full"
       onMouseEnter={() => setRevealed(true)}
       onMouseLeave={() => setRevealed(false)}
       onClick={() => setRevealed((prev) => !prev)}
     >
-      <motion.div
-        layout
-        transition={{ layout: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
-        className={`relative w-full overflow-hidden rounded-2xl border transition-colors duration-300 ${
+      <div
+        className={`relative h-full w-full overflow-hidden rounded-2xl border transition-colors duration-300 ${
           revealed
             ? "border-[#e44f39]/55"
-            : "border-transparent min-h-[178px] hover:border-white/20"
+            : "border-transparent hover:border-white/20"
         }`}
         style={{ perspective: "1000px" }}
       >
@@ -631,65 +406,55 @@ function SocialClientTile({ client, index, celebrate, celebrationKey }) {
           {!revealed ? (
             <motion.div
               key="front"
-              layout
               initial={{ opacity: 0, rotateY: -72, scale: 0.96 }}
               animate={{ opacity: 1, rotateY: 0, scale: 1 }}
               exit={{ opacity: 0, rotateY: 72, scale: 0.96 }}
               transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-              className="flex min-h-[178px] flex-col items-center justify-center p-3.5 text-center"
+              className="flex h-full flex-col items-center justify-center overflow-hidden px-2 py-3 text-center"
               style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
             >
               <div
-                className="relative h-[68px] w-[68px] rounded-full overflow-hidden border border-white/10"
+                className="relative aspect-square w-[92%] max-w-[124px] shrink-0 rounded-full overflow-hidden border border-white/15 shadow-[0_8px_24px_rgba(0,0,0,0.22)]"
                 style={{ backgroundColor: logo.bg }}
               >
                 <img
                   src={imageSrc}
                   alt={client.name}
                   className={`absolute inset-0 h-full w-full ${logo.imgClass}`}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
-              <h3 className="mt-2.5 text-[14px] font-extrabold text-white leading-tight line-clamp-2 tracking-tight drop-shadow-sm">
+              <h3 className="mt-2.5 w-full px-0.5 text-[11px] font-extrabold text-[#e44f39] leading-tight line-clamp-2 tracking-tight sm:text-[12px]">
                 {client.name}
               </h3>
-              <p className="mt-1 text-[11px] font-semibold text-gray-200 leading-snug line-clamp-1">
-                {client.niche}
-              </p>
-              {/* <span className="mt-2 text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full bg-[#e44f39]/20 border border-[#e44f39]/35 text-white">
-                {client.specialty}
-              </span> */}
-              <p className="mt-2.5 text-[10px] font-semibold text-gray-300 tracking-wide hidden sm:block">
-                Hover to view handles
-              </p>
-              <p className="mt-2.5 text-[10px] font-semibold text-gray-300 tracking-wide sm:hidden">
-                Tap to view handles
-              </p>
             </motion.div>
           ) : (
             <motion.div
               key="back"
-              layout
               initial={{ opacity: 0, rotateY: 72, scale: 0.96 }}
               animate={{ opacity: 1, rotateY: 0, scale: 1 }}
               exit={{ opacity: 0, rotateY: -72, scale: 0.96 }}
               transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col gap-3 p-3.5"
+              className="flex h-full items-center justify-center overflow-hidden px-2 py-3 text-center"
               style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
             >
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#ff6b55] mb-1.5">
-                  Client voice
-                </p>
-                <p className="text-[11px] font-semibold leading-relaxed text-white/95">
-                  &ldquo;{client.quote}&rdquo;
-                </p>
-              </div>
+              <div className="flex w-full max-w-[210px] flex-col items-center gap-3">
+                <div className="w-full">
+                  <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#ff6b55]">
+                    Client voice
+                  </p>
+                  <p className="mx-auto line-clamp-2 text-[10px] font-semibold leading-snug text-white/95 sm:text-[11px]">
+                    &ldquo;{client.quote}&rdquo;
+                  </p>
+                </div>
 
-              <SocialHandlesGrid socials={client.socials} />
+                <SocialHandlesGrid socials={client.socials} />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
@@ -821,7 +586,7 @@ function SocialMediaGrid({ clients, celebrationIds, celebrationKey }) {
         onSelect={setActiveCategory}
       />
 
-      <div className="grid grid-cols-2 gap-2.5 sm:gap-3 items-start">
+      <div className="grid grid-cols-3 gap-2 items-stretch">
         {filtered.map((client, i) => (
           <SocialClientTile
             key={client.id}
@@ -959,7 +724,7 @@ export default function PortfolioDrawer({ open, onClose }) {
                     <p className="mt-2 text-sm font-medium text-gray-200 leading-relaxed">
                       {isWebDev
                         ? "Premium client websites — UI/UX led, conversion focused."
-                        : "20 brands we've grown — reels, content & campaigns."}
+                        : `${SOCIAL_MEDIA_CLIENTS.length} brands we've grown — reels, content & campaigns.`}
                     </p>
                   </div>
                   <button

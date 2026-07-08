@@ -82,8 +82,8 @@ const stackBackgrounds = {
 
 
   return (
-    <section className="bg-gray-50 py-28 px-6 md:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+    <section className="home-gutter bg-gray-50 py-28">
+      <div className="home-container mx-auto grid gap-20 lg:grid-cols-2">
 
         {/* LEFT SIDE */}
         <div>

@@ -8,6 +8,7 @@ import TechnologyStackSection from '../components/ui/TechnologyStackSection';
 import TwoWingsSection from '../components/ui/TwoWingsSection';
 import WhyChooseUs from '../components/ui/WhyChooseUs';
 import WhyUsSection from '../components/ui/WhyUsSection';
+import HomeSocialClientsMarquee from '../components/ui/HomeSocialClientsMarquee';
 import useSEO from '../components/hooks/useSEO';
 import FAQ from '../components/ui/FAQ';
 import UAEMarket from '../components/ui/UAEmarket';
@@ -19,7 +20,7 @@ export default function Home() {
     canonical: "https://vsachitech.com/"
   });
   return (
-    <div className="bg-white">
+    <div className="home-page bg-white">
       <h1 className="sr-only">
         Software Development Company in India
       </h1>
@@ -28,6 +29,7 @@ export default function Home() {
       <UAEMarket/>
       <AiServicesSection />
       <MovingTextSection />
+      <HomeSocialClientsMarquee />
       <WhyChooseUs />
       <TechnologyStackSection />
       <ImageText />

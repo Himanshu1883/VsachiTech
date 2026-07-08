@@ -1,7 +1,7 @@
 export default function WhyChooseUs() {
   return (
     <section className="bg-white py-24">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+      <div className="home-container home-gutter mx-auto grid items-start gap-16 md:grid-cols-2">
         {/* Left content */}
         <div>
           <p className="text-sm tracking-widest uppercase text-gray-500 mb-4">

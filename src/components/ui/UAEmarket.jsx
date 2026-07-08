@@ -77,7 +77,7 @@ const UAEMarket = () => {
       <div className="absolute top-0 left-0 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-gradient-to-br from-red-50 to-transparent rounded-full -translate-x-16 sm:-translate-x-24 md:-translate-x-32 -translate-y-16 sm:-translate-y-24 md:-translate-y-32" />
       <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-gradient-to-tl from-red-50 to-transparent rounded-full translate-x-24 sm:translate-x-32 md:translate-x-40 lg:translate-x-48 translate-y-24 sm:translate-y-32 md:translate-y-40 lg:translate-y-48" />
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="home-container home-gutter relative">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
@@ -92,7 +92,7 @@ const UAEMarket = () => {
             <span className="text-red-600 block sm:inline"> United Arab Emirates</span>
           </h2>
           
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6">
+          <p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg md:text-xl">
             From market entry to market leadership, we've been strategically expanding our presence in the UAE, 
             delivering innovative digital solutions tailored to the region's dynamic business ecosystem.
           </p>

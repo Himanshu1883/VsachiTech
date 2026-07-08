@@ -57,7 +57,7 @@ const FAQ = () => {
                 aria-hidden
             />
 
-            <div className="relative max-w-7xl mx-auto px-6">
+            <div className="home-container home-gutter relative">
                 {/* HEADER */}
                 <header className="grid md:grid-cols-2 gap-16 mb-24 items-end">
                     <div>

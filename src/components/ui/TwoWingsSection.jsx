@@ -13,7 +13,7 @@ export default function TwoWingsSection() {
         <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-red-50 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+      <div className="home-container home-gutter relative z-10">
 
         {/* Header */}
         <div className="text-center mb-20">

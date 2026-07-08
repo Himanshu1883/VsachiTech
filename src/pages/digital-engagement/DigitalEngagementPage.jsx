@@ -27,9 +27,9 @@ export default function DigitalEngagementPage() {
       <DeHero />
       <DeMarquee />
       <DeWhySection />
-      <DeProcess />
       <DeStats />
       <DeEngine />
+      <DeProcess />
       <DeCta />
 
       <style>{`

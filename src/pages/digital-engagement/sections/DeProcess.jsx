@@ -1,264 +1,232 @@
-import { PROCESS_SECTION, PROCESS_STEPS, BRAND } from "../digitalEngagementData";
+import { useState } from "react";
+import Logo from "../../../components/ui/logo";
+import { PROCESS_SECTION, PROCESS_STEPS } from "../digitalEngagementData";
 
-const PROCESS_ICONS = {
-  research: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-      <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="1.6" />
-      <path d="m16 16 4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  ),
-  strategy: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-      <path
-        d="M4 6h16M4 12h10M4 18h16"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <circle cx="18" cy="12" r="2" fill="currentColor" />
-    </svg>
-  ),
-  create: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-      <path
-        d="M4 16l4-8 4 5 4-7 4 10"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  ),
-  scale: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-      <path
-        d="M5 18h14M7 15l3-4 3 2 4-6"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M15 7h3v3"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  ),
-};
+const SMOOTH_EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+const DURATION = "1.25s";
 
-function CheckIcon({ color, glow }) {
+function formatStepNumber(number) {
+  return `.${number.replace(/^0/, "")}`;
+}
+
+function ProcessCard({ step, isActive, onActivate }) {
+  const stepLabel = formatStepNumber(step.number);
+
   return (
-    <span
-      className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border bg-white/[0.04]"
-      style={{ borderColor: `${color}44`, boxShadow: `0 0 12px ${glow}33` }}
+    <article
+      className={`de-process-card ${isActive ? "de-process-card--active" : ""} flex cursor-pointer flex-col overflow-hidden rounded-[28px] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.04)] sm:p-7 lg:h-[500px] lg:min-w-0`}
+      onMouseEnter={onActivate}
     >
-      <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3" aria-hidden="true">
-        <path
-          d="M3.5 8.2 6.4 11 12.5 5"
-          stroke={color}
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </span>
+      <h3 className="de-process-card-title shrink-0 text-[22px] font-bold leading-[1.15] tracking-[-0.02em] text-[#0c121c] sm:text-[24px]">
+        {step.title}
+      </h3>
+
+      <div className="relative mt-4 min-h-0 flex-1">
+        <p className="de-process-card-text absolute inset-x-0 top-0 line-clamp-3 text-[14px] leading-relaxed text-[#4b5563] sm:text-[15px]">
+          {step.text}
+        </p>
+
+        <div className="de-process-card-footer absolute inset-x-0 bottom-0 h-[220px]">
+          <span className="de-process-card-number absolute bottom-0 right-0 text-[56px] font-bold leading-none tracking-[-0.05em] text-[#0c121c] sm:text-[64px]">
+            {stepLabel}
+          </span>
+
+          <div className="de-process-card-media absolute inset-0 overflow-hidden rounded-[22px] bg-[#111111]">
+            <img
+              src={step.image}
+              alt={step.title}
+              className="de-process-card-image h-full w-full object-cover object-center"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
+            <span className="de-process-card-number-overlay absolute bottom-4 right-4 text-[56px] font-bold leading-none tracking-[-0.05em] text-white sm:text-[64px]">
+              {stepLabel}
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }
 
 export default function DeProcess() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <section className="de-process relative overflow-hidden bg-[#060608] py-24 md:py-32">
+    <section className="de-process relative overflow-hidden bg-[#eeedeb] py-20 md:py-28">
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+        className="pointer-events-none absolute inset-0 opacity-[0.45]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 15% 20%, rgba(56,189,248,0.12), transparent 32%), radial-gradient(circle at 85% 30%, rgba(168,85,247,0.1), transparent 30%), radial-gradient(circle at 50% 90%, rgba(249,115,22,0.08), transparent 35%)",
+            "radial-gradient(circle, rgba(12,18,28,0.05) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
         }}
+        aria-hidden
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6">
-        <div className="de-process-header mb-14 text-center md:mb-20">
-          <h2 className="text-[30px] font-black leading-[1.08] tracking-[-0.03em] text-white drop-shadow-[0_0_24px_rgba(255,255,255,0.1)] sm:text-[40px] md:text-[52px]">
-            {PROCESS_SECTION.titleBefore}{" "}
-            <span
-              className="de-process-accent font-bold"
-              style={{ color: BRAND }}
-            >
-              {PROCESS_SECTION.titleAccent}
-            </span>{" "}
-            {PROCESS_SECTION.titleAfter}
-          </h2>
+      <div className="relative z-10 mx-auto w-full max-w-[min(100%,1480px)] px-3 sm:px-4 md:px-5">
+        <div className="de-process-header mb-12 grid gap-8 lg:mb-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-12">
+          <div>
+            <h2 className="text-[34px] font-bold leading-[1.02] tracking-[-0.04em] text-[#0c121c] sm:text-[42px] md:text-[48px] lg:text-[56px]">
+              <span className="block">{PROCESS_SECTION.titleBefore}</span>
+              <span className="mt-1 flex flex-wrap items-center gap-3">
+                <span className="inline-flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-black/10 bg-white shadow-sm sm:h-12 sm:w-12">
+                  <Logo className="h-7 w-7 sm:h-8 sm:w-8" />
+                </span>
+                <span>{PROCESS_SECTION.titleAccent}</span>
+              </span>
+              <span className="de-serif mt-1 block font-medium italic text-[#0c121c]">
+                {PROCESS_SECTION.titleLineAccent}
+              </span>
+            </h2>
+          </div>
 
-          <p className="de-process-subtitle mx-auto mt-4 max-w-2xl text-[14px] sm:text-[15px] md:text-base">
+          <p className="de-process-subtitle max-w-xl text-[15px] leading-relaxed text-[#4b5563] sm:text-[16px] lg:pt-2">
             {PROCESS_SECTION.subtitle}
           </p>
         </div>
 
-        <div className="space-y-8 md:space-y-10">
-          {PROCESS_STEPS.map((step, index) => {
-            const imageFirst = index % 2 === 0;
-
-            return (
-              <article
-                key={step.number}
-                className="de-process-card group relative overflow-hidden rounded-[28px] p-[1px]"
-                style={{
-                  background: `linear-gradient(135deg, ${step.color}66 0%, rgba(255,255,255,0.1) 50%, ${step.glow}44 100%)`,
-                  boxShadow: `0 0 55px ${step.glow}14`,
-                }}
-              >
-                <div className="grid min-h-[320px] overflow-hidden rounded-[27px] bg-[#08080c] lg:min-h-[380px] lg:grid-cols-2">
-                  {/* Image column — 50% */}
-                  <div
-                    className={`de-process-image-col relative min-h-[240px] sm:min-h-[280px] lg:min-h-full ${
-                      imageFirst ? "lg:order-1" : "lg:order-2"
-                    }`}
-                  >
-                    <img
-                      src={step.image}
-                      alt={step.tag}
-                      className="de-process-img absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.05]"
-                    />
-                    <div
-                      className={`absolute inset-0 ${
-                        imageFirst
-                          ? "bg-gradient-to-r from-black/5 via-black/20 to-[#08080c]/95 lg:to-[#08080c]"
-                          : "bg-gradient-to-l from-black/5 via-black/20 to-[#08080c]/95 lg:to-[#08080c]"
-                      }`}
-                    />
-                    <div
-                      className="absolute inset-0 opacity-60"
-                      style={{
-                        background: `radial-gradient(circle at 50% 50%, ${step.glow}28, transparent 70%)`,
-                      }}
-                    />
-                  </div>
-
-                  {/* Text column — 50% */}
-                  <div
-                    className={`de-process-text-col relative flex items-center border-white/10 p-6 sm:p-8 md:p-10 lg:p-12 ${
-                      imageFirst
-                        ? "border-t lg:border-l lg:border-t-0"
-                        : "border-t lg:border-r lg:border-t-0"
-                    } ${imageFirst ? "lg:order-2" : "lg:order-1"}`}
-                    style={{
-                      background: `linear-gradient(160deg, ${step.glow}10 0%, #08080c 38%, #0a0a10 100%)`,
-                      boxShadow: `inset 0 0 40px ${step.glow}08`,
-                    }}
-                  >
-                    <div className="relative w-full max-w-lg">
-                      <div className="mb-6 flex items-center gap-3">
-                        <div
-                          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border bg-white/[0.05]"
-                          style={{
-                            color: step.color,
-                            borderColor: `${step.color}55`,
-                            boxShadow: `0 0 24px ${step.glow}40`,
-                          }}
-                        >
-                          {PROCESS_ICONS[step.icon]}
-                        </div>
-                        <span
-                          className="de-process-tag rounded-full border px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em]"
-                          style={{
-                            color: step.color,
-                            borderColor: `${step.color}55`,
-                            backgroundColor: `${step.glow}16`,
-                            textShadow: `0 0 14px ${step.glow}88`,
-                            boxShadow: `0 0 20px ${step.glow}22`,
-                          }}
-                        >
-                          {step.tag}
-                        </span>
-                      </div>
-
-                      <h3
-                        className="de-process-headline mb-4 text-[22px] font-bold leading-[1.15] text-white sm:text-[26px] md:text-[30px]"
-                        style={{
-                          textShadow:
-                            "0 0 18px rgba(255,255,255,0.28), 0 0 36px rgba(255,255,255,0.08)",
-                        }}
-                      >
-                        {step.headline}
-                      </h3>
-
-                      <p
-                        className="de-process-desc mb-6 text-[13px] leading-[1.85] sm:text-[14px] md:text-[15px]"
-                        style={{
-                          color: "rgba(255,255,255,0.9)",
-                          textShadow: `0 0 12px ${step.glow}33, 0 0 8px rgba(255,255,255,0.15)`,
-                        }}
-                      >
-                        {step.text}
-                      </p>
-
-                      <ul className="mb-8 space-y-3">
-                        {step.bullets.map((bullet) => (
-                          <li
-                            key={bullet}
-                            className="flex items-center gap-3 text-[12px] font-medium sm:text-[13px]"
-                            style={{
-                              color: "rgba(255,255,255,0.88)",
-                              textShadow: "0 0 10px rgba(255,255,255,0.12)",
-                            }}
-                          >
-                            <CheckIcon color={step.color} glow={step.glow} />
-                            {bullet}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <button
-                        type="button"
-                        className="de-process-cta group/btn relative inline-flex items-center gap-2 overflow-hidden rounded-full p-[1px] transition-transform duration-300 hover:scale-[1.04]"
-                        style={{
-                          background: `linear-gradient(135deg, ${step.color}88, rgba(255,255,255,0.2), ${step.glow}66)`,
-                        }}
-                      >
-                        <span
-                          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0d0d12]/80 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-md sm:text-[13px]"
-                          style={{
-                            boxShadow: `0 0 28px ${step.glow}28`,
-                            textShadow: "0 0 12px rgba(255,255,255,0.35)",
-                          }}
-                        >
-                          {step.cta}
-                          <span aria-hidden="true" className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
-                            ↗
-                          </span>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+        <div
+          className="de-process-track grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:flex lg:items-stretch"
+          onMouseLeave={() => setActiveIndex(0)}
+        >
+          {PROCESS_STEPS.map((step, index) => (
+            <ProcessCard
+              key={step.number}
+              step={step}
+              isActive={activeIndex === index}
+              onActivate={() => setActiveIndex(index)}
+            />
+          ))}
         </div>
       </div>
 
       <style>{`
-        .de-process-accent {
-          color: #e44f39;
-          text-shadow: 0 0 24px rgba(228, 79, 57, 0.35);
-        }
-
         .de-process-subtitle {
-          background: linear-gradient(90deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.5) 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-          filter: drop-shadow(0 0 12px rgba(255,255,255,0.1));
-        }
-
-        .de-process-headline,
-        .de-process-desc,
-        .de-process-tag {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
+        }
+
+        .de-process-card-title {
+          transition: transform ${DURATION} ${SMOOTH_EASE};
+        }
+
+        .de-process-card-text {
+          opacity: 0;
+          transform: translateY(12px);
+          transition:
+            opacity 1s ${SMOOTH_EASE},
+            transform ${DURATION} ${SMOOTH_EASE};
+        }
+
+        .de-process-card-number {
+          opacity: 1;
+          transform: translateY(0);
+          transition:
+            opacity 0.9s ${SMOOTH_EASE},
+            transform 1.1s ${SMOOTH_EASE};
+        }
+
+        .de-process-card-media {
+          opacity: 0;
+          transform: scale(0.98) translateY(10px);
+          transform-origin: center bottom;
+          pointer-events: none;
+          transition:
+            opacity 1.05s ${SMOOTH_EASE},
+            transform ${DURATION} ${SMOOTH_EASE};
+        }
+
+        .de-process-card-image {
+          transition: transform 1.4s ${SMOOTH_EASE};
+        }
+
+        .de-process-card-number-overlay {
+          opacity: 0;
+          transform: translateY(12px);
+          transition:
+            opacity 0.95s ${SMOOTH_EASE},
+            transform 1.1s ${SMOOTH_EASE};
+        }
+
+        @media (max-width: 1023px) {
+          .de-process-card {
+            cursor: default;
+            min-height: 430px;
+          }
+
+          .de-process-card-text {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .de-process-card-number {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+
+          .de-process-card-media {
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+          }
+
+          .de-process-card-number-overlay {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .de-process-card {
+            flex: 1 1 0%;
+            height: 500px;
+            transition: flex ${DURATION} ${SMOOTH_EASE};
+            will-change: flex;
+          }
+
+          .de-process-card--active {
+            flex: 1.55 1 0%;
+          }
+
+          .de-process-card--active .de-process-card-title {
+            transform: translateY(-2px);
+          }
+
+          .de-process-card--active .de-process-card-text {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+          }
+
+          .de-process-card--active .de-process-card-number {
+            opacity: 0;
+            transform: translateY(14px);
+            transition-delay: 0s;
+          }
+
+          .de-process-card--active .de-process-card-media {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+            transition-delay: 0.16s;
+          }
+
+          .de-process-card--active .de-process-card-image {
+            transform: scale(1.02);
+          }
+
+          .de-process-card--active .de-process-card-number-overlay {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.26s;
+          }
+
+          .de-process-card:not(.de-process-card--active) .de-process-card-text,
+          .de-process-card:not(.de-process-card--active) .de-process-card-media,
+          .de-process-card:not(.de-process-card--active) .de-process-card-number-overlay {
+            transition-delay: 0s;
+          }
         }
       `}</style>
     </section>

@@ -54,7 +54,7 @@ const sections = [
             <div key={index} className="relative">
               <button
                 onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                className="w-full py-4 px-8 md:px-16 flex justify-between items-center text-left hover:bg-gray-200/50 transition-colors duration-300"
+                className="home-gutter flex w-full items-center justify-between py-4 text-left transition-colors duration-300 hover:bg-gray-200/50 md:py-4"
               >
                 <div className="flex items-center flex-1">
                   <h3 className={`text-5xl md:text-7xl lg:text-8xl tracking-tighter ${section.color}`}>
@@ -91,7 +91,7 @@ const sections = [
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="overflow-hidden bg-[#e8e8e8]"
                   >
-                    <div className="px-8 md:px-16 pb-8 pt-8">
+                    <div className="home-gutter pb-8 pt-8">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                         {/* Left side - Text content */}
                         <div className="space-y-8">

@@ -11,14 +11,14 @@ export default function CTASection() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true }}
         className="
-          relative overflow-hidden
+          home-gutter relative overflow-hidden
           bg-[#242424]
-          p-12 md:p-16 lg:p-20
+          py-12 md:py-16 lg:py-20
         "
       >
 
 
-        <div className="relative grid lg:grid-cols-2 gap-12 items-center bg-[#242424]">
+        <div className="home-container relative grid items-center gap-12 bg-[#242424] lg:grid-cols-2">
           {/* LEFT */}
           <div>
             <span className="text-xs tracking-widest text-gray-400">

@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { STATS } from "../digitalEngagementData";
+import { STATS, STATS_SECTION } from "../digitalEngagementData";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -135,18 +135,17 @@ export default function DeStats() {
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="de-stats-header text-center mb-16">
           <p className="uppercase tracking-[0.3em] text-sm text-[#e44f39] mb-5">
-            ( WHY DIGITAL EXPERIENCE MATTERS )
+            {STATS_SECTION.eyebrow}
           </p>
 
           <h2 className="text-5xl md:text-7xl font-black leading-[0.95] text-[#0f172a]">
-            Building more than
+            {STATS_SECTION.titleBefore}
             <br />
-            <span className="font-bold text-[#e44f39]">content.</span>
+            <span className="font-bold text-[#e44f39]">{STATS_SECTION.titleHighlight}</span>
           </h2>
 
           <p className="mt-8 text-lg text-gray-600 max-w-3xl mx-auto">
-            We combine strategy, storytelling and technology to turn attention
-            into long-term audience growth.
+            {STATS_SECTION.subtitle}
           </p>
 
           <div className="mt-10 flex justify-center">

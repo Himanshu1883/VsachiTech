@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { CTA_TAGS } from "../digitalEngagementData";
+import { CTA_SECTION, CTA_TAGS } from "../digitalEngagementData";
 
 const PARTICLE_POSITIONS = [
   { left: "8%", top: "18%" },
@@ -58,17 +58,16 @@ export default function DeCta() {
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         <div className="de-cta-content text-center">
           <p className="uppercase tracking-[0.3em] text-[#de6b58] text-[10px] font-medium mb-3">
-            ( LET&apos;S BUILD SOMETHING GREAT )
+            {CTA_SECTION.eyebrow}
           </p>
 
           <h2 className="font-black leading-[1] tracking-[-0.05em] text-[#111] text-[28px] sm:text-[38px] md:text-[52px]">
-            Ready to grow your
-            <span className="text-[#de6b58] pl-2">digital presence?</span>
+            {CTA_SECTION.titleBefore}
+            <span className="text-[#de6b58] pl-2">{CTA_SECTION.titleHighlight}</span>
           </h2>
 
           <p className="mt-4 text-gray-500 text-sm md:text-base max-w-xl mx-auto leading-[1.7]">
-            Creative content, storytelling and digital experiences designed to
-            help your brand stand out.
+            {CTA_SECTION.subtitle}
           </p>
 
           <div className="flex justify-center flex-wrap gap-3 mt-6">
@@ -93,14 +92,14 @@ export default function DeCta() {
               to="/contact"
               className="inline-flex items-center px-7 py-3 rounded-full bg-[#de6b58] text-white font-medium text-sm hover:scale-105 transition-all duration-500 shadow-lg"
             >
-              Start Project →
+              {CTA_SECTION.primaryCta}
             </Link>
 
             <Link
               to="/our-work"
               className="inline-flex items-center px-7 py-3 rounded-full bg-white text-[#111] font-medium text-sm border border-gray-200 hover:scale-105 hover:shadow-lg transition-all duration-500"
             >
-              View Portfolio →
+              {CTA_SECTION.secondaryCta}
             </Link>
           </div>
         </div>

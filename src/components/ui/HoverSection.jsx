@@ -33,7 +33,8 @@ export default function HoverSection() {
   ];
 
   return (
-    <section className="relative w-full bg-white py-12 sm:py-16 px-6 sm:px-8 md:px-16 lg:px-24">
+    <section className="home-gutter relative w-full bg-white py-12 sm:py-16">
+      <div className="home-container">
       {/* Top section with title */}
       <div className="mb-12 sm:mb-16 flex justify-between items-start">
         <div>
@@ -195,6 +196,7 @@ export default function HoverSection() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );

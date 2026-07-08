@@ -50,11 +50,11 @@ const services = [
   }, [hoveredItem]);
 
   return (
-    <section className="relative bg-white text-[#1c1c1c] py-24 px-5 md:px-12 lg:px-24 overflow-hidden">
+    <section className="home-gutter relative overflow-hidden bg-white py-24 text-[#1c1c1c]">
       {/* subtle depth */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,0,0,0.04),transparent_40%)]" />
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="home-container relative mx-auto">
         {/* HEADER */}
         <div className="mb-24 max-w-4xl">
           <span className="text-xs tracking-widest text-gray-500">

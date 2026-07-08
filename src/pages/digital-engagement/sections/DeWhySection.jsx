@@ -1,7 +1,10 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi";
 import { WHY_BLOCKS, WHY_SECTION } from "../digitalEngagementData";
+import { portfolioImageSrc } from "../../../data/socialMediaClients";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,6 +69,17 @@ const STEP_ICONS = {
   ),
 };
 
+/** Short category labels for the side annotations, keyed off the existing icon names. */
+const STEP_LABELS = {
+  story: "Storytelling",
+  content: "Content Systems",
+  brand: "Brand Identity",
+  growth: "Growth Engine",
+};
+
+/** Same four hues used by the scroll-synced connector line, reused for the edge-rail dots. */
+const RAIL_DOT_COLORS = ["#c026d3", "#38bdf8", "#fb923c", "#4ade80"];
+
 /**
  * Converts a set of anchor points into a single continuous cubic-bezier
  * path using a Catmull-Rom spline. Unlike computing each zigzag segment's
@@ -99,7 +113,15 @@ function catmullRomPath(points) {
   return d;
 }
 
-function buildConnectorPath(cards, container) {
+/**
+ * Builds the connector path through each card, then — if a CTA element is
+ * given — extends it two anchors further: one pulling the line toward the
+ * button's horizontal center, and a final one at the button's top edge.
+ * Sharing the same x on those last two points is what makes the line
+ * straighten out vertically right before it "plugs into" the button,
+ * instead of arriving at an angle.
+ */
+function buildConnectorPath(cards, container, ctaEl) {
   if (!cards.length || !container) return "";
 
   const containerRect = container.getBoundingClientRect();
@@ -116,7 +138,118 @@ function buildConnectorPath(cards, container) {
     return { x, y };
   });
 
+  if (ctaEl) {
+    const ctaRect = ctaEl.getBoundingClientRect();
+    const ctaX = ctaRect.left + ctaRect.width / 2 - containerRect.left;
+    const ctaY = ctaRect.top - containerRect.top - 6;
+    const last = anchors[anchors.length - 1];
+
+    if (last) {
+      const midY = last.y + (ctaY - last.y) * 0.55;
+      anchors.push({ x: ctaX, y: midY });
+      anchors.push({ x: ctaX, y: ctaY });
+    }
+  }
+
   return catmullRomPath(anchors);
+}
+
+/**
+ * Fills the empty side of each zigzag row with a large outlined step number
+ * (in the block's own accent color) and a short category label — so the
+ * row reads as a considered two-sided layout instead of a card with dead
+ * space beside it. Desktop/tablet only; mobile cards already run ~92% wide.
+ */
+function SideAnnotation({ index, block, side }) {
+  const label = STEP_LABELS[block.icon] ?? block.icon;
+  const isRightSide = side === "right";
+
+  return (
+    <div
+      className={`relative hidden md:flex flex-1 min-w-0 flex-col justify-center ${
+        isRightSide ? "items-start pl-2 lg:pl-6" : "items-end pr-2 lg:pr-6 text-right"
+      }`}
+      aria-hidden="true"
+    >
+      <span
+        className="de-why-ghost-number select-none font-black leading-none"
+        style={{
+          fontSize: "clamp(72px, 9vw, 180px)",
+          WebkitTextStroke: `1.5px ${block.color}66`,
+          color: "transparent",
+        }}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      <div
+        className={`mt-1 flex items-center gap-3 ${isRightSide ? "" : "flex-row-reverse"}`}
+      >
+        <span
+          className="h-px w-10 lg:w-14"
+          style={{ backgroundColor: block.color, opacity: 0.5 }}
+        />
+        <span
+          className="text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.3em]"
+          style={{ color: block.color }}
+        >
+          {label}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Decorative vertical rail for the outer section margins (visible only on
+ * very wide viewports where real gutter exists outside the max-w-6xl
+ * container). Reuses the connector line's four accent colors for the dots
+ * so the margins read as an extension of the center motif.
+ */
+function SideRail({ side, label }) {
+  const isLeft = side === "left";
+  const dotTopPositions = [12, 32, 68, 88];
+
+  return (
+    <div
+      className={`de-why-rail pointer-events-none absolute inset-y-0 z-10 hidden xl:block ${
+        isLeft ? "left-6 2xl:left-12" : "right-6 2xl:right-12"
+      } w-px`}
+      aria-hidden="true"
+    >
+      <div
+        className="absolute inset-y-16 left-1/2 w-px -translate-x-1/2"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent, rgba(255,255,255,0.16) 12%, rgba(255,255,255,0.16) 88%, transparent)",
+        }}
+      />
+
+      {dotTopPositions.map((top, i) => (
+        <span
+          key={top}
+          className="de-why-rail-dot absolute left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full"
+          style={{
+            top: `${top}%`,
+            backgroundColor: RAIL_DOT_COLORS[i % RAIL_DOT_COLORS.length],
+            animationDelay: `${i * 0.6}s`,
+          }}
+        />
+      ))}
+
+      <span
+        className="absolute left-1/2 top-1/2 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.4em] text-white/30"
+        style={{
+          writingMode: "vertical-rl",
+          transform: isLeft
+            ? "translate(-50%, -50%) rotate(180deg)"
+            : "translate(-50%, -50%)",
+        }}
+      >
+        {label}
+      </span>
+    </div>
+  );
 }
 
 export default function DeWhySection() {
@@ -127,6 +260,7 @@ export default function DeWhySection() {
   const svgRef = useRef(null);
   const headRef = useRef(null);
   const headGlowRef = useRef(null);
+  const ctaRef = useRef(null);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -149,7 +283,7 @@ export default function DeWhySection() {
 
     const setHeadOpacity = (progress) => {
       if (!head || !headGlow) return;
-      const fadeZone = 0.035;
+      const fadeZone = 0.03;
       let opacity = 1;
       if (progress < fadeZone) opacity = progress / fadeZone;
       else if (progress > 1 - fadeZone) opacity = (1 - progress) / fadeZone;
@@ -187,7 +321,7 @@ export default function DeWhySection() {
       svg.setAttribute("width", String(width));
       svg.setAttribute("height", String(height));
 
-      const nextPath = buildConnectorPath(cards, stepsWrap);
+      const nextPath = buildConnectorPath(cards, stepsWrap, ctaRef.current);
       path.setAttribute("d", nextPath);
       halo.setAttribute("d", nextPath);
 
@@ -245,6 +379,7 @@ export default function DeWhySection() {
       stepsWrap.querySelectorAll(".de-why-step").forEach((card) => {
         resizeObserver.observe(card);
       });
+      if (ctaRef.current) resizeObserver.observe(ctaRef.current);
     }
 
     window.addEventListener("resize", onResize);
@@ -263,8 +398,29 @@ export default function DeWhySection() {
       ref={sectionRef}
       className="de-why relative overflow-hidden bg-[#07070b] py-24 md:py-32"
     >
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+        <video
+          className="absolute inset-0 h-full w-full scale-105 object-cover"
+          src={portfolioImageSrc(WHY_SECTION.backgroundVideo)}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      </div>
+
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        className="pointer-events-none absolute inset-0 z-[1] bg-black/75"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-b from-black/55 via-black/35 to-black/65"
+        aria-hidden
+      />
+
+      <div
+        className="pointer-events-none absolute inset-0 z-[3] opacity-[0.28]"
         style={{
           backgroundImage:
             "radial-gradient(circle at 12% 14%, rgba(56,189,248,0.18), transparent 28%), radial-gradient(circle at 88% 18%, rgba(192,38,211,0.16), transparent 30%), radial-gradient(circle at 18% 88%, rgba(249,115,22,0.14), transparent 28%), radial-gradient(circle at 82% 84%, rgba(34,197,94,0.14), transparent 30%)",
@@ -272,12 +428,15 @@ export default function DeWhySection() {
       />
 
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        className="pointer-events-none absolute inset-0 z-[3] opacity-[0.06]"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E\")",
         }}
       />
+
+      <SideRail side="left" label="Digital Engagement Engine" />
+      <SideRail side="right" label={`${WHY_BLOCKS.length} Core Pillars`} />
 
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6">
         <div className="de-why-header mb-16 md:mb-20 text-center">
@@ -378,68 +537,98 @@ export default function DeWhySection() {
           </svg>
 
           <div className="relative z-10 space-y-10 md:space-y-14 lg:space-y-16">
-            {WHY_BLOCKS.map((block, index) => (
-              <div
-                key={block.titleHighlight}
-                className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}
-              >
-                <article
-                  className="de-why-step de-why-block relative w-full max-w-[92%] overflow-hidden rounded-[22px] p-[1px] sm:max-w-[420px]"
-                  style={{
-                    background: `linear-gradient(135deg, ${block.color}66 0%, rgba(255,255,255,0.12) 50%, ${block.glow}44 100%)`,
-                  }}
+            {WHY_BLOCKS.map((block, index) => {
+              const isEven = index % 2 === 0;
+
+              return (
+                <div
+                  key={block.titleHighlight}
+                  className="flex items-center md:gap-8 lg:gap-14"
                 >
+                  {!isEven && (
+                    <SideAnnotation index={index} block={block} side="left" />
+                  )}
+
                   <div
-                    className="relative rounded-[21px] border border-white/15 bg-[#0d0d12]/55 p-5 backdrop-blur-xl sm:p-6 md:p-7"
-                    style={{
-                      boxShadow: `0 0 40px ${block.glow}22, inset 0 1px 0 rgba(255,255,255,0.14), inset 0 0 24px ${block.glow}08`,
-                    }}
+                    className={`w-full max-w-[92%] sm:max-w-[420px] md:w-auto md:max-w-[440px] md:shrink-0 ${
+                      isEven ? "mr-auto md:mr-0" : "ml-auto md:ml-0"
+                    }`}
                   >
-                    <div
-                      className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border bg-white/[0.05]"
+                    <article
+                      className="de-why-step de-why-block relative w-full overflow-hidden rounded-[22px] p-[1px]"
                       style={{
-                        color: block.color,
-                        borderColor: `${block.color}55`,
-                        boxShadow: `0 0 22px ${block.glow}40`,
+                        background: `linear-gradient(135deg, ${block.color}66 0%, rgba(255,255,255,0.12) 50%, ${block.glow}44 100%)`,
                       }}
                     >
-                      {STEP_ICONS[block.icon]}
-                    </div>
-
-                    <h3 className="de-why-card-title mb-3 text-[18px] font-bold uppercase leading-tight tracking-[0.14em] sm:text-[20px]">
-                      <span
-                        className="de-why-card-title-main text-white"
+                      <div
+                        className="relative rounded-[21px] border border-white/15 bg-[#0d0d12]/55 p-5 backdrop-blur-xl sm:p-6 md:p-7"
                         style={{
-                          textShadow:
-                            "0 0 16px rgba(255,255,255,0.45), 0 0 32px rgba(255,255,255,0.12)",
+                          boxShadow: `0 0 40px ${block.glow}22, inset 0 1px 0 rgba(255,255,255,0.14), inset 0 0 24px ${block.glow}08`,
                         }}
                       >
-                        {block.titleBefore}
-                      </span>{" "}
-                      <span
-                        className="de-why-card-highlight"
-                        style={{
-                          color: block.color,
-                          textShadow: `0 0 20px ${block.glow}, 0 0 40px ${block.glow}66`,
-                        }}
-                      >
-                        {block.titleHighlight}
-                      </span>
-                    </h3>
+                        <div
+                          className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl border bg-white/[0.05]"
+                          style={{
+                            color: block.color,
+                            borderColor: `${block.color}55`,
+                            boxShadow: `0 0 22px ${block.glow}40`,
+                          }}
+                        >
+                          {STEP_ICONS[block.icon]}
+                        </div>
 
-                    <p
-                      className="de-why-card-text text-[12px] font-medium leading-[1.85] sm:text-[13px] md:text-[14px]"
-                      style={{
-                        color: "rgba(255,255,255,0.94)",
-                        textShadow: `0 0 14px ${block.glow}44, 0 0 10px rgba(255,255,255,0.22), 0 1px 1px rgba(0,0,0,0.35)`,
-                      }}
-                    >
-                      {block.text}
-                    </p>
+                        <h3 className="de-why-card-title mb-3 text-[18px] font-bold uppercase leading-tight tracking-[0.14em] sm:text-[20px]">
+                          <span
+                            className="de-why-card-title-main text-white"
+                            style={{
+                              textShadow:
+                                "0 0 16px rgba(255,255,255,0.45), 0 0 32px rgba(255,255,255,0.12)",
+                            }}
+                          >
+                            {block.titleBefore}
+                          </span>{" "}
+                          <span
+                            className="de-why-card-highlight"
+                            style={{
+                              color: block.color,
+                              textShadow: `0 0 20px ${block.glow}, 0 0 40px ${block.glow}66`,
+                            }}
+                          >
+                            {block.titleHighlight}
+                          </span>
+                        </h3>
+
+                        <p
+                          className="de-why-card-text text-[12px] font-medium leading-[1.85] sm:text-[13px] md:text-[14px]"
+                          style={{
+                            color: "rgba(255,255,255,0.94)",
+                            textShadow: `0 0 14px ${block.glow}44, 0 0 10px rgba(255,255,255,0.22), 0 1px 1px rgba(0,0,0,0.35)`,
+                          }}
+                        >
+                          {block.text}
+                        </p>
+                      </div>
+                    </article>
                   </div>
-                </article>
-              </div>
-            ))}
+
+                  {isEven && (
+                    <SideAnnotation index={index} block={block} side="right" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* The connector line's final destination — swap the route to your real CTA target */}
+          <div className="relative z-10 mt-16 flex justify-center md:mt-20">
+            <Link
+              ref={ctaRef}
+              to="/contact"
+              className="de-why-cta group inline-flex items-center gap-2.5 rounded-full border border-[#4ade80]/40 bg-[#0d0d12] px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:border-[#4ade80]/70"
+            >
+              Get your free draft
+              <FiArrowRight className="h-4 w-4 -rotate-45 text-[#4ade80] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </div>
       </div>
@@ -484,13 +673,34 @@ export default function DeWhySection() {
           animation: deWhyHeadPulse 1.8s ease-in-out infinite;
         }
 
+        .de-why-rail-dot {
+          animation: deWhyRailPulse 3.2s ease-in-out infinite;
+        }
+
+        .de-why-cta {
+          box-shadow: 0 0 26px rgba(74, 222, 128, 0.22), inset 0 1px 0 rgba(255,255,255,0.06);
+          animation: deWhyCtaPulse 3.6s ease-in-out infinite;
+        }
+
         @keyframes deWhyHeadPulse {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.25); }
         }
 
+        @keyframes deWhyRailPulse {
+          0%, 100% { opacity: 0.35; transform: translate(-50%, 0) scale(1); }
+          50% { opacity: 0.9; transform: translate(-50%, 0) scale(1.5); }
+        }
+
+        @keyframes deWhyCtaPulse {
+          0%, 100% { box-shadow: 0 0 26px rgba(74, 222, 128, 0.22), inset 0 1px 0 rgba(255,255,255,0.06); }
+          50% { box-shadow: 0 0 38px rgba(74, 222, 128, 0.4), inset 0 1px 0 rgba(255,255,255,0.06); }
+        }
+
         @media (prefers-reduced-motion: reduce) {
-          .de-why-head-glow {
+          .de-why-head-glow,
+          .de-why-rail-dot,
+          .de-why-cta {
             animation: none;
           }
         }

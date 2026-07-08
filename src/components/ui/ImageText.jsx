@@ -137,7 +137,7 @@ export default function DigitalEngagement() {
         <div className="absolute top-20 left-20 w-96 h-96 bg-red-500/20 blur-[140px] rounded-full" />
 
         {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <div className="home-container home-gutter relative z-10 text-center">
 
           <p className="uppercase tracking-[0.3em] text-sm text-gray-300 mb-6">
             (DIGITAL ENGAGEMENT ENGINE)
@@ -188,7 +188,7 @@ export default function DigitalEngagement() {
       {/* SERVICES */}
       <section className="py-32 bg-[#f8f8f8]">
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="home-container home-gutter mx-auto">
 
           <div className="text-center mb-20">
 
@@ -242,7 +242,7 @@ export default function DigitalEngagement() {
       {/* PROCESS */}
       <section className="py-32 bg-black text-white">
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="home-container home-gutter mx-auto">
 
           <div className="text-center mb-24">
 
@@ -293,7 +293,7 @@ export default function DigitalEngagement() {
 
         <div className="absolute inset-0 bg-black/80" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <div className="home-container home-gutter relative z-10 text-center">
 
           <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
             Ready to Amplify

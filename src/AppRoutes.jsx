@@ -11,6 +11,7 @@ import HireTalents from './pages/HireTalents';
 import WebDevelopment from "./pages/services/WebDevelopment";
 import SeoServices from "./pages/services/SeoServices";
 import DigitalEngagement from './pages/DigitalEngagement';
+import SocialMedia from './pages/SocialMedia';
 
 import Automation from "./pages/services/Automation";
 import AiChatbots from "./pages/services/AiChatbots";
@@ -65,6 +66,7 @@ export default function AppRoutes() {
             <Route path="/hiretalents/react-developers" element={<ReactDevelopers />} />
             <Route path="/hiretalents/uiux-designers" element={<UiUxDesigners />} />
             <Route path="/digital-engagement" element={<DigitalEngagement  />} />
+            <Route path="/social-media" element={<SocialMedia />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="/portfolio" element={<Portfolio />} />
