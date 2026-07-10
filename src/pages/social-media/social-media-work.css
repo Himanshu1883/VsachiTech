@@ -1,0 +1,260 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;500;600&display=swap");
+
+.sm-work {
+  position: relative;
+  z-index: 2;
+  background-color: #001;
+  color: #fff;
+}
+
+.sm-work .hero_section.sticky {
+  background-color: #000;
+  top: 0;
+}
+
+.sm-work .sticky {
+  position: sticky;
+}
+
+.sm-work .hero_container,
+.sm-work .footer_container {
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100vh;
+  display: flex;
+  position: relative;
+}
+
+.sm-work .footer_image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.sm-work .hero_image,
+.sm-work .footer_image {
+  opacity: 0.6;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.sm-work .hero_text,
+.sm-work .footer_text {
+  color: #fff;
+  text-transform: uppercase;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 4vw;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12.5vw;
+  font-weight: 500;
+  line-height: 0.9;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+
+.sm-work .color-0 {
+  color: #EF4444;
+}
+
+.sm-work .color-1 {
+  color: #EF4444;
+}
+
+.sm-work .color-2 {
+  color: #EF4444;
+}
+
+.sm-work .color-3 {
+  color: #EF4444;
+}
+
+.sm-work .work_section {
+  position: relative;
+}
+
+.sm-work .work_container {
+  position: relative;
+}
+
+.sm-work .work_item {
+  background-color: #000;
+  align-items: stretch;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.sm-work .work_image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.sm-work .work_image {
+  opacity: 0.75;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.sm-work .work_item-wrapper {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 100%;
+  padding: 2vw 4vw;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+
+.sm-work .work_video-wrapper {
+  z-index: 1;
+  grid-column-gap: 2.5vw;
+  grid-row-gap: 2.5vw;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.sm-work .work_video-container {
+  aspect-ratio: 16 / 9;
+  flex: 1 0 auto;
+}
+
+.sm-work .work_video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.sm-work .work_video > video,
+.sm-work .work_video > .work_strip-image {
+  background-size: cover;
+  background-position: 50% 50%;
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  right: -100%;
+  bottom: -100%;
+  top: -100%;
+  left: -100%;
+  object-fit: cover;
+  z-index: -100;
+}
+
+.sm-work .work_text {
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  padding-top: 4vw;
+  display: flex;
+  position: relative;
+}
+
+.sm-work .work_text-title {
+  color: #fff;
+  text-transform: uppercase;
+  flex-flow: column;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 8vw;
+  font-weight: 500;
+  line-height: 1;
+  display: flex;
+  position: relative;
+}
+
+.sm-work .work-text-subtitle {
+  grid-column-gap: 0.5vw;
+  grid-row-gap: 0.5vw;
+  color: #fff;
+  text-transform: uppercase;
+  flex-flow: column;
+  padding-bottom: 0.5vw;
+  padding-right: 1vw;
+  font-family: "Sora", sans-serif;
+  display: flex;
+}
+
+.sm-work .line {
+  will-change: transform;
+  line-height: 1;
+}
+
+.sm-work .line-wrapper {
+  overflow: hidden;
+}
+
+.sm-work .work_item-overlay {
+  z-index: 2;
+  pointer-events: none;
+  background-color: #000;
+  display: none;
+  position: absolute;
+  inset: 0;
+}
+
+.sm-work .ghost_work-container {
+  position: relative;
+  width: 100%;
+}
+
+.sm-work .ghost_work-item {
+  width: 100%;
+  height: 300vh;
+}
+
+.sm-work .footer_section {
+  z-index: 25;
+  background-color: #000;
+  position: relative;
+  isolation: isolate;
+}
+
+@media screen and (max-width: 479px) {
+  .sm-work .work_text {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .sm-work .work_text-title {
+    font-size: 12.5vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sm-work .work_item {
+    position: relative !important;
+    clip-path: none !important;
+    filter: none !important;
+  }
+
+  .sm-work .work_item-overlay {
+    display: none !important;
+  }
+
+  .sm-work .ghost_work-container {
+    display: none;
+  }
+}

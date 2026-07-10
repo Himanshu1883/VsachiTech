@@ -80,7 +80,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative w-full bg-[#1a1a1a] text-white overflow-hidden max-h-[90vh]">
+    <footer className="relative z-[30] w-full bg-[#1a1a1a] text-white overflow-hidden max-h-[90vh]">
 
       {/* Custom Cursor (Desktop Only) */}
       {cursor.show && (
@@ -107,7 +107,7 @@ export default function Footer() {
       )}
 
       {/* Animated Background Text */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden opacity-5 pointer-events-none">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] overflow-hidden opacity-[0.07]">
         <motion.div
           className="flex whitespace-nowrap"
           animate={{ x: [0, -3000] }}
@@ -116,7 +116,7 @@ export default function Footer() {
           {[...Array(6)].map((_, i) => (
             <span
               key={i}
-              className="font-bold tracking-tighter mx-12 leading-none
+              className="mx-12 font-bold leading-none tracking-tighter
               text-[8rem] sm:text-[10rem] md:text-[14rem] lg:text-[16rem] xl:text-[18rem]"
             >
               Vsachi Tech

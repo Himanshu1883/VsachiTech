@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
 import usePageTitle from "../../components/hooks/usePageTitle";
 import { useSocialMediaScroll } from "./useSocialMediaScroll";
+import SmFlipHero from "./sections/SmFlipHero";
 import SmHero from "./sections/SmHero";
+import SmWorkScroll from "./sections/SmWorkScroll";
+import SmFaq from "./sections/SmFaq";
 
 export default function SocialMediaPage() {
   const rootRef = useRef(null);
@@ -16,9 +19,12 @@ export default function SocialMediaPage() {
   return (
     <div
       ref={rootRef}
-      className="sm-page relative overflow-x-hidden bg-[#050507] text-white max-w-[100vw]"
+      className="sm-page relative max-w-[100vw] overflow-x-hidden bg-[#eaeaea] text-[#503717]"
     >
-      <SmHero />
+      <SmFlipHero />
+      {/* <SmHero /> */}
+      <SmWorkScroll />
+      <SmFaq />
     </div>
   );
 }

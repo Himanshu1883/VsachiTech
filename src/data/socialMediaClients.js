@@ -76,15 +76,6 @@ export const SOCIAL_MEDIA_CLIENTS_RAW = [
     image: "/portfolio/enightnment with yoga.png",
   },
   {
-    id: "ivva",
-    logoKey: "ivva",
-    name: "IVVA",
-    niche: "Awards & Events",
-    specialty: "Branding",
-    category: "Events",
-    image: "/portfolio/ivva.jpeg",
-  },
-  {
     id: "orvella",
     logoKey: "orvella",
     name: "Orvella",
@@ -198,10 +189,6 @@ export const SOCIAL_LOGO_DISPLAY = {
   "beyond-the-salon": {
     bg: "#000000",
     imgClass: "object-contain object-center",
-  },
-  ivva: {
-    bg: "#000000",
-    imgClass: "object-contain object-center scale-[1.3]",
   },
   orvella: {
     bg: "#0a0a0a",

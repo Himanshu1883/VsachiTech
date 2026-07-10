@@ -7,6 +7,13 @@ import Logo from '../ui/logo';
 import WhatWeDoMobileMegaMenu from '../ui/Whatwedomobilemegamenu';
 import UaeVisionMobileMegaMenu from '../ui/UaeVisionMobileMegaMenu';
 import PortfolioDrawer from '../portfolio/PortfolioDrawer';
+import { getScrollY, subscribeScroll } from '../../utils/lenisController';
+
+const FULL_BLEED_HERO_PATHS = ['/', '/digital-engagement', '/social-media'];
+
+function isFullBleedHeroPath(pathname) {
+  return FULL_BLEED_HERO_PATHS.includes(pathname);
+}
 
 export default function Navbar() {
   const location = useLocation();
@@ -14,7 +21,7 @@ export default function Navbar() {
 
   const [indicatorStyle, setIndicatorStyle] = useState({ opacity: 0 });
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isHeroActive, setIsHeroActive] = useState(true);
   const [showWhatWeDo, setShowWhatWeDo] = useState(false);
@@ -80,23 +87,35 @@ export default function Navbar() {
 
   /* ---------------- SCROLL HANDLING ---------------- */
   useEffect(() => {
-    const handleScroll = () => {
-      const y = window.scrollY;
+    const handleScroll = (scrollY) => {
+      const lastScrollY = lastScrollYRef.current;
 
-      if (y > lastScrollY && y > 100) setIsVisible(false);
-      else setIsVisible(true);
+      if (scrollY > lastScrollY && scrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
 
-      if (y < 50) setIsVisible(true);
-      setLastScrollY(y);
+      if (scrollY < 50) {
+        setIsVisible(true);
+      }
 
-      if (location.pathname === "/") {
-        setIsHeroActive(y < window.innerHeight - 80);
+      lastScrollYRef.current = scrollY;
+
+      if (isFullBleedHeroPath(location.pathname)) {
+        setIsHeroActive(scrollY < window.innerHeight - 80);
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, location.pathname]);
+    const unsubscribe = subscribeScroll(handleScroll);
+    const onWindowScroll = () => handleScroll(getScrollY());
+
+    window.addEventListener('scroll', onWindowScroll, { passive: true });
+    return () => {
+      unsubscribe();
+      window.removeEventListener('scroll', onWindowScroll);
+    };
+  }, [location.pathname]);
 
   /* ---------------- ROUTE CHANGE FIX (CRITICAL) ---------------- */
   useEffect(() => {
@@ -108,11 +127,12 @@ export default function Navbar() {
     setMobileUaeVisionOpen(false);
     setPortfolioDrawerOpen(false);
 
-    // Instantly fix navbar background on route change
-    if (location.pathname !== "/") {
-      setIsHeroActive(false);
+    lastScrollYRef.current = getScrollY();
+
+    if (isFullBleedHeroPath(location.pathname)) {
+      setIsHeroActive(getScrollY() < window.innerHeight - 80);
     } else {
-      setIsHeroActive(window.scrollY < window.innerHeight - 80);
+      setIsHeroActive(false);
     }
   }, [location.pathname]);
 
@@ -155,19 +175,20 @@ export default function Navbar() {
     location.pathname === "/our-work" ||
     location.pathname.startsWith("/our-work/");
 
+  const showTransparentHeroNav =
+    location.pathname === '/' && isHeroActive;
+
   return (
     <>
       <nav
         className={`
-          fixed top-0 left-0 w-full z-50
+          fixed top-0 left-0 w-full z-[120]
           transition-all duration-300
           ${isVisible ? 'translate-y-0' : '-translate-y-full'}
           ${
-            location.pathname !== '/'
-              ? 'bg-[#232323] backdrop-blur-md shadow-lg'
-              : isHeroActive
-                ? 'bg-transparent backdrop-blur-0'
-                : 'bg-[#232323] backdrop-blur-md shadow-lg'
+            showTransparentHeroNav
+              ? 'bg-transparent backdrop-blur-0'
+              : 'bg-[#232323] backdrop-blur-md shadow-lg'
           }
         `}
       >
