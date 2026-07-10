@@ -688,7 +688,7 @@ export default function PortfolioDrawer({ open, onClose }) {
           <motion.button
             type="button"
             aria-label="Close portfolio drawer"
-            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[140] bg-black/60 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -700,7 +700,7 @@ export default function PortfolioDrawer({ open, onClose }) {
             aria-modal="true"
             aria-label="Portfolio preview"
             data-lenis-prevent
-            className="fixed top-0 right-0 z-[70] h-full w-full max-w-[520px] shadow-2xl overflow-hidden"
+            className="fixed top-0 right-0 z-[150] h-full w-full max-w-[520px] shadow-2xl overflow-hidden"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}

@@ -97,13 +97,13 @@ export default function SmFlipHero() {
 
             <p className="sm-flip-intro-subtitle">{SM_FLIP.introOverlay.subtitle}</p>
 
-            <div className="sm-flip-intro-tags">
+            {/* <div className="sm-flip-intro-tags">
               {SM_FLIP.introOverlay.tags.map((tag) => (
                 <span key={tag} className="sm-flip-intro-tag">
                   {tag}
                 </span>
               ))}
-            </div>
+            </div> */}
 
             <p className="sm-flip-intro-side">{SM_FLIP.introOverlay.sideNote}</p>
           </div>

@@ -10,6 +10,8 @@ export const HERO = {
     ["Brand Vision", "Audience-Led Growth"],
   ],
   highlightTagline: "Where bold vision meets cinematic execution.",
+  ctaLabel: "EXPLORE SOCIAL MEDIA",
+  ctaTo: "/social-media",
   image: "/distorted-hero2.jpg",
   marquee: "DIGITAL ENGAGEMENT",
 };

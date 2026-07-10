@@ -1,4 +1,7 @@
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import DistortedPixelsCanvas from "../../../components/digital-engagement/DistortedPixelsCanvas";
+import Button from "../../../components/ui/Button";
 import { HERO, BRAND } from "../digitalEngagementData";
 
 export default function DeHero() {
@@ -98,15 +101,51 @@ export default function DeHero() {
         </div>
       </div>
 
-      <div className="de-scroll-hint absolute bottom-8 left-1/2 z-20 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex h-8 w-5 justify-center rounded-full border-2 border-white/70">
-            <span className="mt-1 h-2 w-1 animate-bounce rounded-full bg-white/80" />
-          </div>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/80">
-            Scroll
-          </span>
-        </div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none" />
+
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-5 pointer-events-auto">
+        <Link to={HERO.ctaTo}>
+          <Button className="text-sm font-semibold uppercase tracking-widest">
+            {HERO.ctaLabel}
+          </Button>
+        </Link>
+
+        <Link to={HERO.ctaTo} className="hidden sm:flex flex-col items-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 0.8 }}
+            whileHover={{ scale: 1.1 }}
+            className="flex flex-col items-center gap-2"
+          >
+            <span className="text-[0.65rem] sm:text-xs tracking-widest text-gray-400 font-semibold">
+              SCROLL DOWN
+            </span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="text-[#e44f39] sm:w-6 sm:h-6"
+              >
+                <path
+                  d="M12 5V19M12 19L5 12M12 19L19 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="square"
+                />
+              </svg>
+            </motion.div>
+          </motion.div>
+        </Link>
       </div>
     </section>
   );

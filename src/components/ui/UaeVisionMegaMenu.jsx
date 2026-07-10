@@ -108,7 +108,7 @@ export default function UaeVisionMegaMenu({ open, onEnter, onLeave }) {
                 fixed top-[94px] left-1/2 -translate-x-1/2
                 w-[1100px] max-w-[1200px]   
                 h-[450px]                  
-                z-40
+                z-[130]
                 bg-[#121212]/90 backdrop-blur-xl
                 rounded-3xl border border-white/10 shadow-2xl
                 transition-all duration-300 ease-out overflow-hidden

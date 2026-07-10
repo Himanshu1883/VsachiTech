@@ -10,6 +10,7 @@ import {
     FaPalette,
     FaArrowRight,
     FaBriefcase,
+    FaHashtag,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -52,10 +53,10 @@ const services = [
     },
     {
         id: 5,
-        icon: FaBriefcase,
-        title: "View Portfolio",
-        desc: "Explore our work",
-        link: "/our-work",
+        icon: FaHashtag,
+        title: "Social Media",
+        desc: "Explore our social media work",
+        link: "/social-media",
     },
 ];
 
@@ -101,7 +102,7 @@ export default function WhatWeDoMegaMenu({ open, onEnter, onLeave }) {
         fixed top-[94px] left-1/2 -translate-x-1/2
         w-[1100px] max-w-[1100px]   
         min-h-[500px] h-auto max-h-[90vh]
-        z-40
+        z-[130]
         bg-[#121212]/90 backdrop-blur-xl
         rounded-3xl border border-white/10 shadow-2xl
         transition-all duration-300 ease-out overflow-hidden
