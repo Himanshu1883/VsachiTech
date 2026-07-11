@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   UNIQUE_SOCIAL_CLIENTS,
+  getClientInstagramUrl,
   getSocialLogoDisplay,
   portfolioImageSrc,
 } from "../../data/socialMediaClients";
@@ -12,10 +13,17 @@ const ROW_TWO_COUNT = 7;
 function ClientOrb({ client }) {
   const logo = getSocialLogoDisplay(client.logoKey);
   const imageSrc = portfolioImageSrc(client.image);
+  const instagramUrl = getClientInstagramUrl(client);
 
   return (
     <div className="home-social-item inline-flex shrink-0 items-center">
-      <article className="group/orb flex w-[128px] flex-col items-center gap-3 sm:w-[142px] md:w-[152px]">
+      <a
+        href={instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visit ${client.name} on Instagram`}
+        className="group/orb flex w-[128px] cursor-pointer flex-col items-center gap-3 sm:w-[142px] md:w-[152px]"
+      >
         <div
           className="relative flex h-[120px] w-[120px] items-center justify-center overflow-hidden rounded-full border border-white/12 shadow-[0_14px_36px_rgba(0,0,0,0.4)] transition-all duration-400 group-hover/orb:-translate-y-1 group-hover/orb:border-[#e44f39]/70 group-hover/orb:shadow-[0_0_0_1px_rgba(228,79,57,0.4),0_18px_48px_rgba(228,79,57,0.25)] sm:h-[132px] sm:w-[132px] md:h-[148px] md:w-[148px]"
           style={{ backgroundColor: logo.bg }}
@@ -46,7 +54,7 @@ function ClientOrb({ client }) {
             {client.category}
           </p>
         </div>
-      </article>
+      </a>
 
       <span
         className="mx-4 h-20 w-px shrink-0 bg-gradient-to-b from-transparent via-white/18 to-transparent sm:mx-5 sm:h-24 md:mx-6"

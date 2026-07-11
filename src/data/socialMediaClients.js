@@ -254,3 +254,17 @@ export function portfolioImageSrc(path) {
   const file = path.slice("/portfolio/".length);
   return `/portfolio/${encodeURIComponent(file)}`;
 }
+
+function slugifyClientName(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+export function getClientInstagramUrl(client) {
+  const profileHandle = SOCIAL_PROFILE_HANDLES[client.logoKey];
+  const slug = profileHandle ?? slugifyClientName(client.name);
+
+  return (
+    SOCIAL_INSTAGRAM_URLS[client.logoKey] ??
+    `https://www.instagram.com/${slug}/`
+  );
+}

@@ -170,12 +170,12 @@ export const SM_FLIP = {
   gridImages: [
     "/digital_engag3.jpg",
     null,
-    "/digital_engag4.jpg",
-    "/vsachi_info_poster.jpg",
+    "/Social_Media/pexels-mikael-blomkvist-6476254.jpg",
+    "/Social_Media/pexels-walls-io-440716388-19387226.jpg",
     "/marketing_research.jpg",
     "/marketing_strategy.jpg",
-    "/marketing_create.jpg",
-    "/marketing_scale.jpg",
+    "/Social_Media/pexels-canvastudio-3194519.jpg",
+    "/Social_Media/pexels-theshuttervision-12419502.jpg",
     "/digital_engag1.jpg",
   ],
 };

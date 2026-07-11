@@ -11,8 +11,8 @@ import { PORTFOLIO_CLIENTS } from "../../data/portfolioCaseStudies";
 import {
   UNIQUE_SOCIAL_CLIENTS,
   SOCIAL_PROFILE_HANDLES,
-  SOCIAL_INSTAGRAM_URLS,
   SOCIAL_FACEBOOK_URLS,
+  getClientInstagramUrl,
   getSocialLogoDisplay,
   portfolioImageSrc,
 } from "../../data/socialMediaClients";
@@ -43,22 +43,18 @@ const SOCIAL_CLIENT_QUOTES = [
   "Engagement that outperformed every quarter.",
 ];
 
-function slugify(name) {
-  return name.toLowerCase().replace(/[^a-z0-9]/g, "");
-}
-
 function buildClientSocials(client) {
-  const profileHandle = SOCIAL_PROFILE_HANDLES[client.logoKey];
-  const slug = profileHandle ?? slugify(client.name);
-  const instagramUrl =
-    SOCIAL_INSTAGRAM_URLS[client.logoKey] ??
-    `https://www.instagram.com/${slug}/`;
+  const instagramUrl = getClientInstagramUrl(client);
+  const profileHandle =
+    client.logoKey in SOCIAL_PROFILE_HANDLES
+      ? SOCIAL_PROFILE_HANDLES[client.logoKey]
+      : client.name.toLowerCase().replace(/[^a-z0-9]/g, "");
   const facebookUrl = SOCIAL_FACEBOOK_URLS[client.logoKey];
 
   const socials = [
     {
       platform: "instagram",
-      handle: `@${slug}`,
+      handle: `@${profileHandle}`,
       url: instagramUrl,
     },
   ];
