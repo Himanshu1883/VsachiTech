@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Footer from '../components/footer/Footer';
 import Navbar from '../components/navbar/Navbar';
 import ScrollToHash from '../components/ScrollToHash';
+import { scrollToTop } from '../utils/lenisController';
 
 export default function Layout({ children }) {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -13,12 +14,10 @@ export default function Layout({ children }) {
     location.pathname === '/digital-engagement' ||
     location.pathname === '/social-media';
 
-  // Scroll to top on route change
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  // Jump to top on route change (Lenis pages keep scroll unless reset explicitly).
+  useLayoutEffect(() => {
+    if (location.hash) return;
+    scrollToTop({ immediate: true });
   }, [location.pathname]);
 
   // Back to top visibility
@@ -31,11 +30,8 @@ export default function Layout({ children }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  const scrollToTopButton = () => {
+    scrollToTop({ behavior: 'smooth', immediate: false });
   };
 
   return (
@@ -53,7 +49,7 @@ export default function Layout({ children }) {
 
         {/* BACK TO TOP */}
         <button
-          onClick={scrollToTop}
+          onClick={scrollToTopButton}
           className={`fixed bottom-8 right-8 flex items-center gap-2 text-[#e44f39] hover:text-[#ff6b52]
             transition-all duration-300 cursor-pointer group z-40
             ${showBackToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}

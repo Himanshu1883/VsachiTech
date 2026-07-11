@@ -3,16 +3,16 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
-  FaYoutube,
 } from "react-icons/fa";
-import { FiArrowRight, FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
+import { FiArrowRight, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { pauseLenis, resumeLenis } from "../../utils/lenisController";
 import { PORTFOLIO_CLIENTS } from "../../data/portfolioCaseStudies";
 import {
-  SOCIAL_CATEGORIES,
   UNIQUE_SOCIAL_CLIENTS,
   SOCIAL_PROFILE_HANDLES,
+  SOCIAL_INSTAGRAM_URLS,
+  SOCIAL_FACEBOOK_URLS,
   getSocialLogoDisplay,
   portfolioImageSrc,
 } from "../../data/socialMediaClients";
@@ -27,11 +27,6 @@ const SOCIAL_PLATFORMS = {
     icon: FaFacebook,
     color: "#1877F2",
     label: "Facebook",
-  },
-  youtube: {
-    icon: FaYoutube,
-    color: "#FF0000",
-    label: "YouTube",
   },
 };
 
@@ -48,61 +43,42 @@ const SOCIAL_CLIENT_QUOTES = [
   "Engagement that outperformed every quarter.",
 ];
 
-const SOCIAL_PLATFORM_PATTERNS = [
-  ["instagram", "facebook"],
-  ["instagram"],
-  ["instagram", "youtube"],
-  ["instagram", "facebook", "youtube"],
-  ["instagram", "youtube"],
-  ["facebook", "instagram"],
-  ["instagram"],
-  ["instagram", "facebook"],
-  ["instagram", "youtube"],
-  ["instagram"],
-];
-
 function slugify(name) {
   return name.toLowerCase().replace(/[^a-z0-9]/g, "");
 }
 
-function buildClientSocials(client, index) {
+function buildClientSocials(client) {
   const profileHandle = SOCIAL_PROFILE_HANDLES[client.logoKey];
-  const platforms = profileHandle
-    ? ["instagram", "facebook", "youtube"]
-    : SOCIAL_PLATFORM_PATTERNS[index % SOCIAL_PLATFORM_PATTERNS.length];
   const slug = profileHandle ?? slugify(client.name);
+  const instagramUrl =
+    SOCIAL_INSTAGRAM_URLS[client.logoKey] ??
+    `https://www.instagram.com/${slug}/`;
+  const facebookUrl = SOCIAL_FACEBOOK_URLS[client.logoKey];
 
-  return platforms.map((platform) => {
-    if (platform === "instagram") {
-      return {
-        platform,
-        handle: `@${slug}`,
-        url: `https://www.instagram.com/${slug}/`,
-      };
-    }
-    if (platform === "facebook") {
-      return {
-        platform,
-        handle: `@${slug}`,
-        url: `https://www.facebook.com/${slug}`,
-      };
-    }
-    if (platform === "youtube") {
-      return {
-        platform,
-        handle: `@${slug}`,
-        url: `https://www.youtube.com/@${slug}`,
-      };
-    }
-    return null;
-  }).filter(Boolean);
+  const socials = [
+    {
+      platform: "instagram",
+      handle: `@${slug}`,
+      url: instagramUrl,
+    },
+  ];
+
+  if (facebookUrl) {
+    socials.push({
+      platform: "facebook",
+      handle: "Facebook",
+      url: facebookUrl,
+    });
+  }
+
+  return socials;
 }
 
 function enrichSocialClient(client, index) {
   return {
     ...client,
     quote: SOCIAL_CLIENT_QUOTES[index % SOCIAL_CLIENT_QUOTES.length],
-    socials: buildClientSocials(client, index),
+    socials: buildClientSocials(client),
   };
 }
 
@@ -459,117 +435,7 @@ function SocialClientTile({ client, index, celebrate, celebrationKey }) {
   );
 }
 
-function SocialCategoryFilters({ activeCategory, onSelect }) {
-  const trackRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-
-  const updateScrollState = () => {
-    const el = trackRef.current;
-    if (!el) return;
-    const { scrollLeft, scrollWidth, clientWidth } = el;
-    setCanScrollLeft(scrollLeft > 4);
-    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 4);
-  };
-
-  useEffect(() => {
-    updateScrollState();
-    const el = trackRef.current;
-    if (!el) return;
-
-    el.addEventListener("scroll", updateScrollState, { passive: true });
-    window.addEventListener("resize", updateScrollState);
-
-    return () => {
-      el.removeEventListener("scroll", updateScrollState);
-      window.removeEventListener("resize", updateScrollState);
-    };
-  }, []);
-
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const activeBtn = el.querySelector(`[data-category="${activeCategory}"]`);
-    activeBtn?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
-    requestAnimationFrame(updateScrollState);
-  }, [activeCategory]);
-
-  const scrollByAmount = (direction) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollBy({
-      left: direction * Math.max(120, el.clientWidth * 0.55),
-      behavior: "smooth",
-    });
-  };
-
-  return (
-    <div className="flex items-center gap-1.5">
-      <button
-        type="button"
-        onClick={() => scrollByAmount(-1)}
-        disabled={!canScrollLeft}
-        aria-label="Scroll filters left"
-        className={`shrink-0 h-7 w-7 rounded-full border border-white/15 bg-[#1a1a1a]/90 text-white/80 flex items-center justify-center shadow-lg transition-all duration-200 ${
-          canScrollLeft
-            ? "hover:text-white hover:border-[#e44f39]/50 hover:bg-[#222] opacity-100"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <FiChevronLeft size={14} />
-      </button>
-
-      <div
-        ref={trackRef}
-        data-lenis-prevent
-        className="flex-1 min-w-0 flex gap-1.5 overflow-x-auto py-0.5 portfolio-drawer-scroll scroll-smooth snap-x snap-mandatory overscroll-contain"
-      >
-        {SOCIAL_CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            data-category={cat}
-            onClick={() => onSelect(cat)}
-            className={`shrink-0 snap-start rounded-full px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wide transition-all duration-200 ${
-              activeCategory === cat
-                ? "bg-[#e44f39] text-white border border-[#e44f39] shadow-[0_0_20px_rgba(228,79,57,0.25)]"
-                : "text-gray-200 hover:text-white border border-white/15 bg-white/[0.06] hover:border-white/30"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      <button
-        type="button"
-        onClick={() => scrollByAmount(1)}
-        disabled={!canScrollRight}
-        aria-label="Scroll filters right"
-        className={`shrink-0 h-7 w-7 rounded-full border border-white/15 bg-[#1a1a1a]/90 text-white/80 flex items-center justify-center shadow-lg transition-all duration-200 ${
-          canScrollRight
-            ? "hover:text-white hover:border-[#e44f39]/50 hover:bg-[#222] opacity-100"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <FiChevronRight size={14} />
-      </button>
-    </div>
-  );
-}
-
 function SocialMediaGrid({ clients, celebrationIds, celebrationKey }) {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filtered = useMemo(() => {
-    if (activeCategory === "All") return clients;
-    return clients.filter((c) => c.category === activeCategory);
-  }, [clients, activeCategory]);
-
   return (
     <div className="flex flex-col gap-4 pb-2">
       <div className="flex items-center justify-between gap-3">
@@ -577,17 +443,19 @@ function SocialMediaGrid({ clients, celebrationIds, celebrationKey }) {
           Brand partners
         </p>
         <span className="text-[11px] font-extrabold text-[#ff6b55] tabular-nums">
-          {filtered.length} brands
+          {clients.length} brands
         </span>
       </div>
 
+      {/* Category filters (All, Fashion, Beauty, etc.) — hidden for now
       <SocialCategoryFilters
         activeCategory={activeCategory}
         onSelect={setActiveCategory}
       />
+      */}
 
       <div className="grid grid-cols-3 gap-2 items-stretch">
-        {filtered.map((client, i) => (
+        {clients.map((client, i) => (
           <SocialClientTile
             key={client.id}
             client={client}

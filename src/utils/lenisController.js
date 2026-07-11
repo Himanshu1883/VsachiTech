@@ -9,6 +9,26 @@ function notifyScroll(scroll) {
   scrollListeners.forEach((listener) => listener(scroll));
 }
 
+function resetNativeScroll() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
+/** Reset scroll for native window + active Lenis instance. */
+export function scrollToTop({ immediate = true, behavior } = {}) {
+  if (activeLenis) {
+    activeLenis.scrollTo(0, { immediate: behavior ? false : immediate });
+    return;
+  }
+
+  if (behavior) {
+    window.scrollTo({ top: 0, left: 0, behavior });
+  } else {
+    resetNativeScroll();
+  }
+}
+
 export function registerLenis(lenis) {
   if (activeLenis === lenis) return;
 
@@ -19,7 +39,10 @@ export function registerLenis(lenis) {
   activeLenis = lenis;
   onLenisScrollHandler = ({ scroll }) => notifyScroll(scroll);
   lenis.on("scroll", onLenisScrollHandler);
-  notifyScroll(lenis.scroll);
+
+  resetNativeScroll();
+  lenis.scrollTo(0, { immediate: true });
+  notifyScroll(0);
 }
 
 export function unregisterLenis(lenis) {
@@ -32,6 +55,7 @@ export function unregisterLenis(lenis) {
 
   activeLenis = null;
   pauseCount = 0;
+  resetNativeScroll();
 }
 
 export function getScrollY() {

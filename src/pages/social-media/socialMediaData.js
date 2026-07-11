@@ -2,6 +2,10 @@ export const BRAND = "#e44f39";
 
 export const SM_FLIP = {
   mainImage: "/create.jpg",
+  stickyBackground: {
+    image: "/marketing_create.jpg",
+    tint: "rgba(255, 255, 255, 0.84)",
+  },
   introOverlay: {
     eyebrow: "Vsachi Social Media",
     titleLines: ["CINEMATIC", "CONTENT"],
@@ -12,31 +16,79 @@ export const SM_FLIP = {
     watermark: "SOCIAL",
     sideNote: "Create · Publish · Scale",
     rightRail: ["REELS", "FILMS", "GROWTH"],
+    leftRail: ["CREATE", "PUBLISH", "SCALE"],
+    leftWatermark: "MEDIA",
+    cornerStat: "50+ BRANDS · CINEMATIC SOCIAL",
+  },
+  sectionEyebrows: {
+    center: "VSACHI SOCIAL STUDIO",
+    column: "WHAT WE BUILD",
+    lines: "OUR CRAFT",
+    sides: "OUR PHILOSOPHY",
+    centerTall: "OUR PROMISE",
+    grid: "THE SYSTEM",
+  },
+  sectionFills: {
+    center: {
+      left: "/marketing_create.jpg",
+      right: "/marketing_scale.jpg",
+    },
+    column: {
+      left: "/marketing_research.jpg",
+      right: "/marketing_strategy.jpg",
+    },
+    lines: {
+      left: "/digital_engag1.jpg",
+      right: "/digital_engag2.jpg",
+    },
+    sides: {
+      left: "/Social_Media/ronny_main_image.jpeg",
+      right: "/Social_Media/oravella_main_image.jpeg",
+    },
+    centerTall: {
+      left: "/digital_engag3.jpg",
+      right: "/digital_engag4.jpg",
+    },
+    grid: {
+      left: "/vsachi_info_poster.jpg",
+      right: "/create.jpg",
+    },
+  },
+  sectionBackgrounds: {
+    column: {
+      image: "/digital_engag3.jpg",
+      tint: "rgba(255, 255, 255, 0.48)",
+    },
+  },
+  columnSection: {
+    headline: "FROM IDEA",
+    accent: "TO IMPACT",
+    tagline: "Five pillars. One cinematic system built to grow your brand.",
   },
   sectionRails: {
     center: {
-      left: ["VSACHI", "SOCIAL"],
-      right: ["STOP", "SCROLL"],
+      left: ["VSACHI", "SOCIAL", "STUDIO"],
+      right: ["STOP", "THE", "SCROLL"],
     },
     column: {
-      left: ["STRATEGY", "CREATE"],
-      right: ["SCALE", "IMPACT"],
+      left: ["STRATEGY", "CREATE", "CRAFT"],
+      right: ["SCALE", "IMPACT", "GROW"],
     },
     lines: {
       left: ["HOOKS", "THAT", "HIT"],
       right: ["VISUALS", "THAT", "STAY"],
     },
     sides: {
-      left: ["BRAND", "VOICE"],
-      right: ["REAL", "RESULTS"],
+      left: ["BRAND", "VOICE", "TRUST"],
+      right: ["REAL", "RESULTS", "REACH"],
     },
     centerTall: {
-      left: ["EVERY", "FRAME"],
-      right: ["COUNTS", "MORE"],
+      left: ["EVERY", "FRAME", "MATTERS"],
+      right: ["COUNTS", "EVEN", "MORE"],
     },
     grid: {
-      left: ["CONTENT", "SYSTEMS"],
-      right: ["MOMENTUM", "REACH"],
+      left: ["CONTENT", "SYSTEMS", "FLOW"],
+      right: ["MOMENTUM", "REACH", "IMPACT"],
     },
   },
   heroTitle: {
@@ -47,9 +99,59 @@ export const SM_FLIP = {
     { before: "Crafted with", image: "/digital_engag1.jpg", after: "strategy" },
     { before: "with", image: "/digital_engag2.jpg", after: "results" },
   ],
+  craftMarquee: {
+    top: [
+      "REELS",
+      "CAROUSELS",
+      "STORIES",
+      "UGC",
+      "THUMBNAILS",
+      "HOOKS",
+      "CAPTIONS",
+    ],
+    bottom: [
+      "STRATEGY",
+      "FILM",
+      "EDIT",
+      "COLOR",
+      "SOUND",
+      "MOTION",
+      "BRAND FILMS",
+    ],
+  },
   sideText: {
     lead: "Welcome to Vsachi Social",
     body: "We believe in crafting more than posts — we create connections. Connections to culture, to your audience, and to the moments that matter. Our content is born from strategy first: hooks that stop the scroll, visuals that feel premium, and stories that turn followers into loyal communities.",
+  },
+  philosophySection: {
+    typeIntro: {
+      headline: "CRAFT",
+      accent: "CONNECT",
+      tagline: "More than posts — real relationships that grow brands.",
+    },
+    headline: "Welcome to",
+    accent: "Vsachi Social",
+    body: [
+      { text: "We believe in crafting ", accent: false },
+      { text: "more than posts", accent: true },
+      { text: " — we create ", accent: false },
+      { text: "connections.", accent: true },
+      { text: " Connections to ", accent: false },
+      { text: "culture", accent: true },
+      { text: ", to ", accent: false },
+      { text: "your audience", accent: true },
+      { text: ", and to the ", accent: false },
+      { text: "moments that matter.", accent: true },
+      { text: " Our content is born from ", accent: false },
+      { text: "strategy first", accent: true },
+      { text: ": hooks that ", accent: false },
+      { text: "stop the scroll", accent: true },
+      { text: ", visuals that feel ", accent: false },
+      { text: "premium", accent: true },
+      { text: ", and stories that turn followers into ", accent: false },
+      { text: "loyal communities.", accent: true },
+    ],
+    tags: ["Culture", "Audience", "Strategy", "Premium Visuals", "Community"],
   },
   centerText:
     "We honor every frame with intentional creative direction — partnering with brands to ensure consistency, taste, and momentum at every step. No random posting, no off-brand trends — just honest, thoughtful social storytelling rooted in performance and timeless brand presence.",
@@ -59,11 +161,11 @@ export const SM_FLIP = {
     secondary: { label: "Start a project", href: "/contact" },
   },
   columnImages: [
-    "/marketing_research.jpg",
-    "/marketing_strategy.jpg",
-    null,
-    "/marketing_create.jpg",
-    "/marketing_scale.jpg",
+    { src: "/marketing_research.jpg", label: "RESEARCH" },
+    { src: "/marketing_strategy.jpg", label: "STRATEGY" },
+    { src: null, label: "CREATE" },
+    { src: "/marketing_create.jpg", label: "PRODUCE" },
+    { src: "/marketing_scale.jpg", label: "SCALE" },
   ],
   gridImages: [
     "/digital_engag3.jpg",
@@ -220,6 +322,12 @@ export const SM_WORK = {
       ],
     },
   ],
+};
+
+export const SM_ZOOM = {
+  heroBg: "/people/team_image.png",
+  foregroundImage:
+    "https://assets-global.website-files.com/63ec206c5542613e2e5aa784/643312a6bc4ac122fc4e3afa_main%20home.webp",
 };
 
 export const SM_FAQ = {

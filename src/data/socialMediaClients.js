@@ -85,6 +85,15 @@ export const SOCIAL_MEDIA_CLIENTS_RAW = [
     image: "/portfolio/orvella.jpeg",
   },
   {
+    id: "rikki-bhagoria",
+    logoKey: "rikki-bhagoria",
+    name: "Rikki Bhagoria",
+    niche: "Beauty Lounge",
+    specialty: "Reels",
+    category: "Beauty",
+    image: "/portfolio/RB_Beauty_Lounge.jpg",
+  },
+  {
     id: "kiza-designer-studio",
     logoKey: "kiza-designer-studio",
     name: "Kiza Designer Studio",
@@ -131,15 +140,38 @@ export const SOCIAL_MEDIA_CLIENTS_RAW = [
   },
 ];
 
-/** Real social handles — same username on Instagram, Facebook, and YouTube */
+/** Real Instagram handles for portfolio drawer social links */
 export const SOCIAL_PROFILE_HANDLES = {
   "royal-touch": "royaltouch_weddingstudio",
   sitaravastram: "sitaravastram",
+  "k-makeup": "kmake_upstudio6",
+  "hair-guruji": "hair_guruji",
+  "swim-n-gym": "swimngympoint",
+  "enlightenment-yoga": "enlightenment_.yoga",
+  orvella: "orvellasalon",
   "kiza-designer-studio": "kiza_designer_studio",
   "ayesha-salon": "ayesha_salon_makeup_studio",
   "karan-bella-ciao": "karan_bella_ciao",
   "beyond-the-salon": "beyond_thesalon",
   "kaur-studio": "kaur_studio_",
+  "rikki-bhagoria": "rbbeautyloungechattarpur",
+};
+
+/** Verified Instagram profile URLs — overrides handle-based links when set */
+export const SOCIAL_INSTAGRAM_URLS = {
+  "beyond-the-salon": "https://www.instagram.com/beyond_thesalon/",
+};
+
+/** Facebook page/share URLs — only clients with verified links */
+export const SOCIAL_FACEBOOK_URLS = {
+  sitaravastram: "https://www.facebook.com/share/18yZu9po8n/?mibextid=wwXIfr",
+  "kaur-studio": "https://www.facebook.com/share/194hgKwD2v/?mibextid=wwXIfr",
+  "hair-guruji": "https://www.facebook.com/share/1DBCGJccL4/?mibextid=wwXIfr",
+  "swim-n-gym": "https://www.facebook.com/share/1CXtESRLfg/?mibextid=wwXIfr",
+  orvella: "https://www.facebook.com/share/1C7yYN4wbg/?mibextid=wwXIfr",
+  "ayesha-salon": "https://www.facebook.com/share/1ERn6BNJGH/?mibextid=wwXIfr",
+  "karan-bella-ciao": "https://www.facebook.com/share/1LkCCxyrKS/?mibextid=wwXIfr",
+  "rikki-bhagoria": "https://www.facebook.com/share/19ApqyDd3r/?mibextid=wwXIfr",
 };
 
 /** Unique brands only (dedupe shared logoKey placeholders). */
@@ -200,7 +232,11 @@ export const SOCIAL_LOGO_DISPLAY = {
   },
   "enlightenment-yoga": {
     bg: "#000000",
-    imgClass: "object-contain object-center scale-[1.15]",
+    imgClass: "object-contain object-center scale-[1.]", //krdiya
+  },
+  "rikki-bhagoria": {
+    bg: "#0a0a0a",
+    imgClass: "object-cover object-center",
   },
 };
 

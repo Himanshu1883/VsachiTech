@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Scroll from '../components/ui/Scroll';
 import usePageTitle from '../components/hooks/usePageTitle';
+import { CONTACT_EMAIL, buildMailtoLink } from '../data/contactInfo';
+import { submitContactForm } from '../utils/submitContactForm';
+
+const MAILTO_LINK = buildMailtoLink();
+
 function Contact() {
     usePageTitle(
     "Contact Us"
@@ -16,27 +21,19 @@ function Contact() {
     setLoading(true);
     setResultMessage("");
 
-    const formData = new FormData(e.target);
-    formData.append("access_key", import.meta.env.VITE_FORM_ACCESS_KEY);
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
+    const result = await submitContactForm(e.target, {
+      subject: "New contact form message — Vsachi Tech website",
+      source: "Vsachi Tech Contact Page",
     });
 
-    const data = await response.json();
     setLoading(false);
+    setResultMessage(result.message);
+    setSuccess(result.success);
 
-    if (data.success) {
-      setResultMessage("Message sent successfully! We will contact you soon.");
-      setSuccess(true);
+    if (result.success) {
       e.target.reset();
       setAgreed(false);
-    } else {
-      setResultMessage("Something went wrong. Please try again.");
-      setSuccess(false);
     }
-
   };
   return (
     <div className='bg-white'>
@@ -109,12 +106,12 @@ function Contact() {
                 <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
                   Contact
                 </p>
-                <span
-                  
-                  className="text-xl font-semibold text-gray-900 "
+                <a
+                  href={MAILTO_LINK}
+                  className="text-xl font-semibold text-gray-900 hover:text-red-500 transition-colors"
                 >
-                  info@vsachitech.com
-                </span>
+                  {CONTACT_EMAIL}
+                </a>
               </div>
 
               {/* CTA */}
@@ -163,6 +160,8 @@ function Contact() {
             onSubmit={handleSubmit}
             className="mt-14 text-left max-w-3xl mx-auto space-y-8"
           >
+            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
+
             {/* Name */}
             <div>
               <input

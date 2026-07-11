@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import usePageTitle from "../../components/hooks/usePageTitle";
 import { useDigitalEngagementScroll } from "./useDigitalEngagementScroll";
 import DeHero from "./sections/DeHero";
@@ -14,10 +14,6 @@ export default function DigitalEngagementPage() {
 
   usePageTitle("Digital Engagement");
   useDigitalEngagementScroll(rootRef);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div

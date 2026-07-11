@@ -405,6 +405,39 @@ function setupSmWorkScroll(root, prefersReducedMotion) {
   }
 }
 
+function setupSmZoomReveal(root, prefersReducedMotion) {
+  const wrapper = root.querySelector(".sm-zoom-wrapper");
+  const hero = root.querySelector(".sm-zoom-hero");
+  const img = root.querySelector(".sm-zoom-image-container img");
+  if (!wrapper || !hero || !img || prefersReducedMotion) return;
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: wrapper,
+        start: "top top",
+        end: "+=150%",
+        pin: true,
+        scrub: true,
+      },
+    })
+    .to(img, {
+      scale: 2,
+      z: 350,
+      transformOrigin: "center center",
+      ease: "power1.inOut",
+    })
+    .to(
+      hero,
+      {
+        scale: 1.1,
+        transformOrigin: "center center",
+        ease: "power1.inOut",
+      },
+      "<",
+    );
+}
+
 export function useSocialMediaScroll(rootRef) {
   useLayoutEffect(() => {
     const root = rootRef.current;
@@ -663,6 +696,7 @@ export function useSocialMediaScroll(rootRef) {
         fadeIntroOverlayOnScroll();
         setupSmHeroAnimations(root, prefersReducedMotion);
         setupSmWorkScroll(root, prefersReducedMotion);
+        setupSmZoomReveal(root, prefersReducedMotion);
       }, root);
 
       return ctx;
@@ -670,7 +704,7 @@ export function useSocialMediaScroll(rootRef) {
 
     let gsapCtx = null;
 
-    preloadImages(root, ".content__img, .sm-one").then(() => {
+    preloadImages(root, ".content__img, .sm-one, .sm-zoom-image-container img").then(() => {
       if (cancelled) return;
       gsapCtx = initAnimations();
       ScrollTrigger.refresh();

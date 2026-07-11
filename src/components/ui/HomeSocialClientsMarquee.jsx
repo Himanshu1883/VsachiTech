@@ -6,8 +6,8 @@ import {
   portfolioImageSrc,
 } from "../../data/socialMediaClients";
 
-const ROW_ONE_COUNT = 6;
-const ROW_TWO_COUNT = 6;
+const ROW_ONE_COUNT = 7;
+const ROW_TWO_COUNT = 7;
 
 function ClientOrb({ client }) {
   const logo = getSocialLogoDisplay(client.logoKey);
@@ -101,16 +101,13 @@ function MarqueeRow({
 export default function HomeSocialClientsMarquee() {
   const { rowOne, rowTwo, total } = useMemo(() => {
     const pool = UNIQUE_SOCIAL_CLIENTS;
-    const first = pool.slice(0, ROW_ONE_COUNT);
+    const splitAt = Math.min(ROW_ONE_COUNT, pool.length);
+    const first = pool.slice(0, splitAt);
 
-    // Prefer brands not on row one; if pool is short, fill from the rest so row stays at 6 unique.
     const preferred = pool.filter(
       (client) => !first.some((item) => item.logoKey === client.logoKey),
     );
-    const fillers = pool.filter(
-      (client) => !preferred.some((item) => item.logoKey === client.logoKey),
-    );
-    const second = [...preferred, ...fillers].slice(0, ROW_TWO_COUNT);
+    const second = preferred.slice(0, ROW_TWO_COUNT);
 
     return {
       rowOne: first,
