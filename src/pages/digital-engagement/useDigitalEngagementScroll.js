@@ -103,6 +103,7 @@ export function useDigitalEngagementScroll(rootRef) {
           "-=0.45",
         )
         .from(".de-hero-tagline", { y: 14, opacity: 0, duration: 0.55 }, "-=0.35")
+        .from(".de-hero-cta", { y: 16, opacity: 0, duration: 0.55 }, "-=0.3")
         .from(".de-scroll-hint", { y: 12, opacity: 0, duration: 0.5 }, "-=0.35");
 
       const hero = root.querySelector(".de-hero");

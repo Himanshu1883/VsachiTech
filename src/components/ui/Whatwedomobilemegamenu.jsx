@@ -9,7 +9,7 @@ import {
     FaReact,
     FaPalette,
     FaArrowRight,
-    FaBriefcase,
+    FaHashtag,
 } from "react-icons/fa";
 
 /* ---------------- SERVICES ---------------- */
@@ -51,10 +51,10 @@ const services = [
     },
     {
         id: 5,
-        icon: FaBriefcase,
-        title: "View Portfolio",
-        desc: "Explore our work",
-        link: "/our-work",
+        icon: FaHashtag,
+        title: "Social Media",
+        desc: "Explore our social media work",
+        link: "/social-media",
     },
 ];
 

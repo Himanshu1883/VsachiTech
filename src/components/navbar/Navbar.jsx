@@ -1,4 +1,4 @@
-import { FiGrid, FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
+import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import WhatWeDoMegaMenu from '../ui/WhatWeDoMegaMenu';
@@ -360,20 +360,22 @@ export default function Navbar() {
               );
             })}
 
-            {/* Mobile portfolio CTA */}
-            <div className="pt-4 space-y-3">
+            {/* Mobile portfolio CTA — matches desktop Portfolio button */}
+            <div className="pt-4">
               <button
                 type="button"
                 onClick={() => {
                   setMobileOpen(false);
-                  setPortfolioDrawerOpen(true);
+                  openPortfolioDrawer();
                 }}
-                className="w-full bg-[#e44f39] p-4 rounded-full cursor-pointer flex items-center justify-center gap-3 hover:bg-[#ff6b55] transition-colors"
+                className={`w-full inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold uppercase tracking-wide transition-colors
+                  ${
+                    isPortfolioActive
+                      ? "bg-white text-black"
+                      : "bg-[#e44f39] text-white hover:bg-[#ff6b55]"
+                  }`}
               >
-                <FiGrid className="text-white text-xl" />
-                <span className="text-white font-semibold uppercase text-sm tracking-wide">
-                  View Portfolio
-                </span>
+                Portfolio
               </button>
             </div>
           </div>

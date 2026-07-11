@@ -262,11 +262,50 @@ function setupSmHeroAnimations(root, prefersReducedMotion) {
   }
 }
 
+function setupMobileWorkStripSequence(ghostItem, videoContainers) {
+  const count = videoContainers.length;
+  if (!count) return;
+
+  const updateSmoothStrips = (progress) => {
+    const position = progress * count;
+
+    videoContainers.forEach((el, i) => {
+      const peak = i + 0.5;
+      const distance = Math.abs(position - peak);
+      const opacity = gsap.utils.clamp(0, 1, 1 - distance / 0.72);
+      const slideDirection = i + 0.5 >= position ? 1 : -1;
+
+      gsap.set(el, {
+        autoAlpha: opacity,
+        scale: 0.93 + opacity * 0.07,
+        x: (1 - opacity) * 36 * slideDirection,
+        y: 0,
+        zIndex: Math.max(0, Math.round(opacity * 100)),
+      });
+    });
+  };
+
+  gsap.set(videoContainers, { autoAlpha: 0, scale: 0.93, x: 0, y: 0, zIndex: 0 });
+  updateSmoothStrips(0);
+
+  ScrollTrigger.create({
+    trigger: ghostItem,
+    start: "0 top",
+    end: "65% top",
+    scrub: 0.85,
+    invalidateOnRefresh: true,
+    onUpdate: (self) => updateSmoothStrips(self.progress),
+    onRefresh: (self) => updateSmoothStrips(self.progress),
+  });
+}
+
 function setupSmWorkScroll(root, prefersReducedMotion) {
   const workItems = root.querySelectorAll('.sm-work [data-work="item"]');
   const ghostItems = root.querySelectorAll(".sm-work .ghost_work-item");
 
   if (!workItems.length || !ghostItems.length || prefersReducedMotion) return;
+
+  const isMobileWork = window.matchMedia("(max-width: 52.99em)").matches;
 
   gsap.set(workItems, {
     position: "fixed",
@@ -288,6 +327,10 @@ function setupSmWorkScroll(root, prefersReducedMotion) {
       scale: 1.4,
       yPercent: 10,
     });
+
+    if (isMobileWork) {
+      gsap.set(videoContainer, { x: 0, y: 0, clearProps: "transform" });
+    }
 
     const stStarting = {
       trigger: ghostItems[index],
@@ -326,26 +369,30 @@ function setupSmWorkScroll(root, prefersReducedMotion) {
       scrollTrigger: {
         trigger: ghostItems[index],
         scrub: true,
-        start: "0 top",
-        end: "35% top",
+        start: isMobileWork ? "15% top" : "0 top",
+        end: isMobileWork ? "55% top" : "35% top",
       },
     });
 
-    gsap.from(videoContainer, {
-      x: index % 2 === 0 ? "100vw" : "-100vw",
-      scrollTrigger: {
-        trigger: ghostItems[index],
-        scrub: true,
-        start: "0 top",
-        end: "65% top",
-        onLeave: () => {
-          gsap.set(overlay, {
-            display: "flex",
-            opacity: 0,
-          });
+    if (isMobileWork) {
+      setupMobileWorkStripSequence(ghostItems[index], [...videoContainer]);
+    } else {
+      gsap.from(videoContainer, {
+        x: index % 2 === 0 ? "100vw" : "-100vw",
+        scrollTrigger: {
+          trigger: ghostItems[index],
+          scrub: true,
+          start: "0 top",
+          end: "65% top",
+          onLeave: () => {
+            gsap.set(overlay, {
+              display: "flex",
+              opacity: 0,
+            });
+          },
         },
-      },
-    });
+      });
+    }
 
     const stFinal = {
       trigger: ghostItems[index],
@@ -354,24 +401,28 @@ function setupSmWorkScroll(root, prefersReducedMotion) {
       toggleActions: "play reverse play reverse",
     };
 
-    gsap.fromTo(
-      overlay,
-      { opacity: 0 },
-      {
-        opacity: 1,
+    if (!isMobileWork) {
+      gsap.fromTo(
+        overlay,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          scrollTrigger: stFinal,
+        },
+      );
+    }
+
+    if (!isMobileWork) {
+      gsap.to(videoContainer, {
+        yPercent: 15,
         scrollTrigger: stFinal,
-      },
-    );
+      });
 
-    gsap.to(videoContainer, {
-      yPercent: 15,
-      scrollTrigger: stFinal,
-    });
-
-    gsap.to(element, {
-      filter: "blur(1px)",
-      scrollTrigger: stFinal,
-    });
+      gsap.to(element, {
+        filter: "blur(1px)",
+        scrollTrigger: stFinal,
+      });
+    }
   });
 
   const smWorkFooter = root.querySelector(".sm-work .footer_section");
@@ -403,13 +454,30 @@ function setupSmWorkScroll(root, prefersReducedMotion) {
       onLeaveBack: showWorkPanels,
     });
   }
+
+  if (isMobileWork) {
+    ScrollTrigger.refresh();
+  }
 }
 
 function setupSmZoomReveal(root, prefersReducedMotion) {
   const wrapper = root.querySelector(".sm-zoom-wrapper");
   const hero = root.querySelector(".sm-zoom-hero");
+  const imgContainer = root.querySelector(".sm-zoom-image-container");
   const img = root.querySelector(".sm-zoom-image-container img");
   if (!wrapper || !hero || !img || prefersReducedMotion) return;
+
+  const isMobileZoom = window.matchMedia("(max-width: 52.99em)").matches;
+
+  gsap.set([hero, img], {
+    transformOrigin: "center center",
+    backfaceVisibility: "hidden",
+  });
+
+  if (isMobileZoom) {
+    gsap.set(imgContainer, { perspective: "none" });
+    gsap.set(img, { force3D: false });
+  }
 
   gsap
     .timeline({
@@ -418,21 +486,33 @@ function setupSmZoomReveal(root, prefersReducedMotion) {
         start: "top top",
         end: "+=150%",
         pin: true,
-        scrub: true,
+        pinReparent: isMobileZoom,
+        anticipatePin: 1,
+        scrub: isMobileZoom ? 0.7 : true,
+        invalidateOnRefresh: true,
+        fastScrollEnd: isMobileZoom,
       },
     })
-    .to(img, {
-      scale: 2,
-      z: 350,
-      transformOrigin: "center center",
-      ease: "power1.inOut",
-    })
+    .to(
+      img,
+      isMobileZoom
+        ? {
+            scale: 2,
+            ease: "none",
+            force3D: false,
+          }
+        : {
+            scale: 2,
+            z: 350,
+            ease: "power1.inOut",
+          },
+    )
     .to(
       hero,
       {
         scale: 1.1,
-        transformOrigin: "center center",
-        ease: "power1.inOut",
+        ease: isMobileZoom ? "none" : "power1.inOut",
+        force3D: false,
       },
       "<",
     );
@@ -452,14 +532,15 @@ export function useSocialMediaScroll(rootRef) {
     let onLenisScroll = null;
     let flipCtx = null;
     let cancelled = false;
+    const isMobileScroll = window.matchMedia("(max-width: 52.99em)").matches;
 
     if (!prefersReducedMotion) {
       lenis = new Lenis({
-        duration: 1.28,
+        duration: isMobileScroll ? 1.1 : 1.28,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        syncTouch: false,
-        touchMultiplier: 1.1,
+        syncTouch: isMobileScroll,
+        touchMultiplier: isMobileScroll ? 0.92 : 1.1,
         wheelMultiplier: 0.92,
         allowNestedScroll: true,
       });

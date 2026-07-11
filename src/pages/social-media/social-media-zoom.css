@@ -41,6 +41,31 @@
   object-position: center center;
 }
 
+@media screen and (max-width: 52.99em) {
+  .sm-zoom-wrapper {
+    isolation: isolate;
+  }
+
+  .sm-zoom-content .sm-zoom-section {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .sm-zoom-image-container {
+    height: 100dvh;
+    min-height: 100dvh;
+    perspective: none;
+    transform: translateZ(0);
+  }
+
+  .sm-zoom-image-container img,
+  .sm-zoom-content .sm-zoom-hero {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sm-zoom-hero,
   .sm-zoom-image-container img {

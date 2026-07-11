@@ -229,6 +229,87 @@
   isolation: isolate;
 }
 
+@media screen and (max-width: 52.99em) {
+  .sm-work .work_item-wrapper {
+    justify-content: center;
+    gap: 0.85rem;
+    padding: 1rem 0.85rem 1.25rem;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  /* One strip visible at a time — cycled by vertical page scroll */
+  .sm-work .work_video-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    max-height: none;
+    aspect-ratio: auto;
+    flex: none;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    will-change: transform, opacity;
+  }
+
+  .sm-work .work_video-wrapper {
+    position: relative;
+    flex: 1 1 auto;
+    align-self: center;
+    width: min(78vw, 300px);
+    height: min(56vh, 460px);
+    min-height: clamp(240px, 52vh, 420px);
+    max-height: 58vh;
+    margin-inline: auto;
+    overflow: hidden;
+    padding: 0;
+    isolation: isolate;
+  }
+
+  .sm-work .work_video > video,
+  .sm-work .work_video > .work_strip-image {
+    z-index: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: cover;
+  }
+
+  .sm-work .work_text {
+    flex-shrink: 0;
+    padding-top: 0;
+    width: 100%;
+  }
+
+  .sm-work .work_text-title {
+    font-size: clamp(2rem, 10.5vw, 3.25rem);
+  }
+
+  .sm-work .work-text-subtitle {
+    font-size: clamp(0.62rem, 2.8vw, 0.78rem);
+    line-height: 1.35;
+  }
+
+  .sm-work .hero_text,
+  .sm-work .footer_text {
+    font-size: clamp(2.75rem, 13vw, 4.25rem);
+    padding-bottom: 6vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .sm-work .ghost_work-item {
+    height: 280vh;
+  }
+}
+
 @media screen and (max-width: 479px) {
   .sm-work .work_text {
     grid-column-gap: 2rem;
@@ -238,8 +319,9 @@
     align-items: flex-start;
   }
 
-  .sm-work .work_text-title {
-    font-size: 12.5vw;
+  .sm-work .work_video-wrapper {
+    width: min(82vw, 280px);
+    min-height: clamp(220px, 50vh, 400px);
   }
 }
 
